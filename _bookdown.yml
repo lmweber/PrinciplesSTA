@@ -24,8 +24,11 @@ rmd_files: ["index.Rmd",
     # Part 3: Extended topics:
     "extended_topics.Rmd",
     "multi_sample.Rmd",
+    "manually_guided.Rmd",
     # Part 4: Workflows:
     "workflows.Rmd",
+    "human_DLPFC.Rmd",
+    "mouse_brain.Rmd",
     # Part 5: Appendix:
     "contributors.Rmd",
     "references.Rmd"]
