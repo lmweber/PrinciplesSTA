@@ -24,8 +24,8 @@ rmd_files: ["index.Rmd",
     # Part 3: Extended topics:
     "extended_topics.Rmd",
     "multi_sample.Rmd",
-    # Part 4: Interpretation:
-    "interpretation.Rmd",
+    # Part 4: Workflows:
+    "workflows.Rmd",
     # Part 5: Appendix:
     "contributors.Rmd",
     "references.Rmd"]
