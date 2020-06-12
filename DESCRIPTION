@@ -1,0 +1,12 @@
+Package: OrchestratingSpatialTranscriptomicsAnalysis
+Title: Orchestrating Spatial Transcriptomics Analysis with Bioconductor
+Version: 0.0.1
+Authors@R: c(person('Lukas M.', 'Weber', role = c('aut', 'cre')), person('Stephanie C.', 'Hicks', role = 'aut'))
+Description: Online book for orchestrating spatial transcriptomics analysis with Bioconductor.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+  SingleCellExperiment
+  scater
+  scran

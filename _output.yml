@@ -1,16 +1,27 @@
 bookdown::gitbook:
   css: style.css
+  highlight: tango
   config:
+    fontsettings:
+      theme: white
     toc:
       before: |
-        <li><a href="./">Orchestrating Spatial Transcriptomics Analysis with Bioconductor</a></li>
+        <li><a href="./">Orchestrating Spatial Transcriptomics</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    download: ["pdf", "epub"]
+        <li><a href="https://bioconductor.org" target="blank">Published by Bioconductor</a></li>
+    download: null
+    bookdown::epub_book: default
+    # edit: https://github.com/Bioconductor/OrchestratingSpatialTranscriptomicsAnalysis/edit/master/docs/%s
+    sharing:
+      github: no
+      facebook: no
+      twitter: no
+      linkedin: no
+    #cover: images/cover.png
+
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes
-bookdown::epub_book: default
