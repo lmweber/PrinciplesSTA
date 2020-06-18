@@ -3,12 +3,35 @@ title: "Orchestrating Spatial Transcriptomics Analysis with Bioconductor"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [osta.bib]
+bibliography: osta.bib
 biblio-style: apalike
 link-citations: yes
 description: "Online textbook on 'Orchestrating Spatial Transcriptomics Analysis with Bioconductor'"
 ---
 
+
 # Welcome {-}
+
+<a href="https://bioconductor.org"><img src="https://github.com/Bioconductor/BiocStickers/raw/master/Bioconductor/Bioconductor-serial.gif" width="150" alt="Bioconductor Sticker" align="right" style="margin: 0 1em 0 1em" /></a>
+
+This is the website for the online textbook **"Orchestrating Spatial Transcriptomics Analysis with Bioconductor"**.
+
+This textbook describes the steps in a computational analysis pipeline for **spatial transcriptomics** data, using the [Bioconductor](http://bioconductor.org/) framework and R programming language. Each chapter describes one key step in the analysis pipeline, including examples using R code and data that can be run on your own laptop.
+
+The chapters are organized into several parts, consisting of (i) introductory material, (ii) analysis pipeline (chapters for each key step in the analysis), (iii) extended topics, (iv) workflows (complete workflows with minimal documentation), and (v) appendix.
+
+This is a companion to the textbook [Orchestrating Single-Cell Analysis with Bioconductor](https://osca.bioconductor.org/) (OSCA), which describes workflows for analyzing single-cell RNA sequencing data. The OSCA textbook includes additional additional introductory material on R and Bioconductor, which may be useful for readers getting started with Bioconductor.
+
+
+---
+
+
+To cite, ...
+
+To contribute, ...
+
+Code of conduct
+
+Link to contributors and acknowledgments
 
 

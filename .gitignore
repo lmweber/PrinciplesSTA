@@ -2,6 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rbuildignore
 .DS_Store
 docs/*
 *.rds
+*.png

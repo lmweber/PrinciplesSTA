@@ -1,6 +1,6 @@
 # Orchestrating Spatial Transcriptomics Analysis with Bioconductor
 
-Repository containing files for our online book on "Orchestrating Spatial Transcriptomics Analysis with Bioconductor".
+Repository containing source files for OSTA online book
 
-Content is structured as a set of RMarkdown files, one per chapter.
+Main content is structured as a set of RMarkdown files
 
