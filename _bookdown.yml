@@ -15,6 +15,7 @@ rmd_files: ["index.Rmd",
     "datasets.Rmd",
     # Part 2: Analysis pipeline:
     "analysis_pipeline.Rmd",
+    "load_data.Rmd",
     "quality_control.Rmd",
     "normalization.Rmd",
     "feature_selection.Rmd",
