@@ -48,28 +48,34 @@ For readers who are new to R and Bioconductor, there are a number of additional 
 
 [Bioconductor](http://bioconductor.org/) is an **open source** and **open development** project, providing a cohesive yet flexible framework for analyzing high-throughput genomics data in R. The Bioconductor project consists of almost 2000 contributed R packages, as well as core infrastructure maintained by the Bioconductor Core Team, providing a rich analysis environment for users.
 
-In our view, one of the main advantages of the Bioconductor framework is the modularity and open development philosophy. R packages implementing analysis methods are contributed by research groups throughout the world, while the Bioconductor Core Team coordinates the overall project and maintains infrastructure such as data object structures and package testing infrastructure. A key feature is that contributed packages are required to use consistent data structures, such as the [SingleCellExperiment](http://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) object class, which allows packages from different research groups to interact nicely (e.g. output from one package can easily be provided as input to another package). In addition, Bioconductor packages are required to have comprehensive documentation, including "vignettes" (long-form examples including R code).
+In our view, one of the main advantages of the Bioconductor framework is the modularity and open development philosophy. R packages implementing analysis methods are contributed by research groups throughout the world, with the Bioconductor Core Team coordinating the overall project and maintaining infrastructure such as data object structures and package testing infrastructure. A key feature is that contributed packages are required to use consistent data structures, such as the [SingleCellExperiment](http://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) or [SpatialExperiment](https://github.com/drighelli/SpatialExperiment) object classes, which allows packages from different research groups to interact nicely (e.g. output from one package can easily be provided as input to another package). In addition, Bioconductor packages are required to have comprehensive documentation, including "vignettes" (long-form examples including R code).
 
-This modular and open-development approach allows end users to readily combine and substitute analysis methods contributed by different research groups, instead of being "locked in" to using methods or packages maintained by a single group. For example, if a new and improved method is developed for one of the steps described in this book, then this can easily be substituted into the appropriate step in the pipeline, using the `SingleCellExperiment` data structure as the conduit. In addition, advanced users are welcome to contribute their own packages to Bioconductor.
+This modular and open-development approach allows end users to readily combine and substitute analysis methods contributed by different research groups, instead of being "locked in" to using methods or packages maintained by a single group. For example, if a new and improved method is developed for one of the steps described in this book, then this can easily be substituted into the appropriate step in the pipeline, using the `SpatialExperiment` data structure as the conduit. In addition, advanced users are welcome to contribute their own packages to Bioconductor.
 
 Several alternative frameworks also exist for analyzing single-cell data, including [Seurat](https://satijalab.org/seurat/) in R, and [scanpy](https://scanpy.readthedocs.io/en/stable/) in Python. We note that these are also excellent frameworks maintained by research groups working on the leading edge of single-cell analysis, and may be preferred by some users or for some analyses, but they do not have the same advantages of modularity and open development.
 
 
 
-## SingleCellExperiment {#singlecellexperiment}
+## SpatialExperiment {#spatialexperiment}
 
-We use the `SingleCellExperiment` Bioconductor object class throughout the analysis pipeline and workflows described in the main chapters of this book.
+We use the [SpatialExperiment](https://github.com/drighelli/SpatialExperiment) Bioconductor object class throughout the analysis pipeline and workflows described in the main chapters of this book.
 
-A summary of the `SingleCellExperiment` object structure is shown in the following figure. A `SingleCellExperiment` object consists of one or more `assays` (tables of raw and/or transformed data), `rowData` and `colData` (metadata describing features and cells), `reducedDims` (reduced dimension features), and optional additional `metadata`. The different parts of the object are connected, which enables convenient operations such as subsetting the entire object by rows (features) or columns (cells).
+The `SpatialExperiment` class builds on the more general [SingleCellExperiment](http://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) class for scRNA-seq data. A summary of the `SingleCellExperiment` object structure is shown in the following figure. A `SingleCellExperiment` object consists of one or more `assays` (tables of raw and/or transformed data), `rowData` and `colData` (metadata describing features and cells, with features in rows, and cells in columns), `reducedDims` (reduced dimension features), and optional additional `metadata`. The different parts of the object are connected, which enables convenient operations such as subsetting the entire object by rows or columns.
 
-For more details on the `SingleCellExperiment` object class, see:
+The main differences in the `SpatialExperiment` class are: (i) the columns and `colData` correspond to spatial "spots" (or pixels) on a two-dimensional tissue slide (or possibly in three dimensions) instead of cells, and (ii) the addition of a `spatialCoords` slot, which stores the `x` and `y` (and possibly `z`) coordinates of the spots. Depending on the technology, spots may correspond to individual cells, or a regular grid of coordinates where each spot contains zero, one, or more cells (see [Spatial transcriptomics](#spatial_transcriptomics)).
+
+The `SpatialExperiment` class is a work in progress, and may be updated to include additional structure as we gain more experience with spatial transcriptomics data.
+
+[TO DO: discuss polygons/centroids for subcellular resolution]
+
+For more details on the more general `SingleCellExperiment` object class, see:
 
 - The introductory chapters of the [OSCA](https://osca.bioconductor.org/) book, which provides a detailed tutorial showing how to create and work with `SingleCellExperiment` objects
 
 - The [SingleCellExperiment](http://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) Bioconductor vignette
 
 
-```{r sce-structure, fig.wide=TRUE, echo=FALSE, fig.cap="Overview of the structure of the `SingleCellExperiment` class. Each row of the assays corresponds to a row of the `rowData` (pink shading), while each column of the assays corresponds to a column of the `colData` and `reducedDims` (yellow shading)."}
+```{r sce-structure, fig.wide=TRUE, echo=FALSE, fig.cap="Overview of the structure of the `SingleCellExperiment` class. Each row of the assays corresponds to a row of the `rowData` (pink shading), while each column of the assays corresponds to a column of the `colData` and `reducedDims` (yellow shading). The `SpatialExperiment` class extends the `SingleCellExperiment` class to spatial data."}
 library(rebook)
 knitr::include_graphics(
   file.path("https://raw.githubusercontent.com/lmweber/OSTA-release/master/images", 
