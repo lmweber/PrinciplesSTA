@@ -20,7 +20,7 @@ This textbook describes the steps in a computational analysis pipeline for **spa
 
 The book is organized into several parts, consisting of (i) introductory material, (ii) analysis pipeline (chapters for each key step in the analysis), (iii) extended topics, (iv) workflows (complete workflows with minimal documentation), and (v) appendix.
 
-This is a companion to the textbook [Orchestrating Single-Cell Analysis with Bioconductor](https://osca.bioconductor.org/) (OSCA), which describes workflows for analyzing single-cell RNA sequencing data. The OSCA textbook includes additional additional introductory material on R and Bioconductor, which may be useful for readers getting started with Bioconductor.
+This is a companion to the textbook [Orchestrating Single-Cell Analysis with Bioconductor](https://osca.bioconductor.org/) (OSCA), which describes workflows for analyzing single-cell RNA sequencing data. The OSCA textbook also includes additional introductory material on R and Bioconductor, which may be useful for readers getting started with Bioconductor.
 
 
 ---

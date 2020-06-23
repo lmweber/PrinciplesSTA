@@ -40,11 +40,21 @@ The Visium platform extends a previous non-commercial implementation of this tec
 Due to the commercial availability, relatively high resolution, transcriptome-wide measurement, and [relatively simple experimental procedures compared to other technologies](https://www.10xgenomics.com/spatial-transcriptomics/), we expect the Visium platform to become widely used in the coming years, and therefore focus on Visium datasets in the main analysis pipeline chapters in this book.
 
 
+
+### 10x Genomics Visium with immunofluorescence
+
+Paragraph on Visium with immunofluorescence protein co-detection extension
+
+Released in mid 2020
+
+
+
 ### Slide-seqV2
 
 Paragraph on Slide-seqV2 and Slide-seq
 
 Note much lower number of genes per spot than Visium: [Valentine Svensson blog post](http://www.nxn.se/valent/2020/5/11/comparing-slide-seq-and-slide-seqv2-counts)
+
 
 
 ### seqFISH
@@ -56,6 +66,7 @@ Allows single-cell resolution (e.g. x-y coordinates correspond to cell centroids
 Latest iteration (seqFISH+) is effectively transcriptome-wide
 
 
+
 ### MERFISH
 
 Paragraph on MERFISH (latest iteration)
@@ -63,9 +74,11 @@ Paragraph on MERFISH (latest iteration)
 Similar to seqFISH+
 
 
+
 ### Non-transcriptome-wide spatial gene expression technologies
 
 Brief mention of other non-transcriptome-wide spatial gene expression technologies, e.g. RNAscope. These are especially useful for targeted experiments for known genes of interest, e.g. confirmatory experiments after exploratory experiments using Visium.
+
 
 
 ### Other spatial omics technologies
@@ -76,7 +89,7 @@ Brief mention of other spatial omics technologies, e.g. proteomics / imaging mas
 
 ## Data format and objects
 
-As discussed in the [Introduction](#spatialexperiment), we use the `SpatialExperiment` Bioconductor object class to store datasets for the main analysis pipeline and workflows. The datasets are described in the next chapter.
+We use the `SpatialExperiment` Bioconductor object class to store datasets for the main analysis pipeline and workflows. For more details on the `SpatialExperiment` class, see the [Introduction](#spatialexperiment). For details on each dataset, see the corresponding workflow chapter.
 
 For the Visium datasets, we store the data in the `SpatialExperiment` class as follows. This setup may be revised in the future, especially for datasets from other technologies, which may contain additional information:
 

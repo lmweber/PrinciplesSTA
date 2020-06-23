@@ -62,13 +62,7 @@ We use the [SpatialExperiment](https://github.com/drighelli/SpatialExperiment) B
 
 The `SpatialExperiment` class builds on the more general [SingleCellExperiment](http://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) class for scRNA-seq data. A summary of the `SingleCellExperiment` object structure is shown in the following figure. A `SingleCellExperiment` object consists of one or more `assays` (tables of raw and/or transformed data), `rowData` and `colData` (metadata describing features and cells, with features in rows, and cells in columns), `reducedDims` (reduced dimension features), and optional additional `metadata`. The different parts of the object are connected, which enables convenient operations such as subsetting the entire object by rows or columns.
 
-The main differences in the `SpatialExperiment` class are: (i) the columns and `colData` correspond to spatial "spots" (or pixels) on a two-dimensional tissue slide (or possibly in three dimensions) instead of cells, and (ii) the addition of a `spatialCoords` slot, which stores the `x` and `y` (and possibly `z`) coordinates of the spots. Depending on the technology, spots may correspond to individual cells, or a regular grid of coordinates where each spot contains zero, one, or more cells (see [Spatial transcriptomics](#spatial_transcriptomics)).
-
-The `SpatialExperiment` class is a work in progress, and may be updated to include additional structure as we gain more experience with spatial transcriptomics data.
-
-[TO DO: discuss polygons/centroids for subcellular resolution]
-
-For more details on the more general `SingleCellExperiment` object class, see:
+For more details on the `SingleCellExperiment` object class, see:
 
 - The introductory chapters of the [OSCA](https://osca.bioconductor.org/) book, which provides a detailed tutorial showing how to create and work with `SingleCellExperiment` objects
 
@@ -82,5 +76,12 @@ knitr::include_graphics(
             "SingleCellExperiment.png")
 )
 ```
+
+
+The main differences in the `SpatialExperiment` class are: (i) the columns and `colData` correspond to spatial "spots" (or pixels) on a two-dimensional tissue slide (or possibly in three dimensions) instead of cells, and (ii) the addition of a `spatialCoords` slot, which stores the `x` and `y` (and possibly `z`) coordinates of the spots. Depending on the technology, spots may correspond to individual cells, or a regular grid of coordinates where each spot contains zero, one, or more cells (see [Spatial transcriptomics](#spatial_transcriptomics)).
+
+The `SpatialExperiment` class is a work in progress, and may be updated to include additional structure as we gain more experience with spatial transcriptomics data.
+
+[TO DO: discuss polygons/centroids for subcellular resolution]
 
 
