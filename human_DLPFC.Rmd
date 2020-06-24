@@ -6,7 +6,7 @@ chapterPreamble()
 ```
 
 
-This workflow is a condensed version of the analyses shown in the main analysis chapters, using the same dataset. The complete analysis pipeline is presented here as a workflow with minimal documentation, to make it easier to see how the steps fit together. For more details on any of the individual analysis steps, see the chapters in [Analyis pipeline](#analysis_pipeline).
+This workflow is a condensed version of the analyses shown in the main analysis chapters, using the same dataset. The workflow uses the most "standard" methods for each step, and contains minimal documentation, to make it easier to see how the steps fit together into a complete analysis pipeline. For more details on any of the individual analysis steps, see the chapters in [Analyis pipeline](#analysis_pipeline).
 
 
 
@@ -18,7 +18,9 @@ In the full dataset, there are 12 samples in total, from 3 individuals, with 2 p
 
 For the examples in this workflow and the analysis chapters, we use only one sample (sample 151673), i.e. a single Visium tissue capture area. This is mainly to reduce computational requirements for compiling the examples.
 
-This dataset is described in our publication @Maynard2020-ke, currently available from [bioRxiv](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1). The dataset is publicly available through the [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) Bioconductor package, and the analysis code is provided in the [HumanPilot](https://github.com/LieberInstitute/HumanPilot) GitHub repository. The dataset can also be explored interactively through a [Shiny web app](http://spatial.libd.org/spatialLIBD/).
+This dataset is described in our publication @Maynard2020-ke, currently available from [bioRxiv](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1). The full dataset is publicly available through the [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) Bioconductor package, and the analysis code is provided in the [HumanPilot](https://github.com/LieberInstitute/HumanPilot) GitHub repository. The dataset can also be explored interactively through a [Shiny web app](http://spatial.libd.org/spatialLIBD/).
+
+The subset of data used in this workflow (sample 151673) is also available from the [spatialExampleData](https://github.com/lmweber/spatialExampleData) Bioconductor package.
 
 For more details on the dataset, including an illustration of the experimental design, see our [paper](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1) [@Maynard2020-ke] or the [spatialLIBD vignette](http://bioconductor.org/packages/release/data/experiment/vignettes/spatialLIBD/inst/doc/spatialLIBD.html).
 
@@ -236,20 +238,17 @@ colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 
 ## Clustering
 
-Next, we perform clustering to identify cell types. Here, we use molecular features (gene expression) only, as in scRNA-seq analyses. Newer methods that additionally take into account spatial features will be described in [Clustering](#clustering). The molecular features are the top 50 PCs calculated from the set of HVGs, as described above. We use the graph-based clustering implementation and Walktrap method provided in `scran` [@Lun2016-dn].
+Next, we perform clustering to identify cell types. Here, we use molecular features (gene expression) only, as in scRNA-seq analyses. Newer methods that additionally take into account spatial features will be described in [Clustering](#clustering). The molecular features are the top PCs calculated from the set of HVGs, as described above. We use the graph-based clustering implementation and Walktrap method provided in `scran` [@Lun2016-dn].
 
 From the visualizations, we can see that the clustering reproduces the expected cortical layer structure in this sample, although not perfectly. The clusters are also separated in UMAP space.
 
 ```{r clustering}
-# select features for clustering
-n_pcs <- 50
-df_clus <- cbind(reducedDim(spe, "PCA")[, seq_len(n_pcs)])
-dim(df_clus)
-
-# clustering
+# graph-based clustering
+set.seed(123)
 k <- 10
-g <- buildSNNGraph(df_clus, k = k, d = ncol(df_clus), transposed = TRUE)
-clus <- igraph::cluster_walktrap(g)$membership
+g <- buildSNNGraph(spe, k = k, use.dimred = "PCA")
+g_walk <- igraph::cluster_walktrap(g)
+clus <- g_walk$membership
 table(clus)
 
 # store cluster labels in object
@@ -258,7 +257,7 @@ colLabels(spe) <- factor(clus)
 
 
 ```{r clustering_plot, fig.width=6, fig.height=5}
-# color-blind friendly palette
+# color-blind friendly palette (Okabe-Ito)
 palette_okabe_ito <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", 
                        "#0072B2", "#D55E00", "#CC79A7")
 
@@ -286,6 +285,9 @@ as.data.frame(cbind(colData(spe), reducedDim(spe, "UMAP"))) %>%
         axis.title = element_blank(), 
         axis.text = element_blank(), 
         axis.ticks = element_blank())
+
+# alternatively
+#plotReducedDim(spe, "UMAP", colour_by = "label")
 ```
 
 
@@ -295,7 +297,7 @@ as.data.frame(cbind(colData(spe), reducedDim(spe, "UMAP"))) %>%
 Identify marker genes by testing genes for differential expression between clusters. We use the `findMarkers` implementation in `scran` [@Lun2016-dn], using a binomial test, which tests for genes that differ in the proportion of expressing genes (expressed vs. not expressed) between clusters. This is a more stringent test than the default t-tests, and tends to select genes that are easier to interpret and validate experimentally.
 
 ```{r marker_genes}
-# use gene names for plotting
+# set gene names for plotting
 rownames(spe) <- rowData(spe)$gene_name
 
 # test for marker genes
