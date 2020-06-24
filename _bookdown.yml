@@ -5,7 +5,6 @@ new_session: true
 language:
   ui:
     chapter_name: "Chapter "
-#cover-image: "images/cover.png"
 repo: "lmweber/OSTA"
 output_dir: "docs"
 rmd_files: ["index.Rmd",
