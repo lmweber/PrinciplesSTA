@@ -2,4 +2,6 @@
 
 # Workflows {#workflows}
 
+Each of the chapters in this part contains a complete workflow, starting from loading the data and proceeding through the individual analysis steps described in [Analysis pipeline](#analysis_pipeline). Unlike the analysis chapters, the workflows contain minimal documentation, so that readers can focus on how the analysis steps fit together into a full pipeline. For more detail on any individual analysis step, refer to the chapters in [Analysis pipeline](#analysis_pipeline).
+
 

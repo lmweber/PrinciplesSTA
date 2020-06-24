@@ -1,3 +1,329 @@
 # Human DLPFC {#human_DLPFC}
 
+```{r setup, echo=FALSE, results="asis"}
+library(rebook)
+chapterPreamble()
+```
+
+
+This workflow is a condensed version of the analyses shown in the main analysis chapters, using the same dataset. The complete analysis pipeline is presented here as a workflow with minimal documentation, to make it easier to see how the steps fit together. For more details on any of the individual analysis steps, see the chapters in [Analyis pipeline](#analysis_pipeline).
+
+
+
+## Description of dataset
+
+This is a 10x Genomics Visium dataset generated from healthy human brain samples from the dorsolateral prefrontal cortex (DLPFC) region.
+
+In the full dataset, there are 12 samples in total, from 3 individuals, with 2 pairs of "spatially adjacent" replicates (serial sections) per individual (i.e. 4 samples per individual). The individuals and spatially adjacent replicates can be considered as blocking factors. Each sample spans the six layers of the cortex plus white matter, in a perpendicular tissue section.
+
+For the examples in this workflow and the analysis chapters, we use only one sample (sample 151673), i.e. a single Visium tissue capture area. This is mainly to reduce computational requirements for compiling the examples.
+
+This dataset is described in our publication @Maynard2020-ke, currently available from [bioRxiv](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1). The dataset is publicly available through the [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) Bioconductor package, and the analysis code is provided in the [HumanPilot](https://github.com/LieberInstitute/HumanPilot) GitHub repository. The dataset can also be explored interactively through a [Shiny web app](http://spatial.libd.org/spatialLIBD/).
+
+For more details on the dataset, including an illustration of the experimental design, see our [paper](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1) [@Maynard2020-ke] or the [spatialLIBD vignette](http://bioconductor.org/packages/release/data/experiment/vignettes/spatialLIBD/inst/doc/spatialLIBD.html).
+
+
+
+## Install packages
+
+Install packages (if not already installed).
+
+```{r install_packages, eval=FALSE}
+install.packages("remotes")
+remotes::install_github("drighelli/SpatialExperiment")
+
+install.packages("BiocManager")
+BiocManager::install("ExperimentHub")
+BiocManager::install("spatialLIBD")
+
+install.packages("pheatmap")
+```
+
+
+
+## Load data
+
+Load the dataset from the [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) Bioconductor package. Note that we use only one sample (sample 151673) for these examples.
+
+```{r load_data, message=FALSE, results="hide"}
+library(ExperimentHub)
+library(spatialLIBD)
+
+ehub <- ExperimentHub()
+
+## TO DO: replace following with simpler version that does not require
+## downloading full dataset (e.g. store final 'sce' object or raw data for
+## sample 151673 in ExperimentHub)
+
+# load full dataset
+sce <- fetch_data(type = "sce", eh = ehub)
+# subset sample 151673
+sce <- sce[, sce$sample_name == "151673"]
+# create object containing raw data only
+sce <- SingleCellExperiment(
+  rowData = rowData(sce)[, 1:8], 
+  colData = colData(sce)[, c(1:7, 9:18)], 
+  assays = list(counts = assays(sce)[["counts"]])
+)
+```
+
+
+
+Convert the `SingleCellExperiment` object to a `SpatialExperiment`.
+
+```{r convert_data, message=FALSE}
+#library(SpatialExperiment)
+
+## TO DO: either convert from SCE to SPE, or construct SPE directly from raw
+## Visium data; possibly using raw data links from
+## https://github.com/LieberInstitute/HumanPilot
+
+# for now: use SCE object instead
+spe <- sce
+
+# for now: keep x and y spatial coordinates in colData
+colData(spe)$x_coord <- colData(spe)[, "imagecol"]
+colData(spe)$y_coord <- -colData(spe)[, "imagerow"]
+
+spe
+```
+
+
+
+## Quality control (QC)
+
+Calculate spot-level QC metrics. Here, we use standard QC metrics for scRNA-seq from `scater` [@McCarthy2017-zd], treating spots as equivalent to cells. Newer methods adapted for spatial data will be described in [Quality control](#quality_control).
+
+```{r QC_calculate, message=FALSE}
+library(scater)
+
+# identify mitochondrial genes
+is_mito <- grepl("^MT-", rowData(spe)$gene_name)
+table(is_mito)
+
+# calculate per-cell QC metrics
+df <- perCellQCMetrics(spe, subsets = list(mito = is_mito))
+df
+
+# store per-cell QC metrics in colData of SCE object
+spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
+```
+
+
+Identify low-quality spots using thresholds on QC metrics. Note that we use low thresholds, since initial exploratory analyses showed that higher thresholds tended to remove spots from specific cortical layers, which indicated that we were removing biological signal.
+
+```{r QC_thresholds, message=FALSE}
+# QC thresholds
+qc_lib_size <- colData(spe)$sum < 500
+qc_n_genes <- colData(spe)$detected < 250
+qc_mito <- colData(spe)$subsets_mito_percent > 30
+
+apply(cbind(qc_lib_size, qc_n_genes, qc_mito), 2, sum)
+
+discard <- qc_lib_size | qc_n_genes | qc_mito
+
+table(discard)
+
+colData(spe)$discard <- discard
+```
+
+
+Plot low-quality spots in x-y coordinates, to check if the spatial distribution of low-quality spots corresponds to any known biological features, which would indicate that we may be removing biological signal.
+
+```{r QC_plot, fig.width=5, message=FALSE}
+library(ggplot2)
+
+as.data.frame(colData(spe)) %>% 
+  ggplot(aes(x = x_coord, y = y_coord, color = discard)) + 
+  geom_point(size = 0.9) + 
+  coord_fixed() + 
+  scale_color_manual(values = c("gray90", "red")) + 
+  ggtitle("Quality control: discarded spots") + 
+  theme_bw() + 
+  theme(panel.grid = element_blank(), 
+        axis.title = element_blank(), 
+        axis.text = element_blank(), 
+        axis.ticks = element_blank())
+```
+
+
+Remove low-quality spots.
+
+```{r QC_remove, message=FALSE}
+# remove low-quality spots
+spe <- spe[, !discard]
+dim(spe)
+```
+
+
+
+## Normalization
+
+Calculate log-transformed normalized counts, using pool-based size factors and deconvolution to spot level. As above, we use standard normalization methods for scRNA-seq from `scater` [@McCarthy2017-zd], treating spots as equivalent to cells. Newer methods for spatial data will be described in [Normalization](#normalization). Note that since we have only a single sample, there are no blocking factors in the experimental design.
+
+```{r normalization, fig.width=5, message=FALSE}
+library(scran)
+
+# clustering for pool-based size factors
+set.seed(123)
+clusters <- quickCluster(spe)
+table(clusters)
+
+# calculate size factors and store in SCE object
+spe <- computeSumFactors(spe, cluster = clusters)
+
+summary(sizeFactors(spe))
+hist(sizeFactors(spe))
+
+# calculate logcounts (log-transformed normalized counts) and store in SCE object
+spe <- logNormCounts(spe)
+
+assayNames(spe)
+```
+
+
+
+## Feature selection
+
+Select top highly variable genes (HVGs) using molecular features (gene expression). Here, we use methods for scRNA-seq from `scran` [@Lun2016-dn], treating spots as equivalent to cells and considering only molecular features. Newer methods for spatial data will be described in [Feature selection](#feature_selection). We also remove mitochondrial genes, which are very highly expressed and not of major biological interest in this dataset.
+
+```{r feature_selection, fig.height = 5, message=FALSE}
+# remove mitochondrial genes
+spe <- spe[!is_mito, ]
+dim(spe)
+
+# fit mean-variance relationship
+dec <- modelGeneVar(spe)
+
+# visualize mean-variance relationship
+fit <- metadata(dec)
+plot(fit$mean, fit$var, 
+     xlab = "mean of log-expression", ylab = "variance of log-expression")
+curve(fit$trend(x), col = "dodgerblue", add = TRUE, lwd = 2)
+
+# select top HVGs
+top_hvgs <- getTopHVGs(dec, prop = 0.1)
+length(top_hvgs)
+```
+
+
+
+## Dimensionality reduction
+
+Reduce the dimensionality of the dataset by applying principal component analysis (PCA) to the set of top HVGs, and retaining the top 50 principal components (PCs) for further downstream analyses. This is done both to reduce noise and to improve computational efficiency during downstream analyses. We also calculate UMAP on the set of top PCs and retain the top 2 UMAP components for visualization purposes.
+
+Note that we use the computationally efficient implementation of PCA available in `scater` [@McCarthy2017-zd], which uses randomization and therefore requires a random seed for reproducibility.
+
+```{r dimensionality_reduction}
+# calculate PCA
+set.seed(123)
+spe <- runPCA(spe, subset_row = top_hvgs)
+
+reducedDimNames(spe)
+dim(reducedDim(spe, "PCA"))
+
+# calculate UMAP on top PCs
+set.seed(123)
+spe <- runUMAP(spe, dimred = "PCA")
+
+reducedDimNames(spe)
+dim(reducedDim(spe, "UMAP"))
+
+colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
+```
+
+
+
+## Clustering
+
+Next, we perform clustering to identify cell types. Here, we use molecular features (gene expression) only, as in scRNA-seq analyses. Newer methods that additionally take into account spatial features will be described in [Clustering](#clustering). The molecular features are the top 50 PCs calculated from the set of HVGs, as described above. We use the graph-based clustering implementation and Walktrap method provided in `scran` [@Lun2016-dn].
+
+From the visualizations, we can see that the clustering reproduces the expected cortical layer structure in this sample, although not perfectly. The clusters are also separated in UMAP space.
+
+```{r clustering}
+# select features for clustering
+n_pcs <- 50
+df_clus <- cbind(reducedDim(spe, "PCA")[, seq_len(n_pcs)])
+dim(df_clus)
+
+# clustering
+k <- 10
+g <- buildSNNGraph(df_clus, k = k, d = ncol(df_clus), transposed = TRUE)
+clus <- igraph::cluster_walktrap(g)$membership
+table(clus)
+
+# store cluster labels in object
+colLabels(spe) <- factor(clus)
+```
+
+
+```{r clustering_plot, fig.width=6, fig.height=5}
+# color-blind friendly palette
+palette_okabe_ito <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", 
+                       "#0072B2", "#D55E00", "#CC79A7")
+
+# plot clustering in x-y space
+as.data.frame(colData(spe)) %>% 
+  ggplot(aes(x = x_coord, y = y_coord, color = label)) + 
+  geom_point(size = 0.9) + 
+  coord_fixed() + 
+  scale_color_manual(values = palette_okabe_ito) + 
+  ggtitle("Clustering: x-y space") + 
+  theme_bw() + 
+  theme(panel.grid = element_blank(), 
+        axis.title = element_blank(), 
+        axis.text = element_blank(), 
+        axis.ticks = element_blank())
+
+# plot clustering in UMAP space
+as.data.frame(cbind(colData(spe), reducedDim(spe, "UMAP"))) %>% 
+  ggplot(aes(x = UMAP1, y = UMAP2, color = label)) + 
+  geom_point(size = 0.9) + 
+  scale_color_manual(values = palette_okabe_ito) + 
+  ggtitle("Clustering: UMAP space") + 
+  theme_bw() + 
+  theme(panel.grid = element_blank(), 
+        axis.title = element_blank(), 
+        axis.text = element_blank(), 
+        axis.ticks = element_blank())
+```
+
+
+
+## Interpretation
+
+Identify marker genes by testing genes for differential expression between clusters. We use the `findMarkers` implementation in `scran` [@Lun2016-dn], using a binomial test, which tests for genes that differ in the proportion of expressing genes (expressed vs. not expressed) between clusters. This is a more stringent test than the default t-tests, and tends to select genes that are easier to interpret and validate experimentally.
+
+```{r marker_genes}
+# use gene names for plotting
+rownames(spe) <- rowData(spe)$gene_name
+
+# test for marker genes
+markers <- findMarkers(spe, test = "binom", direction = "up")
+
+# returns a list with one DataFrame per cluster
+markers
+```
+
+
+```{r marker_genes_heatmap, fig.width=5}
+library(pheatmap)
+
+# plot log-fold changes for one cluster over all other clusters
+interesting <- markers[[1]]
+best_set <- interesting[interesting$Top <= 5, ]
+logFCs <- getMarkerEffects(best_set)
+
+pheatmap(logFCs, breaks = seq(-5, 5, length.out = 101))
+```
+
+
+```{r marker_genes_expression, fig.width=7}
+# plot log-transformed normalized expression of top genes for one cluster
+top_genes <- head(rownames(interesting))
+
+plotExpression(spe, x = "label", features = top_genes)
+```
+
+
 
