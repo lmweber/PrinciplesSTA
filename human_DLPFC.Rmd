@@ -2,7 +2,7 @@
 
 ```{r setup, echo=FALSE, results="asis"}
 library(rebook)
-chapterPreamble()
+chapterPreamble(cache = TRUE)
 ```
 
 
@@ -10,7 +10,7 @@ This workflow is a condensed version of the analyses shown in the main analysis 
 
 
 
-## Description of dataset
+## Description of dataset {#human_DLPFC_dataset}
 
 This is a 10x Genomics Visium dataset generated from healthy human brain samples from the dorsolateral prefrontal cortex (DLPFC) region.
 
@@ -26,37 +26,19 @@ For more details on the dataset, including an illustration of the experimental d
 
 
 
-## Install packages
-
-Install packages (if not already installed).
-
-```{r install_packages, eval=FALSE}
-install.packages("remotes")
-remotes::install_github("drighelli/SpatialExperiment")
-
-install.packages("BiocManager")
-BiocManager::install("ExperimentHub")
-remotes::install_github("lmweber/STdata")
-
-install.packages("pheatmap")
-```
-
-
-
 ## Load data
 
 Load the dataset from the [STdata](https://github.com/lmweber/STdata) package. Note that this is a subset containing only one sample (sample 151673) from the full dataset.
+
+(TO DO: convert `STdata` package to an `ExperimentHub package; currently is a temporary wrapper around Drobox links)
+
+(TO DO: convert to using `SpatialExperiment` class instead of `SingleCellExperiment`)
 
 ```{r load_data, message=FALSE}
 library(ExperimentHub)
 library(STdata)
 
 ehub <- ExperimentHub()
-
-## TO DO: convert STdata to an ExperimentHub package; currently is a temporary
-## wrapper around Dropbox links
-
-## TO DO: convert to use SpatialExperiment instead of SingleCellExperiment class
 
 spe <- load_data("human_DLPFC")
 
@@ -78,7 +60,7 @@ table(is_mito)
 
 # calculate per-cell QC metrics
 df <- perCellQCMetrics(spe, subsets = list(mito = is_mito))
-df
+head(df, 3)
 
 # store per-cell QC metrics in colData of SCE object
 spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
