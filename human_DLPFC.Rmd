@@ -20,7 +20,7 @@ For the examples in this workflow and the analysis chapters, we use only one sam
 
 This dataset is described in our publication @Maynard2020-ke, currently available from [bioRxiv](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1). The full dataset is publicly available through the [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) Bioconductor package, and the analysis code is provided in the [HumanPilot](https://github.com/LieberInstitute/HumanPilot) GitHub repository. The dataset can also be explored interactively through a [Shiny web app](http://spatial.libd.org/spatialLIBD/).
 
-The subset of data used in this workflow (sample 151673) is also available from the [spatialExampleData](https://github.com/lmweber/spatialExampleData) Bioconductor package.
+The subset of data used in this workflow (sample 151673) is also available from the [STdata](https://github.com/lmweber/STdata) package.
 
 For more details on the dataset, including an illustration of the experimental design, see our [paper](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1) [@Maynard2020-ke] or the [spatialLIBD vignette](http://bioconductor.org/packages/release/data/experiment/vignettes/spatialLIBD/inst/doc/spatialLIBD.html).
 
@@ -36,7 +36,7 @@ remotes::install_github("drighelli/SpatialExperiment")
 
 install.packages("BiocManager")
 BiocManager::install("ExperimentHub")
-BiocManager::install("spatialLIBD")
+remotes::install_github("lmweber/STdata")
 
 install.packages("pheatmap")
 ```
@@ -45,47 +45,20 @@ install.packages("pheatmap")
 
 ## Load data
 
-Load the dataset from the [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) Bioconductor package. Note that we use only one sample (sample 151673) for these examples.
+Load the dataset from the [STdata](https://github.com/lmweber/STdata) package. Note that this is a subset containing only one sample (sample 151673) from the full dataset.
 
-```{r load_data, message=FALSE, results="hide"}
+```{r load_data, message=FALSE}
 library(ExperimentHub)
-library(spatialLIBD)
+library(STdata)
 
 ehub <- ExperimentHub()
 
-## TO DO: replace following with simpler version that does not require
-## downloading full dataset (e.g. store final 'sce' object or raw data for
-## sample 151673 in ExperimentHub)
+## TO DO: convert STdata to an ExperimentHub package; currently is a temporary
+## wrapper around Dropbox links
 
-# load full dataset
-sce <- fetch_data(type = "sce", eh = ehub)
-# subset sample 151673
-sce <- sce[, sce$sample_name == "151673"]
-# create object containing raw data only
-sce <- SingleCellExperiment(
-  rowData = rowData(sce)[, 1:8], 
-  colData = colData(sce)[, c(1:7, 9:18)], 
-  assays = list(counts = assays(sce)[["counts"]])
-)
-```
+## TO DO: convert to use SpatialExperiment instead of SingleCellExperiment class
 
-
-
-Convert the `SingleCellExperiment` object to a `SpatialExperiment`.
-
-```{r convert_data, message=FALSE}
-#library(SpatialExperiment)
-
-## TO DO: either convert from SCE to SPE, or construct SPE directly from raw
-## Visium data; possibly using raw data links from
-## https://github.com/LieberInstitute/HumanPilot
-
-# for now: use SCE object instead
-spe <- sce
-
-# for now: keep x and y spatial coordinates in colData
-colData(spe)$x_coord <- colData(spe)[, "imagecol"]
-colData(spe)$y_coord <- -colData(spe)[, "imagerow"]
+spe <- load_data("human_DLPFC")
 
 spe
 ```
