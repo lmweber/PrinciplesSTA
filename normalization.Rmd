@@ -1,3 +1,46 @@
 # Normalization {#normalization}
 
+```{r setup, echo=FALSE, results="asis"}
+library(rebook)
+chapterPreamble(cache = TRUE)
+```
+
+
+## Overview
+
+Chapter on normalization.
+
+```{r, echo=FALSE, results="asis"}
+extractCached("human_DLPFC.Rmd", "QC_remove", "spe")
+```
+
+
+
+## Logcounts
+
+Calculate log-transformed normalized counts, using pool-based size factors and deconvolution to spot level.
+
+We use normalization methods for scRNA-seq from `scater` [@McCarthy2017-zd] and `scran` [@Lun2016-dn], treating spots as equivalent to cells. Note that since we have only a single sample, there are no blocking factors in the experimental design.
+
+```{r normalization, fig.height=4, message=FALSE}
+library(scater)
+library(scran)
+
+# clustering for pool-based size factors
+set.seed(123)
+clusters <- quickCluster(spe)
+table(clusters)
+
+# calculate size factors and store in SCE object
+spe <- computeSumFactors(spe, cluster = clusters)
+
+summary(sizeFactors(spe))
+hist(sizeFactors(spe), breaks = 20)
+
+# calculate logcounts (log-transformed normalized counts) and store in SCE object
+spe <- logNormCounts(spe)
+
+assayNames(spe)
+```
+
 
