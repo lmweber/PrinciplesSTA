@@ -30,9 +30,9 @@ For more details on the dataset, including an illustration of the experimental d
 
 Load the dataset from the [STdata](https://github.com/lmweber/STdata) package. Note that this is a subset containing only one sample (sample 151673) from the full dataset.
 
-(TO DO: convert `STdata` package to an `ExperimentHub package; currently is a temporary wrapper around Drobox links)
+[TO DO: convert `STdata` package to an `ExperimentHub package; currently is a temporary wrapper around Drobox links]
 
-(TO DO: convert to using `SpatialExperiment` class instead of `SingleCellExperiment`)
+[TO DO: convert to using `SpatialExperiment` class instead of `SingleCellExperiment`]
 
 ```{r load_data, message=FALSE}
 library(ExperimentHub)
@@ -48,7 +48,7 @@ spe
 
 ## Quality control (QC)
 
-Calculate spot-level QC metrics. Here, we use standard QC metrics for scRNA-seq from `scater` [@McCarthy2017-zd], treating spots as equivalent to cells. Newer methods adapted for spatial data will be described in [Quality control](#quality_control).
+Calculate spot-level QC metrics using `scater` [@McCarthy2017-zd]. See [Quality control](#quality_control) for more details, including explanations of the QC metrics.
 
 ```{r QC_calculate, message=FALSE}
 library(scater)
@@ -57,7 +57,7 @@ library(scater)
 is_mito <- grepl("^MT-", rowData(spe)$gene_name)
 table(is_mito)
 
-# calculate per-cell QC metrics
+# calculate per-cell QC metrics (treating spots as equivalent to cells)
 df <- perCellQCMetrics(spe, subsets = list(mito = is_mito))
 head(df, 3)
 
@@ -65,39 +65,40 @@ head(df, 3)
 spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
 ```
 
+Select thresholds for QC metrics. For more details, including how to use exploratory visualizations to select the thresholds, see [Quality control](#quality_control). Note that we use relatively relaxed thresholds, since the exploratory visualizations showed that more stringent thresholds tended to remove groups of spots correlated with biologically meaningful spatial patterns.
 
-Identify low-quality spots using thresholds on QC metrics. Note that we use low thresholds, since initial exploratory analyses showed that higher thresholds tended to remove spots from specific cortical layers, which indicated that we were removing biological signal.
-
-```{r QC_thresholds, message=FALSE}
-# QC thresholds
+```{r QC_thresholds}
+# select QC thresholds
 qc_lib_size <- colData(spe)$sum < 500
-qc_n_genes <- colData(spe)$detected < 250
+qc_detected <- colData(spe)$detected < 250
 qc_mito <- colData(spe)$subsets_mito_percent > 30
+qc_cell_count <- colData(spe)$cell_count > 12
 
-apply(cbind(qc_lib_size, qc_n_genes, qc_mito), 2, sum)
+# number of discarded spots for each metric
+apply(cbind(qc_lib_size, qc_detected, qc_mito, qc_cell_count), 2, sum)
 
-discard <- qc_lib_size | qc_n_genes | qc_mito
-
+# combined set of discarded spots
+discard <- qc_lib_size | qc_detected | qc_mito | qc_cell_count
 table(discard)
 
+# store in object
 colData(spe)$discard <- discard
 ```
 
+Plot the set of discarded spots in the original x-y coordinates, to confirm that the spatial distribution of the discarded spots does not correspond to any obvious biological patterns in the data, which would indicate that we are removing biological signal.
 
-Plot low-quality spots in x-y coordinates, to check if the spatial distribution of low-quality spots corresponds to any known biological features, which would indicate that we may be removing biological signal.
-
-```{r QC_plot, fig.width=5, message=FALSE}
+```{r qc_spatial_pattern, fig.height=4, message=FALSE}
 library(spatzli)
 
-plotQCspots(spe)
+# check spatial pattern of combined set of discarded spots
+plotQCspots(spe, discard = "discard")
 ```
 
+Remove the low-quality spots from the object.
 
-Remove low-quality spots.
-
-```{r QC_remove, message=FALSE}
-# remove low-quality spots
-spe <- spe[, !discard]
+```{r qc_remove}
+# remove combined set of low-quality spots
+spe <- spe[, !colData(spe)$discard]
 dim(spe)
 ```
 

@@ -60,6 +60,8 @@ Several alternative frameworks also exist for analyzing single-cell data, includ
 
 We use the [SpatialExperiment](https://github.com/drighelli/SpatialExperiment) Bioconductor object class throughout the analysis pipeline and workflows described in the main chapters of this book.
 
+[TO DO: for now still using `SingleCellExperiment`; update code examples to use `SpatialExperiment`]
+
 The `SpatialExperiment` class builds on the more general [SingleCellExperiment](http://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) class for scRNA-seq data. A summary of the `SingleCellExperiment` object structure is shown in the following figure. A `SingleCellExperiment` object consists of one or more `assays` (tables of raw and/or transformed data), `rowData` and `colData` (metadata describing features and cells, with features in rows, and cells in columns), `reducedDims` (reduced dimension features), and optional additional `metadata`. The different parts of the object are connected, which enables convenient operations such as subsetting the entire object by rows or columns.
 
 For more details on the `SingleCellExperiment` object class, see:
