@@ -1,3 +1,88 @@
 # Feature selection {#feature_selection}
 
+```{r setup, echo=FALSE, results="asis"}
+library(rebook)
+chapterPreamble(cache = TRUE)
+```
+
+
+## Overview
+
+Chapter on feature selection.
+
+```{r, echo=FALSE, results="asis"}
+extractCached("human_DLPFC.Rmd", "normalization", "spe")
+```
+
+
+
+## Filter mitochondrial genes
+
+We first remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of biological interest. Then, we apply more sophisticated feature selection methods to the remaining set of genes.
+
+[TO DO: add plotting function to identify mitochondrial genes (e.g. variance vs. mean of logcounts)]
+
+```{r remove_mito, message=FALSE}
+library(SingleCellExperiment)
+
+# remove mitochondrial genes
+is_mito <- grepl("^MT-", rowData(spe)$gene_name)
+table(is_mito)
+rowData(spe)$gene_name[is_mito]
+
+spe <- spe[!is_mito, ]
+dim(spe)
+```
+
+
+
+## Highly variable genes (HVGs)
+
+Here, we use methods from `scran` [@Lun2016-dn] to select a set of top highly variable genes (HVGs). These methods treat spots as equivalent to cells, and consider only molecular features (gene expression).
+
+This gives us a list of 1448 HVGs, which we can use for downstream analyses.
+
+```{r, fig.height=5, message=FALSE}
+library(scran)
+
+# fit mean-variance relationship
+dec <- modelGeneVar(spe)
+
+# visualize mean-variance relationship
+fit <- metadata(dec)
+plot(fit$mean, fit$var, 
+     xlab = "mean of log-expression", ylab = "variance of log-expression")
+curve(fit$trend(x), col = "dodgerblue", add = TRUE, lwd = 2)
+
+# select top HVGs
+top_hvgs <- getTopHVGs(dec, prop = 0.1)
+length(top_hvgs)
+```
+
+
+
+## Spatially variable (SV) genes
+
+The HVGs above are selected based only on molecular features (gene expression). However, in spatial transcriptomics data, we are also interested in taking into account spatial. Ideally, we would like to select a set of top spatially variable (SV) genes, which capture the spatial patterns in gene expression.
+
+In the following sections, we describe new methods for feature selection that aim to select a set of top SVs. These methods will be expanded as we continue to develop these methods.
+
+
+
+## Moran's I statistic
+
+TO DO: Rank genes by Moran's I statistic
+
+
+
+## SpatialDE
+
+TO DO: Run SpatialDE [@Svensson2018-zx] (using `basilisk` to run Python code)
+
+
+
+## SPARK
+
+TO DO: Run SPARK [@Sun2020-wh]
+
 

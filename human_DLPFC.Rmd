@@ -132,13 +132,15 @@ assayNames(spe)
 
 ## Feature selection
 
-Select top highly variable genes (HVGs) using molecular features (gene expression). Here, we use methods for scRNA-seq from `scran` [@Lun2016-dn], treating spots as equivalent to cells and considering only molecular features. Newer methods for spatial data will be described in [Feature selection](#feature_selection). We also remove mitochondrial genes, which are very highly expressed and not of major biological interest in this dataset.
+Select top highly variable genes (HVGs). We use methods from `scran` [@Lun2016-dn], treating spots as equivalent to cells, and considering only molecular features (gene expression). Newer methods adapted for spatial data will be described in [Feature selection](#feature_selection). We also first filter mitochondrial genes, since these are very highly expressed and not of biological interest in this dataset.
 
-```{r feature_selection, fig.height = 5, message=FALSE}
+```{r feature_selection_mito}
 # remove mitochondrial genes
 spe <- spe[!is_mito, ]
 dim(spe)
+```
 
+```{r feature_selection_HVGs, fig.height=5, message=FALSE}
 # fit mean-variance relationship
 dec <- modelGeneVar(spe)
 
