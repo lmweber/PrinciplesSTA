@@ -1,6 +1,6 @@
 # Human DLPFC {#human_DLPFC}
 
-```{r setup, echo=FALSE, results="asis"}
+```{r unref-setup, echo=FALSE, results="asis"}
 library(rebook)
 chapterPreamble(cache = TRUE)
 ```
@@ -41,7 +41,6 @@ library(STdata)
 ehub <- ExperimentHub()
 
 spe <- load_data("human_DLPFC")
-
 spe
 ```
 
@@ -88,19 +87,9 @@ colData(spe)$discard <- discard
 Plot low-quality spots in x-y coordinates, to check if the spatial distribution of low-quality spots corresponds to any known biological features, which would indicate that we may be removing biological signal.
 
 ```{r QC_plot, fig.width=5, message=FALSE}
-library(ggplot2)
+library(spatzli)
 
-as.data.frame(colData(spe)) %>% 
-  ggplot(aes(x = x_coord, y = y_coord, color = discard)) + 
-  geom_point(size = 0.9) + 
-  coord_fixed() + 
-  scale_color_manual(values = c("gray90", "red")) + 
-  ggtitle("Quality control: discarded spots") + 
-  theme_bw() + 
-  theme(panel.grid = element_blank(), 
-        axis.title = element_blank(), 
-        axis.text = element_blank(), 
-        axis.ticks = element_blank())
+plotQCspots(spe)
 ```
 
 
