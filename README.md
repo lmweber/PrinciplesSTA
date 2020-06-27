@@ -29,6 +29,8 @@ To compile the book locally, several required R packages need to be installed fi
 ```
 install.packages("bookdown")
 install.packages("BiocManager")
+install.packages("Rtsne")
+install.packages("uwot")
 install.packages("pheatmap")
 BiocManager::install("scater")
 BiocManager::install("scran")
