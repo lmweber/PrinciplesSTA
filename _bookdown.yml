@@ -22,8 +22,8 @@ rmd_files: ["index.Rmd",
     "interpretation.Rmd",
     # Part 3: Extended topics:
     "extended_topics.Rmd",
+    "pseudobulking.Rmd",
     "multi_sample.Rmd",
-    "manually_guided.Rmd",
     # Part 4: Workflows:
     "workflows.Rmd",
     "human_DLPFC.Rmd",
