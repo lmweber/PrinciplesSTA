@@ -159,25 +159,28 @@ length(top_hvgs)
 
 ## Dimensionality reduction
 
-Reduce the dimensionality of the dataset by applying principal component analysis (PCA) to the set of top HVGs, and retaining the top 50 principal components (PCs) for further downstream analyses. This is done both to reduce noise and to improve computational efficiency during downstream analyses. We also calculate UMAP on the set of top PCs and retain the top 2 UMAP components for visualization purposes.
+Apply principal component analysis (PCA) to the set of top HVGs to reduce the dimensionality of the dataset, and retain the top 50 principal components (PCs) for further downstream analyses. This is done both to reduce noise and to improve computational efficiency during downstream analyses. We also calculate UMAP on the set of top 50 PCs and retain the top 2 UMAP components for visualization purposes.
 
-Note that we use the computationally efficient implementation of PCA available in `scater` [@McCarthy2017-zd], which uses randomization and therefore requires a random seed for reproducibility.
+We use the computationally efficient implementation of PCA available in `scater` [@McCarthy2017-zd], which uses randomization and therefore requires a random seed for reproducibility.
 
-```{r dimensionality_reduction}
+```{r dimensionality_reduction_PCA}
 # calculate PCA
 set.seed(123)
 spe <- runPCA(spe, subset_row = top_hvgs)
 
 reducedDimNames(spe)
 dim(reducedDim(spe, "PCA"))
+```
 
-# calculate UMAP on top PCs
+```{r dimensionality_reduction_UMAP}
+# calculate UMAP on top 50 PCs
 set.seed(123)
 spe <- runUMAP(spe, dimred = "PCA")
 
 reducedDimNames(spe)
 dim(reducedDim(spe, "UMAP"))
 
+# update column names (for easier plotting)
 colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 ```
 
@@ -185,11 +188,11 @@ colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 
 ## Clustering
 
-Next, we perform clustering to identify cell types. Here, we use molecular features (gene expression) only, as in scRNA-seq analyses. Newer methods that additionally take into account spatial features will be described in [Clustering](#clustering). The molecular features are the top PCs calculated from the set of HVGs, as described above. We use the graph-based clustering implementation and Walktrap method provided in `scran` [@Lun2016-dn].
+Next, we perform clustering to identify cell types. Here, we use molecular features only (i.e. the top 50 PCs calculated on the set of top HVGs). Alternative methods that also take into account spatial features are described in [Clustering](#clustering). We use the graph-based clustering implementation and Walktrap method provided in `scran` [@Lun2016-dn].
 
-From the visualizations, we can see that the clustering reproduces the expected cortical layer structure in this sample, although not perfectly. The clusters are also separated in UMAP space.
+From the visualizations, we can see that the clustering reproduces the known biological structure (cortical layers), although not perfectly. The clusters are also separated in UMAP space.
 
-```{r clustering}
+```{r clustering_calculate}
 # graph-based clustering
 set.seed(123)
 k <- 10
@@ -198,43 +201,19 @@ g_walk <- igraph::cluster_walktrap(g)
 clus <- g_walk$membership
 table(clus)
 
-# store cluster labels in object
+# store cluster labels in object (in column "label")
 colLabels(spe) <- factor(clus)
 ```
 
-
-```{r clustering_plot, fig.width=6, fig.height=5}
-# color-blind friendly palette (Okabe-Ito)
-palette_okabe_ito <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", 
-                       "#0072B2", "#D55E00", "#CC79A7")
-
+```{r clustering_plots, fig.height=4.5, fig.width=5.5}
 # plot clustering in x-y space
-as.data.frame(colData(spe)) %>% 
-  ggplot(aes(x = x_coord, y = y_coord, color = label)) + 
-  geom_point(size = 0.9) + 
-  coord_fixed() + 
-  scale_color_manual(values = palette_okabe_ito) + 
-  ggtitle("Clustering: x-y space") + 
-  theme_bw() + 
-  theme(panel.grid = element_blank(), 
-        axis.title = element_blank(), 
-        axis.text = element_blank(), 
-        axis.ticks = element_blank())
+plotClustersSpots(spe, cluster_id = "label")
+
+# plot ground truth layers in x-y space
+plotClustersSpots(spe, cluster_id = "ground_truth")
 
 # plot clustering in UMAP space
-as.data.frame(cbind(colData(spe), reducedDim(spe, "UMAP"))) %>% 
-  ggplot(aes(x = UMAP1, y = UMAP2, color = label)) + 
-  geom_point(size = 0.9) + 
-  scale_color_manual(values = palette_okabe_ito) + 
-  ggtitle("Clustering: UMAP space") + 
-  theme_bw() + 
-  theme(panel.grid = element_blank(), 
-        axis.title = element_blank(), 
-        axis.text = element_blank(), 
-        axis.ticks = element_blank())
-
-# alternatively
-#plotReducedDim(spe, "UMAP", colour_by = "label")
+plotClustersDimRed(spe, type = "UMAP", cluster_id = "label")
 ```
 
 
@@ -254,8 +233,7 @@ markers <- findMarkers(spe, test = "binom", direction = "up")
 markers
 ```
 
-
-```{r marker_genes_heatmap, fig.width=5}
+```{r marker_genes_heatmap, fig.width=5, message=FALSE}
 library(pheatmap)
 
 # plot log-fold changes for one cluster over all other clusters
@@ -266,13 +244,11 @@ logFCs <- getMarkerEffects(best_set)
 pheatmap(logFCs, breaks = seq(-5, 5, length.out = 101))
 ```
 
-
 ```{r marker_genes_expression, fig.width=7}
 # plot log-transformed normalized expression of top genes for one cluster
 top_genes <- head(rownames(interesting))
 
 plotExpression(spe, x = "label", features = top_genes)
 ```
-
 
 

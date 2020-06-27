@@ -1,3 +1,142 @@
 # Clustering {#clustering}
 
+```{r setup, echo=FALSE, results="asis"}
+library(rebook)
+chapterPreamble(cache = TRUE)
+```
+
+
+## Overview
+
+Clustering is frequently used in single-cell analysis to identify cell types.
+
+The definition of "cell type" is somewhat nebulous, and can depend to some extent on the biological context. Major cell types are generally well-defined and well-characterized (e.g. T cells, B cells, etc), while the definitions of more subtle or higher-resolution cell types may be somewhat less clear.
+
+In the context of spatial transcriptomics (ST), we may be interested in (i) identifying cell types (major or minor) that occur in biologically interesting spatial patterns, or (ii) identifying major cell types and performing subsequent analyses within these cell types. In both cases, we can use clustering to identify the cell types, although the resolution of the clustering will be somewhat context-dependent.
+
+```{r, echo=FALSE, results="asis"}
+extractCached("human_DLPFC.Rmd", "dimensionality_reduction_UMAP", "spe")
+```
+
+
+
+## Clustering on HVGs
+
+The simplest option for clustering is to perform clustering on the dimension-reduced molecular features. If we are using HVGs, this means clustering on the top 50 PCs calculated on the set of top HVGs.
+
+For ST data, this implies that we believe that the spatial patterns of interest are sufficiently captured by the expression patterns of the HVGs.
+
+Here, we calculate this clustering using the graph-based clustering implementation and Walktrap method provided in `scran` [@Lun2016-dn].
+
+```{r clustering_HVGs, message=FALSE}
+library(scran)
+
+# graph-based clustering
+set.seed(123)
+k <- 10
+g <- buildSNNGraph(spe, k = k, use.dimred = "PCA")
+g_walk <- igraph::cluster_walktrap(g)
+clus <- g_walk$membership
+table(clus)
+
+# store cluster labels in object (in column "label")
+colLabels(spe) <- factor(clus)
+```
+
+We visualize the cluster labels in both the physical x-y coordinate space (i.e. on the tissue slide) and UMAP space. For reference, we also display the ground truth (manually annotated) ground truth labels available for this dataset (in x-y space).
+
+The clustering reproduces the known biological structure (cortical layers) in x-y space, although not perfectly. The clusters are also separated in UMAP space.
+
+```{r clustering_HVGs_plot_spots, fig.height=4.5, fig.width=5.5, message=FALSE}
+library(spatzli)
+
+# plot clustering in x-y space
+plotClustersSpots(spe, cluster_id = "label")
+```
+
+```{r clustering_plot_ground_truth, fig.height=4.5, fig.width=5.5}
+# plot ground truth layers in x-y space
+plotClustersSpots(spe, cluster_id = "ground_truth")
+```
+
+```{r clustering_HVGs_plot_UMAP, fig.height=4.5, fig.width=5.5}
+# plot clustering in UMAP space
+plotClustersDimRed(spe, type = "UMAP", cluster_id = "label")
+```
+
+
+
+## Clustering on HVGs and spatial features
+
+A simple method to include spatial information within the clustering is to include scaled x-y coordinates as additional features for clustering.
+
+In other words, we concatenate two additional columns containing the scaled x and y coordinates onto the feature matrix provided to the clustering algorithm. For example, if we are using 50 PCs calculated on the set of top HVGs, then we now also add two additional columns containing the scaled x and y coordinates, so the final feature matrix has 52 columns.
+
+Important parameter tuning decisions are (i) how many PCs to use, and (ii) how to scale the x and y columns.
+
+Here, we perform this type of clustering using the top 20 PCs, and scale the x and y columns to have ranges approximately comparable to the top few PCs. Note that we do not z-scale the x and y columns (since standard deviation does not make sense for physical lengths in x-y space), and we also do not scale the x and y columns to have equal ranges (since the tissue capture area is usually slightly rectangular instead of square).
+
+[TO DO: move some of this code into package]
+
+```{r clustering_scale_coords}
+# scale x-y coordinates to range comparable to top PCs
+xy_coords <- data.frame(
+  x_coord = colData(spe)$x_coord, 
+  y_coord = colData(spe)$y_coord
+)
+
+# check range and standard deviation of top few PCs
+apply(reducedDim(spe, "PCA")[, 1:5], 2, summary)
+apply(reducedDim(spe, "PCA")[, 1:5], 2, sd)
+
+# choose range parameter and scale x-y coordinates
+param_range <- 5
+# note x and y can have slightly different ranges due to tissue slide dimensions
+x_range <- max(xy_coords$x_coord) - min(xy_coords$x_coord)
+y_range <- max(xy_coords$y_coord) - min(xy_coords$y_coord)
+new_x_range <- x_range / max(c(x_range, y_range)) * param_range
+new_y_range <- y_range / max(c(x_range, y_range)) * param_range
+
+scaling_fn <- function(col, range) {
+  ((col - min(col)) / (max(col) - min(col))) * range - (0.5 * range)
+}
+
+xy_coords$x_coord <- scaling_fn(xy_coords$x_coord, new_x_range)
+xy_coords$y_coord <- scaling_fn(xy_coords$y_coord, new_y_range)
+
+summary(xy_coords)
+```
+
+```{r clustering_xy}
+# set up feature matrix for clustering
+n_pcs <- 20
+df_clus <- cbind(reducedDim(spe, "PCA")[, seq_len(n_pcs)], xy_coords)
+dim(df_clus)
+
+# graph-based clustering
+set.seed(123)
+k <- 10
+g <- buildSNNGraph(df_clus, k = k, d = ncol(df_clus), transposed = TRUE)
+g_walk <- igraph::cluster_walktrap(g)
+clus <- g_walk$membership
+table(clus)
+
+# store cluster labels in object
+colData(spe)$label_xy <- factor(clus)
+```
+
+Visualize the cluster labels in x-y space and UMAP space.
+
+```{r clustering_xy_plot_spots, fig.height=4.5, fig.width=5.5}
+# plot clustering in x-y space
+plotClustersSpots(spe, cluster_id = "label_xy")
+```
+
+```{r clustering_xy_plot_UMAP, fig.height=4.5, fig.width=5.5}
+# plot clustering in UMAP space
+plotClustersDimRed(spe, type = "UMAP", cluster_id = "label_xy")
+```
+
+[TO DO: quantify performance improvement using Adjusted Rand Index and ground truth labels]
+
 
