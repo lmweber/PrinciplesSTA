@@ -1,4 +1,15 @@
 # (PART) Appendix {-}
 
-# Contributors {-}
+# Contributors and acknowledgments{-}
+
+
+## Contributors
+
+Lukas M. Weber, PhD, Johns Hopkins Bloomberg School of Public Health
+
+Stephanie Hicks, PhD, Johns Hopkins Bloomberg School of Public Health
+
+
+## Acknowledgments
+
 
