@@ -30,15 +30,16 @@ For more details on the dataset, including an illustration of the experimental d
 
 Load the dataset from the [STdata](https://github.com/lmweber/STdata) package. Note that this is a subset containing only one sample (sample 151673) from the full dataset.
 
-[TO DO: convert `STdata` package to an `ExperimentHub package; currently is a temporary wrapper around Drobox links]
+[TO DO: convert `STdata` package to an `ExperimentHub` package; currently is a temporary wrapper around Drobox links]
 
 [TO DO: convert to using `SpatialExperiment` class instead of `SingleCellExperiment`]
 
 ```{r load_data, message=FALSE}
-library(ExperimentHub)
+#library(ExperimentHub)
+library(SingleCellExperiment)
 library(STdata)
 
-ehub <- ExperimentHub()
+#ehub <- ExperimentHub()
 
 spe <- load_data("human_DLPFC")
 spe

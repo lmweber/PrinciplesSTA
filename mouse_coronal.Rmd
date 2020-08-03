@@ -1,0 +1,44 @@
+# Mouse coronal {#mouse_coronal}
+
+```{r unref-setup, echo=FALSE, results="asis"}
+library(rebook)
+chapterPreamble(cache = TRUE)
+```
+
+
+This workflow analyzes a mouse coronal brain section dataset measured using the Visium platform, which was released by 10x Genomics.
+
+The workflow follows the same steps as in the main chapters (using the human DLPFC dataset), with adaptations at several points due to differences between the datasets.
+
+
+
+## Description of dataset {#mouse_coronal_dataset}
+
+For more details on the dataset, see section X.
+
+Key differences between this dataset and the human DLPFC dataset used in the main chapters include:
+
+- Cells in the mouse brain are smaller than in the human brain, so there are on average more cells per spot in this dataset.
+
+- The mouse brain is much smaller than the human brain, so the Visium capture area spans a complete hemisphere from the coronal brain section. As a result, the measurements span several major brain regions, which contain distinct cell types. By contrast, the human DLPFC section spans only a small area of the DLPFC, which is likely to include a much smaller set of cell types. This has implications for the types of analyses we can do in each dataset.
+
+
+
+## Load data
+
+Load the dataset from the [STdata](https://github.com/lmweber/STdata) package.
+
+[TO DO: update to use `ExperimentHub`]
+
+```{r load_data, message=FALSE}
+#library(ExperimentHub)
+library(SingleCellExperiment)
+library(STdata)
+
+#ehub <- ExperimentHub()
+
+spe <- load_data("mouse_coronal")
+spe
+```
+
+

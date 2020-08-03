@@ -52,7 +52,7 @@ We also use the [rebook](https://github.com/LTLA/rebook) package to link objects
 
 This structure and setup are similar to the [OSCA book](https://github.com/Bioconductor/OrchestratingSingleCellAnalysis-base).
 
-(2020/6/27: Note that currently, the [OSTA-release](https://github.com/lmweber/OSTA-release) repository does not contain any `.html` files yet, since we are still in the initial stages of setting up the project.)
+(Note that currently, the [OSTA-release](https://github.com/lmweber/OSTA-release) repository does not contain any `.html` files yet, since we are still setting up the project.)
 
 
 
