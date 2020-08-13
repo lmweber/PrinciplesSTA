@@ -6,7 +6,7 @@ chapterPreamble(cache = TRUE)
 ```
 
 
-This workflow analyzes a mouse coronal brain section dataset measured using the Visium platform, which was released by 10x Genomics.
+This workflow analyzes a mouse coronal brain section dataset measured using the Visium platform. This dataset was publicly released by 10x Genomics.
 
 The workflow follows the same steps as in the main chapters (using the human DLPFC dataset), with adaptations at several points due to differences between the datasets.
 
@@ -20,7 +20,7 @@ Key differences between this dataset and the human DLPFC dataset used in the mai
 
 - Cells in the mouse brain are smaller than in the human brain, so there are on average more cells per spot in this dataset.
 
-- The mouse brain is much smaller than the human brain, so the Visium capture area spans a complete hemisphere from the coronal brain section. As a result, the measurements span several major brain regions, which contain distinct cell types. By contrast, the human DLPFC section spans only a small area of the DLPFC, which is likely to include a much smaller set of cell types. This has implications for the types of analyses we can do in each dataset.
+- The mouse brain is much smaller than the human brain, so the Visium capture area (approximately 6.5mm x 6.5mm) spans one hemisphere of the coronal brain section. As a result, the measurements cover several major brain regions, which contain distinct cell types. By contrast, the human DLPFC section spans only a small area of the DLPFC, which contains a much smaller set of distinct cell types. This has implications for the types of analyses we can do in each dataset.
 
 
 
@@ -31,14 +31,38 @@ Load the dataset from the [STdata](https://github.com/lmweber/STdata) package.
 [TO DO: update to use `ExperimentHub`]
 
 ```{r load_data, message=FALSE}
-#library(ExperimentHub)
 library(SingleCellExperiment)
 library(STdata)
 
-#ehub <- ExperimentHub()
-
+# load object
 spe <- load_data("mouse_coronal")
 spe
+```
+
+
+## Plot data
+
+Plot spots in x-y space to check that the object has loaded correctly.
+
+```{r plot_data, message=FALSE, fig.width=4, fig.height=4}
+library(spatzli)
+library(ggplot2)
+
+# add cluster IDs (to do: update function to remove this)
+colData(spe)$cluster_id <- factor(1)
+
+p <- plotClustersSpots(
+  spe, 
+  x_coord = "x_coord", 
+  y_coord = "y_coord", 
+  cluster_id = "cluster_id", 
+  palette = "black"
+)
+
+# remove legend (to do: update function to remove this)
+p + 
+  theme(legend.position = "none") + 
+  ggtitle("Spots in x-y coordinates")
 ```
 
 
