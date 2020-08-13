@@ -61,7 +61,7 @@ This structure and setup are similar to the [OSCA book](https://github.com/Bioco
 - [OSTA-base](https://github.com/lmweber/OSTA-base) - source files for OSTA online book
 - [OSTA-release](https://github.com/lmweber/OSTA-release) - compiled files for OSTA online book
 - [spatzli](https://github.com/lmweber/spatzli) - collection of functions for analyzing spatial transcriptomics data
-- [STdata](https://github.com/lmweber/STdata) - example spatial transcriptomics datasets in Bioconductor object formats
-- [SpatialExperiment](https://github.com/drighelli/SpatialExperiment) (by [Dario Righelli](https://github.com/drighelli)) - `SpatialExperiment` object class
+- [STdata](https://github.com/lmweber/STdata) - collection of spatial transcriptomics datasets in Bioconductor object formats
+- [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) - `SpatialExperiment` object class
 
 
