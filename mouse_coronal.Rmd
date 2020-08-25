@@ -31,7 +31,7 @@ Load the dataset from the [STdata](https://github.com/lmweber/STdata) package.
 [TO DO: update to use `ExperimentHub`]
 
 ```{r load_data, message=FALSE}
-library(SingleCellExperiment)
+library(SpatialExperiment)
 library(STdata)
 
 # load object
@@ -45,24 +45,24 @@ spe
 Plot spots in x-y space to check that the object has loaded correctly.
 
 ```{r plot_data, message=FALSE, fig.width=4, fig.height=4}
-library(spatzli)
-library(ggplot2)
-
-# add cluster IDs (to do: update function to remove this)
-colData(spe)$cluster_id <- factor(1)
-
-p <- plotClustersSpots(
-  spe, 
-  x_coord = "x_coord", 
-  y_coord = "y_coord", 
-  cluster_id = "cluster_id", 
-  palette = "black"
-)
-
-# remove legend (to do: update function to remove this)
-p + 
-  theme(legend.position = "none") + 
-  ggtitle("Spots in x-y coordinates")
+# library(spatzli)
+# library(ggplot2)
+# 
+# # add cluster IDs (to do: update function to remove this)
+# colData(spe)$cluster_id <- factor(1)
+# 
+# p <- plotClustersSpots(
+#   spe, 
+#   x_coord = "x_coord", 
+#   y_coord = "y_coord", 
+#   cluster_id = "cluster_id", 
+#   palette = "black"
+# )
+# 
+# # remove legend (to do: update function to remove this)
+# p + 
+#   theme(legend.position = "none") + 
+#   ggtitle("Spots in x-y coordinates")
 ```
 
 
