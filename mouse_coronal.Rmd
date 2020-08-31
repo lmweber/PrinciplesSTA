@@ -15,9 +15,9 @@ The workflow follows the same steps as in the main chapters, with adaptations at
 
 This dataset measures transcriptome-wide gene expression on a Visium slide spanning one hemisphere of a mouse coronal brain section. For experimental details, see the [10x Genomics website](https://support.10xgenomics.com/spatial-gene-expression/datasets/1.1.0/V1_Adult_Mouse_Brain).
 
-Due to the small size of the mouse brain and the dimensions of the Visium slide (6.5mm x 6.5mm), the measurements span an entire brain hemisphere. Therefore, we can use this dataset to compare gene expression profiles between major anatomical regions of the mouse brain. In particular, we can can investigate spatial gradients of gene expression within major anatomical regions or cell types. (However, note that due to the resolution of the spots, each anatomical region is represented by only a relatively small number of spots, and it is not possible to resolve fine-grained anatomical features such as cortical layers.)
+Due to the small size of the mouse brain and the dimensions of the Visium slide (6.5mm x 6.5mm), the measurements span an entire brain hemisphere. Therefore, we can use this dataset to compare gene expression profiles between major anatomical regions of the mouse brain. In particular, we can can investigate spatial gradients of gene expression within major anatomical regions or cell types. (However, due to the resolution of the spots, each anatomical region is represented by only a relatively small number of spots, and it is not possible to resolve fine-grained anatomical features such as cortical layers.)
 
-Since cells in the mouse brain are relatively small, we also expect relatively higher numbers of cells per spot.
+Since cells in the mouse brain are relatively small, we also expect that most spots contain multiple cells. However, in this dataset, we do not know the exact numbers of cells per spot. (Estimating the numbers of cells per spot would require additional preprocessing using image segmentation algorithms, which we do not demonstrate here.)
 
 
 ## Load data
@@ -25,8 +25,8 @@ Since cells in the mouse brain are relatively small, we also expect relatively h
 Load the dataset from the [STdata](https://github.com/lmweber/STdata) package. The data object is formatted in the `VisiumExperiment` object class defined in the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) package.
 
 ```{r load_data, message=FALSE}
-library(SpatialExperiment)
 library(STdata)
+library(SpatialExperiment)
 
 # load object
 spe <- load_data("mouse_coronal")
@@ -36,9 +36,9 @@ spe
 
 ## Plot data
 
-As an initial check, plot the spatial coordinates (spots) in x-y space.
+As an initial check, plot the spatial coordinates (spots) in x-y space. This confirms that the object has loaded correctly, and matches the orientation of the tissue slide shown on the [10x Genomics website](https://support.10xgenomics.com/spatial-gene-expression/datasets/1.1.0/V1_Adult_Mouse_Brain).
 
-```{r plot_data, message=FALSE, fig.width=3.5, fig.height=3.5}
+```{r plot_data, message=FALSE, fig.width=3.75, fig.height=3.75}
 library(spatzli)
 library(ggplot2)
 
@@ -46,4 +46,72 @@ library(ggplot2)
 plotSpots(spe, cluster_id = NULL)
 ```
 
+
+## Quality control (QC)
+
+Calculate spot-level QC metrics using `scater` [@McCarthy2017-zd]. Since mouse cells are small and most spots contain multiple cells, values are much higher than for the human DLPFC dataset.
+
+```{r QC_calculate, message=FALSE}
+library(scater)
+
+# identify mitochondrial genes
+is_mito <- grepl("(^MT-)|(^mt-)", rowData(spe)$gene_name)
+table(is_mito)
+rowData(spe)$gene_name[is_mito]
+
+# calculate per-spot QC metrics
+df <- perCellQCMetrics(spe, subsets = list(mito = is_mito))
+head(df, 3)
+
+# store per-cell QC metrics in colData of object
+spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
+```
+
+Select filtering thresholds for the QC metrics by examining distributions (e.g. using histograms or other interactive visualizations).
+
+```{r QC_thresholds, fig.width=7.5, fig.height=3}
+# histograms to inspect distributions of QC metrics
+par(mfrow = c(1, 3))
+hist(colData(spe)$sum, xlab = "sum", main = "Detected UMIs per spot")
+hist(colData(spe)$detected, xlab = "detected", main = "Detected genes per spot")
+hist(colData(spe)$subsets_mito_percent, xlab = "percent mito", main = "Percent mitochondrial UMIs")
+par(mfrow = c(1, 1))
+
+# select QC thresholds
+qc_lib_size <- colData(spe)$sum < 5000
+qc_detected <- colData(spe)$detected < 1000
+qc_mito <- colData(spe)$subsets_mito_percent > 30
+
+# number of discarded spots for each metric
+apply(cbind(qc_lib_size, qc_detected, qc_mito), 2, sum)
+
+# combined set of discarded spots
+discard <- qc_lib_size | qc_detected | qc_mito
+table(discard)
+
+# store in object
+colData(spe)$discard <- discard
+```
+
+Plot discarded spots in x-y coordinates on tissue slide, to check whether discarded spots are concentrated in any obvious biologically relevant spatial regions (which would be problematic).
+
+```{r QC_check, message=FALSE, fig.width=3.75, fig.height=3.75}
+# check spatial pattern of discarded spots
+
+# to do: update plotting function to use SPE structure
+colData(spe)$x_coord <- spatialCoords(spe)$pxl_row_fullres
+colData(spe)$y_coord <- -1 * spatialCoords(spe)$pxl_col_fullres
+
+plotQCspots(spe, discard = "discard")
+```
+
+Some discarded spots are concentrated in a region at the top-left. However, after checking a reference map of a mouse coronal brain section, this region does not appear to contain any specific anatomical structures of interest, and since it is near the tissue edge it is also plausible that this represents a region of failed spots.
+
+We proceed to remove the low-quality spots from the data object.
+
+```{r QC_remove}
+# remove low-quality spots
+spe <- spe[, !colData(spe)$discard]
+dim(spe)
+```
 
