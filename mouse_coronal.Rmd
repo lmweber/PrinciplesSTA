@@ -110,3 +110,123 @@ spe <- spe[, !colData(spe)$discard]
 dim(spe)
 ```
 
+
+## Normalization
+
+Calculate log-transformed normalized counts, using pool-based size factors and deconvolution to the spot level, using `scater` [@McCarthy2017-zd] and `scran` [@Lun2016-dn]. Since we have a single sample, there are no blocking factors in the experimental design.
+
+```{r normalization, message=FALSE, fig.height=4}
+library(scran)
+
+# quick clustering for pool-based size factors
+set.seed(123)
+qclus <- quickCluster(spe)
+table(qclus)
+
+# calculate size factors and store in object
+spe <- computeSumFactors(spe, cluster = qclus)
+
+summary(sizeFactors(spe))
+hist(log10(sizeFactors(spe)), xlab = "log10 (size factors)", main = "Size factors")
+
+# calculate logcounts (log-transformed normalized counts) and store in object
+spe <- logNormCounts(spe)
+
+assayNames(spe)
+```
+
+
+## Feature selection
+
+Select top highly variable genes (HVGs) to identify cell types. We use methods from `scran` [@Lun2016-dn], and first filter out mitochondrial genes (since these are very highly expressed and not of biological interest here).
+
+```{r feature_selection_mito}
+# remove mitochondrial genes
+spe <- spe[!is_mito, ]
+dim(spe)
+```
+
+```{r feature_selection_HVGs, message=FALSE, fig.height=5}
+# fit mean-variance relationship
+dec <- modelGeneVar(spe)
+
+# visualize mean-variance relationship
+fit <- metadata(dec)
+plot(fit$mean, fit$var, 
+     xlab = "mean of log-expression", ylab = "variance of log-expression")
+curve(fit$trend(x), col = "dodgerblue", add = TRUE, lwd = 2)
+
+# select top HVGs
+top_hvgs <- getTopHVGs(dec, prop = 0.1)
+length(top_hvgs)
+```
+
+Note there are a few extremely highly expressed genes, which influence the fitted mean-variance relationship. We identify these genes to check whether they should be removed as outliers.
+
+```{r outliers}
+# identify outlier genes
+rev(sort(fit$mean))[1:3]
+outlier_ids <- names(rev(sort(fit$mean))[1:3])
+
+rowData(spe)[outlier_ids, ]
+```
+
+These appear to be biologically meaningful genes, so we leave them in.
+
+
+## Dimensionality reduction
+
+Calculate principal component analysis (PCA) using `scater` [@McCarthy2017-zd], and retain top 50 principal components (PCs) for downstream analyses. Also calculate UMAP on the top 50 PCs, and retain top 2 UMAP components for visualization.
+
+```{r dimensionality_reduction_PCA}
+# calculate PCA
+set.seed(123)
+spe <- runPCA(spe, subset_row = top_hvgs)
+
+reducedDimNames(spe)
+dim(reducedDim(spe, "PCA"))
+```
+
+```{r dimensionality_reduction_UMAP}
+# calculate UMAP on top 50 PCs
+set.seed(123)
+spe <- runUMAP(spe, dimred = "PCA")
+
+reducedDimNames(spe)
+dim(reducedDim(spe, "UMAP"))
+
+# update column names for plotting
+colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
+```
+
+
+## Clustering
+
+Perform clustering (on top 50 PCs calculated on top HVGs) to identify cell types. We use graph-based clustering with the Walktrap method from `scran` [@Lun2016-dn].
+
+```{r clustering_calculate}
+# graph-based clustering
+set.seed(123)
+k <- 10
+g <- buildSNNGraph(spe, k = k, use.dimred = "PCA")
+g_walk <- igraph::cluster_walktrap(g)
+clus <- g_walk$membership
+table(clus)
+
+# store cluster labels in object (column "label")
+colLabels(spe) <- factor(clus)
+```
+
+Plot clusters in (i) x-y coordinates of the tissue slide, and (ii) UMAP coordinates.
+
+```{r clustering_plots, fig.height=4.5, fig.width=5.5}
+# define custom color palette
+colors <- unname(palette.colors(palette = "Polychrome 36"))
+
+# plot clusters in x-y coordinates
+plotSpots(spe, cluster_id = "label", palette = colors)
+
+# plot clusters in UMAP space
+plotDimRed(spe, type = "UMAP", cluster_id = "label", palette = colors)
+```
+
