@@ -99,6 +99,8 @@ colData(spe)$discard <- discard
 
 Plot discarded spots in x-y coordinates on tissue slide, to check whether discarded spots are concentrated in any obvious biologically meaningful spatial regions (which would be problematic).
 
+Visualization functions for QC purposes are available in the [spatzli](https://github.com/lmweber/spatzli) package.
+
 ```{r QC_check, message=FALSE, fig.width=3.75, fig.height=3.75}
 library(spatzli)
 
@@ -225,14 +227,16 @@ colLabels(spe) <- factor(clus)
 
 Plot clusters in (i) x-y coordinates of the tissue slide, and (ii) UMAP coordinates.
 
+Here we use the visualization functions from the [ggspavis](https://github.com/lmweber/ggpavis) package.
+
 ```{r clustering_plots, fig.height=4.5, fig.width=5.5}
 # define custom color palette
 colors <- unname(palette.colors(palette = "Polychrome 36"))
 
 # plot clusters in x-y coordinates
-plotSpots(spe, cluster_id = "label", palette = colors)
+plotSpots(spe, discrete = "label", palette = colors)
 
 # plot clusters in UMAP space
-plotDimRed(spe, type = "UMAP", cluster_id = "label", palette = colors)
+plotDimRed(spe, type = "UMAP", discrete = "label", palette = colors)
 ```
 
