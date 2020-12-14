@@ -9,7 +9,6 @@ chapterPreamble(cache = TRUE)
 This workflow is a condensed version of the analyses shown in the main analysis chapters, using the same dataset. The workflow uses the most "standard" methods for each step, and contains minimal documentation, to make it easier to see how the steps fit together into a complete analysis pipeline. For more details on any of the individual analysis steps, see the chapters in [Analyis pipeline](#analysis_pipeline).
 
 
-
 ## Description of dataset {#human_DLPFC_dataset}
 
 This is a 10x Genomics Visium dataset generated from healthy human brain samples from the dorsolateral prefrontal cortex (DLPFC) region.
@@ -25,31 +24,27 @@ The subset of data used in this workflow (sample 151673) is also available from 
 For more details on the dataset, including an illustration of the experimental design, see our [paper](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1) [@Maynard2020-ke] or the [spatialLIBD vignette](http://bioconductor.org/packages/release/data/experiment/vignettes/spatialLIBD/inst/doc/spatialLIBD.html).
 
 
-
 ## Load data
 
-Load the dataset from the [STdata](https://github.com/lmweber/STdata) package. Note that this is a subset containing only one sample (sample 151673) from the full dataset.
+Load the dataset from the [STdata](https://github.com/lmweber/STdata) package. The data object is formatted in the `SpatialExperiment` object class defined in the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) package.
 
-[TO DO: convert `STdata` package to an `ExperimentHub` package; currently is a temporary wrapper around Drobox links]
-
-[TO DO: convert to using `SpatialExperiment` class instead of `SingleCellExperiment`]
+Note that this is a subset containing only one sample (sample 151673) from the full dataset.
 
 ```{r load_data, message=FALSE}
-#library(ExperimentHub)
-library(SingleCellExperiment)
 library(STdata)
+library(SpatialExperiment)
 
-#ehub <- ExperimentHub()
-
+# load object
 spe <- load_data("human_DLPFC")
 spe
 ```
 
 
-
 ## Quality control (QC)
 
 Calculate spot-level QC metrics using `scater` [@McCarthy2017-zd]. See [Quality control](#quality_control) for more details, including explanations of the QC metrics.
+
+Since `SpatialExperiment` inherits from `SingleCellExperiment`, we can store QC metrics in `colData`.
 
 ```{r QC_calculate, message=FALSE}
 library(scater)
@@ -88,6 +83,8 @@ colData(spe)$discard <- discard
 
 Plot the set of discarded spots in the original x-y coordinates, to confirm that the spatial distribution of the discarded spots does not correspond to any obvious biological patterns in the data, which would indicate that we are removing biological signal.
 
+Visualization functions for QC purposes are available in the [spatzli](https://github.com/lmweber/spatzli) package. Additional visualization functions are available in the [ggspavis](https://github.com/lmweber/ggspavis) package.
+
 ```{r QC_check, fig.height=4, message=FALSE}
 library(spatzli)
 
@@ -102,7 +99,6 @@ Remove the low-quality spots from the object.
 spe <- spe[, !colData(spe)$discard]
 dim(spe)
 ```
-
 
 
 ## Normalization
@@ -130,7 +126,6 @@ assayNames(spe)
 ```
 
 
-
 ## Feature selection
 
 Select top highly variable genes (HVGs). We use methods from `scran` [@Lun2016-dn], treating spots as equivalent to cells, and considering only molecular features (gene expression). Newer methods adapted for spatial data will be described in [Feature selection](#feature_selection). We also first filter mitochondrial genes, since these are very highly expressed and not of biological interest in this dataset.
@@ -155,7 +150,6 @@ curve(fit$trend(x), col = "dodgerblue", add = TRUE, lwd = 2)
 top_hvgs <- getTopHVGs(dec, prop = 0.1)
 length(top_hvgs)
 ```
-
 
 
 ## Dimensionality reduction
@@ -186,12 +180,13 @@ colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 ```
 
 
-
 ## Clustering
 
 Next, we perform clustering to identify cell types. Here, we use molecular features only (i.e. the top 50 PCs calculated on the set of top HVGs). Alternative methods that also take into account spatial features are described in [Clustering](#clustering). We use the graph-based clustering implementation and Walktrap method provided in `scran` [@Lun2016-dn].
 
 From the visualizations, we can see that the clustering reproduces the known biological structure (cortical layers), although not perfectly. The clusters are also separated in UMAP space.
+
+For the visualizations, we use functions from the [ggspavis](https://github.com/lmweber/ggpavis) package.
 
 ```{r clustering_calculate}
 # graph-based clustering
@@ -206,17 +201,18 @@ table(clus)
 colLabels(spe) <- factor(clus)
 ```
 
-```{r clustering_plots, fig.height=4.5, fig.width=5.5}
-# plot clustering in x-y space
-plotClustersSpots(spe, cluster_id = "label")
+```{r clustering_plots, message=FALSE, fig.height=4.5, fig.width=5.5}
+library(ggspavis)
 
-# plot ground truth layers in x-y space
-plotClustersSpots(spe, cluster_id = "ground_truth")
+# plot clusters in x-y coordinates
+plotSpots(spe, discrete = "label", palette = "libd_layer_colors")
 
-# plot clustering in UMAP space
-plotClustersDimRed(spe, type = "UMAP", cluster_id = "label")
+# plot ground truth labels in x-y coordinates
+plotSpots(spe, discrete = "ground_truth", palette = "libd_layer_colors")
+
+# plot clusters in UMAP space
+plotDimRed(spe, type = "UMAP", discrete = "label", palette = "libd_layer_colors")
 ```
-
 
 
 ## Interpretation
@@ -251,5 +247,4 @@ top_genes <- head(rownames(interesting))
 
 plotExpression(spe, x = "label", features = top_genes)
 ```
-
 
