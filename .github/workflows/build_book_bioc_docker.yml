@@ -117,16 +117,16 @@ jobs:
         run: |
           ## For building the website & getting the R session info
           ## Edit as necessary with other packages in the future
-          BiocManager::install(c("bookdown", "sessioninfo", "BiocStyle"))
+          BiocManager::install(c("BiocStyle", "bookdown", "knitr", "sessioninfo"))
           
           ## Bioc stable packages
-          BiocManager::install(c("SingleCellExperiment", "ExperimentHub", "scran", "scater", "pheatmap"))
+          BiocManager::install(c("ExperimentHub", "pheatmap", "SingleCellExperiment", "scater", "scran"))
           
           ## Main dependency
           BiocManager::install("drighelli/SpatialExperiment")
           
           ## Packages under active development
-          BiocManager::install(c("lmweber/STexampleData", "lmweber/ggspavis", "lmweber/spatzli", "HelenaLC/TENxVisiumData", "LieberInstitute/spatialLIBD"))
+          BiocManager::install(c("lmweber/ggspavis", "LieberInstitute/spatialLIBD", "lmweber/spatzli", "lmweber/STexampleData",  "HelenaLC/TENxVisiumData"))
         shell: Rscript {0}
 
       - name: Session info
