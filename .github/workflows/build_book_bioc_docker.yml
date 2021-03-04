@@ -1,0 +1,149 @@
+## Read more about GitHub actions the features of this GitHub Actions workflow
+## at https://lcolladotor.github.io/biocthis/articles/biocthis.html#use_bioc_github_action
+##
+## For more details, check the biocthis developer notes vignette at
+## https://lcolladotor.github.io/biocthis/articles/biocthis_dev_notes.html
+##
+## You can add this workflow to other packages using:
+## > biocthis::use_bioc_github_action()
+##
+## Using GitHub Actions exposes you to many details about how R packages are
+## compiled and installed in several operating system.s
+### If you need help, please follow the steps listed at
+## https://github.com/r-lib/actions#where-to-find-help
+##
+## If you found an issue specific to biocthis's GHA workflow, please report it
+## with the information that will make it easier for others to help you.
+## Thank you!
+
+## Acronyms:
+## * GHA: GitHub Action
+## * OS: operating system
+
+on:
+  push:
+  pull_request:
+
+name: R-CMD-bioc
+
+## These environment variables control whether to run GHA code later on that is
+## specific to testthat, covr, and pkgdown.
+##
+## If you need to clear the cache of packages, update the number inside
+## cache-version as discussed at https://github.com/r-lib/actions/issues/86.
+## Note that you can always run a GHA test without the cache by using the word
+## "/nocache" in the commit message.
+env:
+  cache-version: 'cache-v1'
+
+jobs:
+  build-check:
+    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    container: ${{ matrix.config.cont }}
+    ## Environment variables unique to this job.
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { os: ubuntu-latest, r: '4.0', bioc: '3.12', cont: "bioconductor/bioconductor_docker:RELEASE_3_12", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest" }
+          #- { os: macOS-latest, r: '4.0', bioc: '3.12'}
+          #- { os: windows-latest, r: '4.0', bioc: '3.12'}
+    env:
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      RSPM: ${{ matrix.config.rspm }}
+      NOT_CRAN: true
+      TZ: UTC
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+
+      ## Set the R library to the directory matching the
+      ## R packages cache step further below when running on Docker (Linux).
+      - name: Set R Library home on Linux
+        if: runner.os == 'Linux'
+        run: |
+          mkdir /__w/_temp/Library
+          echo ".libPaths('/__w/_temp/Library')" > ~/.Rprofile
+
+      ## Most of these steps are the same as the ones in
+      ## https://github.com/r-lib/actions/blob/master/examples/check-standard.yaml
+      ## If they update their steps, we will also need to update ours.
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      ## R is already included in the Bioconductor docker images
+      - name: Setup R from r-lib
+        if: runner.os != 'Linux'
+        uses: r-lib/actions/setup-r@master
+        with:
+          r-version: ${{ matrix.config.r }}
+
+      ## pandoc is already included in the Bioconductor docker images
+      - name: Setup pandoc from r-lib
+        if: runner.os != 'Linux'
+        uses: r-lib/actions/setup-pandoc@master
+
+      - name: Cache R packages
+        if: "!contains(github.event.head_commit.message, '/nocache') && runner.os != 'Linux'"
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ env.cache-version }}-${{ runner.os }}-biocversion-RELEASE_3_12-r-4.0-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-biocversion-RELEASE_3_12-r-4.0-
+
+      - name: Cache R packages on Linux
+        if: "!contains(github.event.head_commit.message, '/nocache') && runner.os == 'Linux' "
+        uses: actions/cache@v2
+        with:
+          path: /home/runner/work/_temp/Library
+          key: ${{ env.cache-version }}-${{ runner.os }}-biocversion-RELEASE_3_12-r-4.0-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-biocversion-RELEASE_3_12-r-4.0-
+
+      - name: Install BiocManager
+        run: |
+          message(paste('****', Sys.time(), 'installing BiocManager ****'))
+          remotes::install_cran("BiocManager")
+        shell: Rscript {0}
+
+      - name: Set BiocVersion
+        run: |
+          BiocManager::install(version = "${{ matrix.config.bioc }}", ask = FALSE)
+        shell: Rscript {0}
+
+      - name: Install dependencies
+        run: |
+          ## For building the website & getting the R session info
+          ## Edit as necessary with other packages in the future
+          BiocManager::install(c("bookdown", "sessioninfo", "BiocStyle", "biocthis", "here", "postcards", "pryr", "usethis", "SummarizedExperiment", "iSEE", "edgeR", "ExploreModelMatrix", "limma", "recount3", "ggplot2", "patchwork", "pheatmap","RColorBrewer", "spatialLIBD"))
+        shell: Rscript {0}
+
+      - name: Session info
+        run: |
+          options(width = 100)
+          pkgs <- installed.packages()[, "Package"]
+          sessioninfo::session_info(pkgs, include_base = TRUE)
+        shell: Rscript {0}
+
+      - name: Build website
+        run: |
+          bookdown::render_book("index.Rmd")
+          for(i in dir("_book", pattern = "html", full.names = TRUE)) {
+             x <- readLines(i)
+             writeLines(gsub("_main_files/", "", x), i)
+          }
+          system("mv _book/_main_files/figure-html _book/")
+        shell: Rscript {0}
+
+      - name: Install deploy dependencies
+        run: |
+          apt-get update && apt-get -y install rsync
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: _book # The folder the action should deploy.
