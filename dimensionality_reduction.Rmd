@@ -1,17 +1,12 @@
 # Dimensionality reduction {#dimensionality_reduction}
 
-```{r setup, echo=FALSE, results="asis"}
-library(rebook)
-chapterPreamble(cache = TRUE)
-```
-
 
 ## Overview
 
 Chapter on dimensionality reduction.
 
-```{r, echo=FALSE, results="asis"}
-extractCached("human_DLPFC.Rmd", "feature_selection_HVGs", c("spe", "top_hvgs"))
+```{r, echo=FALSE, results="asis", cache=TRUE}
+# add steps to generate object up to here and cache
 ```
 
 

@@ -1,11 +1,5 @@
 # Spatial transcriptomics {#spatial_transcriptomics}
 
-```{r setup, echo=FALSE, results="asis"}
-library(rebook)
-chapterPreamble(cache = TRUE)
-```
-
-
 Spatial transcriptomics represents a new class of technologies that allows gene expression to be measured across the complete transcriptome with spatial resolution. This facilitates new types of experiments to investigate spatial patterns of gene expression in an exploratory manner.
 
 

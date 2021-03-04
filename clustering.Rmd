@@ -1,10 +1,5 @@
 # Clustering {#clustering}
 
-```{r setup, echo=FALSE, results="asis"}
-library(rebook)
-chapterPreamble(cache = TRUE)
-```
-
 
 ## Overview
 
@@ -14,8 +9,8 @@ The definition of "cell type" is somewhat nebulous, and can depend to some exten
 
 In the context of spatial transcriptomics (ST), we may be interested in (i) identifying cell types (major or minor) that occur in biologically interesting spatial patterns, or (ii) identifying major cell types and performing subsequent analyses within these cell types. In both cases, we can use clustering to identify the cell types, although the resolution of the clustering will be somewhat context-dependent.
 
-```{r, echo=FALSE, results="asis"}
-extractCached("human_DLPFC.Rmd", "dimensionality_reduction_UMAP", "spe")
+```{r, echo=FALSE, results="asis", cache=TRUE}
+# add steps to generate object up to here and cache
 ```
 
 

@@ -1,17 +1,12 @@
 # Feature selection {#feature_selection}
 
-```{r setup, echo=FALSE, results="asis"}
-library(rebook)
-chapterPreamble(cache = TRUE)
-```
-
 
 ## Overview
 
 Chapter on feature selection.
 
-```{r, echo=FALSE, results="asis"}
-extractCached("human_DLPFC.Rmd", "normalization", "spe")
+```{r, echo=FALSE, results="asis", cache=TRUE}
+# add steps to generate object up to here and cache
 ```
 
 

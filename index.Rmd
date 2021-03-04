@@ -26,9 +26,9 @@ This is a companion to the textbook [Orchestrating Single-Cell Analysis with Bio
 ---
 
 
-To cite, ...
+To cite
 
-To contribute, ...
+To contribute
 
 Code of conduct
 

@@ -1,10 +1,5 @@
 # Quality control {#quality_control}
 
-```{r setup, echo=FALSE, results="asis"}
-library(rebook)
-chapterPreamble(cache = TRUE)
-```
-
 
 ## Overview
 
@@ -26,8 +21,8 @@ Low library size or low number of expressed features can indicate poor mRNA capt
 
 The first three characteristics listed above are also used for QC in scRNA-seq data. However, the expected distributions for high-quality spots are different (compared to high-quality cells in scRNA-seq), since spots may contain zero, one, or multiple cells.
 
-```{r, echo=FALSE, results="asis"}
-extractCached("human_DLPFC.Rmd", "load_data", "spe")
+```{r, echo=FALSE, results="asis", cache=TRUE}
+# add steps to generate object up to here and cache
 ```
 
 

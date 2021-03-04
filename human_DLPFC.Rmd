@@ -1,11 +1,5 @@
 # Human DLPFC {#human_DLPFC}
 
-```{r unref-setup, echo=FALSE, results="asis"}
-library(rebook)
-chapterPreamble(cache = TRUE)
-```
-
-
 This workflow is a condensed version of the analyses shown in the main analysis chapters, using the same dataset. The workflow uses the most "standard" methods for each step, and contains minimal documentation, to make it easier to see how the steps fit together into a complete analysis pipeline. For more details on any of the individual analysis steps, see the chapters in [Analyis pipeline](#analysis_pipeline).
 
 
