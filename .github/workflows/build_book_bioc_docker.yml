@@ -47,7 +47,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - { os: ubuntu-latest, r: '4.0', bioc: '3.12', cont: "bioconductor/bioconductor_docker:RELEASE_3_12", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest" }
+          - { os: ubuntu-latest, r: '4.0', bioc: '3.13', cont: "bioconductor/bioconductor_docker:devel", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest" }
           #- { os: macOS-latest, r: '4.0', bioc: '3.12'}
           #- { os: windows-latest, r: '4.0', bioc: '3.12'}
     env:
@@ -117,7 +117,16 @@ jobs:
         run: |
           ## For building the website & getting the R session info
           ## Edit as necessary with other packages in the future
-          BiocManager::install(c("bookdown", "sessioninfo", "BiocStyle", "biocthis", "here", "postcards", "pryr", "usethis", "SummarizedExperiment", "iSEE", "edgeR", "ExploreModelMatrix", "limma", "recount3", "ggplot2", "patchwork", "pheatmap","RColorBrewer", "spatialLIBD"))
+          BiocManager::install(c("bookdown", "sessioninfo", "BiocStyle"))
+          
+          ## Bioc stable packages
+          BiocManager::install(c("SingleCellExperiment", "ExperimentHub", "scran", "scater", "pheatmap"))
+          
+          ## Main dependency
+          BiocManager::install("drighelli/SpatialExperiment")
+          
+          ## Packages under active development
+          BiocManager::install(c("lmweber/STexampleData", "lmweber/ggspavis", "lmweber/spatzli", "HelenaLC/TENxVisiumData", "LieberInstitute/spatialLIBD"))
         shell: Rscript {0}
 
       - name: Session info
