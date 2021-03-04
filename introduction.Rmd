@@ -8,7 +8,7 @@ chapterPreamble(cache = TRUE)
 
 # Introduction {#introduction}
 
-This book describes a computational analysis pipeline for spatial transcriptomics (ST) data, using the [Bioconductor](http://bioconductor.org/) framework and R programming language. The major analysis steps follow a similar sequence as for single-cell RNA sequencing (scRNA-seq) data (see [OSCA](https://osca.bioconductor.org/) for more details), adapted to the unique characteristics of ST data.
+This book describes a computational analysis pipeline for spatial transcriptomics (ST) data, using the [Bioconductor](http://bioconductor.org/) framework and R programming language. The main analysis steps follow a similar sequence as for single-cell RNA sequencing (scRNA-seq) data (see [OSCA](https://osca.bioconductor.org/) for more details), adapted to the unique characteristics of ST data.
 
 
 
@@ -16,9 +16,9 @@ This book describes a computational analysis pipeline for spatial transcriptomic
 
 The chapters are organized into several parts:
 
-- **Introduction:** introductory material, description of spatial transcriptomics technologies and data structure, and datasets used in the examples
+- **Introduction:** introductory material, description of spatial transcriptomics technologies and data structure, description of datasets used in the examples, and processing steps for raw data
 
-- **Analysis pipeline:** sequence of chapters describing the major steps in a computational analysis pipeline for ST data using the Bioconductor framework, including examples of R code that can be run on your own laptop
+- **Analysis pipeline:** sequence of chapters describing the main steps in a computational analysis pipeline for ST data using the Bioconductor framework, including examples of R code that can be run on your own laptop
 
 - **Extended topics:** additional chapters describing analysis steps that may be useful for certain experimental setups
 

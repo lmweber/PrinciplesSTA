@@ -3,7 +3,7 @@ title: "Orchestrating Spatial Transcriptomics Analysis with Bioconductor"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: osta.bib
+bibliography: book.bib
 biblio-style: apalike
 link-citations: yes
 description: "Online textbook on 'Orchestrating Spatial Transcriptomics Analysis with Bioconductor'"

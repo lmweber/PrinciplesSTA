@@ -4,7 +4,3 @@
 .Ruserdata
 .Rbuildignore
 .DS_Store
-docs/*
-_bookdown_files
-*.rds
-*.png

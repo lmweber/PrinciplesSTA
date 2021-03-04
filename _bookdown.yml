@@ -1,16 +1,16 @@
-book_filename: "OSTA"
-pagetitle: "Orchestrating Spatial Transcriptomics Analysis with Bioconductor"
-delete_merged_file: true
-new_session: true
+book_filename: "OSTA-book"
 language:
   ui:
     chapter_name: "Chapter "
-repo: "lmweber/OSTA"
-output_dir: "docs"
+delete_merged_file: true
+site: "bookdown::bookdown_site"
+new_session: yes
 rmd_files: ["index.Rmd",
     # Part 1: Introduction:
     "introduction.Rmd",
     "spatial_transcriptomics.Rmd",
+    "datasets.Rmd",
+    "space_ranger.Rmd",
     # Part 2: Analysis pipeline:
     "analysis_pipeline.Rmd",
     "load_data.Rmd",
