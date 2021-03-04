@@ -6,31 +6,22 @@ delete_merged_file: true
 site: "bookdown::bookdown_site"
 new_session: yes
 rmd_files: ["index.Rmd",
-    # Part 1: Introduction:
+    # Part 1: Introduction
     "introduction.Rmd",
-    "spatial_transcriptomics.Rmd",
-    "datasets.Rmd",
-    # Part 2: Preprocessing:
+    "spatially_resolved_transcriptomics.Rmd",
+    # Part 2: Preprocessing
     "preprocessing.Rmd",
     "image_segmentation.Rmd",
     "space_ranger.Rmd",
-    # Part 3: Downstream analyses:
+    # Part 3: Downstream analyses
     "downstream_analyses.Rmd",
-    "load_data.Rmd",
     "quality_control.Rmd",
     "normalization.Rmd",
     "feature_selection.Rmd",
     "dimensionality_reduction.Rmd",
     "clustering.Rmd",
     "interpretation.Rmd",
-    # Part 4: Extended topics:
-    "extended_topics.Rmd",
-    "pseudobulking.Rmd",
-    "multi_sample.Rmd",
-    # Part 5: Workflows:
+    # Part 4: Workflows
     "workflows.Rmd",
-    "human_DLPFC.Rmd",
-    "mouse_coronal.Rmd",
-    # Part 6: Appendix:
-    "contributors.Rmd",
-    "references.Rmd"]
+    "workflow_human_DLPFC.Rmd",
+    "workflow_mouse_coronal.Rmd"]

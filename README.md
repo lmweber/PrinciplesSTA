@@ -1,4 +1,4 @@
-# Orchestrating Spatial Transcriptomics Analysis with Bioconductor
+# Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor
 
 Repository containing source files for OSTA online book.
 
@@ -14,7 +14,7 @@ bookdown::render_book("index.Rmd", "bookdown::gitbook")
 
 ## Installation requirements
 
-To compile the book locally, `bookdown` and all other packages loaded with `library()` calls within the chapters need to be installed first, using either `install.packages()` or `BiocManager::install()`.
+To compile the book locally, `bookdown` and all other packages loaded with `library()` within the chapters need to be installed first, using either `install.packages()` or `BiocManager::install()`.
 
 
 ## Repository contents and structure
