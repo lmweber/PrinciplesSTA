@@ -139,11 +139,7 @@ jobs:
       - name: Build website
         run: |
           bookdown::render_book("index.Rmd")
-          for(i in dir("_book", pattern = "html", full.names = TRUE)) {
-             x <- readLines(i)
-             writeLines(gsub("_main_files/", "", x), i)
-          }
-          system("mv _book/_main_files/figure-html _book/")
+          system("touch _book/.nojekyll")
         shell: Rscript {0}
 
       - name: Install deploy dependencies
