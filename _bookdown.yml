@@ -10,9 +10,12 @@ rmd_files: ["index.Rmd",
     "introduction.Rmd",
     "spatial_transcriptomics.Rmd",
     "datasets.Rmd",
+    # Part 2: Preprocessing:
+    "preprocessing.Rmd",
+    "image_segmentation.Rmd",
     "space_ranger.Rmd",
-    # Part 2: Analysis pipeline:
-    "analysis_pipeline.Rmd",
+    # Part 3: Downstream analyses:
+    "downstream_analyses.Rmd",
     "load_data.Rmd",
     "quality_control.Rmd",
     "normalization.Rmd",
@@ -20,14 +23,14 @@ rmd_files: ["index.Rmd",
     "dimensionality_reduction.Rmd",
     "clustering.Rmd",
     "interpretation.Rmd",
-    # Part 3: Extended topics:
+    # Part 4: Extended topics:
     "extended_topics.Rmd",
     "pseudobulking.Rmd",
     "multi_sample.Rmd",
-    # Part 4: Workflows:
+    # Part 5: Workflows:
     "workflows.Rmd",
     "human_DLPFC.Rmd",
     "mouse_coronal.Rmd",
-    # Part 5: Appendix:
+    # Part 6: Appendix:
     "contributors.Rmd",
     "references.Rmd"]
