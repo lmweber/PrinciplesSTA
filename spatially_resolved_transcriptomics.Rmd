@@ -1,97 +1,26 @@
-# Spatial transcriptomics {#spatial_transcriptomics}
+# Spatially resolved transcriptomics {#spatially_resolved_transcriptomics}
 
-Spatial transcriptomics represents a new class of technologies that allows gene expression to be measured across the complete transcriptome with spatial resolution. This facilitates new types of experiments to investigate spatial patterns of gene expression in an exploratory manner.
-
-
-## Technologies
-
-There are several technologies that fall under the umbrella of spatial transcriptomics. This section describes some key features of the most popular technologies. For the analysis pipeline described in the main chapters of this book, we focus on data generated with the commercially available 10x Genomics Visium platform. [TO DO: mention if any workflows using other technologies]
+Spatially resolved transcriptomics (ST) technologies allow transcriptome-wide gene expression to be measured at spatial resolution. There are several technological platforms, each with their unique advantages.
 
 
+## 10x Genomics Visium
 
-### 10x Genomics Visium
+The [10x Genomics Visium](https://www.10xgenomics.com/products/spatial-gene-expression) platform measures transcriptome-wide gene expression at a two-dimensional grid of "spots" on a tissue slide. Fresh-frozen tissue is placed onto the slide, fixed, stained, and permeabilized. Each spot contains millions of spatially-barcoded capture oligonucleotides, which bind to mRNAs from the tissue. A cDNA library is then generated for sequencing, which includes the spatial barcodes, allowing reads to be mapped back to their spatial locations.
 
-The [Visium](https://www.10xgenomics.com/spatial-transcriptomics/) platform was commercially released by [10x Genomics](https://www.10xgenomics.com/) in late 2019. Along with the platform itself, 10x Genomics has released analysis software such as [Space Ranger](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger), and a number of other resources including [example datasets](https://www.10xgenomics.com/resources/datasets/).
-
-The Visium platform measures transcriptome-wide gene expression at a two-dimensional grid of "spots" located on a tissue slide. Fresh-frozen tissue is placed onto the slide, fixed, stained, and permeabilized. Each spot contains millions of spatially-barcoded capture oligonucleotides, which bind to mRNAs from the tissue. A cDNA library is then generated for sequencing, which includes the spatial barcodes, allowing reads to be mapped back to their spatial location. (In principle, this is similar to the 10x Genomics Chromium system for scRNA-seq, where cell barcodes are attached to mRNAs after isolating cells and barcoded beads within droplets. Here, the cell barcodes are replaced with spatial barcodes from the Visium slide.)
-
-The size of the tissue slide is approximately 6.5mm by 6.5mm, and contains around 5000 barcoded spots. Spots are located in a regular hexagonal arrangement, with each spot 55µm in diameter, and 100µm center to center. This gives a resolution roughly on the order of single cells, depending on the organism and tissue type. Each slide contains 4 capture areas (6.5mm x 6.5mm each). The following figure provides an illustration.
+The dimensions of the tissue slide are approximately 6.5mm by 6.5mm, and contains around 5000 barcoded spots. Spots are located in a regular hexagonal arrangement, with each spot 55µm in diameter, and 100µm center to center. The number of cells per spot depends on the organism and tissue type, e.g. 0-10 for human brain, or around 50 for mouse brain. Each slide contains 4 capture areas (6.5mm x 6.5mm each). The following figure provides an illustration.
 
 
-```{r Visium-screenshot, fig.wide=TRUE, echo=FALSE, fig.cap="Illustration of 10x Genomics Visium slide. Image source: 10x Genomics Visium technology brochure, available from: https://www.10xgenomics.com/spatial-transcriptomics/"}
-knitr::include_graphics(
-  file.path("https://raw.githubusercontent.com/lmweber/OSTA-release/master/images", 
-            "Visium_screenshot.png")
-)
+```{r Visium-schematic, fig.wide=TRUE, echo=FALSE, fig.cap="Schematic of 10x Genomics Visium platform. Image source: 10x Genomics Visium website: https://www.10xgenomics.com/spatial-transcriptomics/"}
+knitr::include_graphics("images/Visium.png")
 ```
-
-
-More details are available on the [10x Genomics Visium](https://www.10xgenomics.com/spatial-transcriptomics/) website.
-
-The Visium platform extends a previous non-commercial implementation of this technology, which was simply referred to as "Spatial Transcriptomics", and published by @Stahl2016-sk.
-
-Due to the commercial availability, relatively high resolution, transcriptome-wide measurement, and [relatively simple experimental procedures compared to other technologies](https://www.10xgenomics.com/spatial-transcriptomics/), we expect the Visium platform to become widely used in the coming years, and therefore focus on Visium datasets in the main analysis pipeline chapters in this book.
-
-
-
-### 10x Genomics Visium with immunofluorescence
-
-Paragraph on Visium with immunofluorescence protein co-detection extension
-
-Released in mid 2020
-
 
 
 ### Slide-seqV2
 
-Paragraph on Slide-seqV2 and Slide-seq
-
-Note much lower number of genes per spot than Visium: [Valentine Svensson blog post](http://www.nxn.se/valent/2020/5/11/comparing-slide-seq-and-slide-seqv2-counts)
-
-
 
 ### seqFISH
 
-Paragraph on seqFISH and seqFISH+
-
-Allows single-cell resolution (e.g. x-y coordinates correspond to cell centroids), as well as subcellular resolution (discuss polygons?)
-
-Latest iteration (seqFISH+) is effectively transcriptome-wide
-
-
 
 ### MERFISH
-
-Paragraph on MERFISH (latest iteration)
-
-Similar to seqFISH+
-
-
-
-### Non-transcriptome-wide spatial gene expression technologies
-
-Brief mention of other non-transcriptome-wide spatial gene expression technologies, e.g. RNAscope. These are especially useful for targeted experiments for known genes of interest, e.g. confirmatory experiments after exploratory experiments using Visium.
-
-
-
-### Other spatial omics technologies
-
-Brief mention of other spatial omics technologies, e.g. proteomics / imaging mass cytometry
-
-
-
-## Data format and objects
-
-We use the `SpatialExperiment` Bioconductor object class to store datasets for the main analysis pipeline and workflows. For more details on the `SpatialExperiment` class, see the [Introduction](#spatialexperiment). For details on each dataset, see the corresponding workflow chapter.
-
-For the Visium datasets, we store the data in the `SpatialExperiment` class as follows. This setup may be revised in the future, especially for datasets from other technologies, which may contain additional information:
-
-- spatial "spots" are stored in columns and `colData` (instead of cells as in scRNA-seq)
-- `x` and `y` image coordinates corresponding to the spots are stored in the `spatialCoords` slot
-- genes are stored in rows and `rowData` (same as in scRNA-seq)
-- expression counts (`counts` and `logcounts`) are stored in `assays` (same as in scRNA-seq)
-- histology images may optionally be stored in `metadata` (but may be very large)
-
-[TO DO: discuss possible adaptations for subcellular resolution, e.g. seqFISH]
 
 

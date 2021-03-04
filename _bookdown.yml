@@ -9,6 +9,7 @@ rmd_files: ["index.Rmd",
     # Part 1: Introduction
     "introduction.Rmd",
     "spatially_resolved_transcriptomics.Rmd",
+    "spatialexperiment.Rmd",
     # Part 2: Preprocessing
     "preprocessing.Rmd",
     "image_segmentation.Rmd",
