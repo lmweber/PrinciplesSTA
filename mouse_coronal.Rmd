@@ -18,12 +18,12 @@ Since cells in the mouse brain are relatively small, we also expect that most sp
 
 Load the dataset from the [STexampleData](https://github.com/lmweber/STexampleData) package. The data object is formatted in the `SpatialExperiment` object class defined in the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) package.
 
-```{r load_data, message=FALSE}
+```{r load_data_mouseCoronal, message=FALSE}
 library(STexampleData)
 library(SpatialExperiment)
 
 # load object
-spe <- load_data("mouse_coronal")
+spe <- load_data("Visium_mouseCoronal")
 spe
 ```
 

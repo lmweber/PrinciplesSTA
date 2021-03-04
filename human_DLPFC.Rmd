@@ -24,12 +24,12 @@ Load the dataset from the [STexampleData](https://github.com/lmweber/STexampleDa
 
 Note that this is a subset containing only one sample (sample 151673) from the full dataset.
 
-```{r load_data, message=FALSE}
+```{r load_data_humanDLPFC, message=FALSE}
 library(STexampleData)
 library(SpatialExperiment)
 
 # load object
-spe <- load_data("human_DLPFC")
+spe <- load_data("Visium_humanDLPFC")
 spe
 ```
 

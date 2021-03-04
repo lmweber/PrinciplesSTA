@@ -33,6 +33,15 @@ We calculate the QC metrics described above with a combination of methods from t
 
 The QC metrics from `scater` can be calculated and added to the `SingleCellExperiment` object as follows. Here, we also identify mitochondrial reads using their gene names, and pass these as an argument to `scater`.
 
+```{r load_data_qc, message=FALSE}
+library(ExperimentHub)
+library(STexampleData)
+
+ehub <- ExperimentHub()
+
+spe <- load_data("Visium_humanDLPFC")
+```
+
 ```{r calculate_QC_scater, message=FALSE}
 library(scater)
 
