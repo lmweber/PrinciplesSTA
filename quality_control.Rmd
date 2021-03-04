@@ -75,6 +75,7 @@ Library size represents the total sum of UMI counts per spot. This is included i
 Plot a histogram of the library sizes across spots.
 
 ```{r plot_lib_size_hist, fig.height=4}
+spe$sum <- colSums(assay(spe))
 # histogram of library sizes
 hist(colData(spe)$sum, breaks = 25)
 ```
