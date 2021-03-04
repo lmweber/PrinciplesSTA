@@ -13,19 +13,19 @@ For the examples in this workflow and the analysis chapters, we use only one sam
 
 This dataset is described in our publication @Maynard2020-ke, currently available from [bioRxiv](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1). The full dataset is publicly available through the [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) Bioconductor package, and the analysis code is provided in the [HumanPilot](https://github.com/LieberInstitute/HumanPilot) GitHub repository. The dataset can also be explored interactively through a [Shiny web app](http://spatial.libd.org/spatialLIBD/).
 
-The subset of data used in this workflow (sample 151673) is also available from the [STdata](https://github.com/lmweber/STdata) package.
+The subset of data used in this workflow (sample 151673) is also available from the [STexampleData](https://github.com/lmweber/STexampleData) package.
 
 For more details on the dataset, including an illustration of the experimental design, see our [paper](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1) [@Maynard2020-ke] or the [spatialLIBD vignette](http://bioconductor.org/packages/release/data/experiment/vignettes/spatialLIBD/inst/doc/spatialLIBD.html).
 
 
 ## Load data
 
-Load the dataset from the [STdata](https://github.com/lmweber/STdata) package. The data object is formatted in the `SpatialExperiment` object class defined in the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) package.
+Load the dataset from the [STexampleData](https://github.com/lmweber/STexampleData) package. The data object is formatted in the `SpatialExperiment` object class defined in the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) package.
 
 Note that this is a subset containing only one sample (sample 151673) from the full dataset.
 
 ```{r load_data, message=FALSE}
-library(STdata)
+library(STexampleData)
 library(SpatialExperiment)
 
 # load object

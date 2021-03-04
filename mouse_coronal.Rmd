@@ -16,10 +16,10 @@ Since cells in the mouse brain are relatively small, we also expect that most sp
 
 ## Load data
 
-Load the dataset from the [STdata](https://github.com/lmweber/STdata) package. The data object is formatted in the `SpatialExperiment` object class defined in the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) package.
+Load the dataset from the [STexampleData](https://github.com/lmweber/STexampleData) package. The data object is formatted in the `SpatialExperiment` object class defined in the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) package.
 
 ```{r load_data, message=FALSE}
-library(STdata)
+library(STexampleData)
 library(SpatialExperiment)
 
 # load object

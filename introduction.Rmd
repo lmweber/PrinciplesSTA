@@ -67,7 +67,6 @@ For more details on the `SingleCellExperiment` object class, see:
 
 
 ```{r sce-structure, fig.wide=TRUE, echo=FALSE, fig.cap="Overview of the structure of the `SingleCellExperiment` class. Each row of the assays corresponds to a row of the `rowData` (pink shading), while each column of the assays corresponds to a column of the `colData` and `reducedDims` (yellow shading). The `SpatialExperiment` class extends the `SingleCellExperiment` class to spatial data."}
-library(rebook)
 knitr::include_graphics(
   file.path("https://raw.githubusercontent.com/lmweber/OSTA-release/master/images", 
             "SingleCellExperiment.png")

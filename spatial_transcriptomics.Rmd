@@ -19,7 +19,6 @@ The size of the tissue slide is approximately 6.5mm by 6.5mm, and contains aroun
 
 
 ```{r Visium-screenshot, fig.wide=TRUE, echo=FALSE, fig.cap="Illustration of 10x Genomics Visium slide. Image source: 10x Genomics Visium technology brochure, available from: https://www.10xgenomics.com/spatial-transcriptomics/"}
-library(rebook)
 knitr::include_graphics(
   file.path("https://raw.githubusercontent.com/lmweber/OSTA-release/master/images", 
             "Visium_screenshot.png")
