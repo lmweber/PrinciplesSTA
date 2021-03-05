@@ -42,7 +42,7 @@ plotSpots(spe)
 
 Subset object to keep only spots over tissue.
 
-```{r subset_in_tissue, message=FALSE}
+```{r subset_in_tissue}
 # subset to keep only spots over tissue
 spe <- spe[, spatialData(spe)$in_tissue == 1]
 dim(spe)
@@ -223,7 +223,7 @@ colLabels(spe) <- factor(clus)
 ```
 
 
-Visualize the clusters by plotting in (i) spatial x-y coordinates on the tissue slide, and (ii) UMAP dimensions.
+Visualize the clusters by plotting in (i) spatial x-y coordinates on the tissue slide, and (ii) UMAP dimensions. We use plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package.
 
 ```{r clustering_plots, message=FALSE, fig.height=4.5, fig.width=5.5}
 library(ggspavis)
@@ -237,4 +237,5 @@ plotSpots(spe, discrete = "label", palette = colors)
 # plot clusters in UMAP dimensions
 plotDimRed(spe, type = "UMAP", discrete = "label", palette = colors)
 ```
+
 
