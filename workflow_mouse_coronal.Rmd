@@ -67,7 +67,7 @@ head(colData(spe), 3)
 
 Select filtering thresholds for the QC metrics by examining distributions using histograms.
 
-```{r QC_thresholds, fig.height=3.75}
+```{r QC_thresholds, fig.height=3}
 # histograms of QC metrics
 par(mfrow = c(1, 3))
 hist(colData(spe)$sum, xlab = "sum", main = "UMIs per spot")
@@ -150,7 +150,7 @@ spe <- spe[!is_mito, ]
 dim(spe)
 ```
 
-```{r feature_selection_HVGs, message=FALSE, fig.height=3.75}
+```{r feature_selection_HVGs, message=FALSE, fig.height=4.5}
 # fit mean-variance relationship
 dec <- modelGeneVar(spe)
 
@@ -225,7 +225,7 @@ colLabels(spe) <- factor(clus)
 
 Visualize the clusters by plotting in (i) spatial x-y coordinates on the tissue slide, and (ii) UMAP dimensions. We use plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package.
 
-```{r clustering_plots, message=FALSE, fig.height=3.75}
+```{r clustering_plots, message=FALSE, fig.width=4.5, fig.height=3.75}
 library(ggspavis)
 
 # define custom color palette
@@ -254,7 +254,7 @@ markers <- findMarkers(spe, test = "binom", direction = "up")
 markers
 ```
 
-```{r marker_genes_heatmap, message=FALSE, fig.width=7}
+```{r marker_genes_heatmap, message=FALSE, fig.width=7, fig.height=6}
 library(pheatmap)
 
 # plot log-fold changes for one cluster over all other clusters
@@ -266,7 +266,7 @@ logFCs <- getMarkerEffects(best_set)
 pheatmap(logFCs, breaks = seq(-5, 5, length.out = 101))
 ```
 
-```{r marker_genes_expression, fig.width=7}
+```{r marker_genes_expression, fig.width=7, fig.height=6}
 # plot log-transformed normalized expression of top genes for one cluster
 top_genes <- head(rownames(interesting))
 

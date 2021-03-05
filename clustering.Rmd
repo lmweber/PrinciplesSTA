@@ -126,7 +126,7 @@ For reference, we also display the ground truth (manually annotated) labels avai
 
 From the visualizations, we can see that the clustering reproduces the known biological structure (cortical layers), although not perfectly. The clusters are also separated in UMAP space, but again not perfectly.
 
-```{r clustering_plots, message=FALSE, fig.height=3.75}
+```{r clustering_plots, message=FALSE, fig.width=4.5, fig.height=3.75}
 library(ggspavis)
 
 # plot clusters in spatial x-y coordinates

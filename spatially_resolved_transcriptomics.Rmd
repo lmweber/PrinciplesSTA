@@ -10,7 +10,7 @@ The [10x Genomics Visium](https://www.10xgenomics.com/products/spatial-gene-expr
 The dimensions of the tissue slide are approximately 6.5mm by 6.5mm, and contains around 5000 barcoded spots. Spots are located in a regular hexagonal arrangement, with each spot 55µm in diameter, and 100µm center to center. The number of cells per spot depends on the organism and tissue type, e.g. 0-10 for human brain, or around 50 for mouse brain. Each slide contains 4 capture areas (6.5mm x 6.5mm each). The following figure provides an illustration.
 
 
-```{r Visium-schematic, fig.wide=TRUE, echo=FALSE, fig.cap="Schematic of 10x Genomics Visium platform. Image source: 10x Genomics Visium website: https://www.10xgenomics.com/spatial-transcriptomics/"}
+```{r Visium-schematic, fig.wide=TRUE, echo=FALSE, fig.cap="Schematic of 10x Genomics Visium platform. Image source: [10x Genomics Visium website](https://www.10xgenomics.com/spatial-transcriptomics/)"}
 knitr::include_graphics("images/Visium.png")
 ```
 

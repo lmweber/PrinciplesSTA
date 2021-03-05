@@ -71,7 +71,7 @@ head(colData(spe), 3)
 
 Select filtering thresholds for the QC metrics by examining distributions using histograms. For additional details, including further exploratory visualizations to select the thresholds, see [Quality control]. Here, we use relatively relaxed thresholds, since the additional exploratory visualizations showed that more stringent thresholds tended to remove groups of spots corresponding to biologically meaningful regions.
 
-```{r QC_thresholds, fig.height=3.75}
+```{r QC_thresholds, fig.height=3}
 # histograms of QC metrics
 par(mfrow = c(1, 4))
 hist(colData(spe)$sum, xlab = "sum", main = "UMIs per spot")
@@ -156,7 +156,7 @@ spe <- spe[!is_mito, ]
 dim(spe)
 ```
 
-```{r feature_selection_HVGs, message=FALSE, fig.height=3.75}
+```{r feature_selection_HVGs, message=FALSE, fig.height=4.5}
 # fit mean-variance relationship
 dec <- modelGeneVar(spe)
 
@@ -222,7 +222,7 @@ Visualize the clusters by plotting in (i) spatial x-y coordinates on the tissue 
 
 From the visualizations, we can see that the clustering reproduces the known biological structure (cortical layers), although not perfectly. The clusters are also separated in UMAP space, but again not perfectly.
 
-```{r clustering_plots, message=FALSE, fig.height=3.75}
+```{r clustering_plots, message=FALSE, fig.width=4.5, fig.height=3.75}
 library(ggspavis)
 
 # plot clusters in spatial x-y coordinates

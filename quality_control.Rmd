@@ -102,7 +102,7 @@ The distribution is relatively smooth, and there are no obvious issue such as a 
 
 We also plot the library sizes against the number of cells per spot (which was included in the original data object). This is to check that we are not inadvertently removing a biologically meaningful group of spots. The horizontal line (argument `threshold`) shows our first guess at a possible filtering threshold for library size based on the histogram.
 
-```{r plot_lib_size_scatter, message=FALSE, fig.height=3.75}
+```{r plot_lib_size_scatter, message=FALSE, fig.width=3.75, fig.height=3.75}
 library(spatzli)
 
 # plot library size vs. number of cells per spot
@@ -160,7 +160,7 @@ We use a similar sequence of visualizations to choose a threshold for this QC me
 hist(colData(spe)$detected, breaks = 25)
 ```
 
-```{r plot_detected_scatter, fig.height=3.75}
+```{r plot_detected_scatter, fig.width=3.75, fig.height=3.75}
 # plot number of expressed genes vs. number of cells per spot
 plotQCscatter(spe, 
               metric_x = "cell_count", metric_y = "detected", 
@@ -203,7 +203,7 @@ We investigate the proportions of mitochondrial reads across spots, and select a
 hist(colData(spe)$subsets_mito_percent, breaks = 25)
 ```
 
-```{r plot_mito_scatter, fig.height=3.75}
+```{r plot_mito_scatter, fig.width=3.75, fig.height=3.75}
 # plot mitochondrial read proportion vs. number of cells per spot
 plotQCscatter(spe, 
               metric_x = "cell_count", metric_y = "subsets_mito_percent", 
@@ -251,7 +251,7 @@ tbl_cells_per_spot <- table(colData(spe)$cell_count)
 
 We see a tail of very high values, which could indicate problems for these spots. These values are also visible on the scatterplots. Here, we again plot the number of expressed genes vs. cell count, with an added trend.
 
-```{r plot_cell_count_scatter, fig.height=3.75}
+```{r plot_cell_count_scatter, fig.width=3.75, fig.height=3.75}
 # plot number of expressed genes vs. number of cells per spot
 plotQCscatter(spe, 
               metric_x = "cell_count", metric_y = "detected", 

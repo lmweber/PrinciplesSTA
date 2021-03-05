@@ -122,7 +122,7 @@ colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 
 Generate plots using plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package. In the next chapter on clustering, we will add cluster labels to these reduced dimension plots.
 
-```{r reduced_dim_plots, message=FALSE, fig.height=3.75}
+```{r reduced_dim_plots, message=FALSE, fig.width=3.75, fig.height=3.75}
 library(ggspavis)
 
 # plot top 2 PCA dimensions
