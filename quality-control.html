@@ -130,13 +130,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">OSTA</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
-<ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i><b>0.1</b> Authors</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="part"><span><b>I Introduction</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
@@ -273,6 +270,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.8" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
 <li class="chapter" data-level="17.9" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
 </ul></li>
+<li class="part"><span><b>V Appendix</b></span></li>
+<li class="chapter" data-level="" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i>Contributors</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -346,7 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="calculate-qc-metrics" class="section level2" number="9.4">
 <h2><span class="header-section-number">9.4</span> Calculate QC metrics</h2>
-<p>We calculate the QC metrics described above with a combination of methods from the <code>scater</code> <span class="citation">(<a href="mouse-coronal-workflow.html#ref-McCarthy2017-zd" role="doc-biblioref">McCarthy et al. 2017</a>)</span> package (for metrics that are also used for scRNA-seq data, where we treat spots as equivalent to cells) and our own functions.</p>
+<p>We calculate the QC metrics described above with a combination of methods from the <code>scater</code> <span class="citation">(<a href="contributors.html#ref-McCarthy2017-zd" role="doc-biblioref">McCarthy et al. 2017</a>)</span> package (for metrics that are also used for scRNA-seq data, where we treat spots as equivalent to cells) and our own functions.</p>
 <p>The QC metrics from <code>scater</code> can be calculated and added to the <code>SpatialExperiment</code> object as follows. Here, we also identify mitochondrial reads using their gene names, and pass these as an argument to <code>scater</code>.</p>
 <p>First, we subset the object to keep only spots over tissue. The remaining spots are background spots, which we are not interested in.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="quality-control.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
@@ -581,7 +580,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    0    1    2    3    4    5    6    7    8    9   10   11   12 
 ## 0.02 0.06 0.13 0.17 0.17 0.15 0.12 0.08 0.04 0.03 0.01 0.01 0.00</code></pre>
 <p>Only 6% of spots contain a single cell. If we restricted the analysis to these spots only, we would be discarding most of the data.</p>
-<p>Removing the spots containing zero cells (2% of spots) would also be problematic, since these spots can also contain biologically meaningful information. For example, in this brain dataset, the regions between cell bodies consists of neuropil (dense networks of axons and dendrites). In our paper <span class="citation">(<a href="mouse-coronal-workflow.html#ref-Maynard2020-ke" role="doc-biblioref">Maynard et al. 2021</a>)</span>, we explore the information contained in these neuropil spots.</p>
+<p>Removing the spots containing zero cells (2% of spots) would also be problematic, since these spots can also contain biologically meaningful information. For example, in this brain dataset, the regions between cell bodies consists of neuropil (dense networks of axons and dendrites). In our paper <span class="citation">(<a href="contributors.html#ref-Maynard2020-ke" role="doc-biblioref">Maynard et al. 2021</a>)</span>, we explore the information contained in these neuropil spots.</p>
 </div>
 <div id="quality-control-at-gene-level" class="section level2" number="9.7">
 <h2><span class="header-section-number">9.7</span> Quality control at gene level</h2>

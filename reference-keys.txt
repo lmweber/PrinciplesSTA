@@ -1,6 +1,5 @@
 fig:Visium-schematic
 fig:spe-schematic
-authors
 introduction
 contents-of-this-book
 who-this-book-is-for

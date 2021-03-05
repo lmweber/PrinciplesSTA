@@ -130,13 +130,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">OSTA</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
-<ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i><b>0.1</b> Authors</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="part"><span><b>I Introduction</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
@@ -273,6 +270,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.8" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
 <li class="chapter" data-level="17.9" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
 </ul></li>
+<li class="part"><span><b>V Appendix</b></span></li>
+<li class="chapter" data-level="" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i>Contributors</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -305,7 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="highly-variable-genes-hvgs" class="section level2" number="11.3">
 <h2><span class="header-section-number">11.3</span> Highly variable genes (HVGs)</h2>
-<p>We use methods from <code>scran</code> <span class="citation">(<a href="mouse-coronal-workflow.html#ref-Lun2016-dn" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span> to identify a set of top highly variable genes (HVGs), which will be used to define cell types. These methods were originally developed for single-cell RNA sequencing, so here we assume that spots can be treated as equivalent to cells, and we use only molecular features (gene expression).</p>
+<p>We use methods from <code>scran</code> <span class="citation">(<a href="contributors.html#ref-Lun2016-dn" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span> to identify a set of top highly variable genes (HVGs), which will be used to define cell types. These methods were originally developed for single-cell RNA sequencing, so here we assume that spots can be treated as equivalent to cells, and we use only molecular features (gene expression).</p>
 <p>First, we remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of biological interest.</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="feature-selection.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
 <span id="cb79-2"><a href="feature-selection.html#cb79-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
@@ -333,11 +332,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Section on alternative methods for SVGs</p>
 <div id="spatialde" class="section level3" number="11.4.1">
 <h3><span class="header-section-number">11.4.1</span> SpatialDE</h3>
-<p>SpatialDE <span class="citation">(<a href="mouse-coronal-workflow.html#ref-Svensson2018-zx" role="doc-biblioref">Svensson, Teichmann, and Stegle 2018</a>)</span></p>
+<p>SpatialDE <span class="citation">(<a href="contributors.html#ref-Svensson2018-zx" role="doc-biblioref">Svensson, Teichmann, and Stegle 2018</a>)</span></p>
 </div>
 <div id="spark" class="section level3" number="11.4.2">
 <h3><span class="header-section-number">11.4.2</span> SPARK</h3>
-<p>SPARK <span class="citation">(<a href="mouse-coronal-workflow.html#ref-Sun2020-wh" role="doc-biblioref">Sun, Zhu, and Zhou 2020</a>)</span></p>
+<p>SPARK <span class="citation">(<a href="contributors.html#ref-Sun2020-wh" role="doc-biblioref">Sun, Zhu, and Zhou 2020</a>)</span></p>
 </div>
 <div id="morans-i-statistic" class="section level3" number="11.4.3">
 <h3><span class="header-section-number">11.4.3</span> Moran’s I statistic</h3>

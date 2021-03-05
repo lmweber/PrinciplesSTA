@@ -130,13 +130,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">OSTA</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
-<ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i><b>0.1</b> Authors</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="part"><span><b>I Introduction</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
@@ -273,6 +270,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.8" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
 <li class="chapter" data-level="17.9" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
 </ul></li>
+<li class="part"><span><b>V Appendix</b></span></li>
+<li class="chapter" data-level="" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i>Contributors</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -307,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="clustering-on-hvgs" class="section level2" number="13.3">
 <h2><span class="header-section-number">13.3</span> Clustering on HVGs</h2>
-<p>We can perform clustering by applying standard clustering methods developed for single-cell RNA sequencing data, using molecular features (gene expression). Here, we apply graph-based clustering using the Walktrap method implemented in <code>scran</code> <span class="citation">(<a href="mouse-coronal-workflow.html#ref-Lun2016-dn" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, applied to the top 50 PCs calculated on the set of top HVGs.</p>
+<p>We can perform clustering by applying standard clustering methods developed for single-cell RNA sequencing data, using molecular features (gene expression). Here, we apply graph-based clustering using the Walktrap method implemented in <code>scran</code> <span class="citation">(<a href="contributors.html#ref-Lun2016-dn" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, applied to the top 50 PCs calculated on the set of top HVGs.</p>
 <p>In the context of spatial data, this means we assume that biologically informative spatial distribution patterns of cell types can be detected from the molecular features (gene expression). Below, we also discuss alternative methods that directly take spatial information into account during clustering.</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="clustering.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graph-based clustering</span></span>
 <span id="cb93-2"><a href="clustering.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -343,11 +342,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="clustering-on-hvgs-and-spatial-dimensions" class="section level2" number="13.4">
 <h2><span class="header-section-number">13.4</span> Clustering on HVGs and spatial dimensions</h2>
-<p>Section on approach from our publication <span class="citation"><a href="mouse-coronal-workflow.html#ref-Maynard2020-ke" role="doc-biblioref">Maynard et al.</a> (<a href="mouse-coronal-workflow.html#ref-Maynard2020-ke" role="doc-biblioref">2021</a>)</span> to combine molecular and spatial features with appropriate scaling.</p>
+<p>Section on approach from our publication <span class="citation"><a href="contributors.html#ref-Maynard2020-ke" role="doc-biblioref">Maynard et al.</a> (<a href="contributors.html#ref-Maynard2020-ke" role="doc-biblioref">2021</a>)</span> to combine molecular and spatial features with appropriate scaling.</p>
 </div>
 <div id="bayesspace" class="section level2" number="13.5">
 <h2><span class="header-section-number">13.5</span> BayesSpace</h2>
-<p>Section on BayesSpace <span class="citation">(<a href="mouse-coronal-workflow.html#ref-Zhao2020" role="doc-biblioref">Zhao et al. 2020</a>)</span>; available in Bioconductor</p>
+<p>Section on BayesSpace <span class="citation">(<a href="contributors.html#ref-Zhao2020" role="doc-biblioref">Zhao et al. 2020</a>)</span>; available in Bioconductor</p>
 </div>
 <div id="further-methods-1" class="section level2" number="13.6">
 <h2><span class="header-section-number">13.6</span> Further methods</h2>

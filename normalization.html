@@ -130,13 +130,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">OSTA</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
-<ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i><b>0.1</b> Authors</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="part"><span><b>I Introduction</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
@@ -273,6 +270,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.8" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
 <li class="chapter" data-level="17.9" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
 </ul></li>
+<li class="part"><span><b>V Appendix</b></span></li>
+<li class="chapter" data-level="" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i>Contributors</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -306,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="log-transformed-normalized-counts" class="section level2" number="10.3">
 <h2><span class="header-section-number">10.3</span> Log-transformed normalized counts</h2>
 <p>Calculate log-transformed normalized counts (abbreviated as “logcounts”), using pool-based size factors and deconvolution to the spot level.</p>
-<p>We use normalization methods from <code>scater</code> <span class="citation">(<a href="mouse-coronal-workflow.html#ref-McCarthy2017-zd" role="doc-biblioref">McCarthy et al. 2017</a>)</span> and <code>scran</code> <span class="citation">(<a href="mouse-coronal-workflow.html#ref-Lun2016-dn" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, which were originally developed for single-cell RNA sequencing data. We make the assumption that these methods can be applied here by treating spots as equivalent to cells.</p>
+<p>We use normalization methods from <code>scater</code> <span class="citation">(<a href="contributors.html#ref-McCarthy2017-zd" role="doc-biblioref">McCarthy et al. 2017</a>)</span> and <code>scran</code> <span class="citation">(<a href="contributors.html#ref-Lun2016-dn" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, which were originally developed for single-cell RNA sequencing data. We make the assumption that these methods can be applied here by treating spots as equivalent to cells.</p>
 <p>Since we have only a single sample, there are no blocking factors in the experimental design.</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="normalization.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
 <span id="cb72-2"><a href="normalization.html#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
