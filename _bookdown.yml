@@ -22,7 +22,7 @@ rmd_files: ["index.Rmd",
     "feature_selection.Rmd",
     "dimensionality_reduction.Rmd",
     "clustering.Rmd",
-    "interpretation.Rmd",
+    "marker_genes.Rmd",
     # Part 4: Workflows
     "workflows.Rmd",
     "workflow_human_DLPFC.Rmd",
