@@ -26,4 +26,6 @@ rmd_files: ["index.Rmd",
     # Part 4: Workflows
     "workflows.Rmd",
     "workflow_human_DLPFC.Rmd",
-    "workflow_mouse_coronal.Rmd"]
+    "workflow_mouse_coronal.Rmd",
+    # Part 5: Appendix
+    "contributors.Rmd"]

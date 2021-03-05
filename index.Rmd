@@ -23,19 +23,3 @@ The book is organized into several parts, consisting of (i) introduction, (ii) p
 Additional details on several steps, as well as additional introductory material on R and Bioconductor, can be found in the related textbook [Orchestrating Single-Cell Analysis with Bioconductor](https://osca.bioconductor.org/) (OSCA).
 
 
----
-
-
-## Authors
-
-Lukas M. Weber, *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
-
-Abby Spangler, *Lieber Institute for Brain Development, Baltimore, MD, USA*
-
-Brenda Pardo, *Lieber Institute for Brain Development, Baltimore, MD, USA*
-
-Leonardo Collado-Torres, *Lieber Institute for Brain Development, Baltimore, MD, USA*
-
-Stephanie C. Hicks, *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
-
-
