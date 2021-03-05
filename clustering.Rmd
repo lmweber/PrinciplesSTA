@@ -136,7 +136,8 @@ plotSpots(spe, discrete = "label", palette = "libd_layer_colors")
 plotSpots(spe, discrete = "ground_truth", palette = "libd_layer_colors")
 
 # plot clusters in PCA reduced dimensions
-plotDimRed(spe, type = "PCA", discrete = "label", palette = "libd_layer_colors")
+plotDimRed(spe, type = "PCA", x_axis = "PC1", y_axis = "PC2", 
+           discrete = "label", palette = "libd_layer_colors")
 
 # plot clusters in UMAP reduced dimensions
 plotDimRed(spe, type = "UMAP", discrete = "label", palette = "libd_layer_colors")
