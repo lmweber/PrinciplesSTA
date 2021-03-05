@@ -83,7 +83,7 @@ dim(spe)
 
 Then, apply methods from `scran`. This gives us a list of HVGs, which can be used for further downstream analyses.
 
-```{r feature_selection_HVGs, message=FALSE, fig.height=5}
+```{r select_HVGs, message=FALSE, fig.height=5}
 library(scran)
 
 # fit mean-variance relationship

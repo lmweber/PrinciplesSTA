@@ -3,29 +3,110 @@
 
 ## Overview
 
-Clustering is frequently used in single-cell analysis to identify cell types.
+Clustering is used in single-cell and spatial analysis to identify cell types.
 
 The definition of "cell type" is somewhat nebulous, and can depend to some extent on the biological context. Major cell types are generally well-defined and well-characterized (e.g. T cells, B cells, etc), while the definitions of more subtle or higher-resolution cell types may be somewhat less clear.
 
-In the context of spatial transcriptomics (ST), we may be interested in (i) identifying cell types (major or minor) that occur in biologically interesting spatial patterns, or (ii) identifying major cell types and performing subsequent analyses within these cell types. In both cases, we can use clustering to identify the cell types, although the resolution of the clustering will be somewhat context-dependent.
+In the spatial context, we may be interested in e.g. (i) identifying cell types that occur in biologically interesting spatial patterns, or (ii) identifying major cell types and performing subsequent analyses within these cell types.
 
-```{r, echo=FALSE, results="asis", cache=TRUE}
-# add steps to generate object up to here and cache
+
+
+## Previous steps
+
+*Code (hidden) to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
+
+```{r previous_steps, message=FALSE, echo=FALSE, results='hide'}
+# ---------
+# load data
+# ---------
+
+library(SpatialExperiment)
+library(STexampleData)
+
+spe <- load_data("Visium_humanDLPFC")
+
+# --------------------
+# quality control (QC)
+# --------------------
+
+library(scater)
+
+# subset to keep only spots over tissue
+spe <- spe[, spatialData(spe)$in_tissue == 1]
+
+# identify mitochondrial genes
+is_mito <- grepl("(^MT-)|(^mt-)", rowData(spe)$gene_name)
+
+# calculate per-spot QC metrics and store in colData
+spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
+
+# select QC thresholds
+qc_lib_size <- colData(spe)$sum < 500
+qc_detected <- colData(spe)$detected < 250
+qc_mito <- colData(spe)$subsets_mito_percent > 30
+qc_cell_count <- colData(spe)$cell_count > 12
+
+# combined set of discarded spots
+discard <- qc_lib_size | qc_detected | qc_mito | qc_cell_count
+colData(spe)$discard <- discard
+
+# filter low-quality spots
+spe <- spe[, !colData(spe)$discard]
+
+# -------------
+# normalization
+# -------------
+
+library(scran)
+
+# quick clustering for pool-based size factors
+set.seed(123)
+qclus <- quickCluster(spe)
+
+# calculate size factors and store in object
+spe <- computeSumFactors(spe, cluster = qclus)
+
+# calculate logcounts (log-transformed normalized counts) and store in object
+spe <- logNormCounts(spe)
+
+# -----------------
+# feature selection
+# -----------------
+
+# remove mitochondrial genes
+spe <- spe[!is_mito, ]
+
+# fit mean-variance relationship
+dec <- modelGeneVar(spe)
+
+# select top HVGs
+top_hvgs <- getTopHVGs(dec, prop = 0.1)
+
+# ------------------------
+# dimensionality reduction
+# ------------------------
+
+# compute PCA
+set.seed(123)
+spe <- runPCA(spe, subset_row = top_hvgs)
+
+# compute UMAP on top 50 PCs
+set.seed(123)
+spe <- runUMAP(spe, dimred = "PCA")
+
+# update column names for plotting functions
+colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 ```
 
 
 
 ## Clustering on HVGs
 
-The simplest option for clustering is to perform clustering on the dimension-reduced molecular features. If we are using HVGs, this means clustering on the top 50 PCs calculated on the set of top HVGs.
+We can perform clustering by applying standard clustering methods developed for single-cell RNA sequencing data, using molecular features (gene expression). Here, we apply graph-based clustering using the Walktrap method implemented in `scran` [@Lun2016-dn], applied to the top 50 PCs calculated on the set of top HVGs.
 
-For ST data, this implies that we believe that the spatial patterns of interest are sufficiently captured by the expression patterns of the HVGs.
+In the context of spatial data, this means we assume that biologically informative spatial distribution patterns of cell types can be detected from the molecular features (gene expression). Below, we also discuss alternative methods that directly take spatial information into account during clustering.
 
-Here, we calculate this clustering using the graph-based clustering implementation and Walktrap method provided in `scran` [@Lun2016-dn].
-
-```{r clustering_HVGs, message=FALSE}
-library(scran)
-
+```{r clustering_HVGs}
 # graph-based clustering
 set.seed(123)
 k <- 10
@@ -34,104 +115,49 @@ g_walk <- igraph::cluster_walktrap(g)
 clus <- g_walk$membership
 table(clus)
 
-# store cluster labels in object (in column "label")
+# store cluster labels in column 'label' in colData
 colLabels(spe) <- factor(clus)
 ```
 
-We visualize the cluster labels in both the physical x-y coordinate space (i.e. on the tissue slide) and UMAP space. For reference, we also display the ground truth (manually annotated) ground truth labels available for this dataset (in x-y space).
 
-The clustering reproduces the known biological structure (cortical layers) in x-y space, although not perfectly. The clusters are also separated in UMAP space.
+Visualize the clusters by plotting in (i) spatial x-y coordinates on the tissue slide, and (ii) reduced dimension space (PCA or UMAP). We use plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package.
 
-```{r clustering_HVGs_plot_spots, fig.height=4.5, fig.width=5.5, message=FALSE}
-library(spatzli)
+For reference, we also display the ground truth (manually annotated) labels available for this dataset (in spatial x-y coordinates).
 
-# plot clustering in x-y space
-plotClustersSpots(spe, cluster_id = "label")
+From the visualizations, we can see that the clustering reproduces the known biological structure (cortical layers), although not perfectly. The clusters are also separated in UMAP space, but again not perfectly.
+
+```{r clustering_plots, message=FALSE, fig.height=4.5, fig.width=5.5}
+library(ggspavis)
+
+# plot clusters in spatial x-y coordinates
+plotSpots(spe, discrete = "label", palette = "libd_layer_colors")
+
+# plot ground truth labels in spatial x-y coordinates
+plotSpots(spe, discrete = "ground_truth", palette = "libd_layer_colors")
+
+# plot clusters in PCA reduced dimensions
+plotDimRed(spe, type = "PCA", discrete = "label", palette = "libd_layer_colors")
+
+# plot clusters in UMAP reduced dimensions
+plotDimRed(spe, type = "UMAP", discrete = "label", palette = "libd_layer_colors")
 ```
 
-```{r clustering_plot_ground_truth, fig.height=4.5, fig.width=5.5}
-# plot ground truth layers in x-y space
-plotClustersSpots(spe, cluster_id = "ground_truth")
-```
 
-```{r clustering_HVGs_plot_UMAP, fig.height=4.5, fig.width=5.5}
-# plot clustering in UMAP space
-plotClustersDimRed(spe, type = "UMAP", cluster_id = "label")
-```
+
+## Clustering on HVGs and spatial dimensions
+
+Section on approach from our publication @Maynard2020-ke to combine molecular and spatial features with appropriate scaling.
 
 
 
-## Clustering on HVGs and spatial features
+## BayesSpace
 
-A simple method to include spatial information within the clustering is to include scaled x-y coordinates as additional features for clustering.
+Section on BayesSpace [@Zhao2020]; available in Bioconductor
 
-In other words, we concatenate two additional columns containing the scaled x and y coordinates onto the feature matrix provided to the clustering algorithm. For example, if we are using 50 PCs calculated on the set of top HVGs, then we now also add two additional columns containing the scaled x and y coordinates, so the final feature matrix has 52 columns.
 
-Important parameter tuning decisions are (i) how many PCs to use, and (ii) how to scale the x and y columns.
 
-Here, we perform this type of clustering using the top 20 PCs, and scale the x and y columns to have ranges approximately comparable to the top few PCs. Note that we do not z-scale the x and y columns (since standard deviation does not make sense for physical lengths in x-y space), and we also do not scale the x and y columns to have equal ranges (since the tissue capture area is usually slightly rectangular instead of square).
+## Further methods
 
-[TO DO: move some of this code into package]
-
-```{r clustering_scale_coords}
-# scale x-y coordinates to range comparable to top PCs
-xy_coords <- data.frame(
-  x_coord = colData(spe)$x_coord, 
-  y_coord = colData(spe)$y_coord
-)
-
-# check range and standard deviation of top few PCs
-apply(reducedDim(spe, "PCA")[, 1:5], 2, summary)
-apply(reducedDim(spe, "PCA")[, 1:5], 2, sd)
-
-# choose range parameter and scale x-y coordinates
-param_range <- 5
-# note x and y can have slightly different ranges due to tissue slide dimensions
-x_range <- max(xy_coords$x_coord) - min(xy_coords$x_coord)
-y_range <- max(xy_coords$y_coord) - min(xy_coords$y_coord)
-new_x_range <- x_range / max(c(x_range, y_range)) * param_range
-new_y_range <- y_range / max(c(x_range, y_range)) * param_range
-
-scaling_fn <- function(col, range) {
-  ((col - min(col)) / (max(col) - min(col))) * range - (0.5 * range)
-}
-
-xy_coords$x_coord <- scaling_fn(xy_coords$x_coord, new_x_range)
-xy_coords$y_coord <- scaling_fn(xy_coords$y_coord, new_y_range)
-
-summary(xy_coords)
-```
-
-```{r clustering_xy}
-# set up feature matrix for clustering
-n_pcs <- 20
-df_clus <- cbind(reducedDim(spe, "PCA")[, seq_len(n_pcs)], xy_coords)
-dim(df_clus)
-
-# graph-based clustering
-set.seed(123)
-k <- 10
-g <- buildSNNGraph(df_clus, k = k, d = ncol(df_clus), transposed = TRUE)
-g_walk <- igraph::cluster_walktrap(g)
-clus <- g_walk$membership
-table(clus)
-
-# store cluster labels in object
-colData(spe)$label_xy <- factor(clus)
-```
-
-Visualize the cluster labels in x-y space and UMAP space.
-
-```{r clustering_xy_plot_spots, fig.height=4.5, fig.width=5.5}
-# plot clustering in x-y space
-plotClustersSpots(spe, cluster_id = "label_xy")
-```
-
-```{r clustering_xy_plot_UMAP, fig.height=4.5, fig.width=5.5}
-# plot clustering in UMAP space
-plotClustersDimRed(spe, type = "UMAP", cluster_id = "label_xy")
-```
-
-[TO DO: quantify performance improvement using Adjusted Rand Index and ground truth labels]
+Further methods
 
 

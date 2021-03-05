@@ -258,7 +258,7 @@ markers
 library(pheatmap)
 
 # plot log-fold changes for one cluster over all other clusters
-# cluster 5
+# selecting cluster 5
 interesting <- markers[[5]]
 best_set <- interesting[interesting$Top <= 5, ]
 logFCs <- getMarkerEffects(best_set)
