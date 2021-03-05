@@ -233,7 +233,7 @@ plotDimRed(spe, type = "UMAP", discrete = "label", palette = "libd_layer_colors"
 Identify marker genes by testing for differential gene expression between clusters. We use the `findMarkers` implementation in `scran` [@Lun2016-dn], using a binomial test, which tests for genes that differ in the proportion expressed vs. not expressed between clusters. This is a more stringent test than the default t-tests, and tends to select genes that are easier to interpret and validate experimentally.
 
 ```{r marker_genes}
-# set gene names as row names for plotting purposes
+# set gene names as row names for visualization purposes
 rownames(spe) <- rowData(spe)$gene_name
 
 # test for marker genes
@@ -247,6 +247,7 @@ markers
 library(pheatmap)
 
 # plot log-fold changes for one cluster over all other clusters
+# cluster 1
 interesting <- markers[[1]]
 best_set <- interesting[interesting$Top <= 5, ]
 logFCs <- getMarkerEffects(best_set)

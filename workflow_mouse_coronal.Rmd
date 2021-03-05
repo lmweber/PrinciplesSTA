@@ -239,3 +239,38 @@ plotDimRed(spe, type = "UMAP", discrete = "label", palette = colors)
 ```
 
 
+## Marker genes
+
+Identify marker genes by testing for differential gene expression between clusters, using the binomial test implemented in `findMarkers` in `scran` [@Lun2016-dn].
+
+```{r marker_genes}
+# set gene names as row names for visualization purposes
+rownames(spe) <- rowData(spe)$gene_name
+
+# test for marker genes
+markers <- findMarkers(spe, test = "binom", direction = "up")
+
+# returns a list with one DataFrame per cluster
+markers
+```
+
+```{r marker_genes_heatmap, message=FALSE, fig.width=7}
+library(pheatmap)
+
+# plot log-fold changes for one cluster over all other clusters
+# cluster 5
+interesting <- markers[[5]]
+best_set <- interesting[interesting$Top <= 5, ]
+logFCs <- getMarkerEffects(best_set)
+
+pheatmap(logFCs, breaks = seq(-5, 5, length.out = 101))
+```
+
+```{r marker_genes_expression, fig.width=7}
+# plot log-transformed normalized expression of top genes for one cluster
+top_genes <- head(rownames(interesting))
+
+plotExpression(spe, x = "label", features = top_genes)
+```
+
+
