@@ -1,4 +1,4 @@
-# Feature selection {#feature_selection}
+# Feature selection
 
 
 ## Background
@@ -9,9 +9,9 @@ Chapter on feature selection, including standard single-cell methods as well as 
 
 ## Previous steps
 
-*Code (hidden) to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
+*Code to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, echo=FALSE, results='hide'}
+```{r previous_steps, message=FALSE, code_folding='hide', results='hide'}
 # ---------
 # load data
 # ---------
@@ -70,7 +70,7 @@ spe <- logNormCounts(spe)
 
 ## Highly variable genes (HVGs)
 
-We use methods from `scran` [@Lun2016-dn] to identify a set of top highly variable genes (HVGs), which will be used to define cell types. These methods were originally developed for single-cell RNA sequencing, so here we assume that spots can be treated as equivalent to cells, and we use only molecular features (gene expression).
+We use methods from `scran` [@Lun2016] to identify a set of top highly variable genes (HVGs), which will be used to define cell types. These methods were originally developed for single-cell RNA sequencing, so here we assume that spots can be treated as equivalent to cells, and we use only molecular features (gene expression).
 
 First, we remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of biological interest.
 
@@ -83,7 +83,7 @@ dim(spe)
 
 Then, apply methods from `scran`. This gives us a list of HVGs, which can be used for further downstream analyses.
 
-```{r select_HVGs, message=FALSE, fig.height=5}
+```{r select_HVGs, message=FALSE, fig.height=3.75}
 library(scran)
 
 # fit mean-variance relationship
@@ -109,12 +109,12 @@ Section on alternative methods for SVGs
 
 ### SpatialDE
 
-SpatialDE [@Svensson2018-zx]
+SpatialDE [@Svensson2018]
 
 
 ### SPARK
 
-SPARK [@Sun2020-wh]
+SPARK [@Sun2020]
 
 
 ### Moran's I statistic

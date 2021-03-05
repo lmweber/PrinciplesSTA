@@ -1,4 +1,4 @@
-# Dimensionality reduction {#dimensionality_reduction}
+# Dimensionality reduction
 
 
 ## Background
@@ -9,9 +9,9 @@ Chapter on dimensionality reduction
 
 ## Previous steps
 
-*Code (hidden) to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
+*Code to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, echo=FALSE, results='hide'}
+```{r previous_steps, message=FALSE, code_folding='hide', results='hide'}
 # ---------
 # load data
 # ---------
@@ -87,7 +87,7 @@ Apply principal component analysis (PCA) to the set of top highly variable genes
 
 This is done for two reasons: (i) to reduce noise due to random variation in expression of biologically uninteresting genes, which are assumed to have expression patterns that are independent of each other, and (ii) to improve computational efficiency during downstream analyses.
 
-We use the computationally efficient implementation of PCA provided in the `scater` package [@McCarthy2017-zd]. This implementation uses randomization, and therefore requires setting a random seed for reproducibility.
+We use the computationally efficient implementation of PCA provided in the `scater` package [@McCarthy2017]. This implementation uses randomization, and therefore requires setting a random seed for reproducibility.
 
 ```{r calculate_PCA}
 # compute PCA
@@ -102,7 +102,7 @@ dim(reducedDim(spe, "PCA"))
 
 ## Uniform Manifold Approximation and Projection (UMAP)
 
-We also run UMAP [@McInnes2018-lx] on the set of top 50 PCs and retain the top 2 UMAP components, which will be used for visualization purposes.
+We also run UMAP [@McInnes2018] on the set of top 50 PCs and retain the top 2 UMAP components, which will be used for visualization purposes.
 
 ```{r calculate_UMAP}
 # compute UMAP on top 50 PCs
@@ -120,6 +120,16 @@ colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 
 ## Visualizations
 
-In the next section on clustering, we will use the reduced dimensions (PCA and UMAP) to plot cluster labels in reduced dimension space.
+Generate plots using plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package. In the next chapter on clustering, we will add cluster labels to these reduced dimension plots.
+
+```{r reduced_dim_plots, message=FALSE, fig.height=3.75}
+library(ggspavis)
+
+# plot top 2 PCA dimensions
+plotDimRed(spe, type = "PCA")
+
+# plot top 2 UMAP dimensions
+plotDimRed(spe, type = "UMAP")
+```
 
 

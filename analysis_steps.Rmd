@@ -1,19 +1,20 @@
 # (PART) Analysis steps {-}
 
-# Analysis steps {#analysis_steps}
+# Analysis steps
 
-This part of the book consists of several chapters for steps in a typical analysis pipeline for spatially resolved transcriptomics data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, and identifying marker genes.
+This part consists of several chapters for steps in a computational analysis pipeline for spatially resolved transcriptomics data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, and identifying marker genes.
 
-As a prerequisite, these steps require that the raw data has been loaded into R. For the 10x Genomics Visium platform, the previous chapters provide detailed instructions and examples showing how to do this. This may be extended to include additional platforms in the future.
+These steps require that the raw data has been loaded into R. In the previous part, we provide detailed instructions and examples showing how to do this for the 10x Genomics Visium platform.
 
-Throughout these steps, we follow the Bioconductor principle of modularity -- if you prefer a different method for one of the steps, this can be substituted, the output reformatted back into the `SpatialExperiment` object, and you can continue with the rest of the analysis pipeline. In several sections we describe several alternative methods within and outside Bioconductor.
+Throughout these chapters, we follow the Bioconductor principle of modularity -- if you prefer a different method for one of the steps, this can be substituted, the output stored in the `SpatialExperiment` object, and you can continue with the rest of the analysis pipeline. In several sections we describe several alternative methods within and outside Bioconductor.
+
 
 
 ## Load data
 
-For the following analysis chapters, we use a pre-prepared dataset where we have previously applied the steps described in [Preprocessing steps](#preprocessing_steps), and saved the object in the `SpatialExperiment` format. This is available from the [STexampleData](https://github.com/lmweber/STexampleData) package.
+In the following analysis chapters, we use a pre-prepared dataset where we have previously applied the steps described in [Preprocessing steps], and saved the object in the `SpatialExperiment` format. This is available from the [STexampleData](https://github.com/lmweber/STexampleData) package.
 
-The dataset consists of a single sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform, from our publication @Maynard2020-ke. The dataset is described in more detail in [Human DLPFC workflow](#human_DLPFC_workflow).
+The dataset consists of a single sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform, from our publication @Maynard2021. The dataset is described in more detail in [Human DLPFC workflow].
 
 Here, we show how to load the data from [STexampleData](https://github.com/lmweber/STexampleData).
 
@@ -26,18 +27,19 @@ spe <- load_data("Visium_humanDLPFC")
 ```
 
 
+
 ## SpatialExperiment object structure
 
-Inspect the `SpatialExperiment` object to understand the structure. For more details on `SpatialExperiment`, see [SpatialExperiment](#spatialexperiment).
+Inspect the `SpatialExperiment` object to understand the structure. For more details on `SpatialExperiment`, see [SpatialExperiment].
 
 ```{r, message=FALSE}
 # inspect object
 spe
 dim(spe)
 assayNames(spe)
-rowData(spe)
-colData(spe)
-spatialData(spe)
+head(rowData(spe))
+head(colData(spe))
+head(spatialData(spe))
 imgData(spe)
 ```
 

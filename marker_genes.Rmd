@@ -1,4 +1,4 @@
-# Marker genes {#marker_genes}
+# Marker genes
 
 
 ## Background
@@ -9,9 +9,9 @@ Chapter on identifying marker genes for clusters by differential gene expression
 
 ## Previous steps
 
-*Code (hidden) to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
+*Code to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, echo=FALSE, results='hide'}
+```{r previous_steps, message=FALSE, code_folding='hide', results='hide'}
 # ---------
 # load data
 # ---------
@@ -114,7 +114,7 @@ colLabels(spe) <- factor(clus)
 
 Identify marker genes by testing for differential gene expression between clusters.
 
-We use the `findMarkers` implementation in `scran` [@Lun2016-dn], using a binomial test, which tests for genes that differ in the proportion expressed vs. not expressed between clusters. This is a more stringent test than the default t-tests, and tends to select genes that are easier to interpret and validate experimentally.
+We use the `findMarkers` implementation in `scran` [@Lun2016], using a binomial test, which tests for genes that differ in the proportion expressed vs. not expressed between clusters. This is a more stringent test than the default t-tests, and tends to select genes that are easier to interpret and validate experimentally.
 
 
 ```{r marker_genes, message=FALSE}

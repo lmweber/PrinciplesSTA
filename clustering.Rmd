@@ -1,4 +1,4 @@
-# Clustering {#clustering}
+# Clustering
 
 
 ## Overview
@@ -13,9 +13,9 @@ In the spatial context, we may be interested in e.g. (i) identifying cell types 
 
 ## Previous steps
 
-*Code (hidden) to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
+*Code to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, echo=FALSE, results='hide'}
+```{r previous_steps, message=FALSE, code_folding='hide', results='hide'}
 # ---------
 # load data
 # ---------
@@ -102,7 +102,7 @@ colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 
 ## Clustering on HVGs
 
-We can perform clustering by applying standard clustering methods developed for single-cell RNA sequencing data, using molecular features (gene expression). Here, we apply graph-based clustering using the Walktrap method implemented in `scran` [@Lun2016-dn], applied to the top 50 PCs calculated on the set of top HVGs.
+We can perform clustering by applying standard clustering methods developed for single-cell RNA sequencing data, using molecular features (gene expression). Here, we apply graph-based clustering using the Walktrap method implemented in `scran` [@Lun2016], applied to the top 50 PCs calculated on the set of top HVGs.
 
 In the context of spatial data, this means we assume that biologically informative spatial distribution patterns of cell types can be detected from the molecular features (gene expression). Below, we also discuss alternative methods that directly take spatial information into account during clustering.
 
@@ -126,7 +126,7 @@ For reference, we also display the ground truth (manually annotated) labels avai
 
 From the visualizations, we can see that the clustering reproduces the known biological structure (cortical layers), although not perfectly. The clusters are also separated in UMAP space, but again not perfectly.
 
-```{r clustering_plots, message=FALSE, fig.height=4.5, fig.width=5.5}
+```{r clustering_plots, message=FALSE, fig.height=3.75}
 library(ggspavis)
 
 # plot clusters in spatial x-y coordinates
@@ -136,8 +136,7 @@ plotSpots(spe, discrete = "label", palette = "libd_layer_colors")
 plotSpots(spe, discrete = "ground_truth", palette = "libd_layer_colors")
 
 # plot clusters in PCA reduced dimensions
-plotDimRed(spe, type = "PCA", x_axis = "PC1", y_axis = "PC2", 
-           discrete = "label", palette = "libd_layer_colors")
+plotDimRed(spe, type = "PCA", discrete = "label", palette = "libd_layer_colors")
 
 # plot clusters in UMAP reduced dimensions
 plotDimRed(spe, type = "UMAP", discrete = "label", palette = "libd_layer_colors")
@@ -147,7 +146,7 @@ plotDimRed(spe, type = "UMAP", discrete = "label", palette = "libd_layer_colors"
 
 ## Clustering on HVGs and spatial dimensions
 
-Section on approach from our publication @Maynard2020-ke to combine molecular and spatial features with appropriate scaling.
+Section on approach from our publication @Maynard2021 to combine molecular and spatial features with appropriate scaling.
 
 
 

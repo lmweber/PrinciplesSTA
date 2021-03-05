@@ -16,10 +16,10 @@ description: "Online textbook on 'Orchestrating Spatially Resolved Transcriptomi
 
 This is the website for the online textbook **"Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" (OSTA)**.
 
-This textbook describes the steps in a computational analysis pipeline for **spatially resolved transcriptomics** (ST) data, using the [Bioconductor](http://bioconductor.org/) framework and R programming language. The analysis pipeline is built up as a series of steps, each described in a chapter, with complete examples and workflows using R code and datasets that can be run on your own laptop.
+This textbook describes the steps in a computational analysis pipeline for **spatially resolved transcriptomics (ST)** data, using the [Bioconductor](http://bioconductor.org/) framework and R programming language. The analysis pipeline is built up as a series of steps, each described in a chapter, with complete examples and workflows using R code and datasets that can be run on your own laptop.
 
-The book is organized into several parts, consisting of (i) introduction, (ii) preprocessing to prepare data for R, (iii) downstream analysis steps, and (iv) complete workflows.
+The book is organized into several parts, consisting of (i) introduction, (ii) preprocessing steps to prepare data for R, (iii) analysis steps, (iv) complete workflows, and (v) appendix.
 
-Additional details on several steps, as well as additional introductory material on R and Bioconductor, can be found in the related textbook [Orchestrating Single-Cell Analysis with Bioconductor](https://osca.bioconductor.org/) (OSCA).
+Additional details on analysis steps, as well as additional introductory material on R and Bioconductor, can be found in the related textbook [Orchestrating Single-Cell Analysis with Bioconductor (OSCA)](https://osca.bioconductor.org/).
 
 

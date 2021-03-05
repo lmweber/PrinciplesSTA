@@ -12,9 +12,9 @@ rmd_files: ["index.Rmd",
     "spatialexperiment.Rmd",
     # Part 2: Preprocessing steps
     "preprocessing_steps.Rmd",
-    "space_ranger.Rmd",
     "loupe_browser.Rmd",
     "image_segmentation.Rmd",
+    "space_ranger.Rmd",
     # Part 3: Analysis steps
     "analysis_steps.Rmd",
     "quality_control.Rmd",
@@ -28,4 +28,5 @@ rmd_files: ["index.Rmd",
     "workflow_human_DLPFC.Rmd",
     "workflow_mouse_coronal.Rmd",
     # Part 5: Appendix
-    "contributors.Rmd"]
+    "contributors.Rmd",
+    "references.Rmd"]

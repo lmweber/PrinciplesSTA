@@ -1,6 +1,6 @@
 # (PART) Appendix {-}
 
-# Contributors {-}
+# Contributors
 
 Lukas M. Weber, *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
 

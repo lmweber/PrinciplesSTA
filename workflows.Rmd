@@ -1,7 +1,7 @@
 # (PART) Workflows {-}
 
-# Workflows {#workflows}
+# Workflows
 
-Each chapter in this part describes a complete workflow for one dataset, with minimal documentation, to show how the individual analysis steps fit together. For more details on any of the individual analysis steps, see the chapters in the previous part.
+In this part, each chapter contains a complete workflow for one dataset, with minimal documentation. This shows how the individual analysis steps described in the previous part fit together. For more details on any of the individual analysis steps, see the previous chapters.
 
 

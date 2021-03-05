@@ -1,7 +1,7 @@
 # (PART) Introduction {-}
 
 
-# Introduction {#introduction}
+# Introduction
 
 This book describes a computational analysis pipeline for spatially resolved transcriptomics (ST) data, using the [Bioconductor](http://bioconductor.org/) framework and R programming language.
 
@@ -11,13 +11,15 @@ This book describes a computational analysis pipeline for spatially resolved tra
 
 The chapters are organized into several parts:
 
-- **Introduction:** introductory material, description of spatial transcriptomics technologies and data structure
+- **Introduction:** introduction, spatially resolved transcriptomics, and the `SpatialExperiment` object class
 
-- **Preprocessing:** preprocessing steps to prepare raw data for loading into R
+- **Preprocessing steps:** preprocessing steps to prepare raw data for loading into R
 
-- **Downstream analyses:** chapters describing each of the main steps within a downstream analysis pipeline using the Bioconductor framework, including R code examples that can be run on your own laptop
+- **Analysis steps:** chapters describing key analysis steps using the Bioconductor framework, including examples of R code that can be run on your own laptop
 
-- **Workflows:** complete extended workflows for several example datasets
+- **Workflows:** complete workflows for several example datasets
+
+- **Appendix:** contributors, acknowledgments, references
 
 
 
@@ -27,7 +29,7 @@ This book is intended for readers who have some experience with R, but does not 
 
 For readers who are new to R and Bioconductor, additional useful resources include:
 
-- The [Orchestrating Single-Cell Analysis with Bioconductor](https://osca.bioconductor.org/) (OSCA) textbook, which contains additional details on the analysis steps described here in the context of single-cell RNA sequencing instead of ST, as well as additional introductory chapters on R and Bioconductor
+- The [Orchestrating Single-Cell Analysis with Bioconductor (OSCA)](https://osca.bioconductor.org/) textbook, which contains additional details on the analysis steps described here in the context of single-cell RNA sequencing instead of ST data, as well as additional introductory chapters on R and Bioconductor
 
 - The [R for Data Science](https://r4ds.had.co.nz/) online textbook provides an excellent introduction to R
 
@@ -37,7 +39,7 @@ For readers who are new to R and Bioconductor, additional useful resources inclu
 
 ## Bioconductor
 
-[Bioconductor](http://bioconductor.org/) is an **open source** and **open development** project, providing a cohesive yet flexible framework for analyzing high-throughput genomics data in R. The Bioconductor project consists of almost 2000 contributed R packages, as well as core infrastructure maintained by the Bioconductor Core Team, providing a rich analysis environment for users.
+[Bioconductor](http://bioconductor.org/) is an **open source** and **open development** project, providing a cohesive yet flexible framework for analyzing high-throughput genomics data in R. The Bioconductor project consists of around 2000 contributed R packages, as well as core infrastructure maintained by the Bioconductor Core Team, providing a rich analysis environment for users.
 
 One of the main advantages of Bioconductor is the modularity and open development philosophy. R packages implementing analysis methods are contributed by numerous research groups, with the Bioconductor Core Team coordinating the overall project and maintaining infrastructure such as data object structures and package testing infrastructure. A key feature is that contributed packages are required to use consistent data structures, such as the [SingleCellExperiment](http://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) or [SpatialExperiment](https://github.com/drighelli/SpatialExperiment) object classes, which allows packages to interact nicely (e.g. output from one package can easily be provided as input to another package). In addition, Bioconductor packages are required to have comprehensive documentation, including "vignettes" (long-form examples including R code).
 

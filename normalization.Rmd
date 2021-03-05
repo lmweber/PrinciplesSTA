@@ -1,4 +1,4 @@
-# Normalization {#normalization}
+# Normalization
 
 
 ## Background
@@ -8,9 +8,9 @@ Details on normalization in single-cell and spatial data.
 
 ## Previous steps
 
-*Code (hidden) to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
+*Code to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, echo=FALSE, results='hide'}
+```{r previous_steps, message=FALSE, code_folding='hide', results='hide'}
 # ---------
 # load data
 # ---------
@@ -54,11 +54,11 @@ spe <- spe[, !colData(spe)$discard]
 
 Calculate log-transformed normalized counts (abbreviated as "logcounts"), using pool-based size factors and deconvolution to the spot level.
 
-We use normalization methods from `scater` [@McCarthy2017-zd] and `scran` [@Lun2016-dn], which were originally developed for single-cell RNA sequencing data. We make the assumption that these methods can be applied here by treating spots as equivalent to cells.
+We use normalization methods from `scater` [@McCarthy2017] and `scran` [@Lun2016], which were originally developed for single-cell RNA sequencing data. We make the assumption that these methods can be applied here by treating spots as equivalent to cells.
 
 Since we have only a single sample, there are no blocking factors in the experimental design.
 
-```{r normalization, message=FALSE, fig.height=4}
+```{r normalization, message=FALSE, fig.height=3.75}
 library(scran)
 
 # quick clustering for pool-based size factors
@@ -75,7 +75,10 @@ hist(sizeFactors(spe), breaks = 20)
 # calculate logcounts (log-transformed normalized counts) and store in object
 spe <- logNormCounts(spe)
 
+# check
 assayNames(spe)
+dim(counts(spe))
+dim(logcounts(spe))
 ```
 
 

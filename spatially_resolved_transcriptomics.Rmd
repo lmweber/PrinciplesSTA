@@ -1,4 +1,4 @@
-# Spatially resolved transcriptomics {#spatially_resolved_transcriptomics}
+# Spatially resolved transcriptomics
 
 Spatially resolved transcriptomics (ST) technologies allow transcriptome-wide gene expression to be measured at spatial resolution. There are several technological platforms, each with their unique advantages.
 
@@ -15,12 +15,15 @@ knitr::include_graphics("images/Visium.png")
 ```
 
 
-### Slide-seqV2
+## Slide-seqV2
 
 
-### seqFISH
+## seqFISH
 
 
-### MERFISH
+## MERFISH
+
+
+## Other platforms
 
 
