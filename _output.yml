@@ -6,6 +6,7 @@ bookdown::gitbook:
         <li><a href="./">OSTA</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+      collapse: section
     download: ["pdf", "epub"]
     lib_dir: "book_assets"
 bookdown::pdf_book:
