@@ -9,6 +9,7 @@ bookdown::gitbook:
       collapse: section
     download: ["pdf", "epub"]
     lib_dir: "book_assets"
+html_document:
   code_folding: show
 bookdown::pdf_book:
   includes:
