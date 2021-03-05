@@ -1,43 +1,89 @@
 # Feature selection {#feature_selection}
 
 
-## Overview
+## Background
 
-Chapter on feature selection.
-
-```{r, echo=FALSE, results="asis", cache=TRUE}
-# add steps to generate object up to here and cache
-```
+Chapter on feature selection, including standard single-cell methods as well as new methods developed for ST data.
 
 
 
-## Filter mitochondrial genes
+## Previous steps
 
-We first remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of biological interest. Then, we apply more sophisticated feature selection methods to the remaining set of genes.
+*Code (hidden) to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
 
-[TO DO: add plotting function to identify mitochondrial genes (e.g. variance vs. mean of logcounts)]
+```{r previous_steps, message=FALSE, echo=FALSE, results='hide'}
+# ---------
+# load data
+# ---------
 
-```{r remove_mito, message=FALSE}
-library(SingleCellExperiment)
+library(SpatialExperiment)
+library(STexampleData)
 
-# remove mitochondrial genes
-is_mito <- grepl("^MT-", rowData(spe)$gene_name)
-table(is_mito)
-rowData(spe)$gene_name[is_mito]
+spe <- load_data("Visium_humanDLPFC")
 
-spe <- spe[!is_mito, ]
-dim(spe)
+# --------------------
+# quality control (QC)
+# --------------------
+
+library(scater)
+
+# subset to keep only spots over tissue
+spe <- spe[, spatialData(spe)$in_tissue == 1]
+
+# identify mitochondrial genes
+is_mito <- grepl("(^MT-)|(^mt-)", rowData(spe)$gene_name)
+
+# calculate per-spot QC metrics and store in colData
+spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
+
+# select QC thresholds
+qc_lib_size <- colData(spe)$sum < 500
+qc_detected <- colData(spe)$detected < 250
+qc_mito <- colData(spe)$subsets_mito_percent > 30
+qc_cell_count <- colData(spe)$cell_count > 12
+
+# combined set of discarded spots
+discard <- qc_lib_size | qc_detected | qc_mito | qc_cell_count
+colData(spe)$discard <- discard
+
+# filter low-quality spots
+spe <- spe[, !colData(spe)$discard]
+
+# -------------
+# normalization
+# -------------
+
+library(scran)
+
+# quick clustering for pool-based size factors
+set.seed(123)
+qclus <- quickCluster(spe)
+
+# calculate size factors and store in object
+spe <- computeSumFactors(spe, cluster = qclus)
+
+# calculate logcounts (log-transformed normalized counts) and store in object
+spe <- logNormCounts(spe)
 ```
 
 
 
 ## Highly variable genes (HVGs)
 
-Here, we use methods from `scran` [@Lun2016-dn] to select a set of top highly variable genes (HVGs). These methods treat spots as equivalent to cells, and consider only molecular features (gene expression).
+We use methods from `scran` [@Lun2016-dn] to identify a set of top highly variable genes (HVGs), which will be used to define cell types. These methods were originally developed for single-cell RNA sequencing, so here we assume that spots can be treated as equivalent to cells, and we use only molecular features (gene expression).
 
-This gives us a list of 1448 HVGs, which we can use for downstream analyses.
+First, we remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of biological interest.
 
-```{r, fig.height=5, message=FALSE}
+```{r remove_mito, message=FALSE}
+# remove mitochondrial genes
+spe <- spe[!is_mito, ]
+dim(spe)
+```
+
+
+Then, apply methods from `scran`. This gives us a list of HVGs, which can be used for further downstream analyses.
+
+```{r feature_selection_HVGs, message=FALSE, fig.height=5}
 library(scran)
 
 # fit mean-variance relationship
@@ -56,28 +102,28 @@ length(top_hvgs)
 
 
 
-## Spatially variable (SV) genes
+## Spatially variable genes (SVGs)
 
-The HVGs above are selected based only on molecular features (gene expression). However, in spatial transcriptomics data, we are also interested in taking into account spatial. Ideally, we would like to select a set of top spatially variable (SV) genes, which capture the spatial patterns in gene expression.
-
-In the following sections, we describe new methods for feature selection that aim to select a set of top SVs. These methods will be expanded as we continue to develop these methods.
+Section on alternative methods for SVGs
 
 
+### SpatialDE
 
-## Moran's I statistic
-
-TO DO: Rank genes by Moran's I statistic
-
+SpatialDE [@Svensson2018-zx]
 
 
-## SpatialDE
+### SPARK
 
-TO DO: Run SpatialDE [@Svensson2018-zx] (using `basilisk` to run Python code)
+SPARK [@Sun2020-wh]
 
 
+### Moran's I statistic
 
-## SPARK
+Moran's I statistic
 
-TO DO: Run SPARK [@Sun2020-wh]
+
+### Further methods
+
+Further methods
 
 
