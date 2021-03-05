@@ -1,38 +1,35 @@
 # Normalization {#normalization}
 
 
-## Overview
+## Background
 
-Chapter on normalization.
-
-```{r, echo=FALSE, results="asis", cache=TRUE}
-# add steps to generate object up to here and cache
-```
+Details on normalization in single-cell and spatial data.
 
 
 
-## Logcounts
+## Log-transformed normalized counts
 
-Calculate log-transformed normalized counts, using pool-based size factors and deconvolution to spot level.
+Calculate log-transformed normalized counts (abbreviated as "logcounts"), using pool-based size factors and deconvolution to the spot level.
 
-We use normalization methods for scRNA-seq from `scater` [@McCarthy2017-zd] and `scran` [@Lun2016-dn], treating spots as equivalent to cells. Note that since we have only a single sample, there are no blocking factors in the experimental design.
+We use normalization methods from `scater` [@McCarthy2017-zd] and `scran` [@Lun2016-dn], which were originally developed for single-cell RNA sequencing data. We make the assumption that these methods can be applied here by treating spots as equivalent to cells.
 
-```{r normalization, fig.height=4, message=FALSE}
-library(scater)
+Since we have only a single sample, there are no blocking factors in the experimental design.
+
+```{r normalization, message=FALSE, fig.height=4}
 library(scran)
 
-# clustering for pool-based size factors
+# quick clustering for pool-based size factors
 set.seed(123)
-clusters <- quickCluster(spe)
-table(clusters)
+qclus <- quickCluster(spe)
+table(qclus)
 
-# calculate size factors and store in SCE object
-spe <- computeSumFactors(spe, cluster = clusters)
+# calculate size factors and store in object
+spe <- computeSumFactors(spe, cluster = qclus)
 
 summary(sizeFactors(spe))
 hist(sizeFactors(spe), breaks = 20)
 
-# calculate logcounts (log-transformed normalized counts) and store in SCE object
+# calculate logcounts (log-transformed normalized counts) and store in object
 spe <- logNormCounts(spe)
 
 assayNames(spe)

@@ -1,7 +1,7 @@
 # Quality control {#quality_control}
 
 
-## Overview
+## Background
 
 Quality control (QC) procedures at the spot level aim to remove low-quality spots before further analysis. Low-quality spots can occur due to problems during library preparation or other experimental procedures. Examples include large proportions of dead cells due to cell damage during library preparation, and low mRNA capture efficiency due to inefficient reverse transcription or PCR amplification.
 
@@ -21,43 +21,60 @@ Low library size or low number of expressed features can indicate poor mRNA capt
 
 The first three characteristics listed above are also used for QC in scRNA-seq data. However, the expected distributions for high-quality spots are different (compared to high-quality cells in scRNA-seq), since spots may contain zero, one, or multiple cells.
 
-```{r, echo=FALSE, results="asis", cache=TRUE}
-# add steps to generate object up to here and cache
+
+## Load data
+
+```{r load_data, message=FALSE}
+library(SpatialExperiment)
+library(STexampleData)
+
+# load object
+spe <- load_data("Visium_humanDLPFC")
+spe
 ```
 
+
+## Plot data
+
+As an initial check, plot the spatial coordinates (spots) in x-y dimensions on the tissue slide, to check that the object has loaded correctly and that the orientation is as expected.
+
+We use visualization functions from the [ggspavis](https://github.com/lmweber/ggpavis) package to generate plots.
+
+```{r plot_data, message=FALSE, fig.width=3.75, fig.height=3.75}
+library(ggspavis)
+
+# plot spatial coordinates (spots)
+plotSpots(spe)
+```
 
 
 ## Calculate QC metrics
 
 We calculate the QC metrics described above with a combination of methods from the `scater` [@McCarthy2017-zd] package (for metrics that are also used for scRNA-seq data, where we treat spots as equivalent to cells) and our own functions.
 
-The QC metrics from `scater` can be calculated and added to the `SingleCellExperiment` object as follows. Here, we also identify mitochondrial reads using their gene names, and pass these as an argument to `scater`.
+The QC metrics from `scater` can be calculated and added to the `SpatialExperiment` object as follows. Here, we also identify mitochondrial reads using their gene names, and pass these as an argument to `scater`.
 
-```{r load_data_qc, message=FALSE}
-library(ExperimentHub)
-library(STexampleData)
+First, we subset the object to keep only spots over tissue. The remaining spots are background spots, which we are not interested in.
 
-ehub <- ExperimentHub()
-
-spe <- load_data("Visium_humanDLPFC")
+```{r subset_in_tissue}
+# subset to keep only spots over tissue
+spe <- spe[, spatialData(spe)$in_tissue == 1]
+dim(spe)
 ```
 
-```{r calculate_QC_scater, message=FALSE}
+
+```{r QC_calculate, message=FALSE}
 library(scater)
 
 # identify mitochondrial genes
-is_mito <- grepl("^MT-", rowData(spe)$gene_name)
+is_mito <- grepl("(^MT-)|(^mt-)", rowData(spe)$gene_name)
 table(is_mito)
 rowData(spe)$gene_name[is_mito]
 
-# calculate per-cell QC metrics (treating spots as equivalent to cells)
-df <- perCellQCMetrics(spe, subsets = list(mito = is_mito))
-head(df, 3)
-
-# store per-cell QC metrics in colData of SCE object
+# calculate per-spot QC metrics and store in colData
 spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
+head(colData(spe), 3)
 ```
-
 
 
 ## Selecting thresholds
@@ -67,7 +84,6 @@ The simplest option to apply the QC metrics is to select thresholds for each met
 Here, we use visualizations to select thresholds for several QC metrics in our human DLPFC dataset: (i) library size, (ii) number of expressed genes, (iii) proportion of mitochondrial reads, and (iv) number of cells per spot.
 
 
-
 ### Library size
 
 Library size represents the total sum of UMI counts per spot. This is included in the column labeled `sum` in the `scater` output.
@@ -75,7 +91,6 @@ Library size represents the total sum of UMI counts per spot. This is included i
 Plot a histogram of the library sizes across spots.
 
 ```{r plot_lib_size_hist, fig.height=4}
-spe$sum <- colSums(assay(spe))
 # histogram of library sizes
 hist(colData(spe)$sum, breaks = 25)
 ```
@@ -84,11 +99,13 @@ The distribution is relatively smooth, and there are no obvious issue such as a 
 
 We also plot the library sizes against the number of cells per spot (which was included in the original data object). This is to check that we are not inadvertently removing a biologically meaningful group of spots. The horizontal line (argument `threshold`) shows our first guess at a possible filtering threshold for library size based on the histogram.
 
-```{r plot_lib_size_scatter, fig.height=4.5, fig.width=4.5, message=FALSE}
+```{r plot_lib_size_scatter, message=FALSE, fig.height=4.5, fig.width=4.5}
 library(spatzli)
 
 # plot library size vs. number of cells per spot
-plotQCscatter(spe, metric = "sum", threshold = 500, marginal = TRUE)
+plotQCscatter(spe, 
+              metric_x = "cell_count", metric_y = "sum", 
+              threshold_y = 500, marginal = TRUE)
 ```
 
 The plot shows that setting a filtering threshold for library size (e.g. at the value shown) does not appear to select for any obvious biologically consistent group of spots.
@@ -114,18 +131,19 @@ As an aside, here we can also illustrate what happens if we set the threshold to
 
 ```{r plot_lib_size_spatial_too_high, fig.height=4}
 # check spatial pattern of discarded spots if threshold is too high
-qc_lib_size_1000 <- colData(spe)$sum < 1000
-colData(spe)$qc_lib_size_1000 <- qc_lib_size_1000
-plotQCspots(spe, discard = "qc_lib_size_1000")
+qc_lib_size_2000 <- colData(spe)$sum < 2000
+colData(spe)$qc_lib_size_2000 <- qc_lib_size_2000
+plotQCspots(spe, discard = "qc_lib_size_2000")
 ```
 
-For reference, here are the ground truth (manually annotated) cortical layers in this dataset.
+For reference, here are the ground truth (manually annotated) cortical layers in this dataset. We use plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package.
 
-```{r plot_ground_truth, fig.height=4}
+```{r plot_ground_truth, message=FALSE, fig.height=4}
+library(ggspavis)
+
 # plot ground truth (manually annotated) layers
-plotClustersSpots(spe, cluster_id = "ground_truth")
+plotSpots(spe, discrete = "ground_truth", palette = "libd_layer_colors")
 ```
-
 
 
 ### Number of expressed features
@@ -141,7 +159,9 @@ hist(colData(spe)$detected, breaks = 25)
 
 ```{r plot_detected_scatter, fig.height=4.5, fig.width=4.5}
 # plot number of expressed genes vs. number of cells per spot
-plotQCscatter(spe, metric = "detected", threshold = 250, marginal = TRUE)
+plotQCscatter(spe, 
+              metric_x = "cell_count", metric_y = "detected", 
+              threshold_y = 250, marginal = TRUE)
 ```
 
 Based on the plots, we select a threshold of 250 expressed genes per spot.
@@ -169,7 +189,6 @@ plotQCspots(spe, discard = "qc_detected_1000")
 ```
 
 
-
 ### Proportion of mitochondrial reads
 
 A high proportion of mitochondrial reads indicates cell damage.
@@ -183,7 +202,9 @@ hist(colData(spe)$subsets_mito_percent, breaks = 25)
 
 ```{r plot_mito_scatter, fig.height=4.5, fig.width=4.5}
 # plot mitochondrial read proportion vs. number of cells per spot
-plotQCscatter(spe, metric = "subsets_mito_percent", threshold = 30, marginal = TRUE)
+plotQCscatter(spe, 
+              metric_x = "cell_count", metric_y = "subsets_mito_percent", 
+              threshold_y = 30, marginal = TRUE)
 ```
 
 We select a threshold of 30% for the mitochondrial read proportion.
@@ -211,7 +232,6 @@ plotQCspots(spe, discard = "qc_mito_25")
 ```
 
 
-
 ### Number of cells per spot
 
 The number of cells per spot depends on the tissue type and organism.
@@ -230,7 +250,9 @@ We see a tail of very high values, which could indicate problems for these spots
 
 ```{r plot_cell_count_scatter, fig.height=4.5, fig.width=4.5}
 # plot number of expressed genes vs. number of cells per spot
-plotQCscatter(spe, metric = "detected", trend = TRUE, marginal = TRUE)
+plotQCscatter(spe, 
+              metric_x = "cell_count", metric_y = "detected", 
+              threshold_x = 12, trend = TRUE, marginal = TRUE)
 ```
 
 In particular, we see that the spots with very high cell counts also have low numbers of expressed genes. This indicates that the experiments have failed for these spots, and they should be removed.
@@ -250,8 +272,7 @@ colData(spe)$qc_cell_count <- qc_cell_count
 plotQCspots(spe, discard = "qc_cell_count")
 ```
 
-While there is a spatial pattern to the discarded spots, it does not appear to be correlated with the known biological features (cortical layers). In fact, the discarded spots are all on the edges of the tissue. It seems plausible that something has gone wrong with the cell segmentation on the edges of the images, so it makes sense to remove these spots.
-
+While there is a spatial pattern to the discarded spots, it does not appear to be correlated with the known biological features (cortical layers). The discarded spots are all on the edges of the tissue. It seems plausible that something has gone wrong with the cell segmentation on the edges of the images, so it makes sense to remove these spots.
 
 
 ### Remove low-quality spots
@@ -287,7 +308,7 @@ dim(spe)
 
 ## Zero-cell and single-cell spots
 
-Note that a particular characteristic of Visium data is that spots can contain zero, one, or multiple cells.
+A particular characteristic of Visium data is that spots can contain zero, one, or multiple cells.
 
 We could also imagine other filtering procedures such as (i) removing spots with zero cells, or (ii) restricting the analysis to spots containing a single cell (which would make the data more similar to scRNA-seq).
 
@@ -304,7 +325,7 @@ prop_cells_per_spot[1:13]
 
 Only 6% of spots contain a single cell. If we restricted the analysis to these spots only, we would be discarding most of the data.
 
-Removing the spots containing zero cells (2% of spots) would also be problematic, since these spots may also contain biologically meaningful information. For example, in this brain dataset, the regions between cell bodies consists of neuropil, i.e. dense networks of axons and dendrites. In our paper [@Maynard2020-ke], we explore the information contained in these neuropil spots.
+Removing the spots containing zero cells (2% of spots) would also be problematic, since these spots can also contain biologically meaningful information. For example, in this brain dataset, the regions between cell bodies consists of neuropil (dense networks of axons and dendrites). In our paper [@Maynard2020-ke], we explore the information contained in these neuropil spots.
 
 
 
@@ -312,6 +333,6 @@ Removing the spots containing zero cells (2% of spots) would also be problematic
 
 The sections above consider quality control at the spot level. In some datasets, it may also be appropriate to apply quality control procedures or filtering at the gene level. For example, certain genes may be biologically irrelevant for downstream analyses.
 
-However, here we make a distinction between quality control and feature selection. Removing biologically uninteresting genes (such as mitochondrial genes) is more accurately described as feature selection, since there is no underlying experimental procedure that has failed. Therefore, we include gene-level filtering steps in the [Feature selection](#feature_selection) chapter instead.
+However, here we make a distinction between quality control and feature selection. Removing biologically uninteresting genes (such as mitochondrial genes) may also be considered as part of feature selection, since there is no underlying experimental procedure that has failed. Therefore, we will discuss gene-level filtering in the [Feature selection](#feature_selection) chapter.
 
 
