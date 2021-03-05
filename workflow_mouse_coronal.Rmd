@@ -70,9 +70,9 @@ Select filtering thresholds for the QC metrics by examining distributions using 
 ```{r QC_thresholds, fig.width=7.5, fig.height=3}
 # histograms of QC metrics
 par(mfrow = c(1, 3))
-hist(colData(spe)$sum, xlab = "sum", main = "Detected UMIs per spot")
-hist(colData(spe)$detected, xlab = "detected", main = "Detected genes per spot")
-hist(colData(spe)$subsets_mito_percent, xlab = "percent mitochondrial", main = "Percent mitochondrial UMIs")
+hist(colData(spe)$sum, xlab = "sum", main = "UMIs per spot")
+hist(colData(spe)$detected, xlab = "detected", main = "Genes per spot")
+hist(colData(spe)$subsets_mito_percent, xlab = "percent mitochondrial", main = "Percent mito UMIs")
 par(mfrow = c(1, 1))
 
 # select QC thresholds

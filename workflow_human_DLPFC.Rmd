@@ -69,9 +69,17 @@ head(colData(spe), 3)
 ```
 
 
-Select filtering thresholds for the QC metrics. For more details, including how to use exploratory visualizations to select the thresholds, see [Quality control](#quality_control). We use relatively relaxed thresholds, since the exploratory visualizations showed that more stringent thresholds tended to remove groups of spots corresponding to biologically meaningful regions.
+Select filtering thresholds for the QC metrics by examining distributions using histograms. For additional details, including further exploratory visualizations to select the thresholds, see [Quality control](#quality_control). Here, we use relatively relaxed thresholds, since the additional exploratory visualizations showed that more stringent thresholds tended to remove groups of spots corresponding to biologically meaningful regions.
 
-```{r QC_thresholds}
+```{r QC_thresholds, fig.width=7.5, fig.height=3}
+# histograms of QC metrics
+par(mfrow = c(1, 4))
+hist(colData(spe)$sum, xlab = "sum", main = "UMIs per spot")
+hist(colData(spe)$detected, xlab = "detected", main = "Genes per spot")
+hist(colData(spe)$subsets_mito_percent, xlab = "percent mitochondrial", main = "Percent mito UMIs")
+hist(colData(spe)$cell_count, xlab = "number of cells", main = "No. cells per spot")
+par(mfrow = c(1, 1))
+
 # select QC thresholds
 qc_lib_size <- colData(spe)$sum < 500
 qc_detected <- colData(spe)$detected < 250
