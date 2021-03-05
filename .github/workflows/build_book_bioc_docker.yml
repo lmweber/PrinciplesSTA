@@ -120,13 +120,13 @@ jobs:
           BiocManager::install(c("BiocStyle", "bookdown", "knitr", "sessioninfo"))
           
           ## Bioc stable packages
-          BiocManager::install(c("ExperimentHub", "pheatmap", "SingleCellExperiment", "scater", "scran"))
+          BiocManager::install(c("ExperimentHub", "pheatmap", "SingleCellExperiment", "scater", "scran", "uwot"))
           
           ## Main dependency
           BiocManager::install("drighelli/SpatialExperiment", update = FALSE)
           
           ## Packages under active development
-          BiocManager::install(c("lmweber/ggspavis", "LieberInstitute/spatialLIBD", "lmweber/spatzli", "lmweber/STexampleData",  "HelenaLC/TENxVisiumData"), update = FALSE)
+          BiocManager::install(c("lmweber/ggspavis", "LieberInstitute/spatialLIBD", "lmweber/spatzli", "lmweber/STexampleData"), update = FALSE)
         shell: Rscript {0}
 
       - name: Session info
