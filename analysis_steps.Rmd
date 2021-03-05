@@ -1,6 +1,6 @@
-# (PART) Downstream analyses {-}
+# (PART) Analysis steps {-}
 
-# Downstream analyses {#downstream_analyses}
+# Analysis steps {#analysis_steps}
 
 This part contains chapters describing each of the main steps in a downstream analysis pipeline for spatial transcriptomics data. The steps include loading the data, quality control, normalization, feature selection, dimensionality reduction, clustering, and interpretation. The next part ([Extended topics](#extended_topics)) contains additional steps that may be relevant for certain experiments. In [Workflows](#workflows), we also provide condensed versions of the analysis pipeline for several datasets, focusing on relatively standard methods only, and with minimal documentation, to make it easier to see how the steps fit together into a full pipeline.
 

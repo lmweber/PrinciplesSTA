@@ -10,13 +10,13 @@ rmd_files: ["index.Rmd",
     "introduction.Rmd",
     "spatially_resolved_transcriptomics.Rmd",
     "spatialexperiment.Rmd",
-    # Part 2: Preprocessing
-    "preprocessing.Rmd",
+    # Part 2: Preprocessing steps
+    "preprocessing_steps.Rmd",
     "space_ranger.Rmd",
     "loupe_browser.Rmd",
     "image_segmentation.Rmd",
-    # Part 3: Downstream analyses
-    "downstream_analyses.Rmd",
+    # Part 3: Analysis steps
+    "analysis_steps.Rmd",
     "quality_control.Rmd",
     "normalization.Rmd",
     "feature_selection.Rmd",
