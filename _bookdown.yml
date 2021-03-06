@@ -12,8 +12,8 @@ rmd_files: ["index.Rmd",
     "spatialexperiment.Rmd",
     # Part 2: Preprocessing steps
     "preprocessing_steps.Rmd",
-    "loupe_browser.Rmd",
     "image_segmentation.Rmd",
+    "loupe_browser.Rmd",
     "space_ranger.Rmd",
     # Part 3: Analysis steps
     "analysis_steps.Rmd",
