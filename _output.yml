@@ -9,8 +9,6 @@ bookdown::gitbook:
       collapse: section
     download: ["pdf", "epub"]
     lib_dir: "book_assets"
-  code_folding: show
-  theme: null
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
