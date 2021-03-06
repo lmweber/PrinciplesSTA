@@ -131,7 +131,7 @@ markers
 ```
 
 
-```{r marker_genes_heatmap, message=FALSE, fig.width=5}
+```{r marker_genes_heatmap, message=FALSE, fig.width=5, fig.height=6}
 library(pheatmap)
 
 # plot log-fold changes for one cluster over all other clusters
@@ -144,7 +144,7 @@ pheatmap(logFCs, breaks = seq(-5, 5, length.out = 101))
 ```
 
 
-```{r marker_genes_expression, message=FALSE, fig.width=7}
+```{r marker_genes_expression, message=FALSE, fig.width=7, fig.height=7}
 library(scater)
 
 # plot log-transformed normalized expression of top genes for one cluster

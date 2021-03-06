@@ -41,7 +41,7 @@ As an initial check, plot the spatial coordinates (spots) in x-y dimensions on t
 
 We use visualization functions from the [ggspavis](https://github.com/lmweber/ggpavis) package to generate plots.
 
-```{r plot_data, message=FALSE, fig.height=3.75}
+```{r plot_data, message=FALSE, fig.height=3.5}
 library(ggspavis)
 
 # plot spatial coordinates (spots)
@@ -93,7 +93,7 @@ Library size represents the total sum of UMI counts per spot. This is included i
 
 Plot a histogram of the library sizes across spots.
 
-```{r plot_lib_size_hist, fig.height=3.75}
+```{r plot_lib_size_hist, fig.height=3.5}
 # histogram of library sizes
 hist(colData(spe)$sum, breaks = 25)
 ```
@@ -125,14 +125,14 @@ colData(spe)$qc_lib_size <- qc_lib_size
 
 Finally, we also check that the discarded spots do not have any obvious spatial pattern that correlates with known biological features. Otherwise, removing these spots could indicate that we have set the threshold too high, and are removing biologically informative spots.
 
-```{r plot_lib_size_spatial, fig.height=3.75}
+```{r plot_lib_size_spatial, fig.height=3.5}
 # check spatial pattern of discarded spots
 plotQCspots(spe, discard = "qc_lib_size")
 ```
 
 As an aside, here we can also illustrate what happens if we set the threshold too high. For example, if we set the threshold to 1000 UMI counts per spot -- which would also seem like a reasonable value based on the histogram and scatterplot -- then we see a possible spatial pattern in the discarded spots, matching the cortical layers. This illustrates the importance of interactively checking exploratory visualizations when choosing these thresholds.
 
-```{r plot_lib_size_spatial_too_high, fig.height=3.75}
+```{r plot_lib_size_spatial_too_high, fig.height=3.5}
 # check spatial pattern of discarded spots if threshold is too high
 qc_lib_size_2000 <- colData(spe)$sum < 2000
 colData(spe)$qc_lib_size_2000 <- qc_lib_size_2000
@@ -141,7 +141,7 @@ plotQCspots(spe, discard = "qc_lib_size_2000")
 
 For reference, here are the ground truth (manually annotated) cortical layers in this dataset. We use plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package.
 
-```{r plot_ground_truth, message=FALSE, fig.height=3.75}
+```{r plot_ground_truth, message=FALSE, fig.height=3.5}
 library(ggspavis)
 
 # plot ground truth (manually annotated) layers
@@ -155,7 +155,7 @@ The number of expressed features refers to the number of genes with non-zero UMI
 
 We use a similar sequence of visualizations to choose a threshold for this QC metric.
 
-```{r plot_detected_hist, fig.height=3.75}
+```{r plot_detected_hist, fig.height=3.5}
 # histogram of numbers of expressed genes
 hist(colData(spe)$detected, breaks = 25)
 ```
@@ -177,14 +177,14 @@ table(qc_detected)
 colData(spe)$qc_detected <- qc_detected
 ```
 
-```{r plot_detected_spatial, fig.height=3.75}
+```{r plot_detected_spatial, fig.height=3.5}
 # check spatial pattern of discarded spots
 plotQCspots(spe, discard = "qc_detected")
 ```
 
 Again, we also check what happens when we set the threshold too high.
 
-```{r plot_detected_spatial_too_high, fig.height=3.75}
+```{r plot_detected_spatial_too_high, fig.height=3.5}
 # check spatial pattern of discarded spots if threshold is too high
 qc_detected_1000 <- colData(spe)$detected < 1000
 colData(spe)$qc_detected_1000 <- qc_detected_1000
@@ -198,7 +198,7 @@ A high proportion of mitochondrial reads indicates cell damage.
 
 We investigate the proportions of mitochondrial reads across spots, and select an appropriate threshold. The proportions of mitochondrial reads per spot are stored in the column `subsets_mito_percent` in the `scater` output.
 
-```{r plot_mito_hist, fig.height=3.75}
+```{r plot_mito_hist, fig.height=3.5}
 # histogram of mitochondrial read proportions
 hist(colData(spe)$subsets_mito_percent, breaks = 25)
 ```
@@ -220,14 +220,14 @@ table(qc_mito)
 colData(spe)$qc_mito <- qc_mito
 ```
 
-```{r plot_mito_spatial, fig.height=3.75}
+```{r plot_mito_spatial, fig.height=3.5}
 # check spatial pattern of discarded spots
 plotQCspots(spe, discard = "qc_mito")
 ```
 
 We also check what happens when we set the threshold too low.
 
-```{r plot_mito_spatial_too_low, fig.height=3.75}
+```{r plot_mito_spatial_too_low, fig.height=3.5}
 # check spatial pattern of discarded spots if threshold is too high
 qc_mito_25 <- colData(spe)$subsets_mito_percent > 25
 colData(spe)$qc_mito_25 <- qc_mito_25
@@ -241,7 +241,7 @@ The number of cells per spot depends on the tissue type and organism.
 
 Here, we check for any outlier values that could indicate problems during cell segmentation.
 
-```{r plot_cell_count_hist, fig.height=3.75}
+```{r plot_cell_count_hist, fig.height=3.5}
 # histogram of cell counts
 hist(colData(spe)$cell_count, breaks = 25)
 
@@ -270,7 +270,7 @@ table(qc_cell_count)
 colData(spe)$qc_cell_count <- qc_cell_count
 ```
 
-```{r plot_cell_count_spatial, fig.height=3.75}
+```{r plot_cell_count_spatial, fig.height=3.5}
 # check spatial pattern of discarded spots
 plotQCspots(spe, discard = "qc_cell_count")
 ```
@@ -296,7 +296,7 @@ table(discard)
 colData(spe)$discard <- discard
 ```
 
-```{r plot_discarded_spatial, fig.height=3.75}
+```{r plot_discarded_spatial, fig.height=3.5}
 # check spatial pattern of combined set of discarded spots
 plotQCspots(spe, discard = "discard")
 ```

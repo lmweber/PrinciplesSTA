@@ -126,7 +126,7 @@ For reference, we also display the ground truth (manually annotated) labels avai
 
 From the visualizations, we can see that the clustering reproduces the known biological structure (cortical layers), although not perfectly. The clusters are also separated in UMAP space, but again not perfectly.
 
-```{r clustering_plots, message=FALSE, fig.width=4.5, fig.height=3.75}
+```{r clustering_plots_spots, message=FALSE, fig.height=3.5}
 library(ggspavis)
 
 # plot clusters in spatial x-y coordinates
@@ -134,7 +134,9 @@ plotSpots(spe, discrete = "label", palette = "libd_layer_colors")
 
 # plot ground truth labels in spatial x-y coordinates
 plotSpots(spe, discrete = "ground_truth", palette = "libd_layer_colors")
+```
 
+```{r clustering_plots_reduced, message=FALSE, fig.width=5, fig.height=4.25}
 # plot clusters in PCA reduced dimensions
 plotDimRed(spe, type = "PCA", discrete = "label", palette = "libd_layer_colors")
 

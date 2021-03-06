@@ -34,7 +34,7 @@ As an initial check, plot the spatial coordinates (spots) in x-y dimensions on t
 
 We use visualization functions from the [ggspavis](https://github.com/lmweber/ggpavis) package to generate plots.
 
-```{r plot_data, message=FALSE, fig.height=3.75}
+```{r plot_data, message=FALSE, fig.height=3.5}
 library(ggspavis)
 
 # plot spatial coordinates (spots)
@@ -71,7 +71,7 @@ head(colData(spe), 3)
 
 Select filtering thresholds for the QC metrics by examining distributions using histograms. For additional details, including further exploratory visualizations to select the thresholds, see [Quality control]. Here, we use relatively relaxed thresholds, since the additional exploratory visualizations showed that more stringent thresholds tended to remove groups of spots corresponding to biologically meaningful regions.
 
-```{r QC_thresholds, fig.height=3}
+```{r QC_thresholds, fig.width=7, fig.height=3}
 # histograms of QC metrics
 par(mfrow = c(1, 4))
 hist(colData(spe)$sum, xlab = "sum", main = "UMIs per spot")
@@ -102,7 +102,7 @@ Plot the set of discarded spots in the spatial x-y coordinates, to confirm that 
 
 We use QC visualization functions from the [spatzli](https://github.com/lmweber/spatzli) package to generate plots.
 
-```{r QC_check, message=FALSE, fig.height=3.75}
+```{r QC_check, message=FALSE, fig.height=3.5}
 library(spatzli)
 
 # check spatial pattern of discarded spots
@@ -125,7 +125,7 @@ dim(spe)
 
 Calculate log-transformed normalized counts, using pool-based size factors and deconvolution to the spot level. We use normalization methods from `scater` [@McCarthy2017] and `scran` [@Lun2016], by assuming that these methods can be applied by treating spots as equivalent to cells. Since we have a single sample, there are no blocking factors. For more details, see [Normalization].
 
-```{r normalization, message=FALSE, fig.height=3.75}
+```{r normalization, message=FALSE, fig.height=3.5}
 library(scran)
 
 # quick clustering for pool-based size factors
@@ -156,7 +156,7 @@ spe <- spe[!is_mito, ]
 dim(spe)
 ```
 
-```{r feature_selection_HVGs, message=FALSE, fig.height=4.5}
+```{r feature_selection_HVGs, message=FALSE, fig.height=5}
 # fit mean-variance relationship
 dec <- modelGeneVar(spe)
 
@@ -222,7 +222,7 @@ Visualize the clusters by plotting in (i) spatial x-y coordinates on the tissue 
 
 From the visualizations, we can see that the clustering reproduces the known biological structure (cortical layers), although not perfectly. The clusters are also separated in UMAP space, but again not perfectly.
 
-```{r clustering_plots, message=FALSE, fig.width=4.5, fig.height=3.75}
+```{r clustering_plots_spots, message=FALSE, fig.height=3.5}
 library(ggspavis)
 
 # plot clusters in spatial x-y coordinates
@@ -230,7 +230,9 @@ plotSpots(spe, discrete = "label", palette = "libd_layer_colors")
 
 # plot ground truth labels in spatial x-y coordinates
 plotSpots(spe, discrete = "ground_truth", palette = "libd_layer_colors")
+```
 
+```{r clustering_plots_reduced, message=FALSE, fig.width=5, fig.height=4.25}
 # plot clusters in UMAP reduced dimensions
 plotDimRed(spe, type = "UMAP", discrete = "label", palette = "libd_layer_colors")
 ```
@@ -251,7 +253,7 @@ markers <- findMarkers(spe, test = "binom", direction = "up")
 markers
 ```
 
-```{r marker_genes_heatmap, message=FALSE, fig.width=5}
+```{r marker_genes_heatmap, message=FALSE, fig.width=5, fig.height=6}
 library(pheatmap)
 
 # plot log-fold changes for one cluster over all other clusters
@@ -263,7 +265,7 @@ logFCs <- getMarkerEffects(best_set)
 pheatmap(logFCs, breaks = seq(-5, 5, length.out = 101))
 ```
 
-```{r marker_genes_expression, fig.width=7}
+```{r marker_genes_expression, fig.width=7, fig.height=7}
 # plot log-transformed normalized expression of top genes for one cluster
 top_genes <- head(rownames(interesting))
 

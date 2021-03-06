@@ -30,7 +30,7 @@ As an initial check, plot the spatial coordinates (spots) in x-y dimensions on t
 
 We use visualization functions from the [ggspavis](https://github.com/lmweber/ggpavis) package to generate plots.
 
-```{r plot_data, message=FALSE, fig.height=3.75}
+```{r plot_data, message=FALSE, fig.height=3.5}
 library(ggspavis)
 
 # plot spatial coordinates (spots)
@@ -67,7 +67,7 @@ head(colData(spe), 3)
 
 Select filtering thresholds for the QC metrics by examining distributions using histograms.
 
-```{r QC_thresholds, fig.height=3}
+```{r QC_thresholds, fig.width=7, fig.height=3}
 # histograms of QC metrics
 par(mfrow = c(1, 3))
 hist(colData(spe)$sum, xlab = "sum", main = "UMIs per spot")
@@ -96,7 +96,7 @@ Plot discarded spots in x-y coordinates on the tissue slide to check if there is
 
 We use QC visualization functions from the [spatzli](https://github.com/lmweber/spatzli) package to generate plots.
 
-```{r QC_check, message=FALSE, fig.height=3.75}
+```{r QC_check, message=FALSE, fig.height=3.5}
 library(spatzli)
 
 # check spatial pattern of discarded spots
@@ -119,7 +119,7 @@ dim(spe)
 
 Next, we calculate log-transformed normalized counts, using pool-based size factors and deconvolution to the spot level, using methods from `scater` [@McCarthy2017] and `scran` [@Lun2016]. Since we have a single sample, there are no blocking factors in the experimental design.
 
-```{r normalization, message=FALSE, fig.height=3.75}
+```{r normalization, message=FALSE, fig.height=3.5}
 library(scran)
 
 # quick clustering for pool-based size factors
@@ -150,7 +150,7 @@ spe <- spe[!is_mito, ]
 dim(spe)
 ```
 
-```{r feature_selection_HVGs, message=FALSE, fig.height=4.5}
+```{r feature_selection_HVGs, message=FALSE, fig.height=5}
 # fit mean-variance relationship
 dec <- modelGeneVar(spe)
 
@@ -225,12 +225,14 @@ colLabels(spe) <- factor(clus)
 
 Visualize the clusters by plotting in (i) spatial x-y coordinates on the tissue slide, and (ii) UMAP dimensions. We use plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package.
 
-```{r clustering_plots, message=FALSE, fig.width=4.5, fig.height=3.75}
+```{r clustering_plots_spots, message=FALSE, fig.height=3.5}
 library(ggspavis)
 
 # define custom color palette
 colors <- unname(palette.colors(palette = "Polychrome 36"))
+```
 
+```{r clustering_plots_reduced, message=FALSE, fig.width=5, fig.height=4.25}
 # plot clusters in spatial x-y coordinates
 plotSpots(spe, discrete = "label", palette = colors)
 
@@ -254,7 +256,7 @@ markers <- findMarkers(spe, test = "binom", direction = "up")
 markers
 ```
 
-```{r marker_genes_heatmap, message=FALSE, fig.width=7, fig.height=6}
+```{r marker_genes_heatmap, message=FALSE, fig.width=7, fig.height=7}
 library(pheatmap)
 
 # plot log-fold changes for one cluster over all other clusters
@@ -266,7 +268,7 @@ logFCs <- getMarkerEffects(best_set)
 pheatmap(logFCs, breaks = seq(-5, 5, length.out = 101))
 ```
 
-```{r marker_genes_expression, fig.width=7, fig.height=6}
+```{r marker_genes_expression, fig.width=7, fig.height=7}
 # plot log-transformed normalized expression of top genes for one cluster
 top_genes <- head(rownames(interesting))
 

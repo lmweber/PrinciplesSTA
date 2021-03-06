@@ -58,7 +58,7 @@ We use normalization methods from `scater` [@McCarthy2017] and `scran` [@Lun2016
 
 Since we have only a single sample, there are no blocking factors in the experimental design.
 
-```{r normalization, message=FALSE, fig.height=3.75}
+```{r normalization, message=FALSE, fig.height=3.5}
 library(scran)
 
 # quick clustering for pool-based size factors
