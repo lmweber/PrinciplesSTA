@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-03-05" />
+<meta name="date" content="2021-03-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -399,7 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb27-4"><a href="quality-control.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCscatter</span>(spe, </span>
 <span id="cb27-5"><a href="quality-control.html#cb27-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;sum&quot;</span>, </span>
 <span id="cb27-6"><a href="quality-control.html#cb27-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">threshold_y =</span> <span class="dv">500</span>, <span class="at">marginal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="quality_control_files/figure-html/plot_lib_size_scatter-1.png" width="672" /></p>
+<p><img src="quality_control_files/figure-html/plot_lib_size_scatter-1.png" width="360" /></p>
 <p>The plot shows that setting a filtering threshold for library size (e.g. at the value shown) does not appear to select for any obvious biologically consistent group of spots.</p>
 <p>We set a relatively arbitrary threshold of 500 UMI counts per spot, and then check the number of spots below this threshold.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="quality-control.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for library size</span></span>
@@ -441,7 +441,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
 ## `geom_smooth()` using formula &#39;y ~ x&#39;
 ## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="quality_control_files/figure-html/plot_detected_scatter-1.png" width="672" /></p>
+<p><img src="quality_control_files/figure-html/plot_detected_scatter-1.png" width="360" /></p>
 <p>Based on the plots, we select a threshold of 250 expressed genes per spot.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="quality-control.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for number of expressed genes</span></span>
 <span id="cb38-2"><a href="quality-control.html#cb38-2" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
@@ -474,7 +474,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
 ## `geom_smooth()` using formula &#39;y ~ x&#39;
 ## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="quality_control_files/figure-html/plot_mito_scatter-1.png" width="672" /></p>
+<p><img src="quality_control_files/figure-html/plot_mito_scatter-1.png" width="360" /></p>
 <p>We select a threshold of 30% for the mitochondrial read proportion.</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="quality-control.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for mitochondrial read proportion</span></span>
 <span id="cb46-2"><a href="quality-control.html#cb46-2" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
@@ -510,7 +510,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
 ## `geom_smooth()` using formula &#39;y ~ x&#39;
 ## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="quality_control_files/figure-html/plot_cell_count_scatter-1.png" width="672" /></p>
+<p><img src="quality_control_files/figure-html/plot_cell_count_scatter-1.png" width="360" /></p>
 <p>In particular, we see that the spots with very high cell counts also have low numbers of expressed genes. This indicates that the experiments have failed for these spots, and they should be removed.</p>
 <p>We select a threshold of 12 cells per spot. The number of spots above this threshold is relatively small, and there is a clear downward trend in the number of expressed genes above this threshold.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="quality-control.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for number of cells per spot</span></span>
