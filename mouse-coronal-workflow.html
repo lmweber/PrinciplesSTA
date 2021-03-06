@@ -528,41 +528,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="mouse-coronal-workflow.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
 <span id="cb215-2"><a href="mouse-coronal-workflow.html#cb215-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb215-3"><a href="mouse-coronal-workflow.html#cb215-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define custom color palette</span></span>
-<span id="cb215-4"><a href="mouse-coronal-workflow.html#cb215-4" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">palette.colors</span>(<span class="at">palette =</span> <span class="st">&quot;Polychrome 36&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="mouse-coronal-workflow.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in spatial x-y coordinates</span></span>
-<span id="cb216-2"><a href="mouse-coronal-workflow.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">discrete =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> colors)</span></code></pre></div>
+<span id="cb215-4"><a href="mouse-coronal-workflow.html#cb215-4" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">palette.colors</span>(<span class="at">palette =</span> <span class="st">&quot;Polychrome 36&quot;</span>))</span>
+<span id="cb215-5"><a href="mouse-coronal-workflow.html#cb215-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-6"><a href="mouse-coronal-workflow.html#cb215-6" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in spatial x-y coordinates</span></span>
+<span id="cb215-7"><a href="mouse-coronal-workflow.html#cb215-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">discrete =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> colors)</span></code></pre></div>
+<p><img src="workflow_mouse_coronal_files/figure-html/clustering_plots_spots-1.png" width="672" /></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="mouse-coronal-workflow.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in UMAP dimensions</span></span>
+<span id="cb216-2"><a href="mouse-coronal-workflow.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>, <span class="at">discrete =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> colors)</span></code></pre></div>
 <p><img src="workflow_mouse_coronal_files/figure-html/clustering_plots_reduced-1.png" width="480" /></p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="mouse-coronal-workflow.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in UMAP dimensions</span></span>
-<span id="cb217-2"><a href="mouse-coronal-workflow.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>, <span class="at">discrete =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> colors)</span></code></pre></div>
-<p><img src="workflow_mouse_coronal_files/figure-html/clustering_plots_reduced-2.png" width="480" /></p>
 </div>
 <div id="marker-genes-3" class="section level2" number="17.9">
 <h2><span class="header-section-number">17.9</span> Marker genes</h2>
 <p>Identify marker genes by testing for differential gene expression between clusters, using the binomial test implemented in <code>findMarkers</code> in <code>scran</code> <span class="citation">(<a href="references.html#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="mouse-coronal-workflow.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set gene names as row names for visualization purposes</span></span>
-<span id="cb218-2"><a href="mouse-coronal-workflow.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(spe) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name</span>
-<span id="cb218-3"><a href="mouse-coronal-workflow.html#cb218-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-4"><a href="mouse-coronal-workflow.html#cb218-4" aria-hidden="true" tabindex="-1"></a><span class="co"># test for marker genes</span></span>
-<span id="cb218-5"><a href="mouse-coronal-workflow.html#cb218-5" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">test =</span> <span class="st">&quot;binom&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>)</span>
-<span id="cb218-6"><a href="mouse-coronal-workflow.html#cb218-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-7"><a href="mouse-coronal-workflow.html#cb218-7" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a list with one DataFrame per cluster</span></span>
-<span id="cb218-8"><a href="mouse-coronal-workflow.html#cb218-8" aria-hidden="true" tabindex="-1"></a>markers</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="mouse-coronal-workflow.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set gene names as row names for visualization purposes</span></span>
+<span id="cb217-2"><a href="mouse-coronal-workflow.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(spe) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name</span>
+<span id="cb217-3"><a href="mouse-coronal-workflow.html#cb217-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb217-4"><a href="mouse-coronal-workflow.html#cb217-4" aria-hidden="true" tabindex="-1"></a><span class="co"># test for marker genes</span></span>
+<span id="cb217-5"><a href="mouse-coronal-workflow.html#cb217-5" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">test =</span> <span class="st">&quot;binom&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>)</span>
+<span id="cb217-6"><a href="mouse-coronal-workflow.html#cb217-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb217-7"><a href="mouse-coronal-workflow.html#cb217-7" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a list with one DataFrame per cluster</span></span>
+<span id="cb217-8"><a href="mouse-coronal-workflow.html#cb217-8" aria-hidden="true" tabindex="-1"></a>markers</span></code></pre></div>
 <pre><code>## List of length 23
 ## names(23): 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23</code></pre>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="mouse-coronal-workflow.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
-<span id="cb220-2"><a href="mouse-coronal-workflow.html#cb220-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb220-3"><a href="mouse-coronal-workflow.html#cb220-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-fold changes for one cluster over all other clusters</span></span>
-<span id="cb220-4"><a href="mouse-coronal-workflow.html#cb220-4" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting cluster 5</span></span>
-<span id="cb220-5"><a href="mouse-coronal-workflow.html#cb220-5" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> markers[[<span class="dv">5</span>]]</span>
-<span id="cb220-6"><a href="mouse-coronal-workflow.html#cb220-6" aria-hidden="true" tabindex="-1"></a>best_set <span class="ot">&lt;-</span> interesting[interesting<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">5</span>, ]</span>
-<span id="cb220-7"><a href="mouse-coronal-workflow.html#cb220-7" aria-hidden="true" tabindex="-1"></a>logFCs <span class="ot">&lt;-</span> <span class="fu">getMarkerEffects</span>(best_set)</span>
-<span id="cb220-8"><a href="mouse-coronal-workflow.html#cb220-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb220-9"><a href="mouse-coronal-workflow.html#cb220-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(logFCs, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">101</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="mouse-coronal-workflow.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb219-2"><a href="mouse-coronal-workflow.html#cb219-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb219-3"><a href="mouse-coronal-workflow.html#cb219-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-fold changes for one cluster over all other clusters</span></span>
+<span id="cb219-4"><a href="mouse-coronal-workflow.html#cb219-4" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting cluster 5</span></span>
+<span id="cb219-5"><a href="mouse-coronal-workflow.html#cb219-5" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> markers[[<span class="dv">5</span>]]</span>
+<span id="cb219-6"><a href="mouse-coronal-workflow.html#cb219-6" aria-hidden="true" tabindex="-1"></a>best_set <span class="ot">&lt;-</span> interesting[interesting<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">5</span>, ]</span>
+<span id="cb219-7"><a href="mouse-coronal-workflow.html#cb219-7" aria-hidden="true" tabindex="-1"></a>logFCs <span class="ot">&lt;-</span> <span class="fu">getMarkerEffects</span>(best_set)</span>
+<span id="cb219-8"><a href="mouse-coronal-workflow.html#cb219-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb219-9"><a href="mouse-coronal-workflow.html#cb219-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(logFCs, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">101</span>))</span></code></pre></div>
 <p><img src="workflow_mouse_coronal_files/figure-html/marker_genes_heatmap-1.png" width="672" /></p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="mouse-coronal-workflow.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-transformed normalized expression of top genes for one cluster</span></span>
-<span id="cb221-2"><a href="mouse-coronal-workflow.html#cb221-2" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">rownames</span>(interesting))</span>
-<span id="cb221-3"><a href="mouse-coronal-workflow.html#cb221-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb221-4"><a href="mouse-coronal-workflow.html#cb221-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotExpression</span>(spe, <span class="at">x =</span> <span class="st">&quot;label&quot;</span>, <span class="at">features =</span> top_genes)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="mouse-coronal-workflow.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-transformed normalized expression of top genes for one cluster</span></span>
+<span id="cb220-2"><a href="mouse-coronal-workflow.html#cb220-2" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">rownames</span>(interesting))</span>
+<span id="cb220-3"><a href="mouse-coronal-workflow.html#cb220-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb220-4"><a href="mouse-coronal-workflow.html#cb220-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotExpression</span>(spe, <span class="at">x =</span> <span class="st">&quot;label&quot;</span>, <span class="at">features =</span> top_genes)</span></code></pre></div>
 <p><img src="workflow_mouse_coronal_files/figure-html/marker_genes_expression-1.png" width="672" /></p>
 
 </div>
