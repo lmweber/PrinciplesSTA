@@ -3,21 +3,13 @@
 Repository containing source files for OSTA online book.
 
 
-## How to compile the book
+## Website
 
-To compile the book locally, clone the repository and run the following within an RStudio session:
-
-```r
-bookdown::render_book("index.Rmd", "bookdown::gitbook")
-```
+The website for the compiled version of the book is at https://lmweber.org/OSTA-book/
 
 
-## Installation requirements
+## Source files
 
-To compile the book locally, `bookdown` and all other packages loaded with `library()` within the chapters need to be installed first, using either `install.packages()` or `BiocManager::install()`.
+The main content of the book is in the set of `RMarkdown` `.Rmd` files in this repository, with one `.Rmd` file per chapter. The chapter order is specified in `_bookdown.yml`. Compiling and deployment to the website is performed with GitHub Actions using the setup in `.github/workflows/build_book_bioc_docker.yml`.
 
-
-## Repository contents and structure
-
-The main content of the book is in the RMarkdown `.Rmd` files. There is one `.Rmd` file per chapter.
 
