@@ -10,7 +10,7 @@ Details on normalization in single-cell and spatial data.
 
 *Code to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, code_folding='hide', results='hide'}
+```{r previous_steps, message=FALSE, class.source = 'fold-hide', results='hide'}
 # ---------
 # load data
 # ---------
