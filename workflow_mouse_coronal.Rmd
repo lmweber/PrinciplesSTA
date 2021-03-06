@@ -230,12 +230,12 @@ library(ggspavis)
 
 # define custom color palette
 colors <- unname(palette.colors(palette = "Polychrome 36"))
+
+# plot clusters in spatial x-y coordinates
+plotSpots(spe, discrete = "label", palette = colors)
 ```
 
 ```{r clustering_plots_reduced, message=FALSE, fig.width=5, fig.height=4.25}
-# plot clusters in spatial x-y coordinates
-plotSpots(spe, discrete = "label", palette = colors)
-
 # plot clusters in UMAP dimensions
 plotDimRed(spe, type = "UMAP", discrete = "label", palette = colors)
 ```
