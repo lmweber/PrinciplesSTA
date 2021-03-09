@@ -26,8 +26,11 @@ rmd_files: ["index.Rmd",
     "marker_genes.Rmd",
     # Part 4: Workflows
     "workflows.Rmd",
-    "workflow_human_DLPFC.Rmd",
-    "workflow_mouse_coronal.Rmd",
+    "workflow_Visium_humanDLPFC.Rmd",
+    "workflow_Visium_mouseCoronal.Rmd",
+    "workflow_Visium_spatialLIBD.Rmd",
+    "workflow_Cartana",
+    "workflow_seqFISH",
     # Part 5: Appendix
     "contributors.Rmd",
     "references.Rmd"]
