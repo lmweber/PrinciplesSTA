@@ -14,6 +14,6 @@ The main content of the book is in the set of `RMarkdown` `.Rmd` files in this r
 
 The chapter order is specified in `_bookdown.yml`.
 
-Compiling and deployment to the website is done with GitHub Actions using the setup in `.github/workflows/build_book_bioc_docker.yml`.
+Compiling and deployment to the website uses the GitHub Actions setup in `.github/workflows/build_book_bioc_docker.yml`.
 
 
