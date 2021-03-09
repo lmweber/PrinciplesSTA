@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-03-06" />
+<meta name="date" content="2021-03-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="spatialexperiment.html"/>
-<link rel="next" href="image-segmentation.html"/>
+<link rel="next" href="image-segmentation-visium.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -144,10 +144,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html"><i class="fa fa-check"></i><b>2</b> Spatially resolved transcriptomics</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1</b> 10x Genomics Visium</a></li>
-<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#slide-seqv2"><i class="fa fa-check"></i><b>2.2</b> Slide-seqV2</a></li>
-<li class="chapter" data-level="2.3" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#seqfish"><i class="fa fa-check"></i><b>2.3</b> seqFISH</a></li>
-<li class="chapter" data-level="2.4" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#merfish"><i class="fa fa-check"></i><b>2.4</b> MERFISH</a></li>
-<li class="chapter" data-level="2.5" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#other-platforms"><i class="fa fa-check"></i><b>2.5</b> Other platforms</a></li>
+<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#cartana"><i class="fa fa-check"></i><b>2.2</b> Cartana</a></li>
+<li class="chapter" data-level="2.3" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#slide-seqv2"><i class="fa fa-check"></i><b>2.3</b> Slide-seqV2</a></li>
+<li class="chapter" data-level="2.4" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#seqfish"><i class="fa fa-check"></i><b>2.4</b> seqFISH</a></li>
+<li class="chapter" data-level="2.5" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#merfish"><i class="fa fa-check"></i><b>2.5</b> MERFISH</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="spatialexperiment.html"><a href="spatialexperiment.html"><i class="fa fa-check"></i><b>3</b> SpatialExperiment</a>
 <ul>
@@ -155,127 +155,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>II Preprocessing steps</b></span></li>
 <li class="chapter" data-level="4" data-path="preprocessing-steps.html"><a href="preprocessing-steps.html"><i class="fa fa-check"></i><b>4</b> Preprocessing steps</a></li>
-<li class="chapter" data-level="5" data-path="image-segmentation.html"><a href="image-segmentation.html"><i class="fa fa-check"></i><b>5</b> Image segmentation</a>
+<li class="chapter" data-level="5" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html"><i class="fa fa-check"></i><b>5</b> Image segmentation (Visium)</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="image-segmentation.html"><a href="image-segmentation.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
-<li class="chapter" data-level="5.2" data-path="image-segmentation.html"><a href="image-segmentation.html#split-histology-images"><i class="fa fa-check"></i><b>5.2</b> Split histology images</a></li>
-<li class="chapter" data-level="5.3" data-path="image-segmentation.html"><a href="image-segmentation.html#file-size-issues"><i class="fa fa-check"></i><b>5.3</b> File size issues</a></li>
-<li class="chapter" data-level="5.4" data-path="image-segmentation.html"><a href="image-segmentation.html#segment-cell-nuclei"><i class="fa fa-check"></i><b>5.4</b> Segment cell nuclei</a></li>
-<li class="chapter" data-level="5.5" data-path="image-segmentation.html"><a href="image-segmentation.html#identify-number-of-cells-per-spot"><i class="fa fa-check"></i><b>5.5</b> Identify number of cells per spot</a></li>
-<li class="chapter" data-level="5.6" data-path="image-segmentation.html"><a href="image-segmentation.html#output-files"><i class="fa fa-check"></i><b>5.6</b> Output files</a></li>
+<li class="chapter" data-level="5.1" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#split-histology-images"><i class="fa fa-check"></i><b>5.2</b> Split histology images</a></li>
+<li class="chapter" data-level="5.3" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#file-size-issues"><i class="fa fa-check"></i><b>5.3</b> File size issues</a></li>
+<li class="chapter" data-level="5.4" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#segment-cell-nuclei"><i class="fa fa-check"></i><b>5.4</b> Segment cell nuclei</a></li>
+<li class="chapter" data-level="5.5" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#identify-number-of-cells-per-spot"><i class="fa fa-check"></i><b>5.5</b> Identify number of cells per spot</a></li>
+<li class="chapter" data-level="5.6" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#output-files"><i class="fa fa-check"></i><b>5.6</b> Output files</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="loupe-browser.html"><a href="loupe-browser.html"><i class="fa fa-check"></i><b>6</b> Loupe Browser</a>
+<li class="chapter" data-level="6" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html"><i class="fa fa-check"></i><b>6</b> Loupe Browser (Visium)</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="loupe-browser.html"><a href="loupe-browser.html#overview-1"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
-<li class="chapter" data-level="6.2" data-path="loupe-browser.html"><a href="loupe-browser.html#automatic-alignment-of-images"><i class="fa fa-check"></i><b>6.2</b> Automatic alignment of images</a></li>
-<li class="chapter" data-level="6.3" data-path="loupe-browser.html"><a href="loupe-browser.html#manual-alignment-of-images"><i class="fa fa-check"></i><b>6.3</b> Manual alignment of images</a></li>
-<li class="chapter" data-level="6.4" data-path="loupe-browser.html"><a href="loupe-browser.html#output-files-for-space-ranger"><i class="fa fa-check"></i><b>6.4</b> Output files for Space Ranger</a></li>
-<li class="chapter" data-level="6.5" data-path="loupe-browser.html"><a href="loupe-browser.html#downstream-analyses-in-loupe-browser"><i class="fa fa-check"></i><b>6.5</b> Downstream analyses in Loupe Browser</a></li>
+<li class="chapter" data-level="6.1" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#overview-1"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#automatic-alignment-of-images"><i class="fa fa-check"></i><b>6.2</b> Automatic alignment of images</a></li>
+<li class="chapter" data-level="6.3" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#manual-alignment-of-images"><i class="fa fa-check"></i><b>6.3</b> Manual alignment of images</a></li>
+<li class="chapter" data-level="6.4" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#output-files-for-space-ranger"><i class="fa fa-check"></i><b>6.4</b> Output files for Space Ranger</a></li>
+<li class="chapter" data-level="6.5" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#downstream-analyses-in-loupe-browser"><i class="fa fa-check"></i><b>6.5</b> Downstream analyses in Loupe Browser</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="space-ranger.html"><a href="space-ranger.html"><i class="fa fa-check"></i><b>7</b> Space Ranger</a>
+<li class="chapter" data-level="7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html"><i class="fa fa-check"></i><b>7</b> Space Ranger (Visium)</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="space-ranger.html"><a href="space-ranger.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
-<li class="chapter" data-level="7.2" data-path="space-ranger.html"><a href="space-ranger.html#installation"><i class="fa fa-check"></i><b>7.2</b> Installation</a></li>
-<li class="chapter" data-level="7.3" data-path="space-ranger.html"><a href="space-ranger.html#memory-issues"><i class="fa fa-check"></i><b>7.3</b> Memory issues</a></li>
-<li class="chapter" data-level="7.4" data-path="space-ranger.html"><a href="space-ranger.html#run-spaceranger-count"><i class="fa fa-check"></i><b>7.4</b> Run spaceranger count</a></li>
-<li class="chapter" data-level="7.5" data-path="space-ranger.html"><a href="space-ranger.html#output-files-1"><i class="fa fa-check"></i><b>7.5</b> Output files</a></li>
-<li class="chapter" data-level="7.6" data-path="space-ranger.html"><a href="space-ranger.html#web-summary-.html-file"><i class="fa fa-check"></i><b>7.6</b> Web summary .html file</a></li>
-<li class="chapter" data-level="7.7" data-path="space-ranger.html"><a href="space-ranger.html#import-outputs-into-r"><i class="fa fa-check"></i><b>7.7</b> Import outputs into R</a></li>
+<li class="chapter" data-level="7.1" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#installation"><i class="fa fa-check"></i><b>7.2</b> Installation</a></li>
+<li class="chapter" data-level="7.3" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#memory-issues"><i class="fa fa-check"></i><b>7.3</b> Memory issues</a></li>
+<li class="chapter" data-level="7.4" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#run-spaceranger-count"><i class="fa fa-check"></i><b>7.4</b> Run spaceranger count</a></li>
+<li class="chapter" data-level="7.5" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#output-files-1"><i class="fa fa-check"></i><b>7.5</b> Output files</a></li>
+<li class="chapter" data-level="7.6" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#web-summary-.html-file"><i class="fa fa-check"></i><b>7.6</b> Web summary .html file</a></li>
+<li class="chapter" data-level="7.7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#import-outputs-into-r"><i class="fa fa-check"></i><b>7.7</b> Import outputs into R</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="other-platforms.html"><a href="other-platforms.html"><i class="fa fa-check"></i><b>8</b> Other platforms</a></li>
 <li class="part"><span><b>III Analysis steps</b></span></li>
-<li class="chapter" data-level="8" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>8</b> Analysis steps</a>
+<li class="chapter" data-level="9" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>9</b> Analysis steps</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>8.1</b> Load data</a></li>
-<li class="chapter" data-level="8.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>8.2</b> SpatialExperiment object structure</a></li>
+<li class="chapter" data-level="9.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>9.1</b> Load data</a></li>
+<li class="chapter" data-level="9.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>9.2</b> SpatialExperiment object structure</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>9</b> Quality control</a>
+<li class="chapter" data-level="10" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>10</b> Quality control</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>9.1</b> Background</a></li>
-<li class="chapter" data-level="9.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>9.2</b> Load data</a></li>
-<li class="chapter" data-level="9.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>9.3</b> Plot data</a></li>
-<li class="chapter" data-level="9.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>9.4</b> Calculate QC metrics</a></li>
-<li class="chapter" data-level="9.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>9.5</b> Selecting thresholds</a>
+<li class="chapter" data-level="10.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
+<li class="chapter" data-level="10.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>10.2</b> Load data</a></li>
+<li class="chapter" data-level="10.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>10.3</b> Plot data</a></li>
+<li class="chapter" data-level="10.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>10.4</b> Calculate QC metrics</a></li>
+<li class="chapter" data-level="10.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>10.5</b> Selecting thresholds</a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>9.5.1</b> Library size</a></li>
-<li class="chapter" data-level="9.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>9.5.2</b> Number of expressed features</a></li>
-<li class="chapter" data-level="9.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>9.5.3</b> Proportion of mitochondrial reads</a></li>
-<li class="chapter" data-level="9.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>9.5.4</b> Number of cells per spot</a></li>
-<li class="chapter" data-level="9.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>9.5.5</b> Remove low-quality spots</a></li>
+<li class="chapter" data-level="10.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>10.5.1</b> Library size</a></li>
+<li class="chapter" data-level="10.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>10.5.2</b> Number of expressed features</a></li>
+<li class="chapter" data-level="10.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>10.5.3</b> Proportion of mitochondrial reads</a></li>
+<li class="chapter" data-level="10.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>10.5.4</b> Number of cells per spot</a></li>
+<li class="chapter" data-level="10.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>10.5.5</b> Remove low-quality spots</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>9.6</b> Zero-cell and single-cell spots</a></li>
-<li class="chapter" data-level="9.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>9.7</b> Quality control at gene level</a></li>
+<li class="chapter" data-level="10.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>10.6</b> Zero-cell and single-cell spots</a></li>
+<li class="chapter" data-level="10.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>10.7</b> Quality control at gene level</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>10</b> Normalization</a>
+<li class="chapter" data-level="11" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>11</b> Normalization</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
-<li class="chapter" data-level="10.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>10.2</b> Previous steps</a></li>
-<li class="chapter" data-level="10.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>10.3</b> Log-transformed normalized counts</a></li>
+<li class="chapter" data-level="11.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
+<li class="chapter" data-level="11.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
+<li class="chapter" data-level="11.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>11.3</b> Log-transformed normalized counts</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>11</b> Feature selection</a>
+<li class="chapter" data-level="12" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>12</b> Feature selection</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
-<li class="chapter" data-level="11.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
-<li class="chapter" data-level="11.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>11.3</b> Highly variable genes (HVGs)</a></li>
-<li class="chapter" data-level="11.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>11.4</b> Spatially variable genes (SVGs)</a>
+<li class="chapter" data-level="12.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
+<li class="chapter" data-level="12.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>12.2</b> Previous steps</a></li>
+<li class="chapter" data-level="12.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>12.3</b> Highly variable genes (HVGs)</a></li>
+<li class="chapter" data-level="12.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>12.4</b> Spatially variable genes (SVGs)</a>
 <ul>
-<li class="chapter" data-level="11.4.1" data-path="feature-selection.html"><a href="feature-selection.html#spatialde"><i class="fa fa-check"></i><b>11.4.1</b> SpatialDE</a></li>
-<li class="chapter" data-level="11.4.2" data-path="feature-selection.html"><a href="feature-selection.html#spark"><i class="fa fa-check"></i><b>11.4.2</b> SPARK</a></li>
-<li class="chapter" data-level="11.4.3" data-path="feature-selection.html"><a href="feature-selection.html#morans-i-statistic"><i class="fa fa-check"></i><b>11.4.3</b> Moran’s I statistic</a></li>
-<li class="chapter" data-level="11.4.4" data-path="feature-selection.html"><a href="feature-selection.html#further-methods"><i class="fa fa-check"></i><b>11.4.4</b> Further methods</a></li>
+<li class="chapter" data-level="12.4.1" data-path="feature-selection.html"><a href="feature-selection.html#spatialde"><i class="fa fa-check"></i><b>12.4.1</b> SpatialDE</a></li>
+<li class="chapter" data-level="12.4.2" data-path="feature-selection.html"><a href="feature-selection.html#spark"><i class="fa fa-check"></i><b>12.4.2</b> SPARK</a></li>
+<li class="chapter" data-level="12.4.3" data-path="feature-selection.html"><a href="feature-selection.html#morans-i-statistic"><i class="fa fa-check"></i><b>12.4.3</b> Moran’s I statistic</a></li>
+<li class="chapter" data-level="12.4.4" data-path="feature-selection.html"><a href="feature-selection.html#further-methods"><i class="fa fa-check"></i><b>12.4.4</b> Further methods</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>12</b> Dimensionality reduction</a>
+<li class="chapter" data-level="13" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>13</b> Dimensionality reduction</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
-<li class="chapter" data-level="12.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>12.2</b> Previous steps</a></li>
-<li class="chapter" data-level="12.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>12.3</b> Principal component analysis (PCA)</a></li>
-<li class="chapter" data-level="12.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>12.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
-<li class="chapter" data-level="12.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>12.5</b> Visualizations</a></li>
+<li class="chapter" data-level="13.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>13.1</b> Background</a></li>
+<li class="chapter" data-level="13.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
+<li class="chapter" data-level="13.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>13.3</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="13.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>13.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
+<li class="chapter" data-level="13.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>13.5</b> Visualizations</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>13</b> Clustering</a>
+<li class="chapter" data-level="14" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>14</b> Clustering</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="clustering.html"><a href="clustering.html#overview-3"><i class="fa fa-check"></i><b>13.1</b> Overview</a></li>
-<li class="chapter" data-level="13.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
-<li class="chapter" data-level="13.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>13.3</b> Clustering on HVGs</a></li>
-<li class="chapter" data-level="13.4" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs-and-spatial-dimensions"><i class="fa fa-check"></i><b>13.4</b> Clustering on HVGs and spatial dimensions</a></li>
-<li class="chapter" data-level="13.5" data-path="clustering.html"><a href="clustering.html#bayesspace"><i class="fa fa-check"></i><b>13.5</b> BayesSpace</a></li>
-<li class="chapter" data-level="13.6" data-path="clustering.html"><a href="clustering.html#further-methods-1"><i class="fa fa-check"></i><b>13.6</b> Further methods</a></li>
+<li class="chapter" data-level="14.1" data-path="clustering.html"><a href="clustering.html#overview-3"><i class="fa fa-check"></i><b>14.1</b> Overview</a></li>
+<li class="chapter" data-level="14.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>14.2</b> Previous steps</a></li>
+<li class="chapter" data-level="14.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>14.3</b> Clustering on HVGs</a></li>
+<li class="chapter" data-level="14.4" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs-and-spatial-dimensions"><i class="fa fa-check"></i><b>14.4</b> Clustering on HVGs and spatial dimensions</a></li>
+<li class="chapter" data-level="14.5" data-path="clustering.html"><a href="clustering.html#bayesspace"><i class="fa fa-check"></i><b>14.5</b> BayesSpace</a></li>
+<li class="chapter" data-level="14.6" data-path="clustering.html"><a href="clustering.html#further-methods-1"><i class="fa fa-check"></i><b>14.6</b> Further methods</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>14</b> Marker genes</a>
+<li class="chapter" data-level="15" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>15</b> Marker genes</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>14.1</b> Background</a></li>
-<li class="chapter" data-level="14.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>14.2</b> Previous steps</a></li>
-<li class="chapter" data-level="14.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>14.3</b> Marker genes</a></li>
+<li class="chapter" data-level="15.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>15.1</b> Background</a></li>
+<li class="chapter" data-level="15.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>15.2</b> Previous steps</a></li>
+<li class="chapter" data-level="15.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>15.3</b> Marker genes</a></li>
 </ul></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
-<li class="chapter" data-level="15" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>15</b> Workflows</a></li>
-<li class="chapter" data-level="16" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>16</b> Human DLPFC workflow</a>
+<li class="chapter" data-level="16" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>16</b> Workflows</a></li>
+<li class="chapter" data-level="17" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>17</b> Visium human DLPFC workflow</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>16.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="16.2" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>16.2</b> Load data</a></li>
-<li class="chapter" data-level="16.3" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>16.3</b> Plot data</a></li>
-<li class="chapter" data-level="16.4" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>16.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="16.5" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>16.5</b> Normalization</a></li>
-<li class="chapter" data-level="16.6" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>16.6</b> Feature selection</a></li>
-<li class="chapter" data-level="16.7" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>16.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="16.8" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>16.8</b> Clustering</a></li>
-<li class="chapter" data-level="16.9" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>16.9</b> Marker genes</a></li>
+<li class="chapter" data-level="17.1" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="17.2" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>17.2</b> Load data</a></li>
+<li class="chapter" data-level="17.3" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>17.3</b> Plot data</a></li>
+<li class="chapter" data-level="17.4" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>17.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="17.5" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>17.5</b> Normalization</a></li>
+<li class="chapter" data-level="17.6" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>17.6</b> Feature selection</a></li>
+<li class="chapter" data-level="17.7" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>17.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="17.8" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
+<li class="chapter" data-level="17.9" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>17</b> Mouse coronal workflow</a>
+<li class="chapter" data-level="18" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>18</b> Visium mouse coronal workflow</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="17.2" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>17.2</b> Load data</a></li>
-<li class="chapter" data-level="17.3" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>17.3</b> Plot data</a></li>
-<li class="chapter" data-level="17.4" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>17.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="17.5" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>17.5</b> Normalization</a></li>
-<li class="chapter" data-level="17.6" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>17.6</b> Feature selection</a></li>
-<li class="chapter" data-level="17.7" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>17.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="17.8" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
-<li class="chapter" data-level="17.9" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
+<li class="chapter" data-level="18.1" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>18.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="18.2" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>18.2</b> Load data</a></li>
+<li class="chapter" data-level="18.3" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>18.3</b> Plot data</a></li>
+<li class="chapter" data-level="18.4" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>18.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="18.5" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>18.5</b> Normalization</a></li>
+<li class="chapter" data-level="18.6" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>18.6</b> Feature selection</a></li>
+<li class="chapter" data-level="18.7" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>18.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="18.8" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>18.8</b> Clustering</a></li>
+<li class="chapter" data-level="18.9" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>18.9</b> Marker genes</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html"><i class="fa fa-check"></i><b>19</b> Visium spatialLIBD workflow</a></li>
+<li class="chapter" data-level="20" data-path="seqfish-workflow.html"><a href="seqfish-workflow.html"><i class="fa fa-check"></i><b>20</b> seqFISH workflow</a></li>
+<li class="chapter" data-level="21" data-path="cartana-workflow.html"><a href="cartana-workflow.html"><i class="fa fa-check"></i><b>21</b> Cartana workflow</a></li>
 <li class="part"><span><b>V Appendix</b></span></li>
-<li class="chapter" data-level="18" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>18</b> Contributors</a></li>
-<li class="chapter" data-level="19" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>19</b> References</a></li>
+<li class="chapter" data-level="22" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>22</b> Contributors</a></li>
+<li class="chapter" data-level="23" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>23</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -298,7 +302,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="preprocessing-steps" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Preprocessing steps</h1>
-<p>In this part, we describe several crucial preprocessing steps required to prepare raw data files in order to load the data into R. These steps require the use of several tools outside Bioconductor. In these chapters, we primarily focus on the 10x Genomics Visium platform.</p>
+<p>In this part, we describe several crucial preprocessing steps required to prepare raw data files in order to load the data into R. These steps require the use of several tools outside Bioconductor. In the examples, we primarily focus on data from the 10x Genomics Visium platform.</p>
 
 </div>
             </section>
@@ -307,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="spatialexperiment.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="image-segmentation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="image-segmentation-visium.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
