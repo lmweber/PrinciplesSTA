@@ -103,7 +103,7 @@ dimensionality-reduction-2
 clustering-2
 marker-genes-3
 visium-spatiallibd-workflow
-seqfish-workflow
 cartana-workflow
+seqfish-workflow
 contributors
 references
