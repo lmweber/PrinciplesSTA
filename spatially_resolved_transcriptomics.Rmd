@@ -2,6 +2,8 @@
 
 Spatially resolved transcriptomics (ST) technologies allow transcriptome-wide gene expression to be measured at spatial resolution. There are several technological platforms, each with their unique advantages.
 
+Here we describe the platforms used to generate the example datasets in this book.
+
 
 ## 10x Genomics Visium
 
@@ -9,29 +11,10 @@ The [10x Genomics Visium](https://www.10xgenomics.com/products/spatial-gene-expr
 
 The dimensions of the tissue slide are approximately 6.5mm by 6.5mm, and contains around 5000 barcoded spots. Spots are located in a regular hexagonal arrangement, with each spot 55µm in diameter, and 100µm center to center. The number of cells per spot depends on the organism and tissue type, e.g. 0-10 for human brain, or around 50 for mouse brain. Each slide contains 4 capture areas (6.5mm x 6.5mm each). The following figure provides an illustration.
 
-This platform is commercially available from 10x Genomics. This makes it relatively accessible, affordable, and easy for new labs to get started with, especially compared to some of the other platforms that require more specialized equipment and expertise. In our view, this makes it likely that Visium (and its future extensions) will see widespread adoption over the coming years.
+This platform is commercially available from 10x Genomics, making it relatively accessible, affordable, and easy for new labs to get started with, especially compared to platforms that require more specialized equipment and expertise. In our view, this makes it likely that Visium (and its future extensions) will see widespread adoption over the coming years.
 
 
 ```{r Visium-schematic, echo=FALSE, fig.wide=TRUE, fig.align="center", fig.cap="Schematic of 10x Genomics Visium platform. Image source: [10x Genomics Visium website](https://www.10xgenomics.com/spatial-transcriptomics/)"}
 knitr::include_graphics("images/Visium.png")
 ```
-
-
-
-## Cartana
-
-Cartana allows measuring expression levels of up to hundreds of targeted genes at single-cell resolution, using *in situ* sequencing. The platform was recently acquired by 10x Genomics, and will be offered as a commercial product by 10x Genomics.
-
-
-
-## Slide-seqV2
-
-
-
-## seqFISH
-
-
-
-## MERFISH
-
 
