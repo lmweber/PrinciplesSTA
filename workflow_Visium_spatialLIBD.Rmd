@@ -1,5 +1,4 @@
 # Visium spatialLIBD workflow
 
-Visium workflow using `spatialLIBD` package
-
+Visium workflow using [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) package
 

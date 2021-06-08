@@ -29,8 +29,6 @@ rmd_files: ["index.Rmd",
     "workflow_Visium_humanDLPFC.Rmd",
     "workflow_Visium_mouseCoronal.Rmd",
     "workflow_Visium_spatialLIBD.Rmd",
-    "workflow_Cartana.Rmd",
-    "workflow_seqFISH.Rmd",
     # Part 5: Appendix
     "contributors.Rmd",
     "references.Rmd"]

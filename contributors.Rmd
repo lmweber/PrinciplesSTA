@@ -6,12 +6,7 @@ Lukas M. Weber, *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD,
 
 Abby Spangler, *Lieber Institute for Brain Development, Baltimore, MD, USA*
 
-Brenda Pardo, *Lieber Institute for Brain Development, Baltimore, MD, USA*
-
-Helena L. Crowell, *University of Zurich, Zurich, Switzerland*
-
 Leonardo Collado-Torres, *Lieber Institute for Brain Development, Baltimore, MD, USA*
 
 Stephanie C. Hicks, *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
-
 
