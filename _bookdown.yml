@@ -15,7 +15,6 @@ rmd_files: ["index.Rmd",
     "image_segmentation.Rmd",
     "loupe_browser.Rmd",
     "space_ranger.Rmd",
-    "other_platforms.Rmd",
     # Part 3: Analysis steps
     "analysis_steps.Rmd",
     "quality_control.Rmd",
