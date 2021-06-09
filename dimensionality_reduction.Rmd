@@ -1,22 +1,20 @@
 # Dimensionality reduction
 
-
 ## Background
 
-Chapter on dimensionality reduction
-
+In this chapter, we apply dimensionality reduction methods to visualize the data and to generate inputs for further downstream analyses.
 
 
 ## Previous steps
 
-*Code to run steps from the previous chapters, to generate the `SpatialExperiment` object required for this chapter. For more details on each step, see the previous chapters.*
+*Code to run steps from the previous chapters to generate the `SpatialExperiment` object required for this chapter.*
 
 ```{r previous_steps, message=FALSE, results='hide'}
 # LOAD DATA
 
 library(SpatialExperiment)
 library(STexampleData)
-spe <- load_data("Visium_humanDLPFC")
+spe <- Visium_humanDLPFC()
 
 # QUALITY CONTROL (QC)
 
@@ -60,7 +58,6 @@ top_hvgs <- getTopHVGs(dec, prop = 0.1)
 ```
 
 
-
 ## Principal component analysis (PCA)
 
 Apply principal component analysis (PCA) to the set of top highly variable genes (HVGs) to reduce the dimensionality of the dataset, and retain the top 50 principal components (PCs) for further downstream analyses.
@@ -79,7 +76,6 @@ dim(reducedDim(spe, "PCA"))
 ```
 
 
-
 ## Uniform Manifold Approximation and Projection (UMAP)
 
 We also run UMAP [@McInnes2018] on the set of top 50 PCs and retain the top 2 UMAP components, which will be used for visualization purposes.
@@ -92,24 +88,24 @@ spe <- runUMAP(spe, dimred = "PCA")
 reducedDimNames(spe)
 dim(reducedDim(spe, "UMAP"))
 
-# update column names for plotting functions
+# update column names for easier plotting
 colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 ```
-
 
 
 ## Visualizations
 
 Generate plots using plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package. In the next chapter on clustering, we will add cluster labels to these reduced dimension plots.
 
-```{r reduced_dim_plots, message=FALSE, fig.width=4.25, fig.height=4.25}
+```{r, message=FALSE}
 library(ggspavis)
+```
 
+```{r reduced_dim_plots, fig.width=4.25, fig.height=4.25}
 # plot top 2 PCA dimensions
 plotDimRed(spe, type = "PCA")
 
 # plot top 2 UMAP dimensions
 plotDimRed(spe, type = "UMAP")
 ```
-
 
