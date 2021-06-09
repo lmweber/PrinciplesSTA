@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 17 Visium human DLPFC workflow | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
+  <title>Chapter 16 Visium human DLPFC workflow | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 17 Visium human DLPFC workflow | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta property="og:title" content="Chapter 16 Visium human DLPFC workflow | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,14 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 17 Visium human DLPFC workflow | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta name="twitter:title" content="Chapter 16 Visium human DLPFC workflow | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   
   <meta name="twitter:description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
   
 
 
 
-<meta name="date" content="2021-03-10" />
+<meta name="date" content="2021-06-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="workflows.html"/>
 <link rel="next" href="visium-mouse-coronal-workflow.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -144,10 +169,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html"><i class="fa fa-check"></i><b>2</b> Spatially resolved transcriptomics</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1</b> 10x Genomics Visium</a></li>
-<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#cartana"><i class="fa fa-check"></i><b>2.2</b> Cartana</a></li>
-<li class="chapter" data-level="2.3" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#slide-seqv2"><i class="fa fa-check"></i><b>2.3</b> Slide-seqV2</a></li>
-<li class="chapter" data-level="2.4" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#seqfish"><i class="fa fa-check"></i><b>2.4</b> seqFISH</a></li>
-<li class="chapter" data-level="2.5" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#merfish"><i class="fa fa-check"></i><b>2.5</b> MERFISH</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="spatialexperiment.html"><a href="spatialexperiment.html"><i class="fa fa-check"></i><b>3</b> SpatialExperiment</a>
 <ul>
@@ -182,104 +203,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#web-summary-.html-file"><i class="fa fa-check"></i><b>7.6</b> Web summary .html file</a></li>
 <li class="chapter" data-level="7.7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#import-outputs-into-r"><i class="fa fa-check"></i><b>7.7</b> Import outputs into R</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="other-platforms.html"><a href="other-platforms.html"><i class="fa fa-check"></i><b>8</b> Other platforms</a></li>
 <li class="part"><span><b>III Analysis steps</b></span></li>
-<li class="chapter" data-level="9" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>9</b> Analysis steps</a>
+<li class="chapter" data-level="8" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>8</b> Analysis steps</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>9.1</b> Load data</a></li>
-<li class="chapter" data-level="9.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>9.2</b> SpatialExperiment object structure</a></li>
+<li class="chapter" data-level="8.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>8.1</b> Load data</a></li>
+<li class="chapter" data-level="8.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>8.2</b> SpatialExperiment object structure</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>10</b> Quality control</a>
+<li class="chapter" data-level="9" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>9</b> Quality control</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
-<li class="chapter" data-level="10.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>10.2</b> Load data</a></li>
-<li class="chapter" data-level="10.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>10.3</b> Plot data</a></li>
-<li class="chapter" data-level="10.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>10.4</b> Calculate QC metrics</a></li>
-<li class="chapter" data-level="10.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>10.5</b> Selecting thresholds</a>
+<li class="chapter" data-level="9.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>9.1</b> Background</a></li>
+<li class="chapter" data-level="9.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>9.2</b> Load data</a></li>
+<li class="chapter" data-level="9.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>9.3</b> Plot data</a></li>
+<li class="chapter" data-level="9.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>9.4</b> Calculate QC metrics</a></li>
+<li class="chapter" data-level="9.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>9.5</b> Selecting thresholds</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>10.5.1</b> Library size</a></li>
-<li class="chapter" data-level="10.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>10.5.2</b> Number of expressed features</a></li>
-<li class="chapter" data-level="10.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>10.5.3</b> Proportion of mitochondrial reads</a></li>
-<li class="chapter" data-level="10.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>10.5.4</b> Number of cells per spot</a></li>
-<li class="chapter" data-level="10.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>10.5.5</b> Remove low-quality spots</a></li>
+<li class="chapter" data-level="9.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>9.5.1</b> Library size</a></li>
+<li class="chapter" data-level="9.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>9.5.2</b> Number of expressed features</a></li>
+<li class="chapter" data-level="9.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>9.5.3</b> Proportion of mitochondrial reads</a></li>
+<li class="chapter" data-level="9.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>9.5.4</b> Number of cells per spot</a></li>
+<li class="chapter" data-level="9.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>9.5.5</b> Remove low-quality spots</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>10.6</b> Zero-cell and single-cell spots</a></li>
-<li class="chapter" data-level="10.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>10.7</b> Quality control at gene level</a></li>
+<li class="chapter" data-level="9.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>9.6</b> Zero-cell and single-cell spots</a></li>
+<li class="chapter" data-level="9.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>9.7</b> Quality control at gene level</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>11</b> Normalization</a>
+<li class="chapter" data-level="10" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>10</b> Normalization</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
-<li class="chapter" data-level="11.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
-<li class="chapter" data-level="11.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>11.3</b> Log-transformed normalized counts</a></li>
+<li class="chapter" data-level="10.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
+<li class="chapter" data-level="10.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>10.2</b> Previous steps</a></li>
+<li class="chapter" data-level="10.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>10.3</b> Log-transformed normalized counts</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>12</b> Feature selection</a>
+<li class="chapter" data-level="11" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>11</b> Feature selection</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
-<li class="chapter" data-level="12.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>12.2</b> Previous steps</a></li>
-<li class="chapter" data-level="12.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>12.3</b> Highly variable genes (HVGs)</a></li>
-<li class="chapter" data-level="12.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>12.4</b> Spatially variable genes (SVGs)</a>
-<ul>
-<li class="chapter" data-level="12.4.1" data-path="feature-selection.html"><a href="feature-selection.html#spatialde"><i class="fa fa-check"></i><b>12.4.1</b> SpatialDE</a></li>
-<li class="chapter" data-level="12.4.2" data-path="feature-selection.html"><a href="feature-selection.html#spark"><i class="fa fa-check"></i><b>12.4.2</b> SPARK</a></li>
-<li class="chapter" data-level="12.4.3" data-path="feature-selection.html"><a href="feature-selection.html#morans-i-statistic"><i class="fa fa-check"></i><b>12.4.3</b> Moran’s I statistic</a></li>
-<li class="chapter" data-level="12.4.4" data-path="feature-selection.html"><a href="feature-selection.html#further-methods"><i class="fa fa-check"></i><b>12.4.4</b> Further methods</a></li>
+<li class="chapter" data-level="11.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
+<li class="chapter" data-level="11.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
+<li class="chapter" data-level="11.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>11.3</b> Highly variable genes (HVGs)</a></li>
+<li class="chapter" data-level="11.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>11.4</b> Spatially variable genes (SVGs)</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>13</b> Dimensionality reduction</a>
+<li class="chapter" data-level="12" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>12</b> Dimensionality reduction</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>13.1</b> Background</a></li>
-<li class="chapter" data-level="13.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
-<li class="chapter" data-level="13.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>13.3</b> Principal component analysis (PCA)</a></li>
-<li class="chapter" data-level="13.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>13.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
-<li class="chapter" data-level="13.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>13.5</b> Visualizations</a></li>
+<li class="chapter" data-level="12.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
+<li class="chapter" data-level="12.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>12.2</b> Previous steps</a></li>
+<li class="chapter" data-level="12.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>12.3</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="12.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>12.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
+<li class="chapter" data-level="12.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>12.5</b> Visualizations</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>14</b> Clustering</a>
+<li class="chapter" data-level="13" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>13</b> Clustering</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="clustering.html"><a href="clustering.html#overview-3"><i class="fa fa-check"></i><b>14.1</b> Overview</a></li>
-<li class="chapter" data-level="14.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>14.2</b> Previous steps</a></li>
-<li class="chapter" data-level="14.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>14.3</b> Clustering on HVGs</a></li>
-<li class="chapter" data-level="14.4" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs-and-spatial-dimensions"><i class="fa fa-check"></i><b>14.4</b> Clustering on HVGs and spatial dimensions</a></li>
-<li class="chapter" data-level="14.5" data-path="clustering.html"><a href="clustering.html#bayesspace"><i class="fa fa-check"></i><b>14.5</b> BayesSpace</a></li>
-<li class="chapter" data-level="14.6" data-path="clustering.html"><a href="clustering.html#further-methods-1"><i class="fa fa-check"></i><b>14.6</b> Further methods</a></li>
+<li class="chapter" data-level="13.1" data-path="clustering.html"><a href="clustering.html#overview-3"><i class="fa fa-check"></i><b>13.1</b> Overview</a></li>
+<li class="chapter" data-level="13.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
+<li class="chapter" data-level="13.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>13.3</b> Clustering on HVGs</a></li>
+<li class="chapter" data-level="13.4" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs-and-spatial-dimensions"><i class="fa fa-check"></i><b>13.4</b> Clustering on HVGs and spatial dimensions</a></li>
+<li class="chapter" data-level="13.5" data-path="clustering.html"><a href="clustering.html#bayesspace"><i class="fa fa-check"></i><b>13.5</b> BayesSpace</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>15</b> Marker genes</a>
+<li class="chapter" data-level="14" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>14</b> Marker genes</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>15.1</b> Background</a></li>
-<li class="chapter" data-level="15.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>15.2</b> Previous steps</a></li>
-<li class="chapter" data-level="15.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>15.3</b> Marker genes</a></li>
+<li class="chapter" data-level="14.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>14.1</b> Background</a></li>
+<li class="chapter" data-level="14.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>14.2</b> Previous steps</a></li>
+<li class="chapter" data-level="14.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>14.3</b> Marker genes</a></li>
 </ul></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
-<li class="chapter" data-level="16" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>16</b> Workflows</a></li>
-<li class="chapter" data-level="17" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>17</b> Visium human DLPFC workflow</a>
+<li class="chapter" data-level="15" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>15</b> Workflows</a></li>
+<li class="chapter" data-level="16" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>16</b> Visium human DLPFC workflow</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="17.2" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>17.2</b> Load data</a></li>
-<li class="chapter" data-level="17.3" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>17.3</b> Plot data</a></li>
-<li class="chapter" data-level="17.4" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>17.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="17.5" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>17.5</b> Normalization</a></li>
-<li class="chapter" data-level="17.6" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>17.6</b> Feature selection</a></li>
-<li class="chapter" data-level="17.7" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>17.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="17.8" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
-<li class="chapter" data-level="17.9" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
+<li class="chapter" data-level="16.1" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>16.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="16.2" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>16.2</b> Load data</a></li>
+<li class="chapter" data-level="16.3" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>16.3</b> Plot data</a></li>
+<li class="chapter" data-level="16.4" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>16.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="16.5" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>16.5</b> Normalization</a></li>
+<li class="chapter" data-level="16.6" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>16.6</b> Feature selection</a></li>
+<li class="chapter" data-level="16.7" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>16.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="16.8" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>16.8</b> Clustering</a></li>
+<li class="chapter" data-level="16.9" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>16.9</b> Marker genes</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>18</b> Visium mouse coronal workflow</a>
+<li class="chapter" data-level="17" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>17</b> Visium mouse coronal workflow</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>18.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="18.2" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>18.2</b> Load data</a></li>
-<li class="chapter" data-level="18.3" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>18.3</b> Plot data</a></li>
-<li class="chapter" data-level="18.4" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>18.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="18.5" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>18.5</b> Normalization</a></li>
-<li class="chapter" data-level="18.6" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>18.6</b> Feature selection</a></li>
-<li class="chapter" data-level="18.7" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>18.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="18.8" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>18.8</b> Clustering</a></li>
-<li class="chapter" data-level="18.9" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>18.9</b> Marker genes</a></li>
+<li class="chapter" data-level="17.1" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="17.2" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>17.2</b> Load data</a></li>
+<li class="chapter" data-level="17.3" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>17.3</b> Plot data</a></li>
+<li class="chapter" data-level="17.4" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>17.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="17.5" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>17.5</b> Normalization</a></li>
+<li class="chapter" data-level="17.6" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>17.6</b> Feature selection</a></li>
+<li class="chapter" data-level="17.7" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>17.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="17.8" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
+<li class="chapter" data-level="17.9" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html"><i class="fa fa-check"></i><b>19</b> Visium spatialLIBD workflow</a></li>
-<li class="chapter" data-level="20" data-path="cartana-workflow.html"><a href="cartana-workflow.html"><i class="fa fa-check"></i><b>20</b> Cartana workflow</a></li>
-<li class="chapter" data-level="21" data-path="seqfish-workflow.html"><a href="seqfish-workflow.html"><i class="fa fa-check"></i><b>21</b> seqFISH workflow</a></li>
+<li class="chapter" data-level="18" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html"><i class="fa fa-check"></i><b>18</b> Visium spatialLIBD workflow</a></li>
 <li class="part"><span><b>V Appendix</b></span></li>
-<li class="chapter" data-level="22" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>22</b> Contributors</a></li>
-<li class="chapter" data-level="23" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>23</b> References</a></li>
+<li class="chapter" data-level="19" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>19</b> Contributors</a></li>
+<li class="chapter" data-level="20" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>20</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -300,25 +311,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="visium-human-dlpfc-workflow" class="section level1" number="17">
-<h1><span class="header-section-number">Chapter 17</span> Visium human DLPFC workflow</h1>
-<p>This workflow analyzes one sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform. This is a condensed version of the analyses shown in the individual analysis chapters in the previous part. For more details on any of the individual steps, see the previous chapters.</p>
-<div id="description-of-dataset" class="section level2" number="17.1">
-<h2><span class="header-section-number">17.1</span> Description of dataset</h2>
+<div id="visium-human-dlpfc-workflow" class="section level1" number="16">
+<h1><span class="header-section-number">Chapter 16</span> Visium human DLPFC workflow</h1>
+<p>This workflow analyzes one sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform. This is a condensed version of the analyses shown in the individual analysis chapters in the previous part. For more details on the individual steps, see the previous chapters.</p>
+<div id="description-of-dataset" class="section level2" number="16.1">
+<h2><span class="header-section-number">16.1</span> Description of dataset</h2>
 <p>This is a 10x Genomics Visium dataset generated from healthy human brain samples from the dorsolateral prefrontal cortex (DLPFC) region.</p>
 <p>In the full dataset, there are 12 samples in total, from 3 individuals, with 2 pairs of “spatially adjacent” replicates (serial sections) per individual (4 samples per individual). The individuals and spatially adjacent replicates can be considered as blocking factors. Each sample spans the six layers of the cortex plus white matter in a perpendicular tissue section.</p>
 <p>For the examples in this workflow and the analysis chapters, we use a single sample from this dataset (sample 151673), mainly to reduce computational requirements to compile the book.</p>
-<p>This dataset is described in our publication <span class="citation"><a href="references.html#ref-Maynard2021" role="doc-biblioref">Maynard et al.</a> (<a href="references.html#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>. The full dataset is publicly available through the <a href="http://bioconductor.org/packages/spatialLIBD">spatialLIBD</a> Bioconductor package, and the analysis code from our paper is provided in the <a href="https://github.com/LieberInstitute/HumanPilot">HumanPilot</a> GitHub repository. The dataset can also be explored interactively through the <a href="http://spatial.libd.org/spatialLIBD/">spatialLIBD Shiny web app</a>.</p>
+<p>This dataset is described in our publication <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>. The full dataset is publicly available through the <a href="http://bioconductor.org/packages/spatialLIBD">spatialLIBD</a> Bioconductor package, and the analysis code from our paper is provided in the <a href="https://github.com/LieberInstitute/HumanPilot">HumanPilot</a> GitHub repository. The dataset can also be explored interactively through the <a href="http://spatial.libd.org/spatialLIBD/">spatialLIBD Shiny web app</a>.</p>
 </div>
-<div id="load-data-2" class="section level2" number="17.2">
-<h2><span class="header-section-number">17.2</span> Load data</h2>
+<div id="load-data-2" class="section level2" number="16.2">
+<h2><span class="header-section-number">16.2</span> Load data</h2>
 <p>Here, we load a single sample from this dataset (sample 151673), which is available as a <code>SpatialExperiment</code> object from the <a href="https://github.com/lmweber/STexampleData">STexampleData</a> package.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="visium-human-dlpfc-workflow.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
-<span id="cb115-2"><a href="visium-human-dlpfc-workflow.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
-<span id="cb115-3"><a href="visium-human-dlpfc-workflow.html#cb115-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-4"><a href="visium-human-dlpfc-workflow.html#cb115-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load object</span></span>
-<span id="cb115-5"><a href="visium-human-dlpfc-workflow.html#cb115-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;Visium_humanDLPFC&quot;</span>)</span>
-<span id="cb115-6"><a href="visium-human-dlpfc-workflow.html#cb115-6" aria-hidden="true" tabindex="-1"></a>spe</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="visium-human-dlpfc-workflow.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb127-2"><a href="visium-human-dlpfc-workflow.html#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
+<span id="cb127-3"><a href="visium-human-dlpfc-workflow.html#cb127-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-4"><a href="visium-human-dlpfc-workflow.html#cb127-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load object</span></span>
+<span id="cb127-5"><a href="visium-human-dlpfc-workflow.html#cb127-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
+<span id="cb127-6"><a href="visium-human-dlpfc-workflow.html#cb127-6" aria-hidden="true" tabindex="-1"></a>spe</span></code></pre></div>
 <pre><code>## class: SpatialExperiment 
 ## dim: 33538 4992 
 ## metadata(0):
@@ -328,243 +339,255 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## rowData names(3): gene_id gene_name feature_type
 ## colnames(4992): AAACAACGAATAGTTC-1 AAACAAGTATCTCCCA-1 ...
 ##   TTGTTTGTATTACACG-1 TTGTTTGTGTAAATTC-1
-## colData names(10): barcode_id imagerow ... pxl_col_in_fullres
+## colData names(5): cell_count ground_truth sample_id pxl_col_in_fullres
 ##   pxl_row_in_fullres
 ## reducedDimNames(0):
 ## mainExpName: NULL
 ## altExpNames(0):
-## spatialData names(4) : barcode_id in_tissue x y
+## spatialData names(6) : barcode_id in_tissue ... x y
+## spatialCoords names(2) : x y
 ## imgData names(4): sample_id image_id data scaleFactor</code></pre>
 </div>
-<div id="plot-data-1" class="section level2" number="17.3">
-<h2><span class="header-section-number">17.3</span> Plot data</h2>
+<div id="plot-data-1" class="section level2" number="16.3">
+<h2><span class="header-section-number">16.3</span> Plot data</h2>
 <p>As an initial check, plot the spatial coordinates (spots) in x-y dimensions on the tissue slide, to check that the object has loaded correctly and that the orientation is as expected.</p>
 <p>We use visualization functions from the <a href="https://github.com/lmweber/ggpavis">ggspavis</a> package to generate plots.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="visium-human-dlpfc-workflow.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
-<span id="cb117-2"><a href="visium-human-dlpfc-workflow.html#cb117-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-3"><a href="visium-human-dlpfc-workflow.html#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot spatial coordinates (spots)</span></span>
-<span id="cb117-4"><a href="visium-human-dlpfc-workflow.html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="visium-human-dlpfc-workflow.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="visium-human-dlpfc-workflow.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot spatial coordinates (spots)</span></span>
+<span id="cb130-2"><a href="visium-human-dlpfc-workflow.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe)</span></code></pre></div>
 <p><img src="workflow_Visium_humanDLPFC_files/figure-html/plot_data-1.png" width="672" /></p>
 </div>
-<div id="quality-control-qc" class="section level2" number="17.4">
-<h2><span class="header-section-number">17.4</span> Quality control (QC)</h2>
+<div id="quality-control-qc" class="section level2" number="16.4">
+<h2><span class="header-section-number">16.4</span> Quality control (QC)</h2>
 <p>First, we subset the object to keep only spots over tissue. The remaining spots are background spots, which we are not interested in.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="visium-human-dlpfc-workflow.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
-<span id="cb118-2"><a href="visium-human-dlpfc-workflow.html#cb118-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb118-3"><a href="visium-human-dlpfc-workflow.html#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="visium-human-dlpfc-workflow.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
+<span id="cb131-2"><a href="visium-human-dlpfc-workflow.html#cb131-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb131-3"><a href="visium-human-dlpfc-workflow.html#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
 <pre><code>## [1] 33538  3639</code></pre>
-<p>Next, calculate spot-level QC metrics using the <code>scater</code> package <span class="citation">(<a href="references.html#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span>, and store the QC metrics in <code>colData</code>. See <a href="quality-control.html#quality-control">Quality control</a> for more details, including explanations of the QC metrics.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="visium-human-dlpfc-workflow.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb120-2"><a href="visium-human-dlpfc-workflow.html#cb120-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-3"><a href="visium-human-dlpfc-workflow.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
-<span id="cb120-4"><a href="visium-human-dlpfc-workflow.html#cb120-4" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
-<span id="cb120-5"><a href="visium-human-dlpfc-workflow.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(is_mito)</span></code></pre></div>
+<p>Next, calculate spot-level QC metrics using the <code>scater</code> package <span class="citation">(<a href="#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span>, and store the QC metrics in <code>colData</code>. See <a href="quality-control.html#quality-control">Quality control</a> for more details, including explanations of the QC metrics.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="visium-human-dlpfc-workflow.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="visium-human-dlpfc-workflow.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
+<span id="cb134-2"><a href="visium-human-dlpfc-workflow.html#cb134-2" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
+<span id="cb134-3"><a href="visium-human-dlpfc-workflow.html#cb134-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(is_mito)</span></code></pre></div>
 <pre><code>## is_mito
 ## FALSE  TRUE 
 ## 33525    13</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="visium-human-dlpfc-workflow.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name[is_mito]</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="visium-human-dlpfc-workflow.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name[is_mito]</span></code></pre></div>
 <pre><code>##  [1] &quot;MT-ND1&quot;  &quot;MT-ND2&quot;  &quot;MT-CO1&quot;  &quot;MT-CO2&quot;  &quot;MT-ATP8&quot; &quot;MT-ATP6&quot; &quot;MT-CO3&quot; 
 ##  [8] &quot;MT-ND3&quot;  &quot;MT-ND4L&quot; &quot;MT-ND4&quot;  &quot;MT-ND5&quot;  &quot;MT-ND6&quot;  &quot;MT-CYB&quot;</code></pre>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="visium-human-dlpfc-workflow.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics and store in colData</span></span>
-<span id="cb124-2"><a href="visium-human-dlpfc-workflow.html#cb124-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
-<span id="cb124-3"><a href="visium-human-dlpfc-workflow.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">colData</span>(spe), <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## DataFrame with 3 rows and 16 columns
-##                            barcode_id  imagerow  imagecol cell_count
-##                           &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt;  &lt;integer&gt;
-## AAACAAGTATCTCCCA-1 AAACAAGTATCTCCCA-1   381.098   440.639          6
-## AAACAATCTACTAGCA-1 AAACAATCTACTAGCA-1   126.328   259.631         16
-## AAACACCAATAACTGC-1 AAACACCAATAACTGC-1   427.768   183.078          5
-##                    ground_truth     sample_id array_row array_col
-##                        &lt;factor&gt;   &lt;character&gt; &lt;integer&gt; &lt;integer&gt;
-## AAACAAGTATCTCCCA-1       Layer3 sample_151673        50       102
-## AAACAATCTACTAGCA-1       Layer1 sample_151673         3        43
-## AAACACCAATAACTGC-1       WM     sample_151673        59        19
-##                    pxl_col_in_fullres pxl_row_in_fullres       sum  detected
-##                             &lt;integer&gt;          &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt;
-## AAACAAGTATCTCCCA-1               8468               9791      8458      3586
-## AAACAATCTACTAGCA-1               2807               5769      1667      1150
-## AAACACCAATAACTGC-1               9505               4068      3769      1960
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="visium-human-dlpfc-workflow.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics and store in colData</span></span>
+<span id="cb138-2"><a href="visium-human-dlpfc-workflow.html#cb138-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
+<span id="cb138-3"><a href="visium-human-dlpfc-workflow.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">colData</span>(spe), <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## DataFrame with 3 rows and 23 columns
+##                    cell_count ground_truth     sample_id pxl_col_in_fullres
+##                     &lt;integer&gt;     &lt;factor&gt;   &lt;character&gt;          &lt;integer&gt;
+## AAACAAGTATCTCCCA-1          6       Layer3 sample_151673               8468
+## AAACAATCTACTAGCA-1         16       Layer1 sample_151673               2807
+## AAACACCAATAACTGC-1          5       WM     sample_151673               9505
+##                    pxl_row_in_fullres         barcode_id in_tissue array_col
+##                             &lt;integer&gt;        &lt;character&gt; &lt;integer&gt; &lt;integer&gt;
+## AAACAAGTATCTCCCA-1               9791 AAACAAGTATCTCCCA-1         1        50
+## AAACAATCTACTAGCA-1               5769 AAACAATCTACTAGCA-1         1         3
+## AAACACCAATAACTGC-1               4068 AAACACCAATAACTGC-1         1        59
+##                    array_row         x         y       sum  detected
+##                    &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt;
+## AAACAAGTATCTCCCA-1       102      8468      9791      8458      3586
+## AAACAATCTACTAGCA-1        43      2807      5769      1667      1150
+## AAACACCAATAACTGC-1        19      9505      4068      3769      1960
 ##                    subsets_mito_sum subsets_mito_detected subsets_mito_percent
 ##                           &lt;numeric&gt;             &lt;numeric&gt;            &lt;numeric&gt;
 ## AAACAAGTATCTCCCA-1             1407                    13              16.6351
 ## AAACAATCTACTAGCA-1              204                    11              12.2376
 ## AAACACCAATAACTGC-1              430                    13              11.4089
-##                        total
-##                    &lt;numeric&gt;
-## AAACAAGTATCTCCCA-1      8458
-## AAACAATCTACTAGCA-1      1667
-## AAACACCAATAACTGC-1      3769</code></pre>
+##                        total         barcode_id in_tissue array_col array_row
+##                    &lt;numeric&gt;        &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;
+## AAACAAGTATCTCCCA-1      8458 AAACAAGTATCTCCCA-1         1        50       102
+## AAACAATCTACTAGCA-1      1667 AAACAATCTACTAGCA-1         1         3        43
+## AAACACCAATAACTGC-1      3769 AAACACCAATAACTGC-1         1        59        19
+##                            x         y
+##                    &lt;integer&gt; &lt;integer&gt;
+## AAACAAGTATCTCCCA-1      8468      9791
+## AAACAATCTACTAGCA-1      2807      5769
+## AAACACCAATAACTGC-1      9505      4068</code></pre>
 <p>Select filtering thresholds for the QC metrics by examining distributions using histograms. For additional details, including further exploratory visualizations to select the thresholds, see <a href="quality-control.html#quality-control">Quality control</a>. Here, we use relatively relaxed thresholds, since the additional exploratory visualizations showed that more stringent thresholds tended to remove groups of spots corresponding to biologically meaningful regions.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="visium-human-dlpfc-workflow.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histograms of QC metrics</span></span>
-<span id="cb126-2"><a href="visium-human-dlpfc-workflow.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>))</span>
-<span id="cb126-3"><a href="visium-human-dlpfc-workflow.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>sum, <span class="at">xlab =</span> <span class="st">&quot;sum&quot;</span>, <span class="at">main =</span> <span class="st">&quot;UMIs per spot&quot;</span>)</span>
-<span id="cb126-4"><a href="visium-human-dlpfc-workflow.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>detected, <span class="at">xlab =</span> <span class="st">&quot;detected&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Genes per spot&quot;</span>)</span>
-<span id="cb126-5"><a href="visium-human-dlpfc-workflow.html#cb126-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent, <span class="at">xlab =</span> <span class="st">&quot;percent mitochondrial&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Percent mito UMIs&quot;</span>)</span>
-<span id="cb126-6"><a href="visium-human-dlpfc-workflow.html#cb126-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count, <span class="at">xlab =</span> <span class="st">&quot;number of cells&quot;</span>, <span class="at">main =</span> <span class="st">&quot;No. cells per spot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="visium-human-dlpfc-workflow.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histograms of QC metrics</span></span>
+<span id="cb140-2"><a href="visium-human-dlpfc-workflow.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>))</span>
+<span id="cb140-3"><a href="visium-human-dlpfc-workflow.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>sum, <span class="at">xlab =</span> <span class="st">&quot;sum&quot;</span>, <span class="at">main =</span> <span class="st">&quot;UMIs per spot&quot;</span>)</span>
+<span id="cb140-4"><a href="visium-human-dlpfc-workflow.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>detected, <span class="at">xlab =</span> <span class="st">&quot;detected&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Genes per spot&quot;</span>)</span>
+<span id="cb140-5"><a href="visium-human-dlpfc-workflow.html#cb140-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent, <span class="at">xlab =</span> <span class="st">&quot;percent mitochondrial&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Percent mito UMIs&quot;</span>)</span>
+<span id="cb140-6"><a href="visium-human-dlpfc-workflow.html#cb140-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count, <span class="at">xlab =</span> <span class="st">&quot;number of cells&quot;</span>, <span class="at">main =</span> <span class="st">&quot;No. cells per spot&quot;</span>)</span></code></pre></div>
 <p><img src="workflow_Visium_humanDLPFC_files/figure-html/QC_thresholds-1.png" width="672" /></p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="visium-human-dlpfc-workflow.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb127-2"><a href="visium-human-dlpfc-workflow.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb127-3"><a href="visium-human-dlpfc-workflow.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
-<span id="cb127-4"><a href="visium-human-dlpfc-workflow.html#cb127-4" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
-<span id="cb127-5"><a href="visium-human-dlpfc-workflow.html#cb127-5" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
-<span id="cb127-6"><a href="visium-human-dlpfc-workflow.html#cb127-6" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
-<span id="cb127-7"><a href="visium-human-dlpfc-workflow.html#cb127-7" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
-<span id="cb127-8"><a href="visium-human-dlpfc-workflow.html#cb127-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb127-9"><a href="visium-human-dlpfc-workflow.html#cb127-9" aria-hidden="true" tabindex="-1"></a><span class="co"># number of discarded spots for each metric</span></span>
-<span id="cb127-10"><a href="visium-human-dlpfc-workflow.html#cb127-10" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">cbind</span>(qc_lib_size, qc_detected, qc_mito, qc_cell_count), <span class="dv">2</span>, sum)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="visium-human-dlpfc-workflow.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb141-2"><a href="visium-human-dlpfc-workflow.html#cb141-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-3"><a href="visium-human-dlpfc-workflow.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
+<span id="cb141-4"><a href="visium-human-dlpfc-workflow.html#cb141-4" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
+<span id="cb141-5"><a href="visium-human-dlpfc-workflow.html#cb141-5" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
+<span id="cb141-6"><a href="visium-human-dlpfc-workflow.html#cb141-6" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
+<span id="cb141-7"><a href="visium-human-dlpfc-workflow.html#cb141-7" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
+<span id="cb141-8"><a href="visium-human-dlpfc-workflow.html#cb141-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-9"><a href="visium-human-dlpfc-workflow.html#cb141-9" aria-hidden="true" tabindex="-1"></a><span class="co"># number of discarded spots for each metric</span></span>
+<span id="cb141-10"><a href="visium-human-dlpfc-workflow.html#cb141-10" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">cbind</span>(qc_lib_size, qc_detected, qc_mito, qc_cell_count), <span class="dv">2</span>, sum)</span></code></pre></div>
 <pre><code>##   qc_lib_size   qc_detected       qc_mito qc_cell_count 
 ##             7             5             3            47</code></pre>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="visium-human-dlpfc-workflow.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
-<span id="cb129-2"><a href="visium-human-dlpfc-workflow.html#cb129-2" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
-<span id="cb129-3"><a href="visium-human-dlpfc-workflow.html#cb129-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(discard)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="visium-human-dlpfc-workflow.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
+<span id="cb143-2"><a href="visium-human-dlpfc-workflow.html#cb143-2" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
+<span id="cb143-3"><a href="visium-human-dlpfc-workflow.html#cb143-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(discard)</span></code></pre></div>
 <pre><code>## discard
 ## FALSE  TRUE 
 ##  3582    57</code></pre>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="visium-human-dlpfc-workflow.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store in object</span></span>
-<span id="cb131-2"><a href="visium-human-dlpfc-workflow.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="visium-human-dlpfc-workflow.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store in object</span></span>
+<span id="cb145-2"><a href="visium-human-dlpfc-workflow.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span></code></pre></div>
 <p>Plot the set of discarded spots in the spatial x-y coordinates, to confirm that the spatial distribution of the discarded spots does not correspond to any biologically meaningful regions, which would indicate that we are removing biologically informative spots.</p>
-<p>We use QC visualization functions from the <a href="https://github.com/lmweber/spatzli">spatzli</a> package to generate plots.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="visium-human-dlpfc-workflow.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatzli)</span>
-<span id="cb132-2"><a href="visium-human-dlpfc-workflow.html#cb132-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb132-3"><a href="visium-human-dlpfc-workflow.html#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
-<span id="cb132-4"><a href="visium-human-dlpfc-workflow.html#cb132-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCspots</span>(spe, <span class="at">discard =</span> <span class="st">&quot;discard&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="visium-human-dlpfc-workflow.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
+<span id="cb146-2"><a href="visium-human-dlpfc-workflow.html#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, <span class="at">discard =</span> <span class="st">&quot;discard&quot;</span>)</span></code></pre></div>
 <p><img src="workflow_Visium_humanDLPFC_files/figure-html/QC_check-1.png" width="672" /></p>
 <p>There is some concentration of discarded spots at the edge of the tissue region, which may be due to tissue damage. Importantly, the discarded spots do not correspond to any of the cortical layers of interest.</p>
 <p>We filter out the low-quality spots from the object.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="visium-human-dlpfc-workflow.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
-<span id="cb133-2"><a href="visium-human-dlpfc-workflow.html#cb133-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
-<span id="cb133-3"><a href="visium-human-dlpfc-workflow.html#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="visium-human-dlpfc-workflow.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
+<span id="cb147-2"><a href="visium-human-dlpfc-workflow.html#cb147-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
+<span id="cb147-3"><a href="visium-human-dlpfc-workflow.html#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
 <pre><code>## [1] 33538  3582</code></pre>
 </div>
-<div id="normalization-1" class="section level2" number="17.5">
-<h2><span class="header-section-number">17.5</span> Normalization</h2>
-<p>Calculate log-transformed normalized counts, using pool-based size factors and deconvolution to the spot level. We use normalization methods from <code>scater</code> <span class="citation">(<a href="references.html#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span> and <code>scran</code> <span class="citation">(<a href="references.html#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, by assuming that these methods can be applied by treating spots as equivalent to cells. Since we have a single sample, there are no blocking factors. For more details, see <a href="visium-mouse-coronal-workflow.html#normalization-2">Normalization</a>.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="visium-human-dlpfc-workflow.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
-<span id="cb135-2"><a href="visium-human-dlpfc-workflow.html#cb135-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-3"><a href="visium-human-dlpfc-workflow.html#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
-<span id="cb135-4"><a href="visium-human-dlpfc-workflow.html#cb135-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb135-5"><a href="visium-human-dlpfc-workflow.html#cb135-5" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
-<span id="cb135-6"><a href="visium-human-dlpfc-workflow.html#cb135-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qclus)</span></code></pre></div>
+<div id="normalization-1" class="section level2" number="16.5">
+<h2><span class="header-section-number">16.5</span> Normalization</h2>
+<p>Calculate log-transformed normalized counts, using pool-based size factors and deconvolution to the spot level. We use normalization methods from <code>scater</code> <span class="citation">(<a href="#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span> and <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, by assuming that these methods can be applied by treating spots as equivalent to cells. Since we have a single sample, there are no blocking factors. For more details, see <a href="visium-mouse-coronal-workflow.html#normalization-2">Normalization</a>.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="visium-human-dlpfc-workflow.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="visium-human-dlpfc-workflow.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
+<span id="cb150-2"><a href="visium-human-dlpfc-workflow.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb150-3"><a href="visium-human-dlpfc-workflow.html#cb150-3" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
+<span id="cb150-4"><a href="visium-human-dlpfc-workflow.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qclus)</span></code></pre></div>
 <pre><code>## qclus
 ##   1   2   3   4   5   6   7   8   9  10 
 ## 372 245 254 744 415 230 394 299 492 137</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="visium-human-dlpfc-workflow.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors and store in object</span></span>
-<span id="cb137-2"><a href="visium-human-dlpfc-workflow.html#cb137-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
-<span id="cb137-3"><a href="visium-human-dlpfc-workflow.html#cb137-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-4"><a href="visium-human-dlpfc-workflow.html#cb137-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">sizeFactors</span>(spe))</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="visium-human-dlpfc-workflow.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors and store in object</span></span>
+<span id="cb152-2"><a href="visium-human-dlpfc-workflow.html#cb152-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
+<span id="cb152-3"><a href="visium-human-dlpfc-workflow.html#cb152-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-4"><a href="visium-human-dlpfc-workflow.html#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">sizeFactors</span>(spe))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.1334  0.6093  0.8844  1.0000  1.2852  4.2475</code></pre>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="visium-human-dlpfc-workflow.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">sizeFactors</span>(spe), <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="visium-human-dlpfc-workflow.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">sizeFactors</span>(spe), <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p><img src="workflow_Visium_humanDLPFC_files/figure-html/normalization-1.png" width="672" /></p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="visium-human-dlpfc-workflow.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts) and store in object</span></span>
-<span id="cb140-2"><a href="visium-human-dlpfc-workflow.html#cb140-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
-<span id="cb140-3"><a href="visium-human-dlpfc-workflow.html#cb140-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-4"><a href="visium-human-dlpfc-workflow.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="fu">assayNames</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="visium-human-dlpfc-workflow.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts) and store in object</span></span>
+<span id="cb155-2"><a href="visium-human-dlpfc-workflow.html#cb155-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb155-3"><a href="visium-human-dlpfc-workflow.html#cb155-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-4"><a href="visium-human-dlpfc-workflow.html#cb155-4" aria-hidden="true" tabindex="-1"></a><span class="fu">assayNames</span>(spe)</span></code></pre></div>
 <pre><code>## [1] &quot;counts&quot;    &quot;logcounts&quot;</code></pre>
 </div>
-<div id="feature-selection-1" class="section level2" number="17.6">
-<h2><span class="header-section-number">17.6</span> Feature selection</h2>
-<p>Identify a set of top highly variable genes (HVGs), which will be used to define cell types. We use methods from <code>scran</code> <span class="citation">(<a href="references.html#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, treating spots as equivalent to cells, and considering only molecular features (gene expression). Alternative methods adapted for spatial data will be described in <a href="visium-mouse-coronal-workflow.html#feature-selection-2">Feature selection</a>. We also first filter out mitochondrial genes, since these are very highly expressed and not of biological interest here.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="visium-human-dlpfc-workflow.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
-<span id="cb142-2"><a href="visium-human-dlpfc-workflow.html#cb142-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
-<span id="cb142-3"><a href="visium-human-dlpfc-workflow.html#cb142-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
+<div id="feature-selection-1" class="section level2" number="16.6">
+<h2><span class="header-section-number">16.6</span> Feature selection</h2>
+<p>Identify a set of top highly variable genes (HVGs), which will be used to define cell types. We use methods from <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, treating spots as equivalent to cells, and considering only molecular features (gene expression), as described in <a href="visium-mouse-coronal-workflow.html#feature-selection-2">Feature selection</a>. We also first filter out mitochondrial genes, since these are very highly expressed and not of biological interest here.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="visium-human-dlpfc-workflow.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
+<span id="cb157-2"><a href="visium-human-dlpfc-workflow.html#cb157-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
+<span id="cb157-3"><a href="visium-human-dlpfc-workflow.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
 <pre><code>## [1] 33525  3582</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="visium-human-dlpfc-workflow.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
-<span id="cb144-2"><a href="visium-human-dlpfc-workflow.html#cb144-2" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
-<span id="cb144-3"><a href="visium-human-dlpfc-workflow.html#cb144-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-4"><a href="visium-human-dlpfc-workflow.html#cb144-4" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize mean-variance relationship</span></span>
-<span id="cb144-5"><a href="visium-human-dlpfc-workflow.html#cb144-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">metadata</span>(dec)</span>
-<span id="cb144-6"><a href="visium-human-dlpfc-workflow.html#cb144-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit<span class="sc">$</span>mean, fit<span class="sc">$</span>var, </span>
-<span id="cb144-7"><a href="visium-human-dlpfc-workflow.html#cb144-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;mean of log-expression&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;variance of log-expression&quot;</span>)</span>
-<span id="cb144-8"><a href="visium-human-dlpfc-workflow.html#cb144-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(fit<span class="sc">$</span><span class="fu">trend</span>(x), <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="visium-human-dlpfc-workflow.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
+<span id="cb159-2"><a href="visium-human-dlpfc-workflow.html#cb159-2" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb159-3"><a href="visium-human-dlpfc-workflow.html#cb159-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb159-4"><a href="visium-human-dlpfc-workflow.html#cb159-4" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize mean-variance relationship</span></span>
+<span id="cb159-5"><a href="visium-human-dlpfc-workflow.html#cb159-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">metadata</span>(dec)</span>
+<span id="cb159-6"><a href="visium-human-dlpfc-workflow.html#cb159-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit<span class="sc">$</span>mean, fit<span class="sc">$</span>var, </span>
+<span id="cb159-7"><a href="visium-human-dlpfc-workflow.html#cb159-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;mean of log-expression&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;variance of log-expression&quot;</span>)</span>
+<span id="cb159-8"><a href="visium-human-dlpfc-workflow.html#cb159-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(fit<span class="sc">$</span><span class="fu">trend</span>(x), <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="workflow_Visium_humanDLPFC_files/figure-html/feature_selection_HVGs-1.png" width="672" /></p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="visium-human-dlpfc-workflow.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
-<span id="cb145-2"><a href="visium-human-dlpfc-workflow.html#cb145-2" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
-<span id="cb145-3"><a href="visium-human-dlpfc-workflow.html#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(top_hvgs)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="visium-human-dlpfc-workflow.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
+<span id="cb160-2"><a href="visium-human-dlpfc-workflow.html#cb160-2" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
+<span id="cb160-3"><a href="visium-human-dlpfc-workflow.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(top_hvgs)</span></code></pre></div>
 <pre><code>## [1] 1448</code></pre>
 </div>
-<div id="dimensionality-reduction-1" class="section level2" number="17.7">
-<h2><span class="header-section-number">17.7</span> Dimensionality reduction</h2>
+<div id="dimensionality-reduction-1" class="section level2" number="16.7">
+<h2><span class="header-section-number">16.7</span> Dimensionality reduction</h2>
 <p>Run principal component analysis (PCA) to the set of top HVGs, and retain the top 50 principal components (PCs) for further downstream analyses. This is done both to reduce noise and to improve computational efficiency. We also run UMAP on the set of top 50 PCs and retain the top 2 UMAP components for visualization purposes.</p>
-<p>We use the computationally efficient implementation of PCA available in <code>scater</code> <span class="citation">(<a href="references.html#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span>, which uses randomization, and therefore requires setting a random seed for reproducibility.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="visium-human-dlpfc-workflow.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
-<span id="cb147-2"><a href="visium-human-dlpfc-workflow.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb147-3"><a href="visium-human-dlpfc-workflow.html#cb147-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
-<span id="cb147-4"><a href="visium-human-dlpfc-workflow.html#cb147-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb147-5"><a href="visium-human-dlpfc-workflow.html#cb147-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
+<p>We use the computationally efficient implementation of PCA available in <code>scater</code> <span class="citation">(<a href="#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span>, which uses randomization, and therefore requires setting a random seed for reproducibility.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="visium-human-dlpfc-workflow.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
+<span id="cb162-2"><a href="visium-human-dlpfc-workflow.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb162-3"><a href="visium-human-dlpfc-workflow.html#cb162-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
+<span id="cb162-4"><a href="visium-human-dlpfc-workflow.html#cb162-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-5"><a href="visium-human-dlpfc-workflow.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
 <pre><code>## [1] &quot;PCA&quot;</code></pre>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="visium-human-dlpfc-workflow.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;PCA&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="visium-human-dlpfc-workflow.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;PCA&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 3582   50</code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="visium-human-dlpfc-workflow.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
-<span id="cb151-2"><a href="visium-human-dlpfc-workflow.html#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb151-3"><a href="visium-human-dlpfc-workflow.html#cb151-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb151-4"><a href="visium-human-dlpfc-workflow.html#cb151-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb151-5"><a href="visium-human-dlpfc-workflow.html#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="visium-human-dlpfc-workflow.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
+<span id="cb166-2"><a href="visium-human-dlpfc-workflow.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb166-3"><a href="visium-human-dlpfc-workflow.html#cb166-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb166-4"><a href="visium-human-dlpfc-workflow.html#cb166-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-5"><a href="visium-human-dlpfc-workflow.html#cb166-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
 <pre><code>## [1] &quot;PCA&quot;  &quot;UMAP&quot;</code></pre>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="visium-human-dlpfc-workflow.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="visium-human-dlpfc-workflow.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 3582    2</code></pre>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="visium-human-dlpfc-workflow.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names for plotting functions</span></span>
-<span id="cb155-2"><a href="visium-human-dlpfc-workflow.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="visium-human-dlpfc-workflow.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names for easier plotting</span></span>
+<span id="cb170-2"><a href="visium-human-dlpfc-workflow.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
 </div>
-<div id="clustering-1" class="section level2" number="17.8">
-<h2><span class="header-section-number">17.8</span> Clustering</h2>
-<p>Next, we perform clustering to define cell types. Here, we use molecular features (gene expression) only. Alternative approaches for spatial data that take into account spatial and other features will be described in <a href="visium-mouse-coronal-workflow.html#clustering-2">Clustering</a>. We apply graph-based clustering using the Walktrap method implemented in <code>scran</code> <span class="citation">(<a href="references.html#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, applied to the top 50 PCs calculated on the set of top HVGs.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="visium-human-dlpfc-workflow.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graph-based clustering</span></span>
-<span id="cb156-2"><a href="visium-human-dlpfc-workflow.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb156-3"><a href="visium-human-dlpfc-workflow.html#cb156-3" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb156-4"><a href="visium-human-dlpfc-workflow.html#cb156-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">k =</span> k, <span class="at">use.dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb156-5"><a href="visium-human-dlpfc-workflow.html#cb156-5" aria-hidden="true" tabindex="-1"></a>g_walk <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">cluster_walktrap</span>(g)</span>
-<span id="cb156-6"><a href="visium-human-dlpfc-workflow.html#cb156-6" aria-hidden="true" tabindex="-1"></a>clus <span class="ot">&lt;-</span> g_walk<span class="sc">$</span>membership</span>
-<span id="cb156-7"><a href="visium-human-dlpfc-workflow.html#cb156-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(clus)</span></code></pre></div>
+<div id="clustering-1" class="section level2" number="16.8">
+<h2><span class="header-section-number">16.8</span> Clustering</h2>
+<p>Next, we perform clustering to define cell types. Here, we use molecular features (gene expression) only, as described in <a href="visium-mouse-coronal-workflow.html#clustering-2">Clustering</a>. We apply graph-based clustering using the Walktrap method implemented in <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, applied to the top 50 PCs calculated on the set of top HVGs.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="visium-human-dlpfc-workflow.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graph-based clustering</span></span>
+<span id="cb171-2"><a href="visium-human-dlpfc-workflow.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb171-3"><a href="visium-human-dlpfc-workflow.html#cb171-3" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb171-4"><a href="visium-human-dlpfc-workflow.html#cb171-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">k =</span> k, <span class="at">use.dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb171-5"><a href="visium-human-dlpfc-workflow.html#cb171-5" aria-hidden="true" tabindex="-1"></a>g_walk <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">cluster_walktrap</span>(g)</span>
+<span id="cb171-6"><a href="visium-human-dlpfc-workflow.html#cb171-6" aria-hidden="true" tabindex="-1"></a>clus <span class="ot">&lt;-</span> g_walk<span class="sc">$</span>membership</span>
+<span id="cb171-7"><a href="visium-human-dlpfc-workflow.html#cb171-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(clus)</span></code></pre></div>
 <pre><code>## clus
 ##    1    2    3    4    5    6 
 ##  372  916  342 1083  349  520</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="visium-human-dlpfc-workflow.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store cluster labels in column &#39;label&#39; in colData</span></span>
-<span id="cb158-2"><a href="visium-human-dlpfc-workflow.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colLabels</span>(spe) <span class="ot">&lt;-</span> <span class="fu">factor</span>(clus)</span></code></pre></div>
-<p>Visualize the clusters by plotting in (i) spatial x-y coordinates on the tissue slide, and (ii) UMAP dimensions. We use plotting functions from the <a href="https://github.com/lmweber/ggpavis">ggspavis</a> package.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="visium-human-dlpfc-workflow.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store cluster labels in column &#39;label&#39; in colData</span></span>
+<span id="cb173-2"><a href="visium-human-dlpfc-workflow.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colLabels</span>(spe) <span class="ot">&lt;-</span> <span class="fu">factor</span>(clus)</span></code></pre></div>
+<p>Visualize the clusters by plotting in (i) spatial (x-y) coordinates on the tissue slide, and (ii) UMAP dimensions.</p>
 <p>From the visualizations, we can see that the clustering reproduces the known biological structure (cortical layers), although not perfectly. The clusters are also separated in UMAP space, but again not perfectly.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="visium-human-dlpfc-workflow.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
-<span id="cb159-2"><a href="visium-human-dlpfc-workflow.html#cb159-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-3"><a href="visium-human-dlpfc-workflow.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in spatial x-y coordinates</span></span>
-<span id="cb159-4"><a href="visium-human-dlpfc-workflow.html#cb159-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">discrete =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="visium-human-dlpfc-workflow.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in spatial x-y coordinates</span></span>
+<span id="cb174-2"><a href="visium-human-dlpfc-workflow.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, </span>
+<span id="cb174-3"><a href="visium-human-dlpfc-workflow.html#cb174-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
 <p><img src="workflow_Visium_humanDLPFC_files/figure-html/clustering_plots_spots-1.png" width="672" /></p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="visium-human-dlpfc-workflow.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot ground truth labels in spatial x-y coordinates</span></span>
-<span id="cb160-2"><a href="visium-human-dlpfc-workflow.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">discrete =</span> <span class="st">&quot;ground_truth&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="visium-human-dlpfc-workflow.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot ground truth labels in spatial coordinates</span></span>
+<span id="cb175-2"><a href="visium-human-dlpfc-workflow.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">annotate =</span> <span class="st">&quot;ground_truth&quot;</span>, </span>
+<span id="cb175-3"><a href="visium-human-dlpfc-workflow.html#cb175-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 14 rows containing missing values (geom_point).</code></pre>
 <p><img src="workflow_Visium_humanDLPFC_files/figure-html/clustering_plots_spots-2.png" width="672" /></p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="visium-human-dlpfc-workflow.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in UMAP reduced dimensions</span></span>
-<span id="cb162-2"><a href="visium-human-dlpfc-workflow.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>, <span class="at">discrete =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="visium-human-dlpfc-workflow.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in UMAP reduced dimensions</span></span>
+<span id="cb177-2"><a href="visium-human-dlpfc-workflow.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
+<span id="cb177-3"><a href="visium-human-dlpfc-workflow.html#cb177-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
 <p><img src="workflow_Visium_humanDLPFC_files/figure-html/clustering_plots_reduced-1.png" width="480" /></p>
 </div>
-<div id="marker-genes-2" class="section level2" number="17.9">
-<h2><span class="header-section-number">17.9</span> Marker genes</h2>
-<p>Identify marker genes by testing for differential gene expression between clusters. We use the <code>findMarkers</code> implementation in <code>scran</code> <span class="citation">(<a href="references.html#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, using a binomial test, which tests for genes that differ in the proportion expressed vs. not expressed between clusters. This is a more stringent test than the default t-tests, and tends to select genes that are easier to interpret and validate experimentally.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="visium-human-dlpfc-workflow.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set gene names as row names for visualization purposes</span></span>
-<span id="cb163-2"><a href="visium-human-dlpfc-workflow.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(spe) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name</span>
-<span id="cb163-3"><a href="visium-human-dlpfc-workflow.html#cb163-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb163-4"><a href="visium-human-dlpfc-workflow.html#cb163-4" aria-hidden="true" tabindex="-1"></a><span class="co"># test for marker genes</span></span>
-<span id="cb163-5"><a href="visium-human-dlpfc-workflow.html#cb163-5" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">test =</span> <span class="st">&quot;binom&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>)</span>
-<span id="cb163-6"><a href="visium-human-dlpfc-workflow.html#cb163-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb163-7"><a href="visium-human-dlpfc-workflow.html#cb163-7" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a list with one DataFrame per cluster</span></span>
-<span id="cb163-8"><a href="visium-human-dlpfc-workflow.html#cb163-8" aria-hidden="true" tabindex="-1"></a>markers</span></code></pre></div>
+<div id="marker-genes-2" class="section level2" number="16.9">
+<h2><span class="header-section-number">16.9</span> Marker genes</h2>
+<p>Identify marker genes by testing for differential gene expression between clusters. We use the <code>findMarkers</code> implementation in <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, using a binomial test, which tests for genes that differ in the proportion expressed vs. not expressed between clusters. This is a more stringent test than the default t-tests, and tends to select genes that are easier to interpret and validate experimentally.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="visium-human-dlpfc-workflow.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set gene names as row names for easier plotting</span></span>
+<span id="cb178-2"><a href="visium-human-dlpfc-workflow.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(spe) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name</span>
+<span id="cb178-3"><a href="visium-human-dlpfc-workflow.html#cb178-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb178-4"><a href="visium-human-dlpfc-workflow.html#cb178-4" aria-hidden="true" tabindex="-1"></a><span class="co"># test for marker genes</span></span>
+<span id="cb178-5"><a href="visium-human-dlpfc-workflow.html#cb178-5" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">test =</span> <span class="st">&quot;binom&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>)</span>
+<span id="cb178-6"><a href="visium-human-dlpfc-workflow.html#cb178-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb178-7"><a href="visium-human-dlpfc-workflow.html#cb178-7" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a list with one DataFrame per cluster</span></span>
+<span id="cb178-8"><a href="visium-human-dlpfc-workflow.html#cb178-8" aria-hidden="true" tabindex="-1"></a>markers</span></code></pre></div>
 <pre><code>## List of length 6
 ## names(6): 1 2 3 4 5 6</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="visium-human-dlpfc-workflow.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
-<span id="cb165-2"><a href="visium-human-dlpfc-workflow.html#cb165-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb165-3"><a href="visium-human-dlpfc-workflow.html#cb165-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-fold changes for one cluster over all other clusters</span></span>
-<span id="cb165-4"><a href="visium-human-dlpfc-workflow.html#cb165-4" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting cluster 1</span></span>
-<span id="cb165-5"><a href="visium-human-dlpfc-workflow.html#cb165-5" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> markers[[<span class="dv">1</span>]]</span>
-<span id="cb165-6"><a href="visium-human-dlpfc-workflow.html#cb165-6" aria-hidden="true" tabindex="-1"></a>best_set <span class="ot">&lt;-</span> interesting[interesting<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">5</span>, ]</span>
-<span id="cb165-7"><a href="visium-human-dlpfc-workflow.html#cb165-7" aria-hidden="true" tabindex="-1"></a>logFCs <span class="ot">&lt;-</span> <span class="fu">getMarkerEffects</span>(best_set)</span>
-<span id="cb165-8"><a href="visium-human-dlpfc-workflow.html#cb165-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb165-9"><a href="visium-human-dlpfc-workflow.html#cb165-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(logFCs, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">101</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="visium-human-dlpfc-workflow.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="visium-human-dlpfc-workflow.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-fold changes for one cluster over all other clusters</span></span>
+<span id="cb181-2"><a href="visium-human-dlpfc-workflow.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting cluster 1</span></span>
+<span id="cb181-3"><a href="visium-human-dlpfc-workflow.html#cb181-3" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> markers[[<span class="dv">1</span>]]</span>
+<span id="cb181-4"><a href="visium-human-dlpfc-workflow.html#cb181-4" aria-hidden="true" tabindex="-1"></a>best_set <span class="ot">&lt;-</span> interesting[interesting<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">5</span>, ]</span>
+<span id="cb181-5"><a href="visium-human-dlpfc-workflow.html#cb181-5" aria-hidden="true" tabindex="-1"></a>logFCs <span class="ot">&lt;-</span> <span class="fu">getMarkerEffects</span>(best_set)</span>
+<span id="cb181-6"><a href="visium-human-dlpfc-workflow.html#cb181-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb181-7"><a href="visium-human-dlpfc-workflow.html#cb181-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(logFCs, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">101</span>))</span></code></pre></div>
 <p><img src="workflow_Visium_humanDLPFC_files/figure-html/marker_genes_heatmap-1.png" width="480" /></p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="visium-human-dlpfc-workflow.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-transformed normalized expression of top genes for one cluster</span></span>
-<span id="cb166-2"><a href="visium-human-dlpfc-workflow.html#cb166-2" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">rownames</span>(interesting))</span>
-<span id="cb166-3"><a href="visium-human-dlpfc-workflow.html#cb166-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb166-4"><a href="visium-human-dlpfc-workflow.html#cb166-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotExpression</span>(spe, <span class="at">x =</span> <span class="st">&quot;label&quot;</span>, <span class="at">features =</span> top_genes)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="visium-human-dlpfc-workflow.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-transformed normalized expression of top genes for one cluster</span></span>
+<span id="cb182-2"><a href="visium-human-dlpfc-workflow.html#cb182-2" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">rownames</span>(interesting))</span>
+<span id="cb182-3"><a href="visium-human-dlpfc-workflow.html#cb182-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-4"><a href="visium-human-dlpfc-workflow.html#cb182-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotExpression</span>(spe, <span class="at">x =</span> <span class="st">&quot;label&quot;</span>, <span class="at">features =</span> top_genes)</span></code></pre></div>
 <p><img src="workflow_Visium_humanDLPFC_files/figure-html/marker_genes_expression-1.png" width="672" /></p>
 
+</div>
+</div>
+<h3> References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Lun2016" class="csl-entry">
+Lun, Aaron T L, Davis J McCarthy, and John C Marioni. 2016. <span>“A Step-by-Step Workflow for Low-Level Analysis of Single-Cell <span class="nocase">RNA-seq</span> Data with <span>Bioconductor</span>.”</span> <em>F1000Research</em> 5: 2122.
+</div>
+<div id="ref-Maynard2021" class="csl-entry">
+Maynard, K R, L Collado-Torres, L M Weber, C Uytingco, B K Barry, S R Williams, J L Catallini, et al. 2021. <span>“Transcriptome-Scale Spatial Gene Expression in the Human Dorsolateral Prefrontal Cortex.”</span> <em>Nature Neuroscience</em>, 425–36.
+</div>
+<div id="ref-McCarthy2017" class="csl-entry">
+McCarthy, Davis J, Kieran R Campbell, Aaron T L Lun, and Quin F Wills. 2017. <span>“Scater: Pre-Processing, Quality Control, Normalization and Visualization of Single-Cell <span class="nocase">RNA-seq</span> Data in <span>R</span>.”</span> <em>Bioinformatics</em> 33 (8): 1179–86.
 </div>
 </div>
             </section>
@@ -596,6 +619,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

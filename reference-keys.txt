@@ -6,10 +6,6 @@ who-this-book-is-for
 bioconductor
 spatially-resolved-transcriptomics
 x-genomics-visium
-cartana
-slide-seqv2
-seqfish
-merfish
 spatialexperiment
 spatialexperiment-class
 preprocessing-steps
@@ -34,7 +30,6 @@ run-spaceranger-count
 output-files-1
 web-summary-.html-file
 import-outputs-into-r
-other-platforms
 analysis-steps
 load-data
 spatialexperiment-object-structure
@@ -60,10 +55,6 @@ background-2
 previous-steps-1
 highly-variable-genes-hvgs
 spatially-variable-genes-svgs
-spatialde
-spark
-morans-i-statistic
-further-methods
 dimensionality-reduction
 background-3
 previous-steps-2
@@ -76,7 +67,6 @@ previous-steps-3
 clustering-on-hvgs
 clustering-on-hvgs-and-spatial-dimensions
 bayesspace
-further-methods-1
 marker-genes
 background-4
 previous-steps-4
@@ -103,7 +93,5 @@ dimensionality-reduction-2
 clustering-2
 marker-genes-3
 visium-spatiallibd-workflow
-cartana-workflow
-seqfish-workflow
 contributors
 references

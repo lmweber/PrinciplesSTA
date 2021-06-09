@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 Dimensionality reduction | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
+  <title>Chapter 12 Dimensionality reduction | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 Dimensionality reduction | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta property="og:title" content="Chapter 12 Dimensionality reduction | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,14 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Dimensionality reduction | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta name="twitter:title" content="Chapter 12 Dimensionality reduction | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   
   <meta name="twitter:description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
   
 
 
 
-<meta name="date" content="2021-03-10" />
+<meta name="date" content="2021-06-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="feature-selection.html"/>
 <link rel="next" href="clustering.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -144,10 +169,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html"><i class="fa fa-check"></i><b>2</b> Spatially resolved transcriptomics</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1</b> 10x Genomics Visium</a></li>
-<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#cartana"><i class="fa fa-check"></i><b>2.2</b> Cartana</a></li>
-<li class="chapter" data-level="2.3" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#slide-seqv2"><i class="fa fa-check"></i><b>2.3</b> Slide-seqV2</a></li>
-<li class="chapter" data-level="2.4" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#seqfish"><i class="fa fa-check"></i><b>2.4</b> seqFISH</a></li>
-<li class="chapter" data-level="2.5" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#merfish"><i class="fa fa-check"></i><b>2.5</b> MERFISH</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="spatialexperiment.html"><a href="spatialexperiment.html"><i class="fa fa-check"></i><b>3</b> SpatialExperiment</a>
 <ul>
@@ -182,104 +203,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#web-summary-.html-file"><i class="fa fa-check"></i><b>7.6</b> Web summary .html file</a></li>
 <li class="chapter" data-level="7.7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#import-outputs-into-r"><i class="fa fa-check"></i><b>7.7</b> Import outputs into R</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="other-platforms.html"><a href="other-platforms.html"><i class="fa fa-check"></i><b>8</b> Other platforms</a></li>
 <li class="part"><span><b>III Analysis steps</b></span></li>
-<li class="chapter" data-level="9" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>9</b> Analysis steps</a>
+<li class="chapter" data-level="8" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>8</b> Analysis steps</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>9.1</b> Load data</a></li>
-<li class="chapter" data-level="9.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>9.2</b> SpatialExperiment object structure</a></li>
+<li class="chapter" data-level="8.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>8.1</b> Load data</a></li>
+<li class="chapter" data-level="8.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>8.2</b> SpatialExperiment object structure</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>10</b> Quality control</a>
+<li class="chapter" data-level="9" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>9</b> Quality control</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
-<li class="chapter" data-level="10.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>10.2</b> Load data</a></li>
-<li class="chapter" data-level="10.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>10.3</b> Plot data</a></li>
-<li class="chapter" data-level="10.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>10.4</b> Calculate QC metrics</a></li>
-<li class="chapter" data-level="10.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>10.5</b> Selecting thresholds</a>
+<li class="chapter" data-level="9.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>9.1</b> Background</a></li>
+<li class="chapter" data-level="9.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>9.2</b> Load data</a></li>
+<li class="chapter" data-level="9.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>9.3</b> Plot data</a></li>
+<li class="chapter" data-level="9.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>9.4</b> Calculate QC metrics</a></li>
+<li class="chapter" data-level="9.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>9.5</b> Selecting thresholds</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>10.5.1</b> Library size</a></li>
-<li class="chapter" data-level="10.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>10.5.2</b> Number of expressed features</a></li>
-<li class="chapter" data-level="10.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>10.5.3</b> Proportion of mitochondrial reads</a></li>
-<li class="chapter" data-level="10.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>10.5.4</b> Number of cells per spot</a></li>
-<li class="chapter" data-level="10.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>10.5.5</b> Remove low-quality spots</a></li>
+<li class="chapter" data-level="9.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>9.5.1</b> Library size</a></li>
+<li class="chapter" data-level="9.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>9.5.2</b> Number of expressed features</a></li>
+<li class="chapter" data-level="9.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>9.5.3</b> Proportion of mitochondrial reads</a></li>
+<li class="chapter" data-level="9.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>9.5.4</b> Number of cells per spot</a></li>
+<li class="chapter" data-level="9.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>9.5.5</b> Remove low-quality spots</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>10.6</b> Zero-cell and single-cell spots</a></li>
-<li class="chapter" data-level="10.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>10.7</b> Quality control at gene level</a></li>
+<li class="chapter" data-level="9.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>9.6</b> Zero-cell and single-cell spots</a></li>
+<li class="chapter" data-level="9.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>9.7</b> Quality control at gene level</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>11</b> Normalization</a>
+<li class="chapter" data-level="10" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>10</b> Normalization</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
-<li class="chapter" data-level="11.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
-<li class="chapter" data-level="11.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>11.3</b> Log-transformed normalized counts</a></li>
+<li class="chapter" data-level="10.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
+<li class="chapter" data-level="10.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>10.2</b> Previous steps</a></li>
+<li class="chapter" data-level="10.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>10.3</b> Log-transformed normalized counts</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>12</b> Feature selection</a>
+<li class="chapter" data-level="11" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>11</b> Feature selection</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
-<li class="chapter" data-level="12.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>12.2</b> Previous steps</a></li>
-<li class="chapter" data-level="12.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>12.3</b> Highly variable genes (HVGs)</a></li>
-<li class="chapter" data-level="12.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>12.4</b> Spatially variable genes (SVGs)</a>
-<ul>
-<li class="chapter" data-level="12.4.1" data-path="feature-selection.html"><a href="feature-selection.html#spatialde"><i class="fa fa-check"></i><b>12.4.1</b> SpatialDE</a></li>
-<li class="chapter" data-level="12.4.2" data-path="feature-selection.html"><a href="feature-selection.html#spark"><i class="fa fa-check"></i><b>12.4.2</b> SPARK</a></li>
-<li class="chapter" data-level="12.4.3" data-path="feature-selection.html"><a href="feature-selection.html#morans-i-statistic"><i class="fa fa-check"></i><b>12.4.3</b> Moran’s I statistic</a></li>
-<li class="chapter" data-level="12.4.4" data-path="feature-selection.html"><a href="feature-selection.html#further-methods"><i class="fa fa-check"></i><b>12.4.4</b> Further methods</a></li>
+<li class="chapter" data-level="11.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
+<li class="chapter" data-level="11.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
+<li class="chapter" data-level="11.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>11.3</b> Highly variable genes (HVGs)</a></li>
+<li class="chapter" data-level="11.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>11.4</b> Spatially variable genes (SVGs)</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>13</b> Dimensionality reduction</a>
+<li class="chapter" data-level="12" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>12</b> Dimensionality reduction</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>13.1</b> Background</a></li>
-<li class="chapter" data-level="13.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
-<li class="chapter" data-level="13.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>13.3</b> Principal component analysis (PCA)</a></li>
-<li class="chapter" data-level="13.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>13.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
-<li class="chapter" data-level="13.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>13.5</b> Visualizations</a></li>
+<li class="chapter" data-level="12.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
+<li class="chapter" data-level="12.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>12.2</b> Previous steps</a></li>
+<li class="chapter" data-level="12.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>12.3</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="12.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>12.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
+<li class="chapter" data-level="12.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>12.5</b> Visualizations</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>14</b> Clustering</a>
+<li class="chapter" data-level="13" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>13</b> Clustering</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="clustering.html"><a href="clustering.html#overview-3"><i class="fa fa-check"></i><b>14.1</b> Overview</a></li>
-<li class="chapter" data-level="14.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>14.2</b> Previous steps</a></li>
-<li class="chapter" data-level="14.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>14.3</b> Clustering on HVGs</a></li>
-<li class="chapter" data-level="14.4" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs-and-spatial-dimensions"><i class="fa fa-check"></i><b>14.4</b> Clustering on HVGs and spatial dimensions</a></li>
-<li class="chapter" data-level="14.5" data-path="clustering.html"><a href="clustering.html#bayesspace"><i class="fa fa-check"></i><b>14.5</b> BayesSpace</a></li>
-<li class="chapter" data-level="14.6" data-path="clustering.html"><a href="clustering.html#further-methods-1"><i class="fa fa-check"></i><b>14.6</b> Further methods</a></li>
+<li class="chapter" data-level="13.1" data-path="clustering.html"><a href="clustering.html#overview-3"><i class="fa fa-check"></i><b>13.1</b> Overview</a></li>
+<li class="chapter" data-level="13.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
+<li class="chapter" data-level="13.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>13.3</b> Clustering on HVGs</a></li>
+<li class="chapter" data-level="13.4" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs-and-spatial-dimensions"><i class="fa fa-check"></i><b>13.4</b> Clustering on HVGs and spatial dimensions</a></li>
+<li class="chapter" data-level="13.5" data-path="clustering.html"><a href="clustering.html#bayesspace"><i class="fa fa-check"></i><b>13.5</b> BayesSpace</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>15</b> Marker genes</a>
+<li class="chapter" data-level="14" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>14</b> Marker genes</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>15.1</b> Background</a></li>
-<li class="chapter" data-level="15.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>15.2</b> Previous steps</a></li>
-<li class="chapter" data-level="15.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>15.3</b> Marker genes</a></li>
+<li class="chapter" data-level="14.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>14.1</b> Background</a></li>
+<li class="chapter" data-level="14.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>14.2</b> Previous steps</a></li>
+<li class="chapter" data-level="14.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>14.3</b> Marker genes</a></li>
 </ul></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
-<li class="chapter" data-level="16" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>16</b> Workflows</a></li>
-<li class="chapter" data-level="17" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>17</b> Visium human DLPFC workflow</a>
+<li class="chapter" data-level="15" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>15</b> Workflows</a></li>
+<li class="chapter" data-level="16" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>16</b> Visium human DLPFC workflow</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="17.2" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>17.2</b> Load data</a></li>
-<li class="chapter" data-level="17.3" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>17.3</b> Plot data</a></li>
-<li class="chapter" data-level="17.4" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>17.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="17.5" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>17.5</b> Normalization</a></li>
-<li class="chapter" data-level="17.6" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>17.6</b> Feature selection</a></li>
-<li class="chapter" data-level="17.7" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>17.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="17.8" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
-<li class="chapter" data-level="17.9" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
+<li class="chapter" data-level="16.1" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>16.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="16.2" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>16.2</b> Load data</a></li>
+<li class="chapter" data-level="16.3" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>16.3</b> Plot data</a></li>
+<li class="chapter" data-level="16.4" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>16.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="16.5" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>16.5</b> Normalization</a></li>
+<li class="chapter" data-level="16.6" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>16.6</b> Feature selection</a></li>
+<li class="chapter" data-level="16.7" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>16.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="16.8" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>16.8</b> Clustering</a></li>
+<li class="chapter" data-level="16.9" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>16.9</b> Marker genes</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>18</b> Visium mouse coronal workflow</a>
+<li class="chapter" data-level="17" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>17</b> Visium mouse coronal workflow</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>18.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="18.2" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>18.2</b> Load data</a></li>
-<li class="chapter" data-level="18.3" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>18.3</b> Plot data</a></li>
-<li class="chapter" data-level="18.4" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>18.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="18.5" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>18.5</b> Normalization</a></li>
-<li class="chapter" data-level="18.6" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>18.6</b> Feature selection</a></li>
-<li class="chapter" data-level="18.7" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>18.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="18.8" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>18.8</b> Clustering</a></li>
-<li class="chapter" data-level="18.9" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>18.9</b> Marker genes</a></li>
+<li class="chapter" data-level="17.1" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="17.2" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>17.2</b> Load data</a></li>
+<li class="chapter" data-level="17.3" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>17.3</b> Plot data</a></li>
+<li class="chapter" data-level="17.4" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>17.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="17.5" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>17.5</b> Normalization</a></li>
+<li class="chapter" data-level="17.6" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>17.6</b> Feature selection</a></li>
+<li class="chapter" data-level="17.7" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>17.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="17.8" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
+<li class="chapter" data-level="17.9" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html"><i class="fa fa-check"></i><b>19</b> Visium spatialLIBD workflow</a></li>
-<li class="chapter" data-level="20" data-path="cartana-workflow.html"><a href="cartana-workflow.html"><i class="fa fa-check"></i><b>20</b> Cartana workflow</a></li>
-<li class="chapter" data-level="21" data-path="seqfish-workflow.html"><a href="seqfish-workflow.html"><i class="fa fa-check"></i><b>21</b> seqFISH workflow</a></li>
+<li class="chapter" data-level="18" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html"><i class="fa fa-check"></i><b>18</b> Visium spatialLIBD workflow</a></li>
 <li class="part"><span><b>V Appendix</b></span></li>
-<li class="chapter" data-level="22" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>22</b> Contributors</a></li>
-<li class="chapter" data-level="23" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>23</b> References</a></li>
+<li class="chapter" data-level="19" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>19</b> Contributors</a></li>
+<li class="chapter" data-level="20" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>20</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -300,101 +311,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dimensionality-reduction" class="section level1" number="13">
-<h1><span class="header-section-number">Chapter 13</span> Dimensionality reduction</h1>
-<div id="background-3" class="section level2" number="13.1">
-<h2><span class="header-section-number">13.1</span> Background</h2>
-<p>Chapter on dimensionality reduction</p>
+<div id="dimensionality-reduction" class="section level1" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Dimensionality reduction</h1>
+<div id="background-3" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> Background</h2>
+<p>In this chapter, we apply dimensionality reduction methods to visualize the data and to generate inputs for further downstream analyses.</p>
 </div>
-<div id="previous-steps-2" class="section level2" number="13.2">
-<h2><span class="header-section-number">13.2</span> Previous steps</h2>
-<p><em>Code to run steps from the previous chapters, to generate the <code>SpatialExperiment</code> object required for this chapter. For more details on each step, see the previous chapters.</em></p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="dimensionality-reduction.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
-<span id="cb89-2"><a href="dimensionality-reduction.html#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-3"><a href="dimensionality-reduction.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
-<span id="cb89-4"><a href="dimensionality-reduction.html#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
-<span id="cb89-5"><a href="dimensionality-reduction.html#cb89-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;Visium_humanDLPFC&quot;</span>)</span>
-<span id="cb89-6"><a href="dimensionality-reduction.html#cb89-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-7"><a href="dimensionality-reduction.html#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
-<span id="cb89-8"><a href="dimensionality-reduction.html#cb89-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-9"><a href="dimensionality-reduction.html#cb89-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb89-10"><a href="dimensionality-reduction.html#cb89-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
-<span id="cb89-11"><a href="dimensionality-reduction.html#cb89-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb89-12"><a href="dimensionality-reduction.html#cb89-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
-<span id="cb89-13"><a href="dimensionality-reduction.html#cb89-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
-<span id="cb89-14"><a href="dimensionality-reduction.html#cb89-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
-<span id="cb89-15"><a href="dimensionality-reduction.html#cb89-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
-<span id="cb89-16"><a href="dimensionality-reduction.html#cb89-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
-<span id="cb89-17"><a href="dimensionality-reduction.html#cb89-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
-<span id="cb89-18"><a href="dimensionality-reduction.html#cb89-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
-<span id="cb89-19"><a href="dimensionality-reduction.html#cb89-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
-<span id="cb89-20"><a href="dimensionality-reduction.html#cb89-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
-<span id="cb89-21"><a href="dimensionality-reduction.html#cb89-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
-<span id="cb89-22"><a href="dimensionality-reduction.html#cb89-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
-<span id="cb89-23"><a href="dimensionality-reduction.html#cb89-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
-<span id="cb89-24"><a href="dimensionality-reduction.html#cb89-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
-<span id="cb89-25"><a href="dimensionality-reduction.html#cb89-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
-<span id="cb89-26"><a href="dimensionality-reduction.html#cb89-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-27"><a href="dimensionality-reduction.html#cb89-27" aria-hidden="true" tabindex="-1"></a><span class="co"># NORMALIZATION</span></span>
-<span id="cb89-28"><a href="dimensionality-reduction.html#cb89-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-29"><a href="dimensionality-reduction.html#cb89-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
-<span id="cb89-30"><a href="dimensionality-reduction.html#cb89-30" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
-<span id="cb89-31"><a href="dimensionality-reduction.html#cb89-31" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb89-32"><a href="dimensionality-reduction.html#cb89-32" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
-<span id="cb89-33"><a href="dimensionality-reduction.html#cb89-33" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors</span></span>
-<span id="cb89-34"><a href="dimensionality-reduction.html#cb89-34" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
-<span id="cb89-35"><a href="dimensionality-reduction.html#cb89-35" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts)</span></span>
-<span id="cb89-36"><a href="dimensionality-reduction.html#cb89-36" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
-<span id="cb89-37"><a href="dimensionality-reduction.html#cb89-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-38"><a href="dimensionality-reduction.html#cb89-38" aria-hidden="true" tabindex="-1"></a><span class="co"># FEATURE SELECTION</span></span>
-<span id="cb89-39"><a href="dimensionality-reduction.html#cb89-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-40"><a href="dimensionality-reduction.html#cb89-40" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
-<span id="cb89-41"><a href="dimensionality-reduction.html#cb89-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
-<span id="cb89-42"><a href="dimensionality-reduction.html#cb89-42" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
-<span id="cb89-43"><a href="dimensionality-reduction.html#cb89-43" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
-<span id="cb89-44"><a href="dimensionality-reduction.html#cb89-44" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
-<span id="cb89-45"><a href="dimensionality-reduction.html#cb89-45" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div id="previous-steps-2" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> Previous steps</h2>
+<p><em>Code to run steps from the previous chapters to generate the <code>SpatialExperiment</code> object required for this chapter.</em></p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="dimensionality-reduction.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
+<span id="cb98-2"><a href="dimensionality-reduction.html#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="dimensionality-reduction.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb98-4"><a href="dimensionality-reduction.html#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
+<span id="cb98-5"><a href="dimensionality-reduction.html#cb98-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
+<span id="cb98-6"><a href="dimensionality-reduction.html#cb98-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-7"><a href="dimensionality-reduction.html#cb98-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
+<span id="cb98-8"><a href="dimensionality-reduction.html#cb98-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-9"><a href="dimensionality-reduction.html#cb98-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
+<span id="cb98-10"><a href="dimensionality-reduction.html#cb98-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
+<span id="cb98-11"><a href="dimensionality-reduction.html#cb98-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb98-12"><a href="dimensionality-reduction.html#cb98-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
+<span id="cb98-13"><a href="dimensionality-reduction.html#cb98-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
+<span id="cb98-14"><a href="dimensionality-reduction.html#cb98-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
+<span id="cb98-15"><a href="dimensionality-reduction.html#cb98-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
+<span id="cb98-16"><a href="dimensionality-reduction.html#cb98-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
+<span id="cb98-17"><a href="dimensionality-reduction.html#cb98-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
+<span id="cb98-18"><a href="dimensionality-reduction.html#cb98-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
+<span id="cb98-19"><a href="dimensionality-reduction.html#cb98-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
+<span id="cb98-20"><a href="dimensionality-reduction.html#cb98-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
+<span id="cb98-21"><a href="dimensionality-reduction.html#cb98-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
+<span id="cb98-22"><a href="dimensionality-reduction.html#cb98-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
+<span id="cb98-23"><a href="dimensionality-reduction.html#cb98-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
+<span id="cb98-24"><a href="dimensionality-reduction.html#cb98-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
+<span id="cb98-25"><a href="dimensionality-reduction.html#cb98-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
+<span id="cb98-26"><a href="dimensionality-reduction.html#cb98-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-27"><a href="dimensionality-reduction.html#cb98-27" aria-hidden="true" tabindex="-1"></a><span class="co"># NORMALIZATION</span></span>
+<span id="cb98-28"><a href="dimensionality-reduction.html#cb98-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-29"><a href="dimensionality-reduction.html#cb98-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
+<span id="cb98-30"><a href="dimensionality-reduction.html#cb98-30" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
+<span id="cb98-31"><a href="dimensionality-reduction.html#cb98-31" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb98-32"><a href="dimensionality-reduction.html#cb98-32" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
+<span id="cb98-33"><a href="dimensionality-reduction.html#cb98-33" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors</span></span>
+<span id="cb98-34"><a href="dimensionality-reduction.html#cb98-34" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
+<span id="cb98-35"><a href="dimensionality-reduction.html#cb98-35" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts)</span></span>
+<span id="cb98-36"><a href="dimensionality-reduction.html#cb98-36" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb98-37"><a href="dimensionality-reduction.html#cb98-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-38"><a href="dimensionality-reduction.html#cb98-38" aria-hidden="true" tabindex="-1"></a><span class="co"># FEATURE SELECTION</span></span>
+<span id="cb98-39"><a href="dimensionality-reduction.html#cb98-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-40"><a href="dimensionality-reduction.html#cb98-40" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
+<span id="cb98-41"><a href="dimensionality-reduction.html#cb98-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
+<span id="cb98-42"><a href="dimensionality-reduction.html#cb98-42" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
+<span id="cb98-43"><a href="dimensionality-reduction.html#cb98-43" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb98-44"><a href="dimensionality-reduction.html#cb98-44" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
+<span id="cb98-45"><a href="dimensionality-reduction.html#cb98-45" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 </div>
-<div id="principal-component-analysis-pca" class="section level2" number="13.3">
-<h2><span class="header-section-number">13.3</span> Principal component analysis (PCA)</h2>
+<div id="principal-component-analysis-pca" class="section level2" number="12.3">
+<h2><span class="header-section-number">12.3</span> Principal component analysis (PCA)</h2>
 <p>Apply principal component analysis (PCA) to the set of top highly variable genes (HVGs) to reduce the dimensionality of the dataset, and retain the top 50 principal components (PCs) for further downstream analyses.</p>
 <p>This is done for two reasons: (i) to reduce noise due to random variation in expression of biologically uninteresting genes, which are assumed to have expression patterns that are independent of each other, and (ii) to improve computational efficiency during downstream analyses.</p>
-<p>We use the computationally efficient implementation of PCA provided in the <code>scater</code> package <span class="citation">(<a href="references.html#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span>. This implementation uses randomization, and therefore requires setting a random seed for reproducibility.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="dimensionality-reduction.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
-<span id="cb90-2"><a href="dimensionality-reduction.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb90-3"><a href="dimensionality-reduction.html#cb90-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
-<span id="cb90-4"><a href="dimensionality-reduction.html#cb90-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-5"><a href="dimensionality-reduction.html#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
+<p>We use the computationally efficient implementation of PCA provided in the <code>scater</code> package <span class="citation">(<a href="#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span>. This implementation uses randomization, and therefore requires setting a random seed for reproducibility.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="dimensionality-reduction.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
+<span id="cb99-2"><a href="dimensionality-reduction.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb99-3"><a href="dimensionality-reduction.html#cb99-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
+<span id="cb99-4"><a href="dimensionality-reduction.html#cb99-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-5"><a href="dimensionality-reduction.html#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
 <pre><code>## [1] &quot;PCA&quot;</code></pre>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="dimensionality-reduction.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;PCA&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="dimensionality-reduction.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;PCA&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 3582   50</code></pre>
 </div>
-<div id="uniform-manifold-approximation-and-projection-umap" class="section level2" number="13.4">
-<h2><span class="header-section-number">13.4</span> Uniform Manifold Approximation and Projection (UMAP)</h2>
-<p>We also run UMAP <span class="citation">(<a href="references.html#ref-McInnes2018" role="doc-biblioref">McInnes, Healy, and Melville 2018</a>)</span> on the set of top 50 PCs and retain the top 2 UMAP components, which will be used for visualization purposes.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="dimensionality-reduction.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
-<span id="cb94-2"><a href="dimensionality-reduction.html#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb94-3"><a href="dimensionality-reduction.html#cb94-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb94-4"><a href="dimensionality-reduction.html#cb94-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-5"><a href="dimensionality-reduction.html#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
+<div id="uniform-manifold-approximation-and-projection-umap" class="section level2" number="12.4">
+<h2><span class="header-section-number">12.4</span> Uniform Manifold Approximation and Projection (UMAP)</h2>
+<p>We also run UMAP <span class="citation">(<a href="#ref-McInnes2018" role="doc-biblioref">McInnes, Healy, and Melville 2018</a>)</span> on the set of top 50 PCs and retain the top 2 UMAP components, which will be used for visualization purposes.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="dimensionality-reduction.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
+<span id="cb103-2"><a href="dimensionality-reduction.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb103-3"><a href="dimensionality-reduction.html#cb103-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb103-4"><a href="dimensionality-reduction.html#cb103-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-5"><a href="dimensionality-reduction.html#cb103-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
 <pre><code>## [1] &quot;PCA&quot;  &quot;UMAP&quot;</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="dimensionality-reduction.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="dimensionality-reduction.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 3582    2</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="dimensionality-reduction.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names for plotting functions</span></span>
-<span id="cb98-2"><a href="dimensionality-reduction.html#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="dimensionality-reduction.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names for easier plotting</span></span>
+<span id="cb107-2"><a href="dimensionality-reduction.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
 </div>
-<div id="visualizations" class="section level2" number="13.5">
-<h2><span class="header-section-number">13.5</span> Visualizations</h2>
+<div id="visualizations" class="section level2" number="12.5">
+<h2><span class="header-section-number">12.5</span> Visualizations</h2>
 <p>Generate plots using plotting functions from the <a href="https://github.com/lmweber/ggpavis">ggspavis</a> package. In the next chapter on clustering, we will add cluster labels to these reduced dimension plots.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="dimensionality-reduction.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
-<span id="cb99-2"><a href="dimensionality-reduction.html#cb99-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-3"><a href="dimensionality-reduction.html#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot top 2 PCA dimensions</span></span>
-<span id="cb99-4"><a href="dimensionality-reduction.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;PCA&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="dimensionality-reduction.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="dimensionality-reduction.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot top 2 PCA dimensions</span></span>
+<span id="cb109-2"><a href="dimensionality-reduction.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;PCA&quot;</span>)</span></code></pre></div>
 <p><img src="dimensionality_reduction_files/figure-html/reduced_dim_plots-1.png" width="408" /></p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="dimensionality-reduction.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot top 2 UMAP dimensions</span></span>
-<span id="cb100-2"><a href="dimensionality-reduction.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="dimensionality-reduction.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot top 2 UMAP dimensions</span></span>
+<span id="cb110-2"><a href="dimensionality-reduction.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>)</span></code></pre></div>
 <p><img src="dimensionality_reduction_files/figure-html/reduced_dim_plots-2.png" width="408" /></p>
 
+</div>
+</div>
+<h3> References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-McCarthy2017" class="csl-entry">
+McCarthy, Davis J, Kieran R Campbell, Aaron T L Lun, and Quin F Wills. 2017. <span>“Scater: Pre-Processing, Quality Control, Normalization and Visualization of Single-Cell <span class="nocase">RNA-seq</span> Data in <span>R</span>.”</span> <em>Bioinformatics</em> 33 (8): 1179–86.
+</div>
+<div id="ref-McInnes2018" class="csl-entry">
+McInnes, Leland, John Healy, and James Melville. 2018. <span>“<span>UMAP</span>: Uniform Manifold Approximation and Projection for Dimension Reduction.”</span> <em>arXiv</em> 1802.03426 (v2).
 </div>
 </div>
             </section>
@@ -426,6 +445,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

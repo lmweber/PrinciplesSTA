@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Analysis steps | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
+  <title>Chapter 8 Analysis steps | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Analysis steps | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta property="og:title" content="Chapter 8 Analysis steps | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
@@ -16,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Analysis steps | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta name="twitter:title" content="Chapter 8 Analysis steps | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   
   <meta name="twitter:description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
   
 
 
 
-<meta name="date" content="2021-03-10" />
+<meta name="date" content="2021-06-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="other-platforms.html"/>
+<link rel="prev" href="space-ranger-visium.html"/>
 <link rel="next" href="quality-control.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -144,10 +169,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html"><i class="fa fa-check"></i><b>2</b> Spatially resolved transcriptomics</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1</b> 10x Genomics Visium</a></li>
-<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#cartana"><i class="fa fa-check"></i><b>2.2</b> Cartana</a></li>
-<li class="chapter" data-level="2.3" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#slide-seqv2"><i class="fa fa-check"></i><b>2.3</b> Slide-seqV2</a></li>
-<li class="chapter" data-level="2.4" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#seqfish"><i class="fa fa-check"></i><b>2.4</b> seqFISH</a></li>
-<li class="chapter" data-level="2.5" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#merfish"><i class="fa fa-check"></i><b>2.5</b> MERFISH</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="spatialexperiment.html"><a href="spatialexperiment.html"><i class="fa fa-check"></i><b>3</b> SpatialExperiment</a>
 <ul>
@@ -182,104 +203,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#web-summary-.html-file"><i class="fa fa-check"></i><b>7.6</b> Web summary .html file</a></li>
 <li class="chapter" data-level="7.7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#import-outputs-into-r"><i class="fa fa-check"></i><b>7.7</b> Import outputs into R</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="other-platforms.html"><a href="other-platforms.html"><i class="fa fa-check"></i><b>8</b> Other platforms</a></li>
 <li class="part"><span><b>III Analysis steps</b></span></li>
-<li class="chapter" data-level="9" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>9</b> Analysis steps</a>
+<li class="chapter" data-level="8" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>8</b> Analysis steps</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>9.1</b> Load data</a></li>
-<li class="chapter" data-level="9.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>9.2</b> SpatialExperiment object structure</a></li>
+<li class="chapter" data-level="8.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>8.1</b> Load data</a></li>
+<li class="chapter" data-level="8.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>8.2</b> SpatialExperiment object structure</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>10</b> Quality control</a>
+<li class="chapter" data-level="9" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>9</b> Quality control</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
-<li class="chapter" data-level="10.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>10.2</b> Load data</a></li>
-<li class="chapter" data-level="10.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>10.3</b> Plot data</a></li>
-<li class="chapter" data-level="10.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>10.4</b> Calculate QC metrics</a></li>
-<li class="chapter" data-level="10.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>10.5</b> Selecting thresholds</a>
+<li class="chapter" data-level="9.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>9.1</b> Background</a></li>
+<li class="chapter" data-level="9.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>9.2</b> Load data</a></li>
+<li class="chapter" data-level="9.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>9.3</b> Plot data</a></li>
+<li class="chapter" data-level="9.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>9.4</b> Calculate QC metrics</a></li>
+<li class="chapter" data-level="9.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>9.5</b> Selecting thresholds</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>10.5.1</b> Library size</a></li>
-<li class="chapter" data-level="10.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>10.5.2</b> Number of expressed features</a></li>
-<li class="chapter" data-level="10.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>10.5.3</b> Proportion of mitochondrial reads</a></li>
-<li class="chapter" data-level="10.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>10.5.4</b> Number of cells per spot</a></li>
-<li class="chapter" data-level="10.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>10.5.5</b> Remove low-quality spots</a></li>
+<li class="chapter" data-level="9.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>9.5.1</b> Library size</a></li>
+<li class="chapter" data-level="9.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>9.5.2</b> Number of expressed features</a></li>
+<li class="chapter" data-level="9.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>9.5.3</b> Proportion of mitochondrial reads</a></li>
+<li class="chapter" data-level="9.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>9.5.4</b> Number of cells per spot</a></li>
+<li class="chapter" data-level="9.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>9.5.5</b> Remove low-quality spots</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>10.6</b> Zero-cell and single-cell spots</a></li>
-<li class="chapter" data-level="10.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>10.7</b> Quality control at gene level</a></li>
+<li class="chapter" data-level="9.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>9.6</b> Zero-cell and single-cell spots</a></li>
+<li class="chapter" data-level="9.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>9.7</b> Quality control at gene level</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>11</b> Normalization</a>
+<li class="chapter" data-level="10" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>10</b> Normalization</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
-<li class="chapter" data-level="11.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
-<li class="chapter" data-level="11.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>11.3</b> Log-transformed normalized counts</a></li>
+<li class="chapter" data-level="10.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
+<li class="chapter" data-level="10.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>10.2</b> Previous steps</a></li>
+<li class="chapter" data-level="10.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>10.3</b> Log-transformed normalized counts</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>12</b> Feature selection</a>
+<li class="chapter" data-level="11" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>11</b> Feature selection</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
-<li class="chapter" data-level="12.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>12.2</b> Previous steps</a></li>
-<li class="chapter" data-level="12.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>12.3</b> Highly variable genes (HVGs)</a></li>
-<li class="chapter" data-level="12.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>12.4</b> Spatially variable genes (SVGs)</a>
-<ul>
-<li class="chapter" data-level="12.4.1" data-path="feature-selection.html"><a href="feature-selection.html#spatialde"><i class="fa fa-check"></i><b>12.4.1</b> SpatialDE</a></li>
-<li class="chapter" data-level="12.4.2" data-path="feature-selection.html"><a href="feature-selection.html#spark"><i class="fa fa-check"></i><b>12.4.2</b> SPARK</a></li>
-<li class="chapter" data-level="12.4.3" data-path="feature-selection.html"><a href="feature-selection.html#morans-i-statistic"><i class="fa fa-check"></i><b>12.4.3</b> Moran’s I statistic</a></li>
-<li class="chapter" data-level="12.4.4" data-path="feature-selection.html"><a href="feature-selection.html#further-methods"><i class="fa fa-check"></i><b>12.4.4</b> Further methods</a></li>
+<li class="chapter" data-level="11.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
+<li class="chapter" data-level="11.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
+<li class="chapter" data-level="11.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>11.3</b> Highly variable genes (HVGs)</a></li>
+<li class="chapter" data-level="11.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>11.4</b> Spatially variable genes (SVGs)</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>13</b> Dimensionality reduction</a>
+<li class="chapter" data-level="12" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>12</b> Dimensionality reduction</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>13.1</b> Background</a></li>
-<li class="chapter" data-level="13.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
-<li class="chapter" data-level="13.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>13.3</b> Principal component analysis (PCA)</a></li>
-<li class="chapter" data-level="13.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>13.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
-<li class="chapter" data-level="13.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>13.5</b> Visualizations</a></li>
+<li class="chapter" data-level="12.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
+<li class="chapter" data-level="12.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>12.2</b> Previous steps</a></li>
+<li class="chapter" data-level="12.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>12.3</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="12.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>12.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
+<li class="chapter" data-level="12.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>12.5</b> Visualizations</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>14</b> Clustering</a>
+<li class="chapter" data-level="13" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>13</b> Clustering</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="clustering.html"><a href="clustering.html#overview-3"><i class="fa fa-check"></i><b>14.1</b> Overview</a></li>
-<li class="chapter" data-level="14.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>14.2</b> Previous steps</a></li>
-<li class="chapter" data-level="14.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>14.3</b> Clustering on HVGs</a></li>
-<li class="chapter" data-level="14.4" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs-and-spatial-dimensions"><i class="fa fa-check"></i><b>14.4</b> Clustering on HVGs and spatial dimensions</a></li>
-<li class="chapter" data-level="14.5" data-path="clustering.html"><a href="clustering.html#bayesspace"><i class="fa fa-check"></i><b>14.5</b> BayesSpace</a></li>
-<li class="chapter" data-level="14.6" data-path="clustering.html"><a href="clustering.html#further-methods-1"><i class="fa fa-check"></i><b>14.6</b> Further methods</a></li>
+<li class="chapter" data-level="13.1" data-path="clustering.html"><a href="clustering.html#overview-3"><i class="fa fa-check"></i><b>13.1</b> Overview</a></li>
+<li class="chapter" data-level="13.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
+<li class="chapter" data-level="13.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>13.3</b> Clustering on HVGs</a></li>
+<li class="chapter" data-level="13.4" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs-and-spatial-dimensions"><i class="fa fa-check"></i><b>13.4</b> Clustering on HVGs and spatial dimensions</a></li>
+<li class="chapter" data-level="13.5" data-path="clustering.html"><a href="clustering.html#bayesspace"><i class="fa fa-check"></i><b>13.5</b> BayesSpace</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>15</b> Marker genes</a>
+<li class="chapter" data-level="14" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>14</b> Marker genes</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>15.1</b> Background</a></li>
-<li class="chapter" data-level="15.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>15.2</b> Previous steps</a></li>
-<li class="chapter" data-level="15.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>15.3</b> Marker genes</a></li>
+<li class="chapter" data-level="14.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>14.1</b> Background</a></li>
+<li class="chapter" data-level="14.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>14.2</b> Previous steps</a></li>
+<li class="chapter" data-level="14.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>14.3</b> Marker genes</a></li>
 </ul></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
-<li class="chapter" data-level="16" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>16</b> Workflows</a></li>
-<li class="chapter" data-level="17" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>17</b> Visium human DLPFC workflow</a>
+<li class="chapter" data-level="15" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>15</b> Workflows</a></li>
+<li class="chapter" data-level="16" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>16</b> Visium human DLPFC workflow</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="17.2" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>17.2</b> Load data</a></li>
-<li class="chapter" data-level="17.3" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>17.3</b> Plot data</a></li>
-<li class="chapter" data-level="17.4" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>17.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="17.5" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>17.5</b> Normalization</a></li>
-<li class="chapter" data-level="17.6" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>17.6</b> Feature selection</a></li>
-<li class="chapter" data-level="17.7" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>17.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="17.8" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
-<li class="chapter" data-level="17.9" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
+<li class="chapter" data-level="16.1" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>16.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="16.2" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>16.2</b> Load data</a></li>
+<li class="chapter" data-level="16.3" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>16.3</b> Plot data</a></li>
+<li class="chapter" data-level="16.4" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>16.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="16.5" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>16.5</b> Normalization</a></li>
+<li class="chapter" data-level="16.6" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>16.6</b> Feature selection</a></li>
+<li class="chapter" data-level="16.7" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>16.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="16.8" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>16.8</b> Clustering</a></li>
+<li class="chapter" data-level="16.9" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>16.9</b> Marker genes</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>18</b> Visium mouse coronal workflow</a>
+<li class="chapter" data-level="17" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>17</b> Visium mouse coronal workflow</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>18.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="18.2" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>18.2</b> Load data</a></li>
-<li class="chapter" data-level="18.3" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>18.3</b> Plot data</a></li>
-<li class="chapter" data-level="18.4" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>18.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="18.5" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>18.5</b> Normalization</a></li>
-<li class="chapter" data-level="18.6" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>18.6</b> Feature selection</a></li>
-<li class="chapter" data-level="18.7" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>18.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="18.8" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>18.8</b> Clustering</a></li>
-<li class="chapter" data-level="18.9" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>18.9</b> Marker genes</a></li>
+<li class="chapter" data-level="17.1" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="17.2" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>17.2</b> Load data</a></li>
+<li class="chapter" data-level="17.3" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>17.3</b> Plot data</a></li>
+<li class="chapter" data-level="17.4" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>17.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="17.5" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>17.5</b> Normalization</a></li>
+<li class="chapter" data-level="17.6" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>17.6</b> Feature selection</a></li>
+<li class="chapter" data-level="17.7" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>17.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="17.8" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
+<li class="chapter" data-level="17.9" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html"><i class="fa fa-check"></i><b>19</b> Visium spatialLIBD workflow</a></li>
-<li class="chapter" data-level="20" data-path="cartana-workflow.html"><a href="cartana-workflow.html"><i class="fa fa-check"></i><b>20</b> Cartana workflow</a></li>
-<li class="chapter" data-level="21" data-path="seqfish-workflow.html"><a href="seqfish-workflow.html"><i class="fa fa-check"></i><b>21</b> seqFISH workflow</a></li>
+<li class="chapter" data-level="18" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html"><i class="fa fa-check"></i><b>18</b> Visium spatialLIBD workflow</a></li>
 <li class="part"><span><b>V Appendix</b></span></li>
-<li class="chapter" data-level="22" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>22</b> Contributors</a></li>
-<li class="chapter" data-level="23" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>23</b> References</a></li>
+<li class="chapter" data-level="19" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>19</b> Contributors</a></li>
+<li class="chapter" data-level="20" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>20</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -300,26 +311,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="analysis-steps" class="section level1" number="9">
-<h1><span class="header-section-number">Chapter 9</span> Analysis steps</h1>
-<p>This part consists of several chapters for steps in a computational analysis pipeline for spatially resolved transcriptomics data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, and identifying marker genes.</p>
-<p>These steps require that the raw data has been loaded into R. In the previous part, we provide detailed instructions and examples showing how to do this for the 10x Genomics Visium platform.</p>
-<p>Throughout these chapters, we follow the Bioconductor principle of modularity – if you prefer a different method for one of the steps, this can be substituted, the output stored in the <code>SpatialExperiment</code> object, and you can continue with the rest of the analysis pipeline. In several sections we describe several alternative methods within and outside Bioconductor.</p>
-<div id="load-data" class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> Load data</h2>
+<div id="analysis-steps" class="section level1" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Analysis steps</h1>
+<p>This part consists of several chapters for steps in a computational analysis pipeline for spatially resolved transcriptomics (ST) data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, and identifying marker genes.</p>
+<p>These steps require that the raw data has been loaded into R. In the previous part, we provide instructions and examples showing how to do this for the 10x Genomics Visium platform.</p>
+<p>Throughout these chapters, we follow the Bioconductor principle of modularity – for steps where multiple alternative analysis tools exist, we show how to substitute these, using the <code>SpatialExperiment</code> class to store input and output objects.</p>
+<div id="load-data" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Load data</h2>
 <p>In the following analysis chapters, we use a pre-prepared dataset where we have previously applied the steps described in <a href="preprocessing-steps.html#preprocessing-steps">Preprocessing steps</a>, and saved the object in the <code>SpatialExperiment</code> format. This is available from the <a href="https://github.com/lmweber/STexampleData">STexampleData</a> package.</p>
-<p>The dataset consists of a single sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform, from our publication <span class="citation"><a href="references.html#ref-Maynard2021" role="doc-biblioref">Maynard et al.</a> (<a href="references.html#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>. The dataset is described in more detail in [Human DLPFC workflow].</p>
-<p>Here, we show how to load the data from <a href="https://github.com/lmweber/STexampleData">STexampleData</a>.</p>
+<p>The dataset consists of a single sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform, from our publication <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>. The dataset is described in more detail in <a href="visium-human-dlpfc-workflow.html#visium-human-dlpfc-workflow">Visium human DLPFC workflow</a>.</p>
+<p>Here, we show how to load the data from the <a href="https://github.com/lmweber/STexampleData">STexampleData</a> package.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analysis-steps.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
 <span id="cb1-2"><a href="analysis-steps.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
 <span id="cb1-3"><a href="analysis-steps.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="analysis-steps.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load object</span></span>
-<span id="cb1-5"><a href="analysis-steps.html#cb1-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;Visium_humanDLPFC&quot;</span>)</span></code></pre></div>
+<span id="cb1-5"><a href="analysis-steps.html#cb1-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span></code></pre></div>
 </div>
-<div id="spatialexperiment-object-structure" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> SpatialExperiment object structure</h2>
-<p>Inspect the <code>SpatialExperiment</code> object to understand the structure. For more details on <code>SpatialExperiment</code>, see <a href="spatialexperiment.html#spatialexperiment">SpatialExperiment</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="analysis-steps.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect object</span></span>
+<div id="spatialexperiment-object-structure" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> SpatialExperiment object structure</h2>
+<p>Next, we inspect the <code>SpatialExperiment</code> object. For more details, see <a href="spatialexperiment.html#spatialexperiment">SpatialExperiment</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="analysis-steps.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check object</span></span>
 <span id="cb2-2"><a href="analysis-steps.html#cb2-2" aria-hidden="true" tabindex="-1"></a>spe</span></code></pre></div>
 <pre><code>## class: SpatialExperiment 
 ## dim: 33538 4992 
@@ -330,18 +341,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## rowData names(3): gene_id gene_name feature_type
 ## colnames(4992): AAACAACGAATAGTTC-1 AAACAAGTATCTCCCA-1 ...
 ##   TTGTTTGTATTACACG-1 TTGTTTGTGTAAATTC-1
-## colData names(10): barcode_id imagerow ... pxl_col_in_fullres
+## colData names(5): cell_count ground_truth sample_id pxl_col_in_fullres
 ##   pxl_row_in_fullres
 ## reducedDimNames(0):
 ## mainExpName: NULL
 ## altExpNames(0):
-## spatialData names(4) : barcode_id in_tissue x y
+## spatialData names(6) : barcode_id in_tissue ... x y
+## spatialCoords names(2) : x y
 ## imgData names(4): sample_id image_id data scaleFactor</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analysis-steps.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analysis-steps.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of features (rows) and spots (columns)</span></span>
+<span id="cb4-2"><a href="analysis-steps.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
 <pre><code>## [1] 33538  4992</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="analysis-steps.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">assayNames</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="analysis-steps.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># names of &#39;assay&#39; tables</span></span>
+<span id="cb6-2"><a href="analysis-steps.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">assayNames</span>(spe)</span></code></pre></div>
 <pre><code>## [1] &quot;counts&quot;</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analysis-steps.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">rowData</span>(spe))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analysis-steps.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># features metadata</span></span>
+<span id="cb8-2"><a href="analysis-steps.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">rowData</span>(spe))</span></code></pre></div>
 <pre><code>## DataFrame with 6 rows and 3 columns
 ##                         gene_id   gene_name    feature_type
 ##                     &lt;character&gt; &lt;character&gt;     &lt;character&gt;
@@ -351,41 +366,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ENSG00000238009 ENSG00000238009  AL627309.1 Gene Expression
 ## ENSG00000239945 ENSG00000239945  AL627309.3 Gene Expression
 ## ENSG00000239906 ENSG00000239906  AL627309.2 Gene Expression</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analysis-steps.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">colData</span>(spe))</span></code></pre></div>
-<pre><code>## DataFrame with 6 rows and 10 columns
-##                            barcode_id  imagerow  imagecol cell_count
-##                           &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt;  &lt;integer&gt;
-## AAACAACGAATAGTTC-1 AAACAACGAATAGTTC-1        NA        NA         NA
-## AAACAAGTATCTCCCA-1 AAACAAGTATCTCCCA-1   381.098   440.639          6
-## AAACAATCTACTAGCA-1 AAACAATCTACTAGCA-1   126.328   259.631         16
-## AAACACCAATAACTGC-1 AAACACCAATAACTGC-1   427.768   183.078          5
-## AAACAGAGCGACTCCT-1 AAACAGAGCGACTCCT-1   186.814   417.237          2
-## AAACAGCTTTCAGAAG-1 AAACAGCTTTCAGAAG-1   341.269   152.700          4
-##                    ground_truth     sample_id array_row array_col
-##                        &lt;factor&gt;   &lt;character&gt; &lt;integer&gt; &lt;integer&gt;
-## AAACAACGAATAGTTC-1       NA     sample_151673         0        16
-## AAACAAGTATCTCCCA-1       Layer3 sample_151673        50       102
-## AAACAATCTACTAGCA-1       Layer1 sample_151673         3        43
-## AAACACCAATAACTGC-1       WM     sample_151673        59        19
-## AAACAGAGCGACTCCT-1       Layer3 sample_151673        14        94
-## AAACAGCTTTCAGAAG-1       Layer5 sample_151673        43         9
-##                    pxl_col_in_fullres pxl_row_in_fullres
-##                             &lt;integer&gt;          &lt;integer&gt;
-## AAACAACGAATAGTTC-1               2435               3913
-## AAACAAGTATCTCCCA-1               8468               9791
-## AAACAATCTACTAGCA-1               2807               5769
-## AAACACCAATAACTGC-1               9505               4068
-## AAACAGAGCGACTCCT-1               4151               9271
-## AAACAGCTTTCAGAAG-1               7583               3393</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analysis-steps.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">spatialData</span>(spe))</span></code></pre></div>
-<pre><code>##                            barcode_id in_tissue    x     y
-## AAACAACGAATAGTTC-1 AAACAACGAATAGTTC-1         0 3913 10880
-## AAACAAGTATCTCCCA-1 AAACAAGTATCTCCCA-1         1 9791  4847
-## AAACAATCTACTAGCA-1 AAACAATCTACTAGCA-1         1 5769 10508
-## AAACACCAATAACTGC-1 AAACACCAATAACTGC-1         1 4068  3810
-## AAACAGAGCGACTCCT-1 AAACAGAGCGACTCCT-1         1 9271  9164
-## AAACAGCTTTCAGAAG-1 AAACAGCTTTCAGAAG-1         1 3393  5732</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analysis-steps.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">imgData</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analysis-steps.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spots metadata</span></span>
+<span id="cb10-2"><a href="analysis-steps.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">colData</span>(spe))</span></code></pre></div>
+<pre><code>## DataFrame with 6 rows and 11 columns
+##                    cell_count ground_truth     sample_id pxl_col_in_fullres
+##                     &lt;integer&gt;     &lt;factor&gt;   &lt;character&gt;          &lt;integer&gt;
+## AAACAACGAATAGTTC-1         NA       NA     sample_151673               2435
+## AAACAAGTATCTCCCA-1          6       Layer3 sample_151673               8468
+## AAACAATCTACTAGCA-1         16       Layer1 sample_151673               2807
+## AAACACCAATAACTGC-1          5       WM     sample_151673               9505
+## AAACAGAGCGACTCCT-1          2       Layer3 sample_151673               4151
+## AAACAGCTTTCAGAAG-1          4       Layer5 sample_151673               7583
+##                    pxl_row_in_fullres         barcode_id in_tissue array_col
+##                             &lt;integer&gt;        &lt;character&gt; &lt;integer&gt; &lt;integer&gt;
+## AAACAACGAATAGTTC-1               3913 AAACAACGAATAGTTC-1         0         0
+## AAACAAGTATCTCCCA-1               9791 AAACAAGTATCTCCCA-1         1        50
+## AAACAATCTACTAGCA-1               5769 AAACAATCTACTAGCA-1         1         3
+## AAACACCAATAACTGC-1               4068 AAACACCAATAACTGC-1         1        59
+## AAACAGAGCGACTCCT-1               9271 AAACAGAGCGACTCCT-1         1        14
+## AAACAGCTTTCAGAAG-1               3393 AAACAGCTTTCAGAAG-1         1        43
+##                    array_row         x         y
+##                    &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;
+## AAACAACGAATAGTTC-1        16      2435      3913
+## AAACAAGTATCTCCCA-1       102      8468      9791
+## AAACAATCTACTAGCA-1        43      2807      5769
+## AAACACCAATAACTGC-1        19      9505      4068
+## AAACAGAGCGACTCCT-1        94      4151      9271
+## AAACAGCTTTCAGAAG-1         9      7583      3393</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analysis-steps.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spatial metadata</span></span>
+<span id="cb12-2"><a href="analysis-steps.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">spatialData</span>(spe))</span></code></pre></div>
+<pre><code>## DataFrame with 6 rows and 6 columns
+##                            barcode_id in_tissue array_col array_row         x
+##                           &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;
+## AAACAACGAATAGTTC-1 AAACAACGAATAGTTC-1         0         0        16      2435
+## AAACAAGTATCTCCCA-1 AAACAAGTATCTCCCA-1         1        50       102      8468
+## AAACAATCTACTAGCA-1 AAACAATCTACTAGCA-1         1         3        43      2807
+## AAACACCAATAACTGC-1 AAACACCAATAACTGC-1         1        59        19      9505
+## AAACAGAGCGACTCCT-1 AAACAGAGCGACTCCT-1         1        14        94      4151
+## AAACAGCTTTCAGAAG-1 AAACAGCTTTCAGAAG-1         1        43         9      7583
+##                            y
+##                    &lt;integer&gt;
+## AAACAACGAATAGTTC-1      3913
+## AAACAAGTATCTCCCA-1      9791
+## AAACAATCTACTAGCA-1      5769
+## AAACACCAATAACTGC-1      4068
+## AAACAGAGCGACTCCT-1      9271
+## AAACAGCTTTCAGAAG-1      3393</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analysis-steps.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spatial coordinates</span></span>
+<span id="cb14-2"><a href="analysis-steps.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">spatialCoords</span>(spe))</span></code></pre></div>
+<pre><code>##                       x    y
+## AAACAACGAATAGTTC-1 2435 3913
+## AAACAAGTATCTCCCA-1 8468 9791
+## AAACAATCTACTAGCA-1 2807 5769
+## AAACACCAATAACTGC-1 9505 4068
+## AAACAGAGCGACTCCT-1 4151 9271
+## AAACAGCTTTCAGAAG-1 7583 3393</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="analysis-steps.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># image metadata</span></span>
+<span id="cb16-2"><a href="analysis-steps.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">imgData</span>(spe)</span></code></pre></div>
 <pre><code>## DataFrame with 2 rows and 4 columns
 ##       sample_id    image_id   data scaleFactor
 ##     &lt;character&gt; &lt;character&gt; &lt;list&gt;   &lt;numeric&gt;
@@ -394,12 +431,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </div>
 </div>
+<h3> References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Maynard2021" class="csl-entry">
+Maynard, K R, L Collado-Torres, L M Weber, C Uytingco, B K Barry, S R Williams, J L Catallini, et al. 2021. <span>“Transcriptome-Scale Spatial Gene Expression in the Human Dorsolateral Prefrontal Cortex.”</span> <em>Nature Neuroscience</em>, 425–36.
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="other-platforms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="space-ranger-visium.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="quality-control.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -423,6 +466,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

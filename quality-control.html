@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 Quality control | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
+  <title>Chapter 9 Quality control | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 Quality control | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta property="og:title" content="Chapter 9 Quality control | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,14 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 Quality control | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta name="twitter:title" content="Chapter 9 Quality control | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   
   <meta name="twitter:description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
   
 
 
 
-<meta name="date" content="2021-03-10" />
+<meta name="date" content="2021-06-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="analysis-steps.html"/>
 <link rel="next" href="normalization.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -144,10 +169,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html"><i class="fa fa-check"></i><b>2</b> Spatially resolved transcriptomics</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1</b> 10x Genomics Visium</a></li>
-<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#cartana"><i class="fa fa-check"></i><b>2.2</b> Cartana</a></li>
-<li class="chapter" data-level="2.3" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#slide-seqv2"><i class="fa fa-check"></i><b>2.3</b> Slide-seqV2</a></li>
-<li class="chapter" data-level="2.4" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#seqfish"><i class="fa fa-check"></i><b>2.4</b> seqFISH</a></li>
-<li class="chapter" data-level="2.5" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#merfish"><i class="fa fa-check"></i><b>2.5</b> MERFISH</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="spatialexperiment.html"><a href="spatialexperiment.html"><i class="fa fa-check"></i><b>3</b> SpatialExperiment</a>
 <ul>
@@ -182,104 +203,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#web-summary-.html-file"><i class="fa fa-check"></i><b>7.6</b> Web summary .html file</a></li>
 <li class="chapter" data-level="7.7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#import-outputs-into-r"><i class="fa fa-check"></i><b>7.7</b> Import outputs into R</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="other-platforms.html"><a href="other-platforms.html"><i class="fa fa-check"></i><b>8</b> Other platforms</a></li>
 <li class="part"><span><b>III Analysis steps</b></span></li>
-<li class="chapter" data-level="9" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>9</b> Analysis steps</a>
+<li class="chapter" data-level="8" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>8</b> Analysis steps</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>9.1</b> Load data</a></li>
-<li class="chapter" data-level="9.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>9.2</b> SpatialExperiment object structure</a></li>
+<li class="chapter" data-level="8.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>8.1</b> Load data</a></li>
+<li class="chapter" data-level="8.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>8.2</b> SpatialExperiment object structure</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>10</b> Quality control</a>
+<li class="chapter" data-level="9" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>9</b> Quality control</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
-<li class="chapter" data-level="10.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>10.2</b> Load data</a></li>
-<li class="chapter" data-level="10.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>10.3</b> Plot data</a></li>
-<li class="chapter" data-level="10.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>10.4</b> Calculate QC metrics</a></li>
-<li class="chapter" data-level="10.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>10.5</b> Selecting thresholds</a>
+<li class="chapter" data-level="9.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>9.1</b> Background</a></li>
+<li class="chapter" data-level="9.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>9.2</b> Load data</a></li>
+<li class="chapter" data-level="9.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>9.3</b> Plot data</a></li>
+<li class="chapter" data-level="9.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>9.4</b> Calculate QC metrics</a></li>
+<li class="chapter" data-level="9.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>9.5</b> Selecting thresholds</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>10.5.1</b> Library size</a></li>
-<li class="chapter" data-level="10.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>10.5.2</b> Number of expressed features</a></li>
-<li class="chapter" data-level="10.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>10.5.3</b> Proportion of mitochondrial reads</a></li>
-<li class="chapter" data-level="10.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>10.5.4</b> Number of cells per spot</a></li>
-<li class="chapter" data-level="10.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>10.5.5</b> Remove low-quality spots</a></li>
+<li class="chapter" data-level="9.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>9.5.1</b> Library size</a></li>
+<li class="chapter" data-level="9.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>9.5.2</b> Number of expressed features</a></li>
+<li class="chapter" data-level="9.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>9.5.3</b> Proportion of mitochondrial reads</a></li>
+<li class="chapter" data-level="9.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>9.5.4</b> Number of cells per spot</a></li>
+<li class="chapter" data-level="9.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>9.5.5</b> Remove low-quality spots</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>10.6</b> Zero-cell and single-cell spots</a></li>
-<li class="chapter" data-level="10.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>10.7</b> Quality control at gene level</a></li>
+<li class="chapter" data-level="9.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>9.6</b> Zero-cell and single-cell spots</a></li>
+<li class="chapter" data-level="9.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>9.7</b> Quality control at gene level</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>11</b> Normalization</a>
+<li class="chapter" data-level="10" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>10</b> Normalization</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
-<li class="chapter" data-level="11.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
-<li class="chapter" data-level="11.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>11.3</b> Log-transformed normalized counts</a></li>
+<li class="chapter" data-level="10.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
+<li class="chapter" data-level="10.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>10.2</b> Previous steps</a></li>
+<li class="chapter" data-level="10.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>10.3</b> Log-transformed normalized counts</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>12</b> Feature selection</a>
+<li class="chapter" data-level="11" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>11</b> Feature selection</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
-<li class="chapter" data-level="12.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>12.2</b> Previous steps</a></li>
-<li class="chapter" data-level="12.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>12.3</b> Highly variable genes (HVGs)</a></li>
-<li class="chapter" data-level="12.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>12.4</b> Spatially variable genes (SVGs)</a>
-<ul>
-<li class="chapter" data-level="12.4.1" data-path="feature-selection.html"><a href="feature-selection.html#spatialde"><i class="fa fa-check"></i><b>12.4.1</b> SpatialDE</a></li>
-<li class="chapter" data-level="12.4.2" data-path="feature-selection.html"><a href="feature-selection.html#spark"><i class="fa fa-check"></i><b>12.4.2</b> SPARK</a></li>
-<li class="chapter" data-level="12.4.3" data-path="feature-selection.html"><a href="feature-selection.html#morans-i-statistic"><i class="fa fa-check"></i><b>12.4.3</b> Moran’s I statistic</a></li>
-<li class="chapter" data-level="12.4.4" data-path="feature-selection.html"><a href="feature-selection.html#further-methods"><i class="fa fa-check"></i><b>12.4.4</b> Further methods</a></li>
+<li class="chapter" data-level="11.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
+<li class="chapter" data-level="11.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
+<li class="chapter" data-level="11.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>11.3</b> Highly variable genes (HVGs)</a></li>
+<li class="chapter" data-level="11.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>11.4</b> Spatially variable genes (SVGs)</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>13</b> Dimensionality reduction</a>
+<li class="chapter" data-level="12" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>12</b> Dimensionality reduction</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>13.1</b> Background</a></li>
-<li class="chapter" data-level="13.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
-<li class="chapter" data-level="13.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>13.3</b> Principal component analysis (PCA)</a></li>
-<li class="chapter" data-level="13.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>13.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
-<li class="chapter" data-level="13.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>13.5</b> Visualizations</a></li>
+<li class="chapter" data-level="12.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
+<li class="chapter" data-level="12.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>12.2</b> Previous steps</a></li>
+<li class="chapter" data-level="12.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>12.3</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="12.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>12.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
+<li class="chapter" data-level="12.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>12.5</b> Visualizations</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>14</b> Clustering</a>
+<li class="chapter" data-level="13" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>13</b> Clustering</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="clustering.html"><a href="clustering.html#overview-3"><i class="fa fa-check"></i><b>14.1</b> Overview</a></li>
-<li class="chapter" data-level="14.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>14.2</b> Previous steps</a></li>
-<li class="chapter" data-level="14.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>14.3</b> Clustering on HVGs</a></li>
-<li class="chapter" data-level="14.4" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs-and-spatial-dimensions"><i class="fa fa-check"></i><b>14.4</b> Clustering on HVGs and spatial dimensions</a></li>
-<li class="chapter" data-level="14.5" data-path="clustering.html"><a href="clustering.html#bayesspace"><i class="fa fa-check"></i><b>14.5</b> BayesSpace</a></li>
-<li class="chapter" data-level="14.6" data-path="clustering.html"><a href="clustering.html#further-methods-1"><i class="fa fa-check"></i><b>14.6</b> Further methods</a></li>
+<li class="chapter" data-level="13.1" data-path="clustering.html"><a href="clustering.html#overview-3"><i class="fa fa-check"></i><b>13.1</b> Overview</a></li>
+<li class="chapter" data-level="13.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
+<li class="chapter" data-level="13.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>13.3</b> Clustering on HVGs</a></li>
+<li class="chapter" data-level="13.4" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs-and-spatial-dimensions"><i class="fa fa-check"></i><b>13.4</b> Clustering on HVGs and spatial dimensions</a></li>
+<li class="chapter" data-level="13.5" data-path="clustering.html"><a href="clustering.html#bayesspace"><i class="fa fa-check"></i><b>13.5</b> BayesSpace</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>15</b> Marker genes</a>
+<li class="chapter" data-level="14" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>14</b> Marker genes</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>15.1</b> Background</a></li>
-<li class="chapter" data-level="15.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>15.2</b> Previous steps</a></li>
-<li class="chapter" data-level="15.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>15.3</b> Marker genes</a></li>
+<li class="chapter" data-level="14.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>14.1</b> Background</a></li>
+<li class="chapter" data-level="14.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>14.2</b> Previous steps</a></li>
+<li class="chapter" data-level="14.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>14.3</b> Marker genes</a></li>
 </ul></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
-<li class="chapter" data-level="16" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>16</b> Workflows</a></li>
-<li class="chapter" data-level="17" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>17</b> Visium human DLPFC workflow</a>
+<li class="chapter" data-level="15" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>15</b> Workflows</a></li>
+<li class="chapter" data-level="16" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>16</b> Visium human DLPFC workflow</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="17.2" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>17.2</b> Load data</a></li>
-<li class="chapter" data-level="17.3" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>17.3</b> Plot data</a></li>
-<li class="chapter" data-level="17.4" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>17.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="17.5" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>17.5</b> Normalization</a></li>
-<li class="chapter" data-level="17.6" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>17.6</b> Feature selection</a></li>
-<li class="chapter" data-level="17.7" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>17.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="17.8" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
-<li class="chapter" data-level="17.9" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
+<li class="chapter" data-level="16.1" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>16.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="16.2" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>16.2</b> Load data</a></li>
+<li class="chapter" data-level="16.3" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>16.3</b> Plot data</a></li>
+<li class="chapter" data-level="16.4" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>16.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="16.5" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>16.5</b> Normalization</a></li>
+<li class="chapter" data-level="16.6" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>16.6</b> Feature selection</a></li>
+<li class="chapter" data-level="16.7" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>16.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="16.8" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>16.8</b> Clustering</a></li>
+<li class="chapter" data-level="16.9" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>16.9</b> Marker genes</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>18</b> Visium mouse coronal workflow</a>
+<li class="chapter" data-level="17" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>17</b> Visium mouse coronal workflow</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>18.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="18.2" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>18.2</b> Load data</a></li>
-<li class="chapter" data-level="18.3" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>18.3</b> Plot data</a></li>
-<li class="chapter" data-level="18.4" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>18.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="18.5" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>18.5</b> Normalization</a></li>
-<li class="chapter" data-level="18.6" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>18.6</b> Feature selection</a></li>
-<li class="chapter" data-level="18.7" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>18.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="18.8" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>18.8</b> Clustering</a></li>
-<li class="chapter" data-level="18.9" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>18.9</b> Marker genes</a></li>
+<li class="chapter" data-level="17.1" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="17.2" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>17.2</b> Load data</a></li>
+<li class="chapter" data-level="17.3" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>17.3</b> Plot data</a></li>
+<li class="chapter" data-level="17.4" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>17.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="17.5" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>17.5</b> Normalization</a></li>
+<li class="chapter" data-level="17.6" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>17.6</b> Feature selection</a></li>
+<li class="chapter" data-level="17.7" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>17.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="17.8" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>17.8</b> Clustering</a></li>
+<li class="chapter" data-level="17.9" data-path="visium-mouse-coronal-workflow.html"><a href="visium-mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>17.9</b> Marker genes</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html"><i class="fa fa-check"></i><b>19</b> Visium spatialLIBD workflow</a></li>
-<li class="chapter" data-level="20" data-path="cartana-workflow.html"><a href="cartana-workflow.html"><i class="fa fa-check"></i><b>20</b> Cartana workflow</a></li>
-<li class="chapter" data-level="21" data-path="seqfish-workflow.html"><a href="seqfish-workflow.html"><i class="fa fa-check"></i><b>21</b> seqFISH workflow</a></li>
+<li class="chapter" data-level="18" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html"><i class="fa fa-check"></i><b>18</b> Visium spatialLIBD workflow</a></li>
 <li class="part"><span><b>V Appendix</b></span></li>
-<li class="chapter" data-level="22" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>22</b> Contributors</a></li>
-<li class="chapter" data-level="23" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>23</b> References</a></li>
+<li class="chapter" data-level="19" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>19</b> Contributors</a></li>
+<li class="chapter" data-level="20" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>20</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -300,10 +311,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="quality-control" class="section level1" number="10">
-<h1><span class="header-section-number">Chapter 10</span> Quality control</h1>
-<div id="background" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> Background</h2>
+<div id="quality-control" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Quality control</h1>
+<div id="background" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Background</h2>
 <p>Quality control (QC) procedures at the spot level aim to remove low-quality spots before further analysis. Low-quality spots can occur due to problems during library preparation or other experimental procedures. Examples include large proportions of dead cells due to cell damage during library preparation, and low mRNA capture efficiency due to inefficient reverse transcription or PCR amplification.</p>
 <p>These spots are usually removed prior to further analysis, since otherwise they tend to create problems during downstream analyses such as clustering. For example, problematic spots that are not removed could show up as separate clusters, which may be misidentified as distinct cell types.</p>
 <p>Low-quality spots can be identified according to several characteristics, including:</p>
@@ -316,268 +327,306 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Low library size or low number of expressed features can indicate poor mRNA capture rates, e.g. due to cell damage and missing mRNAs, or low reaction efficiency. A high proportion of mitochondrial reads indicates cell damage, e.g. partial cell lysis leading to leakage and missing cytoplasmic mRNAs, with the resulting reads therefore concentrated on the remaining mitochondrial mRNAs that are relatively protected inside the mitochondrial membrane. Unusually high numbers of cells per spot can indicate problems during cell segmentation.</p>
 <p>The first three characteristics listed above are also used for QC in scRNA-seq data. However, the expected distributions for high-quality spots are different (compared to high-quality cells in scRNA-seq), since spots may contain zero, one, or multiple cells.</p>
 </div>
-<div id="load-data-1" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span> Load data</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="quality-control.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
-<span id="cb16-2"><a href="quality-control.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
-<span id="cb16-3"><a href="quality-control.html#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="quality-control.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load object</span></span>
-<span id="cb16-5"><a href="quality-control.html#cb16-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;Visium_humanDLPFC&quot;</span>)</span></code></pre></div>
+<div id="load-data-1" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Load data</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="quality-control.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb18-2"><a href="quality-control.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
+<span id="cb18-3"><a href="quality-control.html#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="quality-control.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load object</span></span>
+<span id="cb18-5"><a href="quality-control.html#cb18-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span></code></pre></div>
 </div>
-<div id="plot-data" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span> Plot data</h2>
+<div id="plot-data" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Plot data</h2>
 <p>As an initial check, plot the spatial coordinates (spots) in x-y dimensions on the tissue slide, to check that the object has loaded correctly and that the orientation is as expected.</p>
 <p>We use visualization functions from the <a href="https://github.com/lmweber/ggpavis">ggspavis</a> package to generate plots.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="quality-control.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
-<span id="cb17-2"><a href="quality-control.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="quality-control.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot spatial coordinates (spots)</span></span>
-<span id="cb17-4"><a href="quality-control.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="quality-control.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="quality-control.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot spatial coordinates (spots)</span></span>
+<span id="cb20-2"><a href="quality-control.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_data-1.png" width="672" /></p>
 </div>
-<div id="calculate-qc-metrics" class="section level2" number="10.4">
-<h2><span class="header-section-number">10.4</span> Calculate QC metrics</h2>
-<p>We calculate the QC metrics described above with a combination of methods from the <code>scater</code> <span class="citation">(<a href="references.html#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span> package (for metrics that are also used for scRNA-seq data, where we treat spots as equivalent to cells) and our own functions.</p>
+<div id="calculate-qc-metrics" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Calculate QC metrics</h2>
+<p>We calculate the QC metrics described above with a combination of methods from the <code>scater</code> <span class="citation">(<a href="#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span> package (for metrics that are also used for scRNA-seq data, where we treat spots as equivalent to cells) and our own functions.</p>
 <p>The QC metrics from <code>scater</code> can be calculated and added to the <code>SpatialExperiment</code> object as follows. Here, we also identify mitochondrial reads using their gene names, and pass these as an argument to <code>scater</code>.</p>
 <p>First, we subset the object to keep only spots over tissue. The remaining spots are background spots, which we are not interested in.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="quality-control.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
-<span id="cb18-2"><a href="quality-control.html#cb18-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb18-3"><a href="quality-control.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="quality-control.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="quality-control.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
+<span id="cb22-2"><a href="quality-control.html#cb22-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb22-3"><a href="quality-control.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
 <pre><code>## [1] 33538  3639</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="quality-control.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb20-2"><a href="quality-control.html#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="quality-control.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
-<span id="cb20-4"><a href="quality-control.html#cb20-4" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
-<span id="cb20-5"><a href="quality-control.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(is_mito)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="quality-control.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
+<span id="cb24-2"><a href="quality-control.html#cb24-2" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
+<span id="cb24-3"><a href="quality-control.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(is_mito)</span></code></pre></div>
 <pre><code>## is_mito
 ## FALSE  TRUE 
 ## 33525    13</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="quality-control.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name[is_mito]</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="quality-control.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name[is_mito]</span></code></pre></div>
 <pre><code>##  [1] &quot;MT-ND1&quot;  &quot;MT-ND2&quot;  &quot;MT-CO1&quot;  &quot;MT-CO2&quot;  &quot;MT-ATP8&quot; &quot;MT-ATP6&quot; &quot;MT-CO3&quot; 
 ##  [8] &quot;MT-ND3&quot;  &quot;MT-ND4L&quot; &quot;MT-ND4&quot;  &quot;MT-ND5&quot;  &quot;MT-ND6&quot;  &quot;MT-CYB&quot;</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="quality-control.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics and store in colData</span></span>
-<span id="cb24-2"><a href="quality-control.html#cb24-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
-<span id="cb24-3"><a href="quality-control.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">colData</span>(spe), <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## DataFrame with 3 rows and 16 columns
-##                            barcode_id  imagerow  imagecol cell_count
-##                           &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt;  &lt;integer&gt;
-## AAACAAGTATCTCCCA-1 AAACAAGTATCTCCCA-1   381.098   440.639          6
-## AAACAATCTACTAGCA-1 AAACAATCTACTAGCA-1   126.328   259.631         16
-## AAACACCAATAACTGC-1 AAACACCAATAACTGC-1   427.768   183.078          5
-##                    ground_truth     sample_id array_row array_col
-##                        &lt;factor&gt;   &lt;character&gt; &lt;integer&gt; &lt;integer&gt;
-## AAACAAGTATCTCCCA-1       Layer3 sample_151673        50       102
-## AAACAATCTACTAGCA-1       Layer1 sample_151673         3        43
-## AAACACCAATAACTGC-1       WM     sample_151673        59        19
-##                    pxl_col_in_fullres pxl_row_in_fullres       sum  detected
-##                             &lt;integer&gt;          &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt;
-## AAACAAGTATCTCCCA-1               8468               9791      8458      3586
-## AAACAATCTACTAGCA-1               2807               5769      1667      1150
-## AAACACCAATAACTGC-1               9505               4068      3769      1960
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="quality-control.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics and store in colData</span></span>
+<span id="cb28-2"><a href="quality-control.html#cb28-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
+<span id="cb28-3"><a href="quality-control.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">colData</span>(spe))</span></code></pre></div>
+<pre><code>## DataFrame with 6 rows and 23 columns
+##                    cell_count ground_truth     sample_id pxl_col_in_fullres
+##                     &lt;integer&gt;     &lt;factor&gt;   &lt;character&gt;          &lt;integer&gt;
+## AAACAAGTATCTCCCA-1          6       Layer3 sample_151673               8468
+## AAACAATCTACTAGCA-1         16       Layer1 sample_151673               2807
+## AAACACCAATAACTGC-1          5       WM     sample_151673               9505
+## AAACAGAGCGACTCCT-1          2       Layer3 sample_151673               4151
+## AAACAGCTTTCAGAAG-1          4       Layer5 sample_151673               7583
+## AAACAGGGTCTATATT-1          6       Layer6 sample_151673               8064
+##                    pxl_row_in_fullres         barcode_id in_tissue array_col
+##                             &lt;integer&gt;        &lt;character&gt; &lt;integer&gt; &lt;integer&gt;
+## AAACAAGTATCTCCCA-1               9791 AAACAAGTATCTCCCA-1         1        50
+## AAACAATCTACTAGCA-1               5769 AAACAATCTACTAGCA-1         1         3
+## AAACACCAATAACTGC-1               4068 AAACACCAATAACTGC-1         1        59
+## AAACAGAGCGACTCCT-1               9271 AAACAGAGCGACTCCT-1         1        14
+## AAACAGCTTTCAGAAG-1               3393 AAACAGCTTTCAGAAG-1         1        43
+## AAACAGGGTCTATATT-1               3665 AAACAGGGTCTATATT-1         1        47
+##                    array_row         x         y       sum  detected
+##                    &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt;
+## AAACAAGTATCTCCCA-1       102      8468      9791      8458      3586
+## AAACAATCTACTAGCA-1        43      2807      5769      1667      1150
+## AAACACCAATAACTGC-1        19      9505      4068      3769      1960
+## AAACAGAGCGACTCCT-1        94      4151      9271      5433      2424
+## AAACAGCTTTCAGAAG-1         9      7583      3393      4278      2264
+## AAACAGGGTCTATATT-1        13      8064      3665      4004      2178
 ##                    subsets_mito_sum subsets_mito_detected subsets_mito_percent
 ##                           &lt;numeric&gt;             &lt;numeric&gt;            &lt;numeric&gt;
 ## AAACAAGTATCTCCCA-1             1407                    13              16.6351
 ## AAACAATCTACTAGCA-1              204                    11              12.2376
 ## AAACACCAATAACTGC-1              430                    13              11.4089
-##                        total
-##                    &lt;numeric&gt;
-## AAACAAGTATCTCCCA-1      8458
-## AAACAATCTACTAGCA-1      1667
-## AAACACCAATAACTGC-1      3769</code></pre>
+## AAACAGAGCGACTCCT-1             1316                    13              24.2223
+## AAACAGCTTTCAGAAG-1              651                    12              15.2174
+## AAACAGGGTCTATATT-1              621                    13              15.5095
+##                        total         barcode_id in_tissue array_col array_row
+##                    &lt;numeric&gt;        &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;
+## AAACAAGTATCTCCCA-1      8458 AAACAAGTATCTCCCA-1         1        50       102
+## AAACAATCTACTAGCA-1      1667 AAACAATCTACTAGCA-1         1         3        43
+## AAACACCAATAACTGC-1      3769 AAACACCAATAACTGC-1         1        59        19
+## AAACAGAGCGACTCCT-1      5433 AAACAGAGCGACTCCT-1         1        14        94
+## AAACAGCTTTCAGAAG-1      4278 AAACAGCTTTCAGAAG-1         1        43         9
+## AAACAGGGTCTATATT-1      4004 AAACAGGGTCTATATT-1         1        47        13
+##                            x         y
+##                    &lt;integer&gt; &lt;integer&gt;
+## AAACAAGTATCTCCCA-1      8468      9791
+## AAACAATCTACTAGCA-1      2807      5769
+## AAACACCAATAACTGC-1      9505      4068
+## AAACAGAGCGACTCCT-1      4151      9271
+## AAACAGCTTTCAGAAG-1      7583      3393
+## AAACAGGGTCTATATT-1      8064      3665</code></pre>
 </div>
-<div id="selecting-thresholds" class="section level2" number="10.5">
-<h2><span class="header-section-number">10.5</span> Selecting thresholds</h2>
+<div id="selecting-thresholds" class="section level2" number="9.5">
+<h2><span class="header-section-number">9.5</span> Selecting thresholds</h2>
 <p>The simplest option to apply the QC metrics is to select thresholds for each metric, and remove any spots that do not meet the thresholds for one or more metrics. Exploratory visualizations can be used to help select appropriate thresholds, which may differ depending on the dataset.</p>
 <p>Here, we use visualizations to select thresholds for several QC metrics in our human DLPFC dataset: (i) library size, (ii) number of expressed genes, (iii) proportion of mitochondrial reads, and (iv) number of cells per spot.</p>
-<div id="library-size" class="section level3" number="10.5.1">
-<h3><span class="header-section-number">10.5.1</span> Library size</h3>
+<div id="library-size" class="section level3" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> Library size</h3>
 <p>Library size represents the total sum of UMI counts per spot. This is included in the column labeled <code>sum</code> in the <code>scater</code> output.</p>
 <p>Plot a histogram of the library sizes across spots.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="quality-control.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram of library sizes</span></span>
-<span id="cb26-2"><a href="quality-control.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>sum, <span class="at">breaks =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="quality-control.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram of library sizes</span></span>
+<span id="cb30-2"><a href="quality-control.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>sum, <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_lib_size_hist-1.png" width="672" /></p>
 <p>The distribution is relatively smooth, and there are no obvious issue such as a spike at very low library sizes.</p>
-<p>We also plot the library sizes against the number of cells per spot (which was included in the original data object). This is to check that we are not inadvertently removing a biologically meaningful group of spots. The horizontal line (argument <code>threshold</code>) shows our first guess at a possible filtering threshold for library size based on the histogram.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="quality-control.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatzli)</span>
-<span id="cb27-2"><a href="quality-control.html#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="quality-control.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot library size vs. number of cells per spot</span></span>
-<span id="cb27-4"><a href="quality-control.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCscatter</span>(spe, </span>
-<span id="cb27-5"><a href="quality-control.html#cb27-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;sum&quot;</span>, </span>
-<span id="cb27-6"><a href="quality-control.html#cb27-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">threshold_y =</span> <span class="dv">500</span>, <span class="at">marginal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>We also plot the library sizes against the number of cells per spot (which is available for this dataset). This is to check that we are not inadvertently removing a biologically meaningful group of spots. The horizontal line (argument <code>threshold</code>) shows our first guess at a possible filtering threshold for library size based on the histogram.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="quality-control.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot library size vs. number of cells per spot</span></span>
+<span id="cb31-2"><a href="quality-control.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;scatter&quot;</span>, </span>
+<span id="cb31-3"><a href="quality-control.html#cb31-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;sum&quot;</span>, </span>
+<span id="cb31-4"><a href="quality-control.html#cb31-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_y =</span> <span class="dv">500</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="quality_control_files/figure-html/plot_lib_size_scatter-1.png" width="360" /></p>
 <p>The plot shows that setting a filtering threshold for library size (e.g. at the value shown) does not appear to select for any obvious biologically consistent group of spots.</p>
 <p>We set a relatively arbitrary threshold of 500 UMI counts per spot, and then check the number of spots below this threshold.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="quality-control.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for library size</span></span>
-<span id="cb28-2"><a href="quality-control.html#cb28-2" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
-<span id="cb28-3"><a href="quality-control.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_lib_size)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="quality-control.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for library size</span></span>
+<span id="cb34-2"><a href="quality-control.html#cb34-2" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
+<span id="cb34-3"><a href="quality-control.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_lib_size)</span></code></pre></div>
 <pre><code>## qc_lib_size
 ## FALSE  TRUE 
 ##  3632     7</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="quality-control.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_lib_size <span class="ot">&lt;-</span> qc_lib_size</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="quality-control.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_lib_size <span class="ot">&lt;-</span> qc_lib_size</span></code></pre></div>
 <p>Finally, we also check that the discarded spots do not have any obvious spatial pattern that correlates with known biological features. Otherwise, removing these spots could indicate that we have set the threshold too high, and are removing biologically informative spots.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="quality-control.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
-<span id="cb31-2"><a href="quality-control.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCspots</span>(spe, <span class="at">discard =</span> <span class="st">&quot;qc_lib_size&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="quality-control.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
+<span id="cb37-2"><a href="quality-control.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, </span>
+<span id="cb37-3"><a href="quality-control.html#cb37-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">discard =</span> <span class="st">&quot;qc_lib_size&quot;</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_lib_size_spatial-1.png" width="672" /></p>
-<p>As an aside, here we can also illustrate what happens if we set the threshold too high. For example, if we set the threshold to 1000 UMI counts per spot – which would also seem like a reasonable value based on the histogram and scatterplot – then we see a possible spatial pattern in the discarded spots, matching the cortical layers. This illustrates the importance of interactively checking exploratory visualizations when choosing these thresholds.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="quality-control.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots if threshold is too high</span></span>
-<span id="cb32-2"><a href="quality-control.html#cb32-2" aria-hidden="true" tabindex="-1"></a>qc_lib_size_2000 <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">2000</span></span>
-<span id="cb32-3"><a href="quality-control.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_lib_size_2000 <span class="ot">&lt;-</span> qc_lib_size_2000</span>
-<span id="cb32-4"><a href="quality-control.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCspots</span>(spe, <span class="at">discard =</span> <span class="st">&quot;qc_lib_size_2000&quot;</span>)</span></code></pre></div>
+<p>As an aside, here we can also illustrate what happens if we set the threshold too high. For example, if we set the threshold to 2000 UMI counts per spot – which may also seem like a reasonable value based on the histogram and scatterplot – then we see a possible spatial pattern in the discarded spots, matching the cortical layers. This illustrates the importance of interactively checking exploratory visualizations when choosing these thresholds.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="quality-control.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots if threshold is too high</span></span>
+<span id="cb38-2"><a href="quality-control.html#cb38-2" aria-hidden="true" tabindex="-1"></a>qc_lib_size_2000 <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">2000</span></span>
+<span id="cb38-3"><a href="quality-control.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_lib_size_2000 <span class="ot">&lt;-</span> qc_lib_size_2000</span>
+<span id="cb38-4"><a href="quality-control.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, </span>
+<span id="cb38-5"><a href="quality-control.html#cb38-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">discard =</span> <span class="st">&quot;qc_lib_size_2000&quot;</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_lib_size_spatial_too_high-1.png" width="672" /></p>
-<p>For reference, here are the ground truth (manually annotated) cortical layers in this dataset. We use plotting functions from the <a href="https://github.com/lmweber/ggpavis">ggspavis</a> package.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="quality-control.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
-<span id="cb33-2"><a href="quality-control.html#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="quality-control.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot ground truth (manually annotated) layers</span></span>
-<span id="cb33-4"><a href="quality-control.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">discrete =</span> <span class="st">&quot;ground_truth&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
+<p>For reference, here are the ground truth (manually annotated) cortical layers in this dataset.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="quality-control.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot ground truth (manually annotated) layers</span></span>
+<span id="cb39-2"><a href="quality-control.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">annotate =</span> <span class="st">&quot;ground_truth&quot;</span>, </span>
+<span id="cb39-3"><a href="quality-control.html#cb39-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 28 rows containing missing values (geom_point).</code></pre>
 <p><img src="quality_control_files/figure-html/plot_ground_truth-1.png" width="672" /></p>
 </div>
-<div id="number-of-expressed-features" class="section level3" number="10.5.2">
-<h3><span class="header-section-number">10.5.2</span> Number of expressed features</h3>
+<div id="number-of-expressed-features" class="section level3" number="9.5.2">
+<h3><span class="header-section-number">9.5.2</span> Number of expressed features</h3>
 <p>The number of expressed features refers to the number of genes with non-zero UMI counts per spot. This is stored in the column <code>detected</code> in the <code>scater</code> output.</p>
 <p>We use a similar sequence of visualizations to choose a threshold for this QC metric.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="quality-control.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram of numbers of expressed genes</span></span>
-<span id="cb35-2"><a href="quality-control.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>detected, <span class="at">breaks =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="quality-control.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram of numbers of expressed genes</span></span>
+<span id="cb41-2"><a href="quality-control.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>detected, <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_detected_hist-1.png" width="672" /></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="quality-control.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of expressed genes vs. number of cells per spot</span></span>
-<span id="cb36-2"><a href="quality-control.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCscatter</span>(spe, </span>
-<span id="cb36-3"><a href="quality-control.html#cb36-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;detected&quot;</span>, </span>
-<span id="cb36-4"><a href="quality-control.html#cb36-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">threshold_y =</span> <span class="dv">250</span>, <span class="at">marginal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
-## `geom_smooth()` using formula &#39;y ~ x&#39;
-## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="quality-control.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of expressed genes vs. number of cells per spot</span></span>
+<span id="cb42-2"><a href="quality-control.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;scatter&quot;</span>, </span>
+<span id="cb42-3"><a href="quality-control.html#cb42-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;detected&quot;</span>, </span>
+<span id="cb42-4"><a href="quality-control.html#cb42-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_y =</span> <span class="dv">250</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="quality_control_files/figure-html/plot_detected_scatter-1.png" width="360" /></p>
 <p>Based on the plots, we select a threshold of 250 expressed genes per spot.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="quality-control.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for number of expressed genes</span></span>
-<span id="cb38-2"><a href="quality-control.html#cb38-2" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
-<span id="cb38-3"><a href="quality-control.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_detected)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="quality-control.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for number of expressed genes</span></span>
+<span id="cb45-2"><a href="quality-control.html#cb45-2" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
+<span id="cb45-3"><a href="quality-control.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_detected)</span></code></pre></div>
 <pre><code>## qc_detected
 ## FALSE  TRUE 
 ##  3634     5</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="quality-control.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_detected <span class="ot">&lt;-</span> qc_detected</span></code></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="quality-control.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
-<span id="cb41-2"><a href="quality-control.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCspots</span>(spe, <span class="at">discard =</span> <span class="st">&quot;qc_detected&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="quality-control.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_detected <span class="ot">&lt;-</span> qc_detected</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="quality-control.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
+<span id="cb48-2"><a href="quality-control.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, </span>
+<span id="cb48-3"><a href="quality-control.html#cb48-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">discard =</span> <span class="st">&quot;qc_detected&quot;</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_detected_spatial-1.png" width="672" /></p>
 <p>Again, we also check what happens when we set the threshold too high.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="quality-control.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots if threshold is too high</span></span>
-<span id="cb42-2"><a href="quality-control.html#cb42-2" aria-hidden="true" tabindex="-1"></a>qc_detected_1000 <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">1000</span></span>
-<span id="cb42-3"><a href="quality-control.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_detected_1000 <span class="ot">&lt;-</span> qc_detected_1000</span>
-<span id="cb42-4"><a href="quality-control.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCspots</span>(spe, <span class="at">discard =</span> <span class="st">&quot;qc_detected_1000&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="quality-control.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots if threshold is too high</span></span>
+<span id="cb49-2"><a href="quality-control.html#cb49-2" aria-hidden="true" tabindex="-1"></a>qc_detected_1000 <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">1000</span></span>
+<span id="cb49-3"><a href="quality-control.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_detected_1000 <span class="ot">&lt;-</span> qc_detected_1000</span>
+<span id="cb49-4"><a href="quality-control.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, </span>
+<span id="cb49-5"><a href="quality-control.html#cb49-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">discard =</span> <span class="st">&quot;qc_detected_1000&quot;</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_detected_spatial_too_high-1.png" width="672" /></p>
 </div>
-<div id="proportion-of-mitochondrial-reads" class="section level3" number="10.5.3">
-<h3><span class="header-section-number">10.5.3</span> Proportion of mitochondrial reads</h3>
+<div id="proportion-of-mitochondrial-reads" class="section level3" number="9.5.3">
+<h3><span class="header-section-number">9.5.3</span> Proportion of mitochondrial reads</h3>
 <p>A high proportion of mitochondrial reads indicates cell damage.</p>
 <p>We investigate the proportions of mitochondrial reads across spots, and select an appropriate threshold. The proportions of mitochondrial reads per spot are stored in the column <code>subsets_mito_percent</code> in the <code>scater</code> output.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="quality-control.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram of mitochondrial read proportions</span></span>
-<span id="cb43-2"><a href="quality-control.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent, <span class="at">breaks =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="quality-control.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram of mitochondrial read proportions</span></span>
+<span id="cb50-2"><a href="quality-control.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent, <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_mito_hist-1.png" width="672" /></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="quality-control.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot mitochondrial read proportion vs. number of cells per spot</span></span>
-<span id="cb44-2"><a href="quality-control.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCscatter</span>(spe, </span>
-<span id="cb44-3"><a href="quality-control.html#cb44-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;subsets_mito_percent&quot;</span>, </span>
-<span id="cb44-4"><a href="quality-control.html#cb44-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">threshold_y =</span> <span class="dv">30</span>, <span class="at">marginal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
-## `geom_smooth()` using formula &#39;y ~ x&#39;
-## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="quality-control.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot mitochondrial read proportion vs. number of cells per spot</span></span>
+<span id="cb51-2"><a href="quality-control.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;scatter&quot;</span>, </span>
+<span id="cb51-3"><a href="quality-control.html#cb51-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;subsets_mito_percent&quot;</span>, </span>
+<span id="cb51-4"><a href="quality-control.html#cb51-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_y =</span> <span class="dv">30</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="quality_control_files/figure-html/plot_mito_scatter-1.png" width="360" /></p>
 <p>We select a threshold of 30% for the mitochondrial read proportion.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="quality-control.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for mitochondrial read proportion</span></span>
-<span id="cb46-2"><a href="quality-control.html#cb46-2" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
-<span id="cb46-3"><a href="quality-control.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_mito)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="quality-control.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for mitochondrial read proportion</span></span>
+<span id="cb54-2"><a href="quality-control.html#cb54-2" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
+<span id="cb54-3"><a href="quality-control.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_mito)</span></code></pre></div>
 <pre><code>## qc_mito
 ## FALSE  TRUE 
 ##  3636     3</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="quality-control.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_mito <span class="ot">&lt;-</span> qc_mito</span></code></pre></div>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="quality-control.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
-<span id="cb49-2"><a href="quality-control.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCspots</span>(spe, <span class="at">discard =</span> <span class="st">&quot;qc_mito&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="quality-control.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_mito <span class="ot">&lt;-</span> qc_mito</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="quality-control.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
+<span id="cb57-2"><a href="quality-control.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, </span>
+<span id="cb57-3"><a href="quality-control.html#cb57-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">discard =</span> <span class="st">&quot;qc_mito&quot;</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_mito_spatial-1.png" width="672" /></p>
 <p>We also check what happens when we set the threshold too low.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="quality-control.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots if threshold is too high</span></span>
-<span id="cb50-2"><a href="quality-control.html#cb50-2" aria-hidden="true" tabindex="-1"></a>qc_mito_25 <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">25</span></span>
-<span id="cb50-3"><a href="quality-control.html#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_mito_25 <span class="ot">&lt;-</span> qc_mito_25</span>
-<span id="cb50-4"><a href="quality-control.html#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCspots</span>(spe, <span class="at">discard =</span> <span class="st">&quot;qc_mito_25&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="quality-control.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots if threshold is too high</span></span>
+<span id="cb58-2"><a href="quality-control.html#cb58-2" aria-hidden="true" tabindex="-1"></a>qc_mito_25 <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">25</span></span>
+<span id="cb58-3"><a href="quality-control.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_mito_25 <span class="ot">&lt;-</span> qc_mito_25</span>
+<span id="cb58-4"><a href="quality-control.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, </span>
+<span id="cb58-5"><a href="quality-control.html#cb58-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">discard =</span> <span class="st">&quot;qc_mito_25&quot;</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_mito_spatial_too_low-1.png" width="672" /></p>
 </div>
-<div id="number-of-cells-per-spot" class="section level3" number="10.5.4">
-<h3><span class="header-section-number">10.5.4</span> Number of cells per spot</h3>
+<div id="number-of-cells-per-spot" class="section level3" number="9.5.4">
+<h3><span class="header-section-number">9.5.4</span> Number of cells per spot</h3>
 <p>The number of cells per spot depends on the tissue type and organism.</p>
 <p>Here, we check for any outlier values that could indicate problems during cell segmentation.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="quality-control.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram of cell counts</span></span>
-<span id="cb51-2"><a href="quality-control.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count, <span class="at">breaks =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="quality-control.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram of cell counts</span></span>
+<span id="cb59-2"><a href="quality-control.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count, <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_cell_count_hist-1.png" width="672" /></p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="quality-control.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># distribution of cells per spot</span></span>
-<span id="cb52-2"><a href="quality-control.html#cb52-2" aria-hidden="true" tabindex="-1"></a>tbl_cells_per_spot <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="quality-control.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># distribution of cells per spot</span></span>
+<span id="cb60-2"><a href="quality-control.html#cb60-2" aria-hidden="true" tabindex="-1"></a>tbl_cells_per_spot <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count)</span></code></pre></div>
 <p>We see a tail of very high values, which could indicate problems for these spots. These values are also visible on the scatterplots. Here, we again plot the number of expressed genes vs. cell count, with an added trend.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="quality-control.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of expressed genes vs. number of cells per spot</span></span>
-<span id="cb53-2"><a href="quality-control.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCscatter</span>(spe, </span>
-<span id="cb53-3"><a href="quality-control.html#cb53-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;detected&quot;</span>, </span>
-<span id="cb53-4"><a href="quality-control.html#cb53-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">threshold_x =</span> <span class="dv">12</span>, <span class="at">trend =</span> <span class="cn">TRUE</span>, <span class="at">marginal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
-## `geom_smooth()` using formula &#39;y ~ x&#39;
-## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="quality-control.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of expressed genes vs. number of cells per spot</span></span>
+<span id="cb61-2"><a href="quality-control.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;scatter&quot;</span>, </span>
+<span id="cb61-3"><a href="quality-control.html#cb61-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;detected&quot;</span>, </span>
+<span id="cb61-4"><a href="quality-control.html#cb61-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_x =</span> <span class="dv">12</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="quality_control_files/figure-html/plot_cell_count_scatter-1.png" width="360" /></p>
 <p>In particular, we see that the spots with very high cell counts also have low numbers of expressed genes. This indicates that the experiments have failed for these spots, and they should be removed.</p>
 <p>We select a threshold of 12 cells per spot. The number of spots above this threshold is relatively small, and there is a clear downward trend in the number of expressed genes above this threshold.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="quality-control.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for number of cells per spot</span></span>
-<span id="cb55-2"><a href="quality-control.html#cb55-2" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
-<span id="cb55-3"><a href="quality-control.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_cell_count)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="quality-control.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for number of cells per spot</span></span>
+<span id="cb64-2"><a href="quality-control.html#cb64-2" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
+<span id="cb64-3"><a href="quality-control.html#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_cell_count)</span></code></pre></div>
 <pre><code>## qc_cell_count
 ## FALSE  TRUE 
 ##  3592    47</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="quality-control.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_cell_count <span class="ot">&lt;-</span> qc_cell_count</span></code></pre></div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="quality-control.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
-<span id="cb58-2"><a href="quality-control.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCspots</span>(spe, <span class="at">discard =</span> <span class="st">&quot;qc_cell_count&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="quality-control.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_cell_count <span class="ot">&lt;-</span> qc_cell_count</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="quality-control.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
+<span id="cb67-2"><a href="quality-control.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, </span>
+<span id="cb67-3"><a href="quality-control.html#cb67-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">discard =</span> <span class="st">&quot;qc_cell_count&quot;</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_cell_count_spatial-1.png" width="672" /></p>
 <p>While there is a spatial pattern to the discarded spots, it does not appear to be correlated with the known biological features (cortical layers). The discarded spots are all on the edges of the tissue. It seems plausible that something has gone wrong with the cell segmentation on the edges of the images, so it makes sense to remove these spots.</p>
 </div>
-<div id="remove-low-quality-spots" class="section level3" number="10.5.5">
-<h3><span class="header-section-number">10.5.5</span> Remove low-quality spots</h3>
+<div id="remove-low-quality-spots" class="section level3" number="9.5.5">
+<h3><span class="header-section-number">9.5.5</span> Remove low-quality spots</h3>
 <p>Now that we have calculated several QC metrics and selected thresholds for each one, we can combine the sets of low-quality spots, and remove them from our object.</p>
 <p>We also check again that the combined set of discarded spots does not correspond to any obvious biologically relevant group of spots.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="quality-control.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of discarded spots for each metric</span></span>
-<span id="cb59-2"><a href="quality-control.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">cbind</span>(qc_lib_size, qc_detected, qc_mito, qc_cell_count), <span class="dv">2</span>, sum)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="quality-control.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of discarded spots for each metric</span></span>
+<span id="cb68-2"><a href="quality-control.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">cbind</span>(qc_lib_size, qc_detected, qc_mito, qc_cell_count), <span class="dv">2</span>, sum)</span></code></pre></div>
 <pre><code>##   qc_lib_size   qc_detected       qc_mito qc_cell_count 
 ##             7             5             3            47</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="quality-control.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
-<span id="cb61-2"><a href="quality-control.html#cb61-2" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
-<span id="cb61-3"><a href="quality-control.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(discard)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="quality-control.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
+<span id="cb70-2"><a href="quality-control.html#cb70-2" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
+<span id="cb70-3"><a href="quality-control.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(discard)</span></code></pre></div>
 <pre><code>## discard
 ## FALSE  TRUE 
 ##  3582    57</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="quality-control.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store in object</span></span>
-<span id="cb63-2"><a href="quality-control.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span></code></pre></div>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="quality-control.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of combined set of discarded spots</span></span>
-<span id="cb64-2"><a href="quality-control.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQCspots</span>(spe, <span class="at">discard =</span> <span class="st">&quot;discard&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="quality-control.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store in object</span></span>
+<span id="cb72-2"><a href="quality-control.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="quality-control.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of combined set of discarded spots</span></span>
+<span id="cb73-2"><a href="quality-control.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, </span>
+<span id="cb73-3"><a href="quality-control.html#cb73-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">discard =</span> <span class="st">&quot;discard&quot;</span>)</span></code></pre></div>
 <p><img src="quality_control_files/figure-html/plot_discarded_spatial-1.png" width="672" /></p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="quality-control.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove combined set of low-quality spots</span></span>
-<span id="cb65-2"><a href="quality-control.html#cb65-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
-<span id="cb65-3"><a href="quality-control.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="quality-control.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove combined set of low-quality spots</span></span>
+<span id="cb74-2"><a href="quality-control.html#cb74-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
+<span id="cb74-3"><a href="quality-control.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
 <pre><code>## [1] 33538  3582</code></pre>
 </div>
 </div>
-<div id="zero-cell-and-single-cell-spots" class="section level2" number="10.6">
-<h2><span class="header-section-number">10.6</span> Zero-cell and single-cell spots</h2>
+<div id="zero-cell-and-single-cell-spots" class="section level2" number="9.6">
+<h2><span class="header-section-number">9.6</span> Zero-cell and single-cell spots</h2>
 <p>A particular characteristic of Visium data is that spots can contain zero, one, or multiple cells.</p>
 <p>We could also imagine other filtering procedures such as (i) removing spots with zero cells, or (ii) restricting the analysis to spots containing a single cell (which would make the data more similar to scRNA-seq).</p>
 <p>However, this would discard a large amount of information. Below, we show the distribution of cells per spot again (up to the filtering threshold of 12 cells per spot from above).</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="quality-control.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># distribution of cells per spot</span></span>
-<span id="cb67-2"><a href="quality-control.html#cb67-2" aria-hidden="true" tabindex="-1"></a>tbl_cells_per_spot[<span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="quality-control.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># distribution of cells per spot</span></span>
+<span id="cb76-2"><a href="quality-control.html#cb76-2" aria-hidden="true" tabindex="-1"></a>tbl_cells_per_spot[<span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>]</span></code></pre></div>
 <pre><code>## 
 ##   0   1   2   3   4   5   6   7   8   9  10  11  12 
 ##  84 211 483 623 617 541 421 287 140  92  50  25  18</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="quality-control.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as proportions</span></span>
-<span id="cb69-2"><a href="quality-control.html#cb69-2" aria-hidden="true" tabindex="-1"></a>prop_cells_per_spot <span class="ot">&lt;-</span> <span class="fu">round</span>(tbl_cells_per_spot <span class="sc">/</span> <span class="fu">sum</span>(tbl_cells_per_spot), <span class="dv">2</span>)</span>
-<span id="cb69-3"><a href="quality-control.html#cb69-3" aria-hidden="true" tabindex="-1"></a>prop_cells_per_spot[<span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="quality-control.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as proportions</span></span>
+<span id="cb78-2"><a href="quality-control.html#cb78-2" aria-hidden="true" tabindex="-1"></a>prop_cells_per_spot <span class="ot">&lt;-</span> <span class="fu">round</span>(tbl_cells_per_spot <span class="sc">/</span> <span class="fu">sum</span>(tbl_cells_per_spot), <span class="dv">2</span>)</span>
+<span id="cb78-3"><a href="quality-control.html#cb78-3" aria-hidden="true" tabindex="-1"></a>prop_cells_per_spot[<span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>]</span></code></pre></div>
 <pre><code>## 
 ##    0    1    2    3    4    5    6    7    8    9   10   11   12 
 ## 0.02 0.06 0.13 0.17 0.17 0.15 0.12 0.08 0.04 0.03 0.01 0.01 0.00</code></pre>
 <p>Only 6% of spots contain a single cell. If we restricted the analysis to these spots only, we would be discarding most of the data.</p>
-<p>Removing the spots containing zero cells (2% of spots) would also be problematic, since these spots can also contain biologically meaningful information. For example, in this brain dataset, the regions between cell bodies consists of neuropil (dense networks of axons and dendrites). In our paper <span class="citation">(<a href="references.html#ref-Maynard2021" role="doc-biblioref">Maynard et al. 2021</a>)</span>, we explore the information contained in these neuropil spots.</p>
+<p>Removing the spots containing zero cells (2% of spots) would also be problematic, since these spots can also contain biologically meaningful information. For example, in this brain dataset, the regions between cell bodies consists of neuropil (dense networks of axons and dendrites). In our paper <span class="citation">(<a href="#ref-Maynard2021" role="doc-biblioref">Maynard et al. 2021</a>)</span>, we explore the information contained in these neuropil spots.</p>
 </div>
-<div id="quality-control-at-gene-level" class="section level2" number="10.7">
-<h2><span class="header-section-number">10.7</span> Quality control at gene level</h2>
+<div id="quality-control-at-gene-level" class="section level2" number="9.7">
+<h2><span class="header-section-number">9.7</span> Quality control at gene level</h2>
 <p>The sections above consider quality control at the spot level. In some datasets, it may also be appropriate to apply quality control procedures or filtering at the gene level. For example, certain genes may be biologically irrelevant for downstream analyses.</p>
 <p>However, here we make a distinction between quality control and feature selection. Removing biologically uninteresting genes (such as mitochondrial genes) may also be considered as part of feature selection, since there is no underlying experimental procedure that has failed. Therefore, we will discuss gene-level filtering in the <a href="visium-mouse-coronal-workflow.html#feature-selection-2">Feature selection</a> chapter.</p>
 
+</div>
+</div>
+<h3> References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Maynard2021" class="csl-entry">
+Maynard, K R, L Collado-Torres, L M Weber, C Uytingco, B K Barry, S R Williams, J L Catallini, et al. 2021. <span>“Transcriptome-Scale Spatial Gene Expression in the Human Dorsolateral Prefrontal Cortex.”</span> <em>Nature Neuroscience</em>, 425–36.
+</div>
+<div id="ref-McCarthy2017" class="csl-entry">
+McCarthy, Davis J, Kieran R Campbell, Aaron T L Lun, and Quin F Wills. 2017. <span>“Scater: Pre-Processing, Quality Control, Normalization and Visualization of Single-Cell <span class="nocase">RNA-seq</span> Data in <span>R</span>.”</span> <em>Bioinformatics</em> 33 (8): 1179–86.
 </div>
 </div>
             </section>
@@ -609,6 +658,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
