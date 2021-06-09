@@ -1,6 +1,6 @@
 # Visium human DLPFC workflow
 
-This workflow analyzes one sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform. This is a condensed version of the analyses shown in the individual analysis chapters in the previous part. For more details on any of the individual steps, see the previous chapters.
+This workflow analyzes one sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform. This is a condensed version of the analyses shown in the individual analysis chapters in the previous part. For more details on the individual steps, see the previous chapters.
 
 
 ## Description of dataset
@@ -23,7 +23,7 @@ library(SpatialExperiment)
 library(STexampleData)
 
 # load object
-spe <- load_data("Visium_humanDLPFC")
+spe <- Visium_humanDLPFC()
 spe
 ```
 
@@ -34,9 +34,11 @@ As an initial check, plot the spatial coordinates (spots) in x-y dimensions on t
 
 We use visualization functions from the [ggspavis](https://github.com/lmweber/ggpavis) package to generate plots.
 
-```{r plot_data, message=FALSE, fig.height=3.5}
+```{r, message=FALSE}
 library(ggspavis)
+```
 
+```{r plot_data, fig.height=3.5}
 # plot spatial coordinates (spots)
 plotSpots(spe)
 ```
@@ -52,12 +54,13 @@ spe <- spe[, spatialData(spe)$in_tissue == 1]
 dim(spe)
 ```
 
-
 Next, calculate spot-level QC metrics using the `scater` package [@McCarthy2017], and store the QC metrics in `colData`. See [Quality control] for more details, including explanations of the QC metrics.
 
-```{r QC_calculate, message=FALSE}
+```{r, message=FALSE}
 library(scater)
+```
 
+```{r QC_calculate}
 # identify mitochondrial genes
 is_mito <- grepl("(^MT-)|(^mt-)", rowData(spe)$gene_name)
 table(is_mito)
@@ -67,7 +70,6 @@ rowData(spe)$gene_name[is_mito]
 spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
 head(colData(spe), 3)
 ```
-
 
 Select filtering thresholds for the QC metrics by examining distributions using histograms. For additional details, including further exploratory visualizations to select the thresholds, see [Quality control]. Here, we use relatively relaxed thresholds, since the additional exploratory visualizations showed that more stringent thresholds tended to remove groups of spots corresponding to biologically meaningful regions.
 
@@ -97,18 +99,12 @@ table(discard)
 colData(spe)$discard <- discard
 ```
 
-
 Plot the set of discarded spots in the spatial x-y coordinates, to confirm that the spatial distribution of the discarded spots does not correspond to any biologically meaningful regions, which would indicate that we are removing biologically informative spots.
 
-We use QC visualization functions from the [spatzli](https://github.com/lmweber/spatzli) package to generate plots.
-
-```{r QC_check, message=FALSE, fig.height=3.5}
-library(spatzli)
-
+```{r QC_check, fig.height=3.5}
 # check spatial pattern of discarded spots
-plotQCspots(spe, discard = "discard")
+plotQC(spe, type = "spots", discard = "discard")
 ```
-
 
 There is some concentration of discarded spots at the edge of the tissue region, which may be due to tissue damage. Importantly, the discarded spots do not correspond to any of the cortical layers of interest.
 
@@ -125,9 +121,11 @@ dim(spe)
 
 Calculate log-transformed normalized counts, using pool-based size factors and deconvolution to the spot level. We use normalization methods from `scater` [@McCarthy2017] and `scran` [@Lun2016], by assuming that these methods can be applied by treating spots as equivalent to cells. Since we have a single sample, there are no blocking factors. For more details, see [Normalization].
 
-```{r normalization, message=FALSE, fig.height=3.5}
+```{r, message=FALSE}
 library(scran)
+```
 
+```{r normalization, fig.height=3.5}
 # quick clustering for pool-based size factors
 set.seed(123)
 qclus <- quickCluster(spe)
@@ -148,7 +146,7 @@ assayNames(spe)
 
 ## Feature selection
 
-Identify a set of top highly variable genes (HVGs), which will be used to define cell types. We use methods from `scran` [@Lun2016], treating spots as equivalent to cells, and considering only molecular features (gene expression). Alternative methods adapted for spatial data will be described in [Feature selection]. We also first filter out mitochondrial genes, since these are very highly expressed and not of biological interest here.
+Identify a set of top highly variable genes (HVGs), which will be used to define cell types. We use methods from `scran` [@Lun2016], treating spots as equivalent to cells, and considering only molecular features (gene expression), as described in [Feature selection]. We also first filter out mitochondrial genes, since these are very highly expressed and not of biological interest here.
 
 ```{r feature_selection_mito}
 # remove mitochondrial genes
@@ -195,14 +193,14 @@ spe <- runUMAP(spe, dimred = "PCA")
 reducedDimNames(spe)
 dim(reducedDim(spe, "UMAP"))
 
-# update column names for plotting functions
+# update column names for easier plotting
 colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 ```
 
 
 ## Clustering
 
-Next, we perform clustering to define cell types. Here, we use molecular features (gene expression) only. Alternative approaches for spatial data that take into account spatial and other features will be described in [Clustering]. We apply graph-based clustering using the Walktrap method implemented in `scran` [@Lun2016], applied to the top 50 PCs calculated on the set of top HVGs.
+Next, we perform clustering to define cell types. Here, we use molecular features (gene expression) only, as described in [Clustering]. We apply graph-based clustering using the Walktrap method implemented in `scran` [@Lun2016], applied to the top 50 PCs calculated on the set of top HVGs.
 
 ```{r clustering_calculate}
 # graph-based clustering
@@ -217,24 +215,24 @@ table(clus)
 colLabels(spe) <- factor(clus)
 ```
 
-
-Visualize the clusters by plotting in (i) spatial x-y coordinates on the tissue slide, and (ii) UMAP dimensions. We use plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package.
+Visualize the clusters by plotting in (i) spatial (x-y) coordinates on the tissue slide, and (ii) UMAP dimensions.
 
 From the visualizations, we can see that the clustering reproduces the known biological structure (cortical layers), although not perfectly. The clusters are also separated in UMAP space, but again not perfectly.
 
-```{r clustering_plots_spots, message=FALSE, fig.height=3.5}
-library(ggspavis)
-
+```{r clustering_plots_spots, fig.height=3.5}
 # plot clusters in spatial x-y coordinates
-plotSpots(spe, discrete = "label", palette = "libd_layer_colors")
+plotSpots(spe, annotate = "label", 
+          palette = "libd_layer_colors")
 
-# plot ground truth labels in spatial x-y coordinates
-plotSpots(spe, discrete = "ground_truth", palette = "libd_layer_colors")
+# plot ground truth labels in spatial coordinates
+plotSpots(spe, annotate = "ground_truth", 
+          palette = "libd_layer_colors")
 ```
 
-```{r clustering_plots_reduced, message=FALSE, fig.width=5, fig.height=4.25}
+```{r clustering_plots_reduced, fig.width=5, fig.height=4.25}
 # plot clusters in UMAP reduced dimensions
-plotDimRed(spe, type = "UMAP", discrete = "label", palette = "libd_layer_colors")
+plotDimRed(spe, type = "UMAP", 
+           annotate = "label", palette = "libd_layer_colors")
 ```
 
 
@@ -243,7 +241,7 @@ plotDimRed(spe, type = "UMAP", discrete = "label", palette = "libd_layer_colors"
 Identify marker genes by testing for differential gene expression between clusters. We use the `findMarkers` implementation in `scran` [@Lun2016], using a binomial test, which tests for genes that differ in the proportion expressed vs. not expressed between clusters. This is a more stringent test than the default t-tests, and tends to select genes that are easier to interpret and validate experimentally.
 
 ```{r marker_genes}
-# set gene names as row names for visualization purposes
+# set gene names as row names for easier plotting
 rownames(spe) <- rowData(spe)$gene_name
 
 # test for marker genes
@@ -253,9 +251,11 @@ markers <- findMarkers(spe, test = "binom", direction = "up")
 markers
 ```
 
-```{r marker_genes_heatmap, message=FALSE, fig.width=5, fig.height=6}
+```{r, message=FALSE}
 library(pheatmap)
+```
 
+```{r marker_genes_heatmap, fig.width=5, fig.height=6}
 # plot log-fold changes for one cluster over all other clusters
 # selecting cluster 1
 interesting <- markers[[1]]
@@ -271,5 +271,4 @@ top_genes <- head(rownames(interesting))
 
 plotExpression(spe, x = "label", features = top_genes)
 ```
-
 
