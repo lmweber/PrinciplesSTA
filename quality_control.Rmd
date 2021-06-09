@@ -1,6 +1,5 @@
 # Quality control
 
-
 ## Background
 
 Quality control (QC) procedures at the spot level aim to remove low-quality spots before further analysis. Low-quality spots can occur due to problems during library preparation or other experimental procedures. Examples include large proportions of dead cells due to cell damage during library preparation, and low mRNA capture efficiency due to inefficient reverse transcription or PCR amplification.
@@ -22,7 +21,6 @@ Low library size or low number of expressed features can indicate poor mRNA capt
 The first three characteristics listed above are also used for QC in scRNA-seq data. However, the expected distributions for high-quality spots are different (compared to high-quality cells in scRNA-seq), since spots may contain zero, one, or multiple cells.
 
 
-
 ## Load data
 
 ```{r load_data, message=FALSE}
@@ -30,9 +28,8 @@ library(SpatialExperiment)
 library(STexampleData)
 
 # load object
-spe <- load_data("Visium_humanDLPFC")
+spe <- Visium_humanDLPFC()
 ```
-
 
 
 ## Plot data
@@ -41,13 +38,14 @@ As an initial check, plot the spatial coordinates (spots) in x-y dimensions on t
 
 We use visualization functions from the [ggspavis](https://github.com/lmweber/ggpavis) package to generate plots.
 
-```{r plot_data, message=FALSE, fig.height=3.5}
+```{r, message=FALSE}
 library(ggspavis)
+```
 
+```{r plot_data, fig.height=3.5}
 # plot spatial coordinates (spots)
 plotSpots(spe)
 ```
-
 
 
 ## Calculate QC metrics
@@ -58,16 +56,17 @@ The QC metrics from `scater` can be calculated and added to the `SpatialExperime
 
 First, we subset the object to keep only spots over tissue. The remaining spots are background spots, which we are not interested in.
 
+```{r, message=FALSE}
+library(scater)
+```
+
 ```{r subset_in_tissue}
 # subset to keep only spots over tissue
 spe <- spe[, spatialData(spe)$in_tissue == 1]
 dim(spe)
 ```
 
-
-```{r QC_calculate, message=FALSE}
-library(scater)
-
+```{r QC_calculate}
 # identify mitochondrial genes
 is_mito <- grepl("(^MT-)|(^mt-)", rowData(spe)$gene_name)
 table(is_mito)
@@ -75,9 +74,8 @@ rowData(spe)$gene_name[is_mito]
 
 # calculate per-spot QC metrics and store in colData
 spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
-head(colData(spe), 3)
+head(colData(spe))
 ```
-
 
 
 ## Selecting thresholds
@@ -95,20 +93,18 @@ Plot a histogram of the library sizes across spots.
 
 ```{r plot_lib_size_hist, fig.height=3.5}
 # histogram of library sizes
-hist(colData(spe)$sum, breaks = 25)
+hist(colData(spe)$sum, breaks = 20)
 ```
 
 The distribution is relatively smooth, and there are no obvious issue such as a spike at very low library sizes.
 
-We also plot the library sizes against the number of cells per spot (which was included in the original data object). This is to check that we are not inadvertently removing a biologically meaningful group of spots. The horizontal line (argument `threshold`) shows our first guess at a possible filtering threshold for library size based on the histogram.
+We also plot the library sizes against the number of cells per spot (which is available for this dataset). This is to check that we are not inadvertently removing a biologically meaningful group of spots. The horizontal line (argument `threshold`) shows our first guess at a possible filtering threshold for library size based on the histogram.
 
-```{r plot_lib_size_scatter, message=FALSE, fig.width=3.75, fig.height=3.75}
-library(spatzli)
-
+```{r plot_lib_size_scatter, fig.width=3.75, fig.height=3.75}
 # plot library size vs. number of cells per spot
-plotQCscatter(spe, 
-              metric_x = "cell_count", metric_y = "sum", 
-              threshold_y = 500, marginal = TRUE)
+plotQC(spe, type = "scatter", 
+       metric_x = "cell_count", metric_y = "sum", 
+       threshold_y = 500)
 ```
 
 The plot shows that setting a filtering threshold for library size (e.g. at the value shown) does not appear to select for any obvious biologically consistent group of spots.
@@ -127,25 +123,26 @@ Finally, we also check that the discarded spots do not have any obvious spatial 
 
 ```{r plot_lib_size_spatial, fig.height=3.5}
 # check spatial pattern of discarded spots
-plotQCspots(spe, discard = "qc_lib_size")
+plotQC(spe, type = "spots", 
+       discard = "qc_lib_size")
 ```
 
-As an aside, here we can also illustrate what happens if we set the threshold too high. For example, if we set the threshold to 1000 UMI counts per spot -- which would also seem like a reasonable value based on the histogram and scatterplot -- then we see a possible spatial pattern in the discarded spots, matching the cortical layers. This illustrates the importance of interactively checking exploratory visualizations when choosing these thresholds.
+As an aside, here we can also illustrate what happens if we set the threshold too high. For example, if we set the threshold to 2000 UMI counts per spot -- which may also seem like a reasonable value based on the histogram and scatterplot -- then we see a possible spatial pattern in the discarded spots, matching the cortical layers. This illustrates the importance of interactively checking exploratory visualizations when choosing these thresholds.
 
 ```{r plot_lib_size_spatial_too_high, fig.height=3.5}
 # check spatial pattern of discarded spots if threshold is too high
 qc_lib_size_2000 <- colData(spe)$sum < 2000
 colData(spe)$qc_lib_size_2000 <- qc_lib_size_2000
-plotQCspots(spe, discard = "qc_lib_size_2000")
+plotQC(spe, type = "spots", 
+       discard = "qc_lib_size_2000")
 ```
 
-For reference, here are the ground truth (manually annotated) cortical layers in this dataset. We use plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package.
+For reference, here are the ground truth (manually annotated) cortical layers in this dataset.
 
-```{r plot_ground_truth, message=FALSE, fig.height=3.5}
-library(ggspavis)
-
+```{r plot_ground_truth, fig.height=3.5}
 # plot ground truth (manually annotated) layers
-plotSpots(spe, discrete = "ground_truth", palette = "libd_layer_colors")
+plotSpots(spe, annotate = "ground_truth", 
+          palette = "libd_layer_colors")
 ```
 
 
@@ -157,14 +154,14 @@ We use a similar sequence of visualizations to choose a threshold for this QC me
 
 ```{r plot_detected_hist, fig.height=3.5}
 # histogram of numbers of expressed genes
-hist(colData(spe)$detected, breaks = 25)
+hist(colData(spe)$detected, breaks = 20)
 ```
 
 ```{r plot_detected_scatter, fig.width=3.75, fig.height=3.75}
 # plot number of expressed genes vs. number of cells per spot
-plotQCscatter(spe, 
-              metric_x = "cell_count", metric_y = "detected", 
-              threshold_y = 250, marginal = TRUE)
+plotQC(spe, type = "scatter", 
+       metric_x = "cell_count", metric_y = "detected", 
+       threshold_y = 250)
 ```
 
 Based on the plots, we select a threshold of 250 expressed genes per spot.
@@ -179,7 +176,8 @@ colData(spe)$qc_detected <- qc_detected
 
 ```{r plot_detected_spatial, fig.height=3.5}
 # check spatial pattern of discarded spots
-plotQCspots(spe, discard = "qc_detected")
+plotQC(spe, type = "spots", 
+       discard = "qc_detected")
 ```
 
 Again, we also check what happens when we set the threshold too high.
@@ -188,7 +186,8 @@ Again, we also check what happens when we set the threshold too high.
 # check spatial pattern of discarded spots if threshold is too high
 qc_detected_1000 <- colData(spe)$detected < 1000
 colData(spe)$qc_detected_1000 <- qc_detected_1000
-plotQCspots(spe, discard = "qc_detected_1000")
+plotQC(spe, type = "spots", 
+       discard = "qc_detected_1000")
 ```
 
 
@@ -200,14 +199,14 @@ We investigate the proportions of mitochondrial reads across spots, and select a
 
 ```{r plot_mito_hist, fig.height=3.5}
 # histogram of mitochondrial read proportions
-hist(colData(spe)$subsets_mito_percent, breaks = 25)
+hist(colData(spe)$subsets_mito_percent, breaks = 20)
 ```
 
 ```{r plot_mito_scatter, fig.width=3.75, fig.height=3.75}
 # plot mitochondrial read proportion vs. number of cells per spot
-plotQCscatter(spe, 
-              metric_x = "cell_count", metric_y = "subsets_mito_percent", 
-              threshold_y = 30, marginal = TRUE)
+plotQC(spe, type = "scatter", 
+       metric_x = "cell_count", metric_y = "subsets_mito_percent", 
+       threshold_y = 30)
 ```
 
 We select a threshold of 30% for the mitochondrial read proportion.
@@ -222,7 +221,8 @@ colData(spe)$qc_mito <- qc_mito
 
 ```{r plot_mito_spatial, fig.height=3.5}
 # check spatial pattern of discarded spots
-plotQCspots(spe, discard = "qc_mito")
+plotQC(spe, type = "spots", 
+       discard = "qc_mito")
 ```
 
 We also check what happens when we set the threshold too low.
@@ -231,7 +231,8 @@ We also check what happens when we set the threshold too low.
 # check spatial pattern of discarded spots if threshold is too high
 qc_mito_25 <- colData(spe)$subsets_mito_percent > 25
 colData(spe)$qc_mito_25 <- qc_mito_25
-plotQCspots(spe, discard = "qc_mito_25")
+plotQC(spe, type = "spots", 
+       discard = "qc_mito_25")
 ```
 
 
@@ -243,7 +244,7 @@ Here, we check for any outlier values that could indicate problems during cell s
 
 ```{r plot_cell_count_hist, fig.height=3.5}
 # histogram of cell counts
-hist(colData(spe)$cell_count, breaks = 25)
+hist(colData(spe)$cell_count, breaks = 20)
 
 # distribution of cells per spot
 tbl_cells_per_spot <- table(colData(spe)$cell_count)
@@ -253,9 +254,9 @@ We see a tail of very high values, which could indicate problems for these spots
 
 ```{r plot_cell_count_scatter, fig.width=3.75, fig.height=3.75}
 # plot number of expressed genes vs. number of cells per spot
-plotQCscatter(spe, 
-              metric_x = "cell_count", metric_y = "detected", 
-              threshold_x = 12, trend = TRUE, marginal = TRUE)
+plotQC(spe, type = "scatter", 
+       metric_x = "cell_count", metric_y = "detected", 
+       threshold_x = 12)
 ```
 
 In particular, we see that the spots with very high cell counts also have low numbers of expressed genes. This indicates that the experiments have failed for these spots, and they should be removed.
@@ -272,7 +273,8 @@ colData(spe)$qc_cell_count <- qc_cell_count
 
 ```{r plot_cell_count_spatial, fig.height=3.5}
 # check spatial pattern of discarded spots
-plotQCspots(spe, discard = "qc_cell_count")
+plotQC(spe, type = "spots", 
+       discard = "qc_cell_count")
 ```
 
 While there is a spatial pattern to the discarded spots, it does not appear to be correlated with the known biological features (cortical layers). The discarded spots are all on the edges of the tissue. It seems plausible that something has gone wrong with the cell segmentation on the edges of the images, so it makes sense to remove these spots.
@@ -298,7 +300,8 @@ colData(spe)$discard <- discard
 
 ```{r plot_discarded_spatial, fig.height=3.5}
 # check spatial pattern of combined set of discarded spots
-plotQCspots(spe, discard = "discard")
+plotQC(spe, type = "spots", 
+       discard = "discard")
 ```
 
 ```{r remove}
@@ -306,7 +309,6 @@ plotQCspots(spe, discard = "discard")
 spe <- spe[, !colData(spe)$discard]
 dim(spe)
 ```
-
 
 
 ## Zero-cell and single-cell spots
@@ -331,11 +333,9 @@ Only 6% of spots contain a single cell. If we restricted the analysis to these s
 Removing the spots containing zero cells (2% of spots) would also be problematic, since these spots can also contain biologically meaningful information. For example, in this brain dataset, the regions between cell bodies consists of neuropil (dense networks of axons and dendrites). In our paper [@Maynard2021], we explore the information contained in these neuropil spots.
 
 
-
 ## Quality control at gene level
 
 The sections above consider quality control at the spot level. In some datasets, it may also be appropriate to apply quality control procedures or filtering at the gene level. For example, certain genes may be biologically irrelevant for downstream analyses.
 
 However, here we make a distinction between quality control and feature selection. Removing biologically uninteresting genes (such as mitochondrial genes) may also be considered as part of feature selection, since there is no underlying experimental procedure that has failed. Therefore, we will discuss gene-level filtering in the [Feature selection] chapter.
-
 
