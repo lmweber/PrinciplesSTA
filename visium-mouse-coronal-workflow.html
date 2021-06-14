@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-06-09" />
+<meta name="date" content="2021-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -337,11 +337,12 @@ div.csl-indent {
 ## rowData names(3): gene_id gene_name feature_type
 ## colnames(4992): AAACAACGAATAGTTC-1 AAACAAGTATCTCCCA-1 ...
 ##   TTGTTTGTATTACACG-1 TTGTTTGTGTAAATTC-1
-## colData names(3): sample_id pxl_col_in_fullres pxl_row_in_fullres
+## colData names(1): sample_id
 ## reducedDimNames(0):
 ## mainExpName: NULL
 ## altExpNames(0):
-## spatialData names(6) : barcode_id in_tissue ... x y
+## spatialData names(6) : barcode_id in_tissue ... pxl_col_in_fullres
+##   pxl_row_in_fullres
 ## spatialCoords names(2) : x y
 ## imgData names(4): sample_id image_id data scaleFactor</code></pre>
 </div>
@@ -375,37 +376,27 @@ div.csl-indent {
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="visium-mouse-coronal-workflow.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics and store in colData</span></span>
 <span id="cb194-2"><a href="visium-mouse-coronal-workflow.html#cb194-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
 <span id="cb194-3"><a href="visium-mouse-coronal-workflow.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">colData</span>(spe), <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## DataFrame with 3 rows and 21 columns
-##                      sample_id pxl_col_in_fullres pxl_row_in_fullres
-##                    &lt;character&gt;          &lt;integer&gt;          &lt;integer&gt;
-## AAACAAGTATCTCCCA-1    sample01               7237               8229
-## AAACAATCTACTAGCA-1    sample01               1611               4169
-## AAACACCAATAACTGC-1    sample01               8315               2518
-##                            barcode_id in_tissue array_col array_row         x
-##                           &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;
-## AAACAAGTATCTCCCA-1 AAACAAGTATCTCCCA-1         1        50       102      7237
-## AAACAATCTACTAGCA-1 AAACAATCTACTAGCA-1         1         3        43      1611
-## AAACACCAATAACTGC-1 AAACACCAATAACTGC-1         1        59        19      8315
-##                            y       sum  detected subsets_mito_sum
-##                    &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt;        &lt;numeric&gt;
-## AAACAAGTATCTCCCA-1      8229     20935      5230             4036
-## AAACAATCTACTAGCA-1      4169     14789      3646             3419
-## AAACACCAATAACTGC-1      2518     34646      6272             5068
-##                    subsets_mito_detected subsets_mito_percent     total
-##                                &lt;numeric&gt;            &lt;numeric&gt; &lt;numeric&gt;
-## AAACAAGTATCTCCCA-1                    13              19.2787     20935
-## AAACAATCTACTAGCA-1                    13              23.1185     14789
-## AAACACCAATAACTGC-1                    13              14.6280     34646
-##                            barcode_id in_tissue array_col array_row         x
-##                           &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;
-## AAACAAGTATCTCCCA-1 AAACAAGTATCTCCCA-1         1        50       102      7237
-## AAACAATCTACTAGCA-1 AAACAATCTACTAGCA-1         1         3        43      1611
-## AAACACCAATAACTGC-1 AAACACCAATAACTGC-1         1        59        19      8315
-##                            y
-##                    &lt;integer&gt;
-## AAACAAGTATCTCCCA-1      8229
-## AAACAATCTACTAGCA-1      4169
-## AAACACCAATAACTGC-1      2518</code></pre>
+<pre><code>## DataFrame with 3 rows and 13 columns
+##                      sample_id         barcode_id in_tissue array_row array_col
+##                    &lt;character&gt;        &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;
+## AAACAAGTATCTCCCA-1    sample01 AAACAAGTATCTCCCA-1         1        50       102
+## AAACAATCTACTAGCA-1    sample01 AAACAATCTACTAGCA-1         1         3        43
+## AAACACCAATAACTGC-1    sample01 AAACACCAATAACTGC-1         1        59        19
+##                    pxl_col_in_fullres pxl_row_in_fullres       sum  detected
+##                             &lt;integer&gt;          &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt;
+## AAACAAGTATCTCCCA-1               7237               8229     20935      5230
+## AAACAATCTACTAGCA-1               1611               4169     14789      3646
+## AAACACCAATAACTGC-1               8315               2518     34646      6272
+##                    subsets_mito_sum subsets_mito_detected subsets_mito_percent
+##                           &lt;numeric&gt;             &lt;numeric&gt;            &lt;numeric&gt;
+## AAACAAGTATCTCCCA-1             4036                    13              19.2787
+## AAACAATCTACTAGCA-1             3419                    13              23.1185
+## AAACACCAATAACTGC-1             5068                    13              14.6280
+##                        total
+##                    &lt;numeric&gt;
+## AAACAAGTATCTCCCA-1     20935
+## AAACAATCTACTAGCA-1     14789
+## AAACACCAATAACTGC-1     34646</code></pre>
 <p>Select filtering thresholds for the QC metrics by examining distributions using histograms.</p>
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="visium-mouse-coronal-workflow.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histograms of QC metrics</span></span>
 <span id="cb196-2"><a href="visium-mouse-coronal-workflow.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>

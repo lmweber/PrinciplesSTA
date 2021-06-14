@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-06-09" />
+<meta name="date" content="2021-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -339,12 +339,12 @@ div.csl-indent {
 ## rowData names(3): gene_id gene_name feature_type
 ## colnames(4992): AAACAACGAATAGTTC-1 AAACAAGTATCTCCCA-1 ...
 ##   TTGTTTGTATTACACG-1 TTGTTTGTGTAAATTC-1
-## colData names(5): cell_count ground_truth sample_id pxl_col_in_fullres
-##   pxl_row_in_fullres
+## colData names(3): cell_count ground_truth sample_id
 ## reducedDimNames(0):
 ## mainExpName: NULL
 ## altExpNames(0):
-## spatialData names(6) : barcode_id in_tissue ... x y
+## spatialData names(6) : barcode_id in_tissue ... pxl_col_in_fullres
+##   pxl_row_in_fullres
 ## spatialCoords names(2) : x y
 ## imgData names(4): sample_id image_id data scaleFactor</code></pre>
 </div>
@@ -378,37 +378,27 @@ div.csl-indent {
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="visium-human-dlpfc-workflow.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics and store in colData</span></span>
 <span id="cb138-2"><a href="visium-human-dlpfc-workflow.html#cb138-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
 <span id="cb138-3"><a href="visium-human-dlpfc-workflow.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">colData</span>(spe), <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## DataFrame with 3 rows and 23 columns
-##                    cell_count ground_truth     sample_id pxl_col_in_fullres
-##                     &lt;integer&gt;     &lt;factor&gt;   &lt;character&gt;          &lt;integer&gt;
-## AAACAAGTATCTCCCA-1          6       Layer3 sample_151673               8468
-## AAACAATCTACTAGCA-1         16       Layer1 sample_151673               2807
-## AAACACCAATAACTGC-1          5       WM     sample_151673               9505
-##                    pxl_row_in_fullres         barcode_id in_tissue array_col
-##                             &lt;integer&gt;        &lt;character&gt; &lt;integer&gt; &lt;integer&gt;
-## AAACAAGTATCTCCCA-1               9791 AAACAAGTATCTCCCA-1         1        50
-## AAACAATCTACTAGCA-1               5769 AAACAATCTACTAGCA-1         1         3
-## AAACACCAATAACTGC-1               4068 AAACACCAATAACTGC-1         1        59
-##                    array_row         x         y       sum  detected
-##                    &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt;
-## AAACAAGTATCTCCCA-1       102      8468      9791      8458      3586
-## AAACAATCTACTAGCA-1        43      2807      5769      1667      1150
-## AAACACCAATAACTGC-1        19      9505      4068      3769      1960
-##                    subsets_mito_sum subsets_mito_detected subsets_mito_percent
-##                           &lt;numeric&gt;             &lt;numeric&gt;            &lt;numeric&gt;
-## AAACAAGTATCTCCCA-1             1407                    13              16.6351
-## AAACAATCTACTAGCA-1              204                    11              12.2376
-## AAACACCAATAACTGC-1              430                    13              11.4089
-##                        total         barcode_id in_tissue array_col array_row
-##                    &lt;numeric&gt;        &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;
-## AAACAAGTATCTCCCA-1      8458 AAACAAGTATCTCCCA-1         1        50       102
-## AAACAATCTACTAGCA-1      1667 AAACAATCTACTAGCA-1         1         3        43
-## AAACACCAATAACTGC-1      3769 AAACACCAATAACTGC-1         1        59        19
-##                            x         y
-##                    &lt;integer&gt; &lt;integer&gt;
-## AAACAAGTATCTCCCA-1      8468      9791
-## AAACAATCTACTAGCA-1      2807      5769
-## AAACACCAATAACTGC-1      9505      4068</code></pre>
+<pre><code>## DataFrame with 3 rows and 15 columns
+##                    cell_count ground_truth     sample_id         barcode_id
+##                     &lt;integer&gt;     &lt;factor&gt;   &lt;character&gt;        &lt;character&gt;
+## AAACAAGTATCTCCCA-1          6       Layer3 sample_151673 AAACAAGTATCTCCCA-1
+## AAACAATCTACTAGCA-1         16       Layer1 sample_151673 AAACAATCTACTAGCA-1
+## AAACACCAATAACTGC-1          5       WM     sample_151673 AAACACCAATAACTGC-1
+##                    in_tissue array_row array_col pxl_col_in_fullres
+##                    &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;          &lt;integer&gt;
+## AAACAAGTATCTCCCA-1         1        50       102               8468
+## AAACAATCTACTAGCA-1         1         3        43               2807
+## AAACACCAATAACTGC-1         1        59        19               9505
+##                    pxl_row_in_fullres       sum  detected subsets_mito_sum
+##                             &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt;        &lt;numeric&gt;
+## AAACAAGTATCTCCCA-1               9791      8458      3586             1407
+## AAACAATCTACTAGCA-1               5769      1667      1150              204
+## AAACACCAATAACTGC-1               4068      3769      1960              430
+##                    subsets_mito_detected subsets_mito_percent     total
+##                                &lt;numeric&gt;            &lt;numeric&gt; &lt;numeric&gt;
+## AAACAAGTATCTCCCA-1                    13              16.6351      8458
+## AAACAATCTACTAGCA-1                    11              12.2376      1667
+## AAACACCAATAACTGC-1                    13              11.4089      3769</code></pre>
 <p>Select filtering thresholds for the QC metrics by examining distributions using histograms. For additional details, including further exploratory visualizations to select the thresholds, see <a href="quality-control.html#quality-control">Quality control</a>. Here, we use relatively relaxed thresholds, since the additional exploratory visualizations showed that more stringent thresholds tended to remove groups of spots corresponding to biologically meaningful regions.</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="visium-human-dlpfc-workflow.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histograms of QC metrics</span></span>
 <span id="cb140-2"><a href="visium-human-dlpfc-workflow.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>))</span>
