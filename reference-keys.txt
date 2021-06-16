@@ -18,7 +18,6 @@ identify-number-of-cells-per-spot
 output-files
 loupe-browser-visium
 overview-1
-automatic-alignment-of-images
 manual-alignment-of-images
 output-files-for-space-ranger
 downstream-analyses-in-loupe-browser
