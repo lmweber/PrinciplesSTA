@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-06-16" />
+<meta name="date" content="2021-06-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="image-segmentation-visium.html"/>
 <link rel="next" href="space-ranger-visium.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -189,7 +189,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="6.1" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#overview-1"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
 <li class="chapter" data-level="6.2" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#manual-alignment-of-images"><i class="fa fa-check"></i><b>6.2</b> Manual alignment of images</a></li>
-<li class="chapter" data-level="6.3" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#output-files-for-space-ranger"><i class="fa fa-check"></i><b>6.3</b> Output files for Space Ranger</a></li>
+<li class="chapter" data-level="6.3" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#output-files-and-space-ranger"><i class="fa fa-check"></i><b>6.3</b> Output files and Space Ranger</a></li>
 <li class="chapter" data-level="6.4" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#downstream-analyses-in-loupe-browser"><i class="fa fa-check"></i><b>6.4</b> Downstream analyses in Loupe Browser</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html"><i class="fa fa-check"></i><b>7</b> Space Ranger (Visium)</a>
@@ -312,39 +312,77 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="loupe-browser-visium" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Loupe Browser (Visium)</h1>
-<p>Draft structure and points to cover (but feel free to change)</p>
 <div id="overview-1" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Overview</h2>
-<p>Loupe Browser is a desktop application from 10x Genomics that allows you to visiual your gene expression data without having to write code. You can utilize this software for most types of single cell transcriptomic data generated from 10x protocols, however we will discuss specifically how to use it for data generated from the Visisun Spatial Gene Expression protocol. In general, you can use the Loupe Browser to align gene expression spots to histology images, look for marker gene expression, annotate populations, and cluster with 3 different clustering methods.</p>
-<p>Below is tutorial from 10x on how to use the Loupe Browser:
-<a href="https://support.10xgenomics.com/spatial-gene-expression/software/visualization/latest/analysis" class="uri">https://support.10xgenomics.com/spatial-gene-expression/software/visualization/latest/analysis</a></p>
+<p>Loupe Browser is a desktop application from 10x Genomics that allows you to visualize your gene expression data without having to write code. You can utilize this software for most types of single cell transcriptomic data generated from 10x protocols, however we will discuss specifically how to use it for data generated from the Visium Spatial Gene Expression protocol. In general, you can use the Loupe Browser to align gene expression spots to histology images, look for marker gene expression, annotate populations, and cluster with three different clustering methods.</p>
+<p><a href="https://support.10xgenomics.com/spatial-gene-expression/software/visualization/latest/analysis">Here</a> is a tutorial from 10x Genomics on how to use the Loupe Browser.</p>
 </div>
 <div id="manual-alignment-of-images" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Manual alignment of images</h2>
-<p>One of the crucial first steps for processing Visium data is to align the gene expression spots to a high resolution (we use 40x) image of the tissue. While Space Ranger can do this automatically, if you want to ensure a high quality alignment with no mistakes it’s best to do this manually in the loupe browser. First, you upload the image and enter the serial number for the slide:</p>
-<p>(knitr::include_graphics(“images/alignment_load_image.png”))</p>
-<p>Then, you align the fiducial frame:</p>
-<p>(knitr::include_graphics(“images/alignment_fiducial.png”))</p>
-<p>Then, you manually select the spots that contain tissue:</p>
-<p>(knitr::include_graphics(“images/alignment_tissue.png”))</p>
+<p>One of the crucial first steps for processing Visium data is to align the gene expression spots to a high resolution (we use 40x) image of the tissue. While Space Ranger can do this automatically, if you want to ensure a high quality alignment with no mistakes it is best to do this manually in the Loupe browser. First, you upload the image and enter the serial number for the slide:</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<img src="images/alignment_load_image.png" alt="Figure caption." width="50%" />
+<p class="caption">
+Figure 6.1: Figure caption.
+</p>
 </div>
-<div id="output-files-for-space-ranger" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Output files for Space Ranger</h2>
-<p>The output files from space ranger are detailed in the space ranger section of this book. The .cloupe file is the one you need to import into the Loupe browser in order to explore your processed data. For us they are generally between 1 and 2 GB.</p>
+<p>Then, you align the fiducial frame:</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="images/alignment_fiducial.png" alt="Figure caption." width="50%" />
+<p class="caption">
+Figure 6.2: Figure caption.
+</p>
+</div>
+<p>Then, you manually select the spots that contain tissue:</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="images/alignment_tissue.png" alt="Figure caption." width="50%" />
+<p class="caption">
+Figure 6.3: Figure caption.
+</p>
+</div>
+</div>
+<div id="output-files-and-space-ranger" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Output files and Space Ranger</h2>
+<p>The output files from Space Ranger are detailed in the Space Ranger section of this book. The <code>.cloupe</code> file is the one you need to import into the Loupe Browser in order to explore your processed data. For us they are generally between 1 and 2 GB.</p>
 </div>
 <div id="downstream-analyses-in-loupe-browser" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Downstream analyses in Loupe Browser</h2>
 <p>You can look at the dimensionality reduction of the data through either a t-SNE or UMAP as well as apply graph-based or k-means clustering.</p>
-<p>(knitr::include_graphics(“images/tsne_kmeans.png”))</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="images/tsne_kmeans.png" alt="Figure caption." width="50%" />
+<p class="caption">
+Figure 6.4: Figure caption.
+</p>
+</div>
 <p>Most importantly you can overlay the gene expression data or annotated clusters onto the histology image.</p>
-<p>(knitr::include_graphics(“images/spatial_graph_based.png”))</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="images/spatial_graph_based.png" alt="Figure caption." width="50%" />
+<p class="caption">
+Figure 6.5: Figure caption.
+</p>
+</div>
 <p>You can make genes lists and plot marker genes spatially.</p>
-<p>(knitr::include_graphics(“images/gene_expression.png”))</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="images/gene_expression.png" alt="Figure caption." width="50%" />
+<p class="caption">
+Figure 6.6: Figure caption.
+</p>
+</div>
 <p>Or make violin plots.</p>
-<p>(knitr::include_graphics(“images/violin_plots.png”))</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="images/violin_plots.png" alt="Figure caption." width="50%" />
+<p class="caption">
+Figure 6.7: Figure caption.
+</p>
+</div>
 <p>Lastly, you can look at differential expression.</p>
-<p>(knitr::include_graphics(“images/deg.png”))</p>
-<p>##add part about annotating cell populations?</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<img src="images/deg.png" alt="Figure caption." width="50%" />
+<p class="caption">
+Figure 6.8: Figure caption.
+</p>
+</div>
+<!-- ##add part about annotating cell populations? -->
 
 </div>
 </div>

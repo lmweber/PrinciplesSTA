@@ -1,5 +1,13 @@
 fig:Visium-schematic
 fig:spe-schematic
+fig:unnamed-chunk-1
+fig:unnamed-chunk-2
+fig:unnamed-chunk-3
+fig:unnamed-chunk-4
+fig:unnamed-chunk-5
+fig:unnamed-chunk-6
+fig:unnamed-chunk-7
+fig:unnamed-chunk-8
 introduction
 contents-of-this-book
 who-this-book-is-for
@@ -19,7 +27,7 @@ output-files
 loupe-browser-visium
 overview-1
 manual-alignment-of-images
-output-files-for-space-ranger
+output-files-and-space-ranger
 downstream-analyses-in-loupe-browser
 space-ranger-visium
 overview-2
