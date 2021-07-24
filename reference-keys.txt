@@ -74,7 +74,6 @@ overview-3
 previous-steps-3
 clustering-on-hvgs
 clustering-on-hvgs-and-spatial-dimensions
-bayesspace
 marker-genes
 background-4
 previous-steps-4
