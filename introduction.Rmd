@@ -41,3 +41,14 @@ One of the main advantages of Bioconductor is the modularity and open developmen
 
 This modular and open-development approach allows end users to readily combine and substitute analysis methods contributed by different research groups, instead of being "locked in" to using methods or packages maintained by a single group. In a fast-moving field such as single-cell or ST analysis, having the ability to update analysis pipelines to use the latest methods is a crucial advantage. Any research group can contribute new packages implementing new methods to Bioconductor by following the contribution guidelines.
 
+
+## Contributions
+
+We welcome suggestions for contributions to OSTA. In general, we will adopt the following contribution guidelines, which are intended to maximize the usefulness of OSTA as a streamlined resource for new and advanced readers:
+
+- *Openness*: all tools and methods described in workflows should be freely available
+- *Neutrality*: workflows should rely on standard methods or tools that have been demonstrated to perform well in comprehensive benchmarks, to avoid perceived bias towards tools developed by specific groups
+- *Bioconductor-based*: workflows should be based largely on Bioconductor packages, if available
+- *Data structures*: workflows and examples should use Bioconductor data structures, e.g. `SpatialExperiment`
+- *Testability*: workflows and chapters will be tested regularly on the Bioconductor build system, which requires R package dependencies to be available from CRAN or Bioconductor
+
