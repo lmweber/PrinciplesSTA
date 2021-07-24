@@ -128,8 +128,3 @@ plotDimRed(spe, type = "UMAP",
 
 To do: describe approach from our publication @Maynard2021 to combine molecular and spatial features with appropriate scaling.
 
-
-## BayesSpace
-
-To do: section on BayesSpace [@Zhao2020]
-
