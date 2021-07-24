@@ -51,4 +51,5 @@ We welcome suggestions for contributions to OSTA. In general, we will adopt the 
 - *Bioconductor-based*: workflows should be based largely on Bioconductor packages, if available
 - *Data structures*: workflows and examples should use Bioconductor data structures, e.g. `SpatialExperiment`
 - *Testability*: workflows and chapters will be tested regularly on the Bioconductor build system, which requires R package dependencies to be available from CRAN or Bioconductor
+- *Maintenance*: commitment to maintain contributed code as part of the regular Bioconductor release schedule
 
