@@ -1,6 +1,12 @@
-Package: placeholder
+Package: OSTAbook
 Type: Book
 Title: Does not matter.
 Version: 0.0.1
 Imports: bookdown
 Remotes: rstudio/bookdown
+Authors@R: c(
+    person("Lukas", "M. Weber", role = c("cre", "ctb", "aut"), email = "someone@email.com"),
+    person("Abby", "Spangler", role = "ctb"),
+    person("Leonardo", "Collado-Tores", role = "ctb"),
+    person("Stephanie", "C. Hicks", role = "ctb"))
+Date: 2021-07-07
