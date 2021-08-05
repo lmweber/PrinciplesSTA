@@ -193,14 +193,13 @@ jobs:
         shell: Rscript {0}
      
       - name: Build website
-        if: runner.os == 'Linux'
         run: |
           bookdown::render_book("index.Rmd")
           system("touch _book/.nojekyll")
         shell: Rscript {0}
 
       - name: Install deploy dependencies
-        if: runner.os == 'Linux'
+        if: github.ref == 'refs/heads/main' && runner.os == 'Linux'
         run: |
           apt-get update && apt-get -y install rsync
 
