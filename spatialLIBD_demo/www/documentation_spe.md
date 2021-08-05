@@ -23,25 +23,15 @@ You might also be interested in this video demonstration of `spatialLIBD` for th
 
 ## Raw summary
 
-Before the documetation, this tab displays the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) object that contains the spot-level data. It's basically useful to know that the data has been loaded and that you can start navigating the app. If you wish to download this data, use the following command.
-
-```{r}
-## Download spe data
-spe <- spatialLIBD::fetch_data(type = 'spe')
-```
-
-Throughout the rest of this document, we'll refer to this object by the name `spe`.
+Before the documetation, this tab displays the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) object that contains the spot-level data. It's basically useful to know that the data has been loaded and that you can start navigating the app. Check the `OSTA` chapter on the _Visium spatialLIBD workflow_ for information on how to generate the `SpatialExperiment` object `spe` that we are using here.
 
 ## Common options
 
 * `Samples to plot`: which sample to plot on the tabs that do not have _grid_ on their name.
 * `Discrete variable to plot`: which discrete variable (typically with the cluster labels) to visualize. We include the clusters:
   - the official manual annotation used extensively in our pilot study (DOI: [10.1038/s41593-020-00787-0](https://doi.org/10.1038/s41593-020-00787-0))
-  - from the graph based clustering results produced by `spaceranger` one Visium slide at a time. These clusters are saved as `GraphBased`.
   - from your own manual annotation of the spots under `ManualAnnotation`.
-  - resulting the manual annotation by Kristen R Maynard and Keri Martinowich using known markers and histology features. This was an initial exploration and was not analyzed in more detail.
-  - resulting from using a shared nearest neighbors approach with 50 neighbors cut at 4 up to 28 clusters. These are `SNN_k50_k4` up to `SNN_k50_k28`.
-  - described in Figure 7 from our paper (DOI: [10.1038/s41593-020-00787-0](https://doi.org/10.1038/s41593-020-00787-0)) such as `SpatialDE_PCA`, `SpatialDE_pool_PCA` and others.
+  - resulting from using a graph-based clustering approach under `label`.
 * `Reduced dimensions`: which reduced dimension to visualize on the `clusters (interactive)` tab. Only the first two dimensions will be shown.
 * `Continuous variable to plot`: which gene or continuous variable (such as the cell count, the ratio of the mitochondrial chromosome expression) to visualize in the gene tabs as well as on the `clusters (interactive)` tab.
 * `Gene scale`: whether to use the raw expression values (`counts`) or the scaled and log transformed values (`logcounts`).
@@ -114,11 +104,6 @@ These CSV files with your manual annotations can be re-uploaded to `spatialLIBD`
 
 In summary, the order in which you re-upload the CSV files matters as newer uploads will overwrite any duplicated spots from previous CSV files.
 
-We also recommend saving your work often in case you lose connection to `spatialLIBD`. Though you could always run this website locally by using the following command:
+We also recommend saving your work often in case you lose connection to `spatialLIBD`. Though you could always run this website locally by using the commands described in the _Visium spatialLIBD workflow_ chapter of the OSTA book.
 
-```{r}
-## Reproduce locally with
-spatialLIBD::run_app()
-```
-
-This will require about 3GB of RAM to run on the server side, though potentially more, specially when using the `clusters (interactive)` tab.
+This will require about 300 MB of RAM to run on the server side, though potentially more, specially when using the `clusters (interactive)` tab.
