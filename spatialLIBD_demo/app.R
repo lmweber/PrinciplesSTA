@@ -1,5 +1,11 @@
 library("spatialLIBD")
 
+## spatialLIBD uses golem
+options("golem.app.prod" = TRUE)
+
+## You need this to enable shinyapps to install Bioconductor packages
+options(repos = BiocManager::repositories())
+
 ## Load the data
 spe <- readRDS("spe_workflow_Visium_spatialLIBD.rds")
 
