@@ -164,8 +164,11 @@ jobs:
           ## Ideally, all dependencies should get installed in the first pass.
           
           ## Set the repos source depending on the OS
-          gha_repos <- if(.Platform$OS.type == "unix") c("AnVIL" = "https://storage.googleapis.com/bioconductor_docker/packages/3.14/bioc", BiocManager::repositories()) else BiocManager::repositories()
-          
+          ## Alternatively use https://storage.googleapis.com/bioconductor_docker/
+          ## though based on https://bit.ly/bioc2021-package-binaries
+          ## the Azure link will be the main one going forward.
+          gha_repos <- if(.Platform$OS.type == "unix") c("AnVIL" = "https://bioconductordocker.blob.core.windows.net/packages/3.14/bioc", BiocManager::repositories()) else BiocManager::repositories()
+
           ## Install dependency that's failing on Bioc
           ## This works as shown at https://github.com/LieberInstitute/spatialLIBD/runs/3248662576
           remotes::install_github("PeteHaitch/DelayedMatrixStats", repos = gha_repos)
