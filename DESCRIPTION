@@ -48,12 +48,6 @@ Imports:
     spatialLIBD,
     STexampleData,
     uwot
-Remotes:
-    PeteHaitch/DelayedMatrixStats,
-    drighelli/SpatialExperiment,
-    lmweber/STexampleData@no_accessors,
-    lmweber/ggspavis,
-    LieberInstitute/spatialLIBD
 VignetteBuilder: knitr
 biocViews: Book
 Depends:
