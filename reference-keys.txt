@@ -33,11 +33,11 @@ downstream-analyses-in-loupe-browser
 space-ranger-visium
 overview-2
 installation
-memory-issues
 run-spaceranger-count
 output-files-1
 web-summary-.html-file
 import-outputs-into-r
+vistoseg-for-quantifying-cells-per-spot
 analysis-steps
 load-data
 spatialexperiment-object-structure
