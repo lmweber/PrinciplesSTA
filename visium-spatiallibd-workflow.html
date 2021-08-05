@@ -533,7 +533,7 @@ Figure 6.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb241-94"><a href="visium-spatiallibd-workflow.html#cb241-94" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb241-95"><a href="visium-spatiallibd-workflow.html#cb241-95" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb241-96"><a href="visium-spatiallibd-workflow.html#cb241-96" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
-<pre><code>## Time difference of 2.638904 mins</code></pre>
+<pre><code>## Time difference of 2.680755 mins</code></pre>
 </div>
 <div id="prepare-for-spatiallibd" class="section level2" number="18.4">
 <h2><span class="header-section-number">18.4</span> Prepare for spatialLIBD</h2>
@@ -561,7 +561,7 @@ Figure 6.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="visium-spatiallibd-workflow.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
 <span id="cb246-2"><a href="visium-spatiallibd-workflow.html#cb246-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
 <pre><code>##                                                                             BFC1 
-## &quot;/github/home/.cache/R/BiocFileCache/11277a633ead_gencode.v32.annotation.gtf.gz&quot;</code></pre>
+## &quot;/github/home/.cache/R/BiocFileCache/1128396dc33e_gencode.v32.annotation.gtf.gz&quot;</code></pre>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="visium-spatiallibd-workflow.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
 <span id="cb248-2"><a href="visium-spatiallibd-workflow.html#cb248-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
 <span id="cb248-3"><a href="visium-spatiallibd-workflow.html#cb248-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -720,8 +720,8 @@ Figure 6.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb262-3"><a href="visium-spatiallibd-workflow.html#cb262-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb262-4"><a href="visium-spatiallibd-workflow.html#cb262-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb262-5"><a href="visium-spatiallibd-workflow.html#cb262-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
-<pre><code>## Time difference of 49.24303 secs</code></pre>
-<p>Creating our final <code>spe</code> object took 3.4596210082372 to run. So you might want to save this object for later use.</p>
+<pre><code>## Time difference of 56.4412 secs</code></pre>
+<p>Creating our final <code>spe</code> object took 3.62144155502319 to run. So you might want to save this object for later use.</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="visium-spatiallibd-workflow.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 <p>You can then re-load it with the following code on a later session.</p>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="visium-spatiallibd-workflow.html#cb265-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
