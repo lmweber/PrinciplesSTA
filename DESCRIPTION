@@ -16,7 +16,12 @@ Authors@R:
          family = "Collado-Torres",
          role = c("aut"),
          email = "lcolladotor@gmail.com",
-         comment = c(ORCID = "0000-0003-2140-308X"))
+         comment = c(ORCID = "0000-0003-2140-308X")), 
+    person(given = "Stephanie C.", 
+           family = "Hicks", 
+           role = c("aut"), 
+           email = "shicks19@jhu.edu", 
+           comment = c(ORCID = "0000-0002-7858-0231"))
     )
 Description: This is not really an R package. It's just the home for the OSTA
     project that builds a book similar to the Orchestrating Single Cell Analysis
