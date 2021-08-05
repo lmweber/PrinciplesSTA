@@ -48,6 +48,8 @@ Imports:
     spatialLIBD,
     STexampleData,
     uwot
+Suggests:
+    RefManageR
 VignetteBuilder: knitr
 biocViews: Book
 Depends:
