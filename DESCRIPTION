@@ -48,10 +48,10 @@ Imports:
     STexampleData,
     uwot
 Remotes:
-    drighelli/SpatialExperiment,
-    lmweber/ggspavis,
-    lmweber/STexampleData@no_accessors,
     PeteHaitch/DelayedMatrixStats,
+    drighelli/SpatialExperiment,
+    lmweber/STexampleData@no_accessors,
+    lmweber/ggspavis,
     LieberInstitute/spatialLIBD
 VignetteBuilder: knitr
 biocViews: Book
