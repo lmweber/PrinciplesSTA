@@ -39,6 +39,7 @@ Imports:
     knitr,
     lobstr,
     pheatmap,
+    rmarkdown,
     rtracklayer,
     scater,
     scran,
