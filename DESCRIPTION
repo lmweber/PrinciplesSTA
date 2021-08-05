@@ -1,6 +1,55 @@
-Package: placeholder
-Type: Book
-Title: Does not matter.
-Version: 0.0.1
-Imports: bookdown
-Remotes: rstudio/bookdown
+Package: OSTA
+Title: Orchestrating Spatial Transcriptomics Analysis with Bioconductor
+Version: 0.99.0
+Date: 2021-08-05
+Authors@R: 
+    c(
+    person(given = "Lukas M",
+           family = "Weber",
+           role = c("aut", "cre"),
+           email = "lukas.weber@jhu.edu",
+           comment = c(ORCID = "0000-0002-3282-1730")),
+    person("Abby", "Spangler",
+        role = "ctb", email = "aspangle@gmail.com",
+        comment = c(ORCID = "0000-0002-0028-9348")),
+    person(given = "Leonardo",
+         family = "Collado-Torres",
+         role = c("aut"),
+         email = "lcolladotor@gmail.com",
+         comment = c(ORCID = "0000-0003-2140-308X"))
+    )
+Description: This is not really an R package. It's just the home for the OSTA
+    project that builds a book similar to the Orchestrating Single Cell Analysis
+    (OSCA) book. You can view OSTA at https://lmweber.org/OSTA-book/.
+License: Artistic-2.0
+URL: https://github.com/lmweber/OSTA-book
+BugReports: https://github.com/lmweber/OSTA-book/issues
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    BiocFileCache,
+    BiocStyle,
+    bookdown,
+    DelayedMatrixStats,
+    ExperimentHub,
+    ggspavis,
+    igraph,
+    knitr,
+    lobstr,
+    pheatmap,
+    rmarkdown,
+    rtracklayer,
+    scater,
+    scran,
+    sessioninfo,
+    SingleCellExperiment,
+    spatialLIBD,
+    STexampleData,
+    uwot
+VignetteBuilder: knitr
+biocViews: Book
+Depends:
+    SpatialExperiment,
+    R (>= 4.1)

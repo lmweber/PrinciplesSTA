@@ -1,4 +1,454 @@
 # Visium spatialLIBD workflow
 
-Workflow using dataset loaded from [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) package, highlighting additional features not shown in [Visium human DLPFC workflow] chapter.
+## Overview
+
+In the previous workflow, [Visium human DLPFC workflow], you practiced some of the basics with a portion of the postmortem human brain dataset @Maynard2021. The goal of this workflow is to learn what steps you need to carry out in order to create an interactive website to visualize this type of data. For this, we'll use the [`spatialLIBD`](http://bioconductor.org/packages/spatialLIBD) Bioconductor package @Pardo2021.
+
+## spatialLIBD
+
+### Why use spatialLIBD?
+
+Before we dive into the R code, let's first revisit why you might want to use `spatialLIBD`. This package has a function, `spatialLIBD::run_app(spe)`, which will create an interactive website using a `SpatialExperiment` object (`spe`). The interactive website it creates has several features that were initially designed for a specific dataset @Maynard2021 and later made flexible for any dataset @Pardo2021. These features include panels to visualize spots from the Visium platform by 10x Genomics:
+
+* for one tissue section at a time, either with interactive or static versions 
+* multiple tissue sections at a time, either interactively or statically
+
+Both options work with continuous and discrete variables such as the gene expression and clusters, respectively. The interactive version for discrete variables such as clusters is useful if you want to manually annotate Visium spots, as it was done in the initial project @Maynard2021. `spatialLIBD` allows users to download the annotated spots and resume your spot annotation work later. 
+
+```{r, echo=FALSE, out.width = "40%", fig.align="center", fig.cap="Screenshot of the 'clusters (interactive)' section of the 'spot-level data' panel created with the full spatialLIBD dataset. The website was created with `spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))` version 1.4.0 and then using the lasso selection, we selected a set of spots in the UMAP interactive plot colored by the estimated number of cells per spot (`cell_count`) on the bottom left, which automatically updated the other three plots."}
+knitr::include_graphics("images/spatialLIBD_interactive_cluster.png")
+```
+
+Visualizing genes or clusters across multiple tissue sections can be quite useful. For example, here we show the expression levels of _PCP4_ across two sets of spatially-adjacent replicates. _PCP4_ is a marker gene for layer 5 in the grey matter of the dorsolateral prefrontal cortex (DLPFC) in the human brain. Spatially-adjacent replicates are about 10 microns apart from each other and visualizations like the one below help assess the technical variability in the Visium technology.
+
+```{r, echo=FALSE, out.width = "40%", fig.align="center", fig.cap="Screenshot of the 'gene grid (static)' section of the 'spot-level data' panel created with the full spatialLIBD dataset. The website was created with `spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))` version 1.4.0, selecting the _PCP4_ gene, selecting the _paper_ gene color scale, changing the number of rows and columns in the grid 2, selecting two pairs of spatially-adjacent replicate samples (151507, 151508, 151673, and 151674), and clicking on the _upgrade grid plot_ button. Note that the default _viridis_ gene color scale is color-blind friendly."}
+knitr::include_graphics("images/spatialLIBD_gene_grid.png")
+```
+
+You can try out a `spatialLIBD`-powered website yourself by opening [it on your browser](https://spatial.libd.org/spatialLIBD) ^[Check https://github.com/LieberInstitute/spatialLIBD#shiny-website-mirrors in case you need to use a mirror. `shiny`-powered websites work best on browsers such as Google Chrome and Mozilla Firefox, among others].
+
+### Want to learn more about spatialLIBD?
+
+If you are interested in learning more about `spatialLIBD`, please check the [`spatialLIBD` Bioconductor landing page](http://bioconductor.org/packages/spatialLIBD) or the [`pkgdown` documentation website](http://lieberinstitute.github.io/spatialLIBD/). In particular, we have two vignettes documents:
+
+* [Introduction to spatialLIBD](http://research.libd.org/spatialLIBD/articles/spatialLIBD.html)
+* [Using spatialLIBD with 10x Genomics public datasets](http://research.libd.org/spatialLIBD/articles/TenX_data_download.html)
+
+You can also read more about `spatialLIBD` in the associated publication.
+
+```{r spatialLIBD_paper}
+citation("spatialLIBD")[1]
+```
+
+
+#### Recordings
+
+If you prefer to watch recordings of presentations related to the dataset @Maynard2021 or `spatialLIBD` @Pardo2021, check the following ^[Originally available at https://github.com/LieberInstitute/spatialLIBD/blob/master/inst/app/www/documentation_spe.md#slides-and-videos.]:
+
+<script async class="speakerdeck-embed" data-id="dde92cd6dfc04f9589770e074915658f" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+These slides were part of our 2021-04-27 webinar for BioTuring that you can watch from [their website](https://bioturing.com/sources/webinar/60752954a433e26dd8affcbd) or YouTube:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/S8884Kde-1U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+A recording of an earlier version of this talk is also available on YouTube.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aD2JU-vUv54" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+You might also be interested in this video demonstration of `spatialLIBD` for the [LIBD rstats club](http://research.libd.org/rstatsclub/).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LZ2kvCiRVdM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Code prerequisites
+
+Ok, let's get started! First we need to re-create the `spe` object from the [Visium human DLPFC workflow] in the previous chapter. That chapter included code for visualizing results along the way, which we'll skip here. Thus, we'll use the following packages in addition to `spatialLIBD`:
+
+* [`SpatialExperiment`](http://bioconductor.org/packages/SpatialExperiment): for storing our data in a common object
+* [`STexampleData`](http://bioconductor.org/packages/STexampleData): for accessing the example data
+* [`scater`](http://bioconductor.org/packages/scater): for quality control checks
+* [`scran`](http://bioconductor.org/packages/scran): for normalization, dimension reduction, and clustering
+* [`igraph`](https://cran.r-project.org/package=igraph): for clustering algorithms
+* [`BiocFileCache`](http://bioconductor.org/packages/BiocFileCache): for downloading and storing data
+* [`rtracklayer`](http://bioconductor.org/packages/rtracklayer): for importing gene annotation files
+* [`lobstr`](https://cran.r-project.org/package=igraph): for checking object memory usage
+
+You'll need to have the R version compatible with `bioc-release` ^[This book is under development, so right now you actually need to use `bioc-devel`. Once this book is submitted to Bioconductor, then it'll work with `bioc-release`. TODO: remove this comment when the book is available on `bioc-release`.] installed in your computer, as [documented by Bioconductor](http://bioconductor.org/install/). Alternatively, you can use the [Bioconductor docker images](http://bioconductor.org/help/docker/). Next, if you haven't installed these packages, please do so with the following R code.
+
+```{r spatialLIBD_install, eval = FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+    install.packages("BiocManager")
+}
+
+## Check that you have a valid installation
+BiocManager::valid()
+
+## Install the required R packages for this workflow
+BiocManager::install(c(
+    "SpatialExperiment",
+    "STexampleData",
+    "scater",
+    "scran",
+    "igraph",
+    "BiocFileCache",
+    "rtracklayer",
+    "lobstr",
+    "spatialLIBD"
+))
+```
+
+We can now run the following R code to re-make the `spe` object from the [Visium human DLPFC workflow]. This will take a bit of time.
+
+```{r spatialLIBD_prereq_code, message = FALSE}
+## Load packages required for the
+## "Visium human DLPFC workflow"
+library("SpatialExperiment")
+library("STexampleData")
+library("scater")
+library("scran")
+library("igraph")
+library("BiocFileCache")
+library("rtracklayer")
+library("lobstr")
+library("spatialLIBD")
+
+## Start tracking time
+time_start <- Sys.time()
+
+# load object
+spe <- load_data("Visium_humanDLPFC")
+
+# subset to keep only spots over tissue
+spe <- spe[, spatialData(spe)$in_tissue == 1]
+
+# identify mitochondrial genes
+is_mito <- grepl("(^MT-)|(^mt-)", rowData(spe)$gene_name)
+
+# calculate per-spot QC metrics and store in colData
+spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
+
+# select QC thresholds
+qc_lib_size <- colData(spe)$sum < 500
+qc_detected <- colData(spe)$detected < 250
+qc_mito <- colData(spe)$subsets_mito_percent > 30
+qc_cell_count <- colData(spe)$cell_count > 12
+
+# combined set of discarded spots
+discard <- qc_lib_size | qc_detected | qc_mito | qc_cell_count
+
+# store in object
+colData(spe)$discard <- discard
+
+# filter low-quality spots
+spe <- spe[, !colData(spe)$discard]
+
+# quick clustering for pool-based size factors
+set.seed(123)
+qclus <- quickCluster(spe)
+
+# calculate size factors and store in object
+spe <- computeSumFactors(spe, cluster = qclus)
+
+# calculate logcounts (log-transformed normalized counts) and store in object
+spe <- logNormCounts(spe)
+
+# remove mitochondrial genes
+spe <- spe[!is_mito, ]
+
+# fit mean-variance relationship
+dec <- modelGeneVar(spe)
+
+# select top HVGs
+top_hvgs <- getTopHVGs(dec, prop = 0.1)
+
+# compute PCA
+set.seed(123)
+spe <- runPCA(spe, subset_row = top_hvgs)
+
+# compute UMAP on top 50 PCs
+set.seed(123)
+spe <- runUMAP(spe, dimred = "PCA")
+
+# update column names for easier plotting
+colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
+
+# graph-based clustering
+set.seed(123)
+k <- 10
+g <- buildSNNGraph(spe, k = k, use.dimred = "PCA")
+g_walk <- igraph::cluster_walktrap(g)
+clus <- g_walk$membership
+
+# store cluster labels in column 'label' in colData
+colLabels(spe) <- factor(clus)
+
+# set gene names as row names for easier plotting
+rownames(spe) <- rowData(spe)$gene_name
+
+# test for marker genes
+markers <- findMarkers(spe, test = "binom", direction = "up")
+
+## Find the interesting markers for each cluster
+interesting <- sapply(markers, function(x) x$Top <= 5)
+colnames(interesting) <- paste0("gene_interest_", seq_len(length(markers)))
+rowData(spe) <- cbind(rowData(spe), interesting)
+
+## How long this code took to run
+time_prereqs <- Sys.time()
+time_prereqs - time_start
+```
+
+## Prepare for spatialLIBD
+
+Now that we have a `spe` object with quality control information, dimension reduction results, clustering data, among other things, we can proceed to visualize the object using `spatialLIBD`. Well, almost. First we need to modify the `spe` object, similar to steps we need to carry out when [using spatialLIBD with 10x Genomics public datasets](http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#modify-spe-for-spatiallibd-1)
+
+### Basic information
+
+```{r spatialLIBD_basic_info}
+## Add some information used by spatialLIBD
+spe$key <- paste0(spe$sample_id, "_", colnames(spe))
+spe$sum_umi <- colSums(counts(spe))
+spe$sum_gene <- colSums(counts(spe) > 0)
+```
+
+### Gene annotation
+
+Since the gene information is missing, we'll [add the gene annotation data from Gencode](http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#add-gene-annotation-information-1) although you would ideally add this information from the same gene annotation you used for running `spaceranger`.
+
+```{r spatialLIBD_gene_annotation}
+## Download the Gencode v32 GTF file and cache it
+bfc <- BiocFileCache::BiocFileCache()
+gtf_cache <- BiocFileCache::bfcrpath(
+    bfc,
+    paste0(
+        "ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/",
+        "release_32/gencode.v32.annotation.gtf.gz"
+    )
+)
+
+## Show the GTF cache location
+gtf_cache
+
+## Import into R (takes ~1 min)
+gtf <- rtracklayer::import(gtf_cache)
+
+## Subset to genes only
+gtf <- gtf[gtf$type == "gene"]
+
+## Remove the .x part of the gene IDs
+gtf$gene_id <- gsub("\\..*", "", gtf$gene_id)
+
+## Set the names to be the gene IDs
+names(gtf) <- gtf$gene_id
+
+## Match the genes
+match_genes <- match(rowData(spe)$gene_id, gtf$gene_id)
+table(is.na(match_genes))
+
+## Drop the few genes for which we don't have information
+spe <- spe[!is.na(match_genes), ]
+match_genes <- match_genes[!is.na(match_genes)]
+
+## Keep only some columns from the gtf
+mcols(gtf) <- mcols(gtf)[, c("source", "type", "gene_id", "gene_name", "gene_type")]
+
+## Save the "interest"ing columns from our original spe object
+interesting <- rowData(spe)[, grepl("interest", colnames(rowData(spe)))]
+
+## Add the gene info to our SPE object
+rowRanges(spe) <- gtf[match_genes]
+
+## Add back the "interest" coolumns
+rowData(spe) <- cbind(rowData(spe), interesting)
+
+## Inspect the gene annotation data we added
+rowRanges(spe)
+```
+
+Now that we have the gene annotation information, we can use it to add a few more pieces to our `spe` object that `spatialLIBD` will use. For example, we want to enable users to search genes by either their gene symbol or their Ensembl ID. We also like to visualize the amount and percent of the mitochondrial gene expression.
+
+```{r spatialLIBD_gene_search}
+## Add information used by spatialLIBD
+rowData(spe)$gene_search <- paste0(
+    rowData(spe)$gene_name, "; ", rowData(spe)$gene_id
+)
+
+## Compute chrM expression and chrM expression ratio
+is_mito <- which(seqnames(spe) == "chrM")
+spe$expr_chrM <- colSums(counts(spe)[is_mito, , drop = FALSE])
+spe$expr_chrM_ratio <- spe$expr_chrM / spe$sum_umi
+```
+
+### Extra information and filtering
+
+Now that we have the full gene annotation information we need, we can proceed to add some last touches as well as [filter the object](http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#filter-the-spe-object-1) to reduce the memory required for visualizing the data.
+
+```{r spatialLIBD_final_touches}
+## Add a variable for saving the manual annotations
+spe$ManualAnnotation <- "NA"
+
+## Remove genes with no data
+no_expr <- which(rowSums(counts(spe)) == 0)
+
+## Number of genes with no counts
+length(no_expr)
+
+## Compute the percent of genes with no counts
+length(no_expr) / nrow(spe) * 100
+spe <- spe[-no_expr, , drop = FALSE]
+
+## Remove spots without counts
+summary(spe$sum_umi)
+
+## If we had spots with no counts, we would remove them
+if (any(spe$sum_umi == 0)) {
+    spots_no_counts <- which(spe$sum_umi == 0)
+    ## Number of spots with no counts
+    print(length(spots_no_counts))
+    ## Percent of spots with no counts
+    print(length(spots_no_counts) / ncol(spe) * 100)
+    spe <- spe[, -spots_no_counts, drop = FALSE]
+}
+```
+
+We _think_ that we are ready to proceed to making our interactive website. Let's use the `spatialLIBD::check_spe()` function, just to verify that we are right. If we aren't, then it'll try to tell us what we missed.
+
+```{r spatialLIBD_check, message = FALSE}
+## Run check_spe() function
+spatialLIBD::check_spe(spe)
+
+## End tracking time
+time_end <- Sys.time()
+
+## How long this code took to run
+time_end - time_prereqs
+```
+
+Creating our final `spe` object took `r time_end - time_start` to run. So you might want to save this object for later use.
+
+```{r spatialLIBD_save_for_later, eval = FALSE}
+saveRDS(spe, file = "spe_workflow_Visium_spatialLIBD.rds")
+```
+
+You can then re-load it with the following code on a later session.
+
+```{r spatialLIBD_reload_rds, eval = FALSE}
+spe <- readRDS("spe_workflow_Visium_spatialLIBD.rds")
+```
+
+## Explore the data
+
+In order to visualize the data, we can then use `spatialLIBD::vis_gene()`. Note that we didn't need to do all that hard work just for that. But well, this is a nice quick check before we try launching our interactive website.
+
+```{r spatialLIBD_vis_gene}
+## Sum of UMI
+spatialLIBD::vis_gene(
+    spe = spe,
+    sampleid = "sample_151673",
+    geneid = "sum_umi"
+)
+
+## PCP4, a layer 5 marker gene
+spatialLIBD::vis_gene(
+    spe = spe,
+    sampleid = "sample_151673",
+    geneid = rowData(spe)$gene_search[which(rowData(spe)$gene_name == "PCP4")]
+)
+```
+
+As we wanted let's proceed to [visualize the data interactively](http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#run-the-interactive-website-1) with a `spatialLIBD`-powered website. We have lots of variables to choose from. We'll specify which are our continuous and discrete variables in our `spatialLIBD::run_app()` call.
+
+
+```{r spatialLIBD_interactive}
+## Explore all the variables we can use
+colData(spe)
+
+## Run our shiny app
+if (interactive()) {
+    spatialLIBD::run_app(
+        spe,
+        sce_layer = NULL,
+        modeling_results = NULL,
+        sig_genes = NULL,
+        title = "OSTA spatialLIBD workflow example",
+        spe_discrete_vars = c("ground_truth", "label", "ManualAnnotation"),
+        spe_continuous_vars = c(
+            "cell_count",
+            "sum_umi",
+            "sum_gene",
+            "expr_chrM",
+            "expr_chrM_ratio",
+            "sum",
+            "detected",
+            "subsets_mito_sum",
+            "subsets_mito_detected",
+            "subsets_mito_percent",
+            "total",
+            "sizeFactor"
+        ),
+        default_cluster = "label"
+    )
+}
+```
+
+```{r, echo=FALSE, out.width = "40%", fig.align="center", fig.cap="Screenshot of the 'clusters (interactive)' section of the 'spot-level data' panel created with with the data from this workflow."}
+knitr::include_graphics("images/spatialLIBD_demo_result.png")
+```
+
+## Sharing your website
+
+Now that you have created a `spatialLIBD`-powered website, you might be interested in sharing it. To do so, it'll be useful to have saved a small `spe` object using `saveRDS()` like we did earlier. The smaller the object, the better in terms of performance. For example, you might want to remove the lowly expressed genes to save space. One function you can use to measure how big your object is is `lobstr::obj_size()` as shown below.
+
+```{r spatialLIBD_object_size}
+## Object size
+lobstr::obj_size(spe) / 1024^2 ## Convert to MB
+```
+
+If your data is small enough, you might want to share your website by hosting on [shinyapps.io](https://www.shinyapps.io/) by RStudio, which you can try for free. Once you have created your account, you'll want to create an `app.R` file like the one we have [on the `spatialLIBD_demo` directory](https://github.com/lmweber/OSTA-book/blob/main/spatialLIBD_demo).
+
+```{r spatialLIBD_app_file, echo = FALSE}
+cat(paste0(readLines("spatialLIBD_demo/app.R"), "\n"))
+```
+
+You can then open R in a new session in the same directory where you saved the `app.R` file, run the code and click on the "publish" blue button at the top right of your RStudio window. You'll then need to upload the `app.R` file, your `spe_workflow_Visium_spatialLIBD.rds` file and the files under the `www` directory which enable you to customize your `spatialLIDB` website. 
+
+```{r, echo=FALSE, out.width = "40%", fig.align="center", fig.cap="Screenshot of the RStudio window for publishing your spatialLIBD-powered website to shinyapps.io"}
+knitr::include_graphics("images/spatialLIBD_publish.png")
+```
+
+The RStudio prompts will guide you along the process for authenticating to your shinyapps.io account, which will involve copy pasting some code that starts with `rsconnect::setAccountInfo()`. Alternatively, you can create a `deploy.R` script and write the code for uploading your files to shinyapps.io as shown below.
+
+```{r spatialLIBD_deploy_file, echo = FALSE}
+cat(paste0(readLines("spatialLIBD_demo/deploy.R"), "\n"))
+```
+
+Note that we have copied the default [`www` directory files from the `spatialLIBD` repository](https://github.com/LieberInstitute/spatialLIBD/tree/master/inst/app/www) and [adapted them to our liking]((https://github.com/lmweber/OSTA-book/blob/main/spatialLIBD_demo/www)). We then use these files with `spatialLIBD::run_app(docs_path)` in our `app.R` script. These files help us control portions of our `spatialLIBD`-powered website and customize it to our liking.
+
+If you follow this workflow, you'll end up with a website [just like this one](https://libd.shinyapps.io/OSTA_spatialLIBD_demo/). In our case, we further configured our website through the shinyapps.io dashboard. We selected the following options:
+
+* _General_ `Instance Size`: 3X-Large (8GB)
+* _Advanced_ `Max Worker Processes`: 1
+* _Advanced_ `Max Connections`: 15
+
+The `Max Worker Processes` determines how many R sessions are open per instance. Then `Max Connections` specifies the number of connections to each R session. The `Instance Size` determines the memory available. In this case, 8000 / 300 is approximately 27, but we decided to be conservative and set the total number of users per instance to be 15. This is why it can be important to reduce the size of your `spe` object before sharing the website. Alternatively, you can rent an AWS Instance and deploy your app there, which is how https://spatial.libd.org/spatialLIBD is hosted along with these [error configuration files](https://github.com/LieberInstitute/spatialLIBD/tree/master/dev/shiny-server-files).
+
+## Wrapping up
+
+Thank you for reading this far! In this workflow we showed you:
+
+* why you might be interested in using `spatialLIBD`,
+* we re-used the `spe` object from the [Visium human DLPFC workflow] chapter,
+* we adapted the `spe` object to make it compatible with `spatialLIBD`,
+* we created an interactive website in our laptops,
+* we shared the website with others using shinyapps.io.
+
+Overall, we hope that you found this information useful and we wish you the best luck with exploring and annotating your own Visium data!
+
+## R session information {-}
+
+Here's the R session information for this workflow.
+
+```{r spatialLIBD_reproducibility}
+options(width = 120)
+sessioninfo::session_info()
+```
 

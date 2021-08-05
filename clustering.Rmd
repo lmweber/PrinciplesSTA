@@ -18,7 +18,7 @@ In the spatial context, we may be interested in e.g. (i) identifying cell types 
 
 library(SpatialExperiment)
 library(STexampleData)
-spe <- Visium_humanDLPFC()
+spe <- load_data("Visium_humanDLPFC")
 
 # QUALITY CONTROL (QC)
 
