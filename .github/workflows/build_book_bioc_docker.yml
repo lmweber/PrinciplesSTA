@@ -201,7 +201,7 @@ jobs:
           apt-get update && apt-get -y install rsync
 
       - name: Deploy 🚀
-        if: github.ref == 'refs/heads/master' && runner.os == 'Linux'
+        if: github.ref == 'refs/heads/main' && runner.os == 'Linux'
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
