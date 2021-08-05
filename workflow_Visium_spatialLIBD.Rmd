@@ -442,3 +442,13 @@ Thank you for reading this far! In this workflow we showed you:
 * we shared the website with others using shinyapps.io.
 
 Overall, we hope that you found this information useful and we wish you the best luck with exploring and annotating your own Visium data!
+
+## R session information {-}
+
+Here's the R session information for this workflow.
+
+```{r spatialLIBD_reproducibility}
+options(width = 120)
+sessioninfo::session_info()
+```
+
