@@ -44,7 +44,6 @@ Imports:
     scran,
     sessioninfo,
     SingleCellExperiment,
-    SpatialExperiment,
     spatialLIBD,
     STexampleData,
     uwot
@@ -56,3 +55,6 @@ Remotes:
     LieberInstitute/spatialLIBD
 VignetteBuilder: knitr
 biocViews: Book
+Depends:
+    SpatialExperiment,
+    R (>= 4.1)
