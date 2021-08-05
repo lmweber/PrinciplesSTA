@@ -23,7 +23,7 @@ library(SpatialExperiment)
 library(STexampleData)
 
 # load object
-spe <- Visium_humanDLPFC()
+spe <- load_data("Visium_humanDLPFC")
 spe
 ```
 

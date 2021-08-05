@@ -14,7 +14,7 @@ In this chapter, we apply dimensionality reduction methods to visualize the data
 
 library(SpatialExperiment)
 library(STexampleData)
-spe <- Visium_humanDLPFC()
+spe <- load_data("Visium_humanDLPFC")
 
 # QUALITY CONTROL (QC)
 

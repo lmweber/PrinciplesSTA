@@ -116,9 +116,6 @@ time_start <- Sys.time()
 
 # load object
 spe <- load_data("Visium_humanDLPFC")
-## TODO: the other chapter uses Visium_humanDLPFC() but it's not available
-## from remotes::install_github("lmweber/STexampleData", ref = "no_accessors")
-## as the name of the branch implies
 
 # subset to keep only spots over tissue
 spe <- spe[, spatialData(spe)$in_tissue == 1]
