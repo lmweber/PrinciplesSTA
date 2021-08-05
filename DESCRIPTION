@@ -24,7 +24,6 @@ Description: This is not really an R package. It's just the home for the OSTA
 License: Artistic-2.0
 URL: https://github.com/lmweber/OSTA-book
 BugReports: https://github.com/lmweber/OSTA-book/issues
-biocViews: Book
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -55,3 +54,5 @@ Remotes:
     lmweber/STexampleData@no_accessors,
     PeteHaitch/DelayedMatrixStats,
     LieberInstitute/spatialLIBD
+VignetteBuilder: knitr
+biocViews: Book
