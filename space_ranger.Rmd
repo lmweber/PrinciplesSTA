@@ -51,7 +51,7 @@ The `.cloupe` file is also useful for checking the quality of the data. There is
 We use the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) package to store the data from Space Ranger and VistoSeg (see below) in one convenient object (`spe`). Below is an example of the code we use to build the `spe` object.
 
 ```{r, echo=FALSE, out.width = "75%", fig.align="center", fig.cap="Figure caption."}
-knitr::include_graphics("images/build_spe.png")
+# knitr::include_graphics("images/build_spe.png")
 ```
 
 
