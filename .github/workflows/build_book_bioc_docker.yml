@@ -163,15 +163,18 @@ jobs:
           ## https://github.com/r-lib/remotes/issues/296
           ## Ideally, all dependencies should get installed in the first pass.
           
+          ## Set the repos source depending on the OS
+          gha_repos <- if(.Platform$OS.type == "unix") c("AnVIL" = "https://storage.googleapis.com/bioconductor_docker/packages/3.14/bioc", BiocManager::repositories()) else BiocManager::repositories()
+          
           ## Install dependency that's failing on Bioc
           ## This works as shown at https://github.com/LieberInstitute/spatialLIBD/runs/3248662576
-          remotes::install_github("PeteHaitch/DelayedMatrixStats", repos = c("AnVIL" = "https://storage.googleapis.com/bioconductor_docker/packages/3.14/bioc", BiocManager::repositories()))
+          remotes::install_github("PeteHaitch/DelayedMatrixStats", repos = gha_repos)
           
           ## Packages under active development
-          remotes::install_github("drighelli/SpatialExperiment", repos = c("AnVIL" = "https://storage.googleapis.com/bioconductor_docker/packages/3.14/bioc", BiocManager::repositories()), dependencies = TRUE)
-          remotes::install_github("lmweber/STexampleData@no_accessors", repos = c("AnVIL" = "https://storage.googleapis.com/bioconductor_docker/packages/3.14/bioc", BiocManager::repositories()))
-          remotes::install_github("lmweber/ggspavis", repos = c("AnVIL" = "https://storage.googleapis.com/bioconductor_docker/packages/3.14/bioc", BiocManager::repositories()))
-          remotes::install_github("LieberInstitute/spatialLIBD", repos = c("AnVIL" = "https://storage.googleapis.com/bioconductor_docker/packages/3.14/bioc", BiocManager::repositories()))
+          remotes::install_github("drighelli/SpatialExperiment", repos = gha_repos)
+          remotes::install_github("lmweber/STexampleData@no_accessors", repos = gha_repos)
+          remotes::install_github("lmweber/ggspavis", repos = gha_repos)
+          remotes::install_github("LieberInstitute/spatialLIBD", repos = gha_repos)
           
           ## Pass #1 at installing dependencies
           ## This pass uses AnVIL-powered fast binaries
