@@ -1,13 +1,13 @@
 Package: OSTA
-Title: Orchestrating Spatial Transcriptomics Analysis with Bioconductor
+Title: Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor
 Version: 0.99.0
 Date: 2021-08-05
 Authors@R: 
     c(
-    person(given = "Lukas M",
+    person(given = "Lukas M.",
            family = "Weber",
            role = c("aut", "cre"),
-           email = "lukas.weber@jhu.edu",
+           email = "lukas.weber.edu@gmail.com",
            comment = c(ORCID = "0000-0002-3282-1730")),
     person("Abby", "Spangler",
         role = "ctb", email = "aspangle@gmail.com",
