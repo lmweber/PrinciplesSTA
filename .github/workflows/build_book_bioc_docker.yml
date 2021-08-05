@@ -162,7 +162,11 @@ jobs:
           ## https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016675.html
           ## https://github.com/r-lib/remotes/issues/296
           ## Ideally, all dependencies should get installed in the first pass.
-
+          
+          ## Install dependency that's failing on Bioc
+          ## This works as shown at https://github.com/LieberInstitute/spatialLIBD/runs/3248662576
+          remotes::install_github("PeteHaitch/DelayedMatrixStats", repos = c("AnVIL" = "https://storage.googleapis.com/bioconductor_docker/packages/3.14/bioc", BiocManager::repositories()))
+          
           ## Pass #1 at installing dependencies
           ## This pass uses AnVIL-powered fast binaries
           ## details at https://github.com/nturaga/bioc2021-bioconductor-binaries
