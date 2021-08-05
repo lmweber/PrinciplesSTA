@@ -14,7 +14,7 @@ In this chapter, we identify marker genes for each cluster by testing for differ
 
 library(SpatialExperiment)
 library(STexampleData)
-spe <- Visium_humanDLPFC()
+spe <- load_data("Visium_humanDLPFC")
 
 # QUALITY CONTROL (QC)
 

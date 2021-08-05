@@ -14,7 +14,7 @@ Here we apply feature selection methods to identify highly variable genes (HVGs)
 
 library(SpatialExperiment)
 library(STexampleData)
-spe <- Visium_humanDLPFC()
+spe <- load_data("Visium_humanDLPFC")
 
 # QUALITY CONTROL (QC)
 
