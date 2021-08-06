@@ -2,11 +2,24 @@
 
 # Contributors
 
-Lukas M. Weber, *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
+[Lukas M. Weber](https://lmweber.org/), *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
 
-Abby Spangler, *Lieber Institute for Brain Development, Baltimore, MD, USA*
+[Abby Spangler](https://twitter.com/abspangler), *Lieber Institute for Brain Development, Baltimore, MD, USA*
 
-Leonardo Collado-Torres, *Lieber Institute for Brain Development, Baltimore, MD, USA*
+[Leonardo Collado-Torres](https://twitter.com/lcolladotor), *Lieber Institute for Brain Development, Baltimore, MD, USA*
 
-Stephanie C. Hicks, *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
+[Stephanie C. Hicks](https://www.stephaniehicks.com/), *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
 
+As well as [GitHub contributors](https://github.com/lmweber/OSTA-book/graphs/contributors) who have helped us improve this book over time. Thank you for your contributions!
+
+# Software
+
+This book would not be possible without an immense list of software and methods contributed by the open source R and Bioconductor communities. 
+
+```{r OSTA_dependencies}
+options(width = 120)
+pkgs <- installed.packages()[, "Package"]
+sessioninfo::session_info(pkgs, include_base = TRUE)
+```
+
+The GitHub Actions workflow used in this book is based on [`biocthis`](https://bioconductor.org/packages/biocthis) and is made possible thanks to the [Bioconductor docker images](http://bioconductor.org/help/docker/).
