@@ -66,7 +66,6 @@ feature-selection
 background-2
 previous-steps-1
 highly-variable-genes-hvgs
-spatially-variable-genes-svgs
 dimensionality-reduction
 background-3
 previous-steps-2
@@ -77,7 +76,6 @@ clustering
 overview-3
 previous-steps-3
 clustering-on-hvgs
-clustering-on-hvgs-and-spatial-dimensions
 marker-genes
 background-4
 previous-steps-4
@@ -119,5 +117,7 @@ sharing-your-website
 wrapping-up-3
 related-software
 contributors
+osta
+spatialexperiment-1
 software
 references
