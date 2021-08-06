@@ -23,6 +23,9 @@ library(STexampleData)
 
 # load object
 spe <- Visium_humanDLPFC()
+
+# alternatively: if working in release version of Bioc 3.13
+# spe <- load_data("Visium_humanDLPFC")
 ```
 
 
