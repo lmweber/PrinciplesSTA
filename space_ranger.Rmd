@@ -134,7 +134,7 @@ As was explained earlier in [What is VistoSeg?], [`VistoSeg`](http://research.li
 knitr::include_graphics("http://research.libd.org/VistoSeg/images/zoom%20in%202.png")
 ```
 
-In addition to `spotspotcheck`, you will need to use the `countNuclei` MATLAB function. Actually, `spotspotcheck` is optional though we highly recommend using it to visually inspect the results prior to running `countNuclei`. `countNuclei` will then estimate the number of cells/nuclei per Visium spot for each capture area. The output is saved in a spreadsheet file (`tissue_spot_counts.csv`) that contains one row per Visium spot barcode and a column with the estimated number of cells per spot. The data for nuclei counts for the tissue per Visium spot can then be incorporated with the outputs of Space Ranger by being stored in the `SpatialExperiment` object or used for downstream analysis such as @Maynard2021.
+The `spotspotcheck` GUI, will allow the user to visually inspect the nuclei segmentations along with generating nuclei counts per Visium spot for each capture area. The `countNuclei` MATLAB function is the command line version for  `spotspotcheck` which only extracts the number of cells/nuclei per Visium spot without any visualization. The output is saved in a spreadsheet file (`tissue_spot_counts.csv`) that contains one row per Visium spot barcode and a column with the estimated number of cells per spot. The data for nuclei counts for the tissue per Visium spot can then be incorporated with the outputs of Space Ranger by being stored in the `SpatialExperiment` object or used for downstream analysis such as in @Maynard2021.
 
 For more information about `VistoSeg` please see [its documentation website](http://research.libd.org/VistoSeg/).
 
