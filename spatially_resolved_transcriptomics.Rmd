@@ -18,7 +18,7 @@ The dimensions of the tissue slide are approximately 6.5mm by 6.5mm, and contain
 This platform is commercially available from 10x Genomics, making it relatively accessible, affordable, and easy for new labs to get started with, especially compared to platforms that require more specialized equipment and expertise. In our view, this makes it likely that Visium (and its future extensions) will see widespread adoption over the coming years.
 
 
-```{r Visium-schematic, echo=FALSE, fig.wide=TRUE, fig.align="center", fig.cap="Schematic of 10x Genomics Visium platform. Image source: [10x Genomics Visium website](https://www.10xgenomics.com/spatial-transcriptomics/)"}
+```{r Visium-schematic, echo=FALSE, fig.wide=TRUE, fig.align="center", fig.cap="Schematic of 10x Genomics Visium platform. Source: [10x Genomics Visium website](https://www.10xgenomics.com/spatial-transcriptomics/)"}
 knitr::include_graphics("images/Visium.png")
 ```
 
