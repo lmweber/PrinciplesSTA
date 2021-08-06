@@ -38,6 +38,7 @@ Imports:
     BiocStyle,
     bookdown,
     DelayedMatrixStats,
+    devtools,
     ExperimentHub,
     ggspavis,
     igraph,
