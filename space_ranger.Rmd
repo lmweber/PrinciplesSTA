@@ -82,7 +82,7 @@ A more detailed description of this pipeline can be found [here](https://support
 	
 Here is an example of the parameters used to run `spaceranger count`. Note how we are using the gene annotation information provided by 10x Genomics, which is actually the same data they provide for their single cell data processing software called Cell Ranger. So if you have both types of data, you can save some disk space by re-using these gene annotation files. One important input file is the `--loupe-alignment` file, which is why you'll need to use [Loupe Browser (Visium)] first.
 
-```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="`spaceranger count` example usage."}
+```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="`spaceranger count` example usage. [Source: 10x Genomics](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count)."}
 knitr::include_graphics("images/space_ranger_input.png")
 ```
 
@@ -91,7 +91,7 @@ knitr::include_graphics("images/space_ranger_input.png")
 
 The `spaceranger count` pipeline outputs the following files. The ones we use for downstream analysis are the files contained in the `raw_features_bc_matrix` folder and can be imported into R using the `SpatialExperiment::read10xVisium()` function.
 
-```{r, echo=FALSE, out.width = "40%", fig.align="center", fig.cap="`spaceranger count` output files."}
+```{r, echo=FALSE, out.width = "40%", fig.align="center", fig.cap="`spaceranger count` output files. See the [10x Genomics `spaceranger count` documentation](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count) for detailed descriptions of each of these files."}
 knitr::include_graphics("images/space_ranger_output.png")
 ```
 
