@@ -349,14 +349,14 @@ Figure 2.1: Visium slide design. Source: <a href="https://kb.10xgenomics.com/hc/
 </div>
 <p>While 10x Genomics will provide the Visium slide, you can use many different imaging scopes to obtain bright field and/or fluorescent images for regular Visium or Visium immunofluorescence (IF), respectively.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
-<img src="https://support.10xgenomics.com/img/spatial/tissue_lowres_image_brightfield.png" alt="Visium images you might generate using your preferred imaging scope: bright field images showing the tissue or multi-channel fluorescent images. Source: [10x Genomics](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/input-recommendations)." width="100%" />
+<img src="https://support.10xgenomics.com/img/spatial/tissue_lowres_image_brightfield.png" alt="Visium images you might generate using your preferred imaging scope: bright field images showing the tissue or multi-channel fluorescent images. Source: [10x Genomics](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/input-recommendations)." width="75%" />
 <p class="caption">
 Figure 5.1: Visium images you might generate using your preferred imaging scope: bright field images showing the tissue or multi-channel fluorescent images. Source: <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/input-recommendations">10x Genomics</a>.
 </p>
 </div>
 <p>As we will learn in the next chapters, we will want to use the <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a> to manually align each tissue capture area prior to running <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a> for processing the gene expression data.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
-<img src="https://support.10xgenomics.com/img/spatial/tissue_lowres_image_brightfield.png" alt="A single Visium tissue capture area with the fiducial frame aligned through Loupe such that the red circles overlap the fiducial frame as determined by visual inspection. Source: [10x Genomics](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/output/images)." width="80%" />
+<img src="https://support.10xgenomics.com/img/spatial/aligned_fiducials.jpg" alt="A single Visium tissue capture area with the fiducial frame aligned through Loupe such that the red circles overlap the fiducial frame as determined by visual inspection. Source: [10x Genomics](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/output/images)." width="75%" />
 <p class="caption">
 Figure 5.2: A single Visium tissue capture area with the fiducial frame aligned through Loupe such that the red circles overlap the fiducial frame as determined by visual inspection. Source: <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/output/images">10x Genomics</a>.
 </p>
@@ -365,12 +365,12 @@ Figure 5.2: A single Visium tissue capture area with the fiducial frame aligned 
 </div>
 <div id="what-is-vistoseg" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> What is VistoSeg?</h2>
-<p><a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> is a MATLAB pipeline used to process, analyze, and interactively visualize the high-resolution histology images from the 10x Genomics Visium experiment. The output from <code>VistoSeg</code> is the estimated number of cells per spot, which can used for downstream analyses. <code>VistoSeg</code> can also be used prior to running <code>Loupe</code> as it can help create high resolution images for each Visium tissue section. The main steps in <code>VistoSeg</code> are as follows:</p>
+<p><a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> is a MATLAB pipeline used to process, analyze, and interactively visualize the high-resolution histology images from the 10x Genomics Visium experiment <span class="citation"><a href="#ref-Tippani2021" role="doc-biblioref">Tippani et al.</a> (<a href="#ref-Tippani2021" role="doc-biblioref">2021</a>)</span>. The output from <code>VistoSeg</code> is the estimated number of cells per spot, which can be used for downstream analyses. <code>VistoSeg</code> can also be used prior to running <code>Loupe</code> as it can help create high resolution images for each Visium tissue section. The main steps in <code>VistoSeg</code> are as follows:</p>
 <ul>
 <li><em>Split Image</em>: This step is used to split the large Visium histology whole slide image into individual capture areas, creating four individual <code>.tif</code> files. These images can then be used with <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a></li>
 <li><em>Nuclei Segmentation</em>: This is a two-step process where nuclei segmentation is performed for images. Nuclei segmentation is followed by a refining step to get a cleaner image of the nuclei segmentation.</li>
 <li><em>Space Ranger</em>: as in you need to run <code>spaceranger count</code>, described in the <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a> chapter, to create the input files for the next <code>VistoSeg</code> step</li>
-<li><em>Count Cells/Nuclei</em>: This steps is performed to get the count of cells/nuclei per Visium spot for each capture area</li>
+<li><em>Count Cells/Nuclei</em>: This step is performed to get the count of cells/nuclei per Visium spot for each capture area</li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
 <img src="http://research.libd.org/VistoSeg/images/VistoSeg.png" alt="`VistoSeg` pipeline overview. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/index.html#why-spatial-transcriptomics-or-visium-imaging)." width="100%" />
@@ -382,7 +382,7 @@ Figure 5.3: <code>VistoSeg</code> pipeline overview. Source: <a href="http://res
 </div>
 <div id="split-histology-images" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Split histology images</h2>
-<p><a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> provides a MATLAB function called <code>splitSlide</code> that can take an image with four capture areas and divide into four images with the same dimensions. Sometimes the center of the image is not the center of the slide, in such case the offset can be adjusted manually.</p>
+<p><a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> provides a MATLAB function called <code>splitSlide</code> that can take an image with four capture areas and divide into four images with approximately the same dimensions (they can be a few pixels off in the X-axis). Sometimes the center of the image is not the center of the slide, in such case the offset can be adjusted manually.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
 <img src="http://research.libd.org/VistoSeg/images/img1.png" alt="An example bright field image with four Visium tissue capture areas. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html)." width="100%" />
 <p class="caption">
@@ -397,25 +397,25 @@ Figure 5.4: An example bright field image with four Visium tissue capture areas.
 </div>
 <div id="segment-cell-nuclei" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Segment cell nuclei</h2>
-<p>Once you have run the <code>splitSlide</code> function from <code>VistoSeg</code>, you can now proceed to segment the images. This process helps remove background noise in the images so you can more readily identify the cells or nuclei in your bright field image. For fluorescent images, you <code>dotdotdot</code>’s utilities <span class="citation"><a href="#ref-Maynard2020" role="doc-biblioref">Kristen R. Maynard et al.</a> (<a href="#ref-Maynard2020" role="doc-biblioref">2020</a>)</span> could potentially be useful, particularly if your images have Z-stacks.</p>
+<p>Once you have run the <code>splitSlide</code> function from <code>VistoSeg</code>, you can now proceed to segment the images. This process helps remove background noise in the images so you can more readily identify the cells or nuclei in your bright field image. For fluorescent images, <code>dotdotdot</code>’s utilities <span class="citation"><a href="#ref-Maynard2020" role="doc-biblioref">Kristen R. Maynard et al.</a> (<a href="#ref-Maynard2020" role="doc-biblioref">2020</a>)</span> could potentially be useful, particularly if your images have Z-stacks.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
-<img src="images/dotdotdot_fig1.jpeg" alt="A single Visium tissue capture area with the fiducial frame aligned through Loupe such that the red circles overlap the fiducial frame as determined by visual inspection. Source: [`dotdotdot`](https://doi.org/10.1093/nar/gkaa312)." width="80%" />
+<img src="images/dotdotdot_fig1.jpeg" alt="`dotdotdot` overview figure. Notice the Z stacked images which some scopes produce. Source: [`dotdotdot`](https://doi.org/10.1093/nar/gkaa312)." width="80%" />
 <p class="caption">
-Figure 5.5: A single Visium tissue capture area with the fiducial frame aligned through Loupe such that the red circles overlap the fiducial frame as determined by visual inspection. Source: <a href="https://doi.org/10.1093/nar/gkaa312"><code>dotdotdot</code></a>.
+Figure 5.5: <code>dotdotdot</code> overview figure. Notice the Z stacked images which some scopes produce. Source: <a href="https://doi.org/10.1093/nar/gkaa312"><code>dotdotdot</code></a>.
 </p>
 </div>
-<p><code>VistoSeg</code> provides two functions: <code>VNS</code> (Visium Nuclei Segmentation) and <code>refineVNS</code> which are used to perform the cell/nuclei segmentation on regular bright field images. This process involves using choosing a number of <em>colors</em> and running MATLAB’s <a href="https://www.mathworks.com/help/images/color-based-segmentation-using-k-means-clustering.html">Color-Based Segmentation Using K-Means clustering</a>.</p>
+<p><code>VistoSeg</code> provides two functions: <code>VNS</code> (Visium Nuclei Segmentation) and <code>refineVNS</code> which are used to perform the cell/nuclei segmentation on regular bright field images. This process involves choosing the total number of visually distinguishable colors in the image (5 in our sample image) and running MATLAB’s <a href="https://www.mathworks.com/help/images/color-based-segmentation-using-k-means-clustering.html">Color-Based Segmentation Using K-Means clustering</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
-<img src="http://research.libd.org/VistoSeg/images/sampleimage_index3.png" alt="Color number 3 for a section of the example image shown in the `VistoSeg` documentation. Pixels corresponding to this color are shown in grey and the remaining pixels in green. This color is the one that best corresponds to the nuclei. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html)." width="100%" />
+<img src="http://research.libd.org/VistoSeg/images/sampleimage_index3.png" alt="Color cluster 3 is the one that best corresponds to the nuclei for an example capture area image shown in the `VistoSeg` documentation. Pixels corresponding to this cluster are shown in grey and the remaining background pixels in green. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html)." width="75%" />
 <p class="caption">
-Figure 5.6: Color number 3 for a section of the example image shown in the <code>VistoSeg</code> documentation. Pixels corresponding to this color are shown in grey and the remaining pixels in green. This color is the one that best corresponds to the nuclei. Source: <a href="http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html"><code>VistoSeg</code></a>.
+Figure 5.6: Color cluster 3 is the one that best corresponds to the nuclei for an example capture area image shown in the <code>VistoSeg</code> documentation. Pixels corresponding to this cluster are shown in grey and the remaining background pixels in green. Source: <a href="http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html"><code>VistoSeg</code></a>.
 </p>
 </div>
-<p>For more details and a detailed example check the <a href="http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html"><code>VistoSeg</code> documentation website</a>.</p>
+<p>For more information and a detailed example check the <a href="http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html"><code>VistoSeg</code> documentation website</a>.</p>
 </div>
 <div id="identify-number-of-cells-per-spot" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Identify number of cells per spot</h2>
-<p><code>VistoSeg</code> has two utilities for estimating the number of cells per spot. However, before you can use them, you need to first align the individual tissue capture areas using <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a>. This process is key in order to identify the centers of each of the Visium spots and their coordinates in the images. As long as all downstream segmented images use the exact same proportions as the input image for <code>Loupe</code>, we can compute a scaling factor and use it for computing the coordinates of the Visium spots in the new images. <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a> will provide us the spot coordinate file as well as process the gene expression data. With those files we will enable us to estimate the number of cells per spot using <code>VistoSeg</code> as shown in the <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a> chapter.</p>
+<p><code>VistoSeg</code> has two utilities for estimating the number of cells per spot. However, before you can use them, you need to first align the individual tissue capture areas using <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a>. This process is key in order to identify the centers of each of the Visium spots and their coordinates in the images. As long as all downstream segmented images use the exact same proportions as the input image for <code>Loupe</code>, we can compute a scaling factor and use it for computing the coordinates of the Visium spots in the new images. <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a> will provide us the spot coordinate file as well as process the gene expression data. The spot coordinate files will enable us to estimate the number of cells per spot <code>VistoSeg</code> as shown in the <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a> chapter.</p>
 </div>
 <div id="wrapping-up" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> Wrapping up</h2>
@@ -427,6 +427,9 @@ Figure 5.6: Color number 3 for a section of the example image shown in the <code
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Maynard2020" class="csl-entry">
 Maynard, Kristen R, Madhavi Tippani, Yoichiro Takahashi, BaDoi N Phan, Thomas M Hyde, Andrew E Jaffe, and Keri Martinowich. 2020. <span>“<span class="nocase">dotdotdot: an automated approach to quantify multiplex single molecule fluorescent in situ hybridization (smFISH) images in complex tissues</span>.”</span> <em>Nucleic Acids Research</em> 48 (11): e66–66. <a href="https://doi.org/10.1093/nar/gkaa312">https://doi.org/10.1093/nar/gkaa312</a>.
+</div>
+<div id="ref-Tippani2021" class="csl-entry">
+Tippani, Madhavi, Heena Rajesh Divecha, Joseph L. Catallini, Lukas M. Weber, Abby Spangler, Andrew E. Jaffe, Stephanie C. Hicks, et al. 2021. <span>“<span>VistoSeg</span>: A <span>MATLAB</span> Pipeline to Process, Analyze and Visualize High Resolution Histology Images for <span>Visium</span> Spatial Transcriptomics Data.”</span> <em>bioRxiv</em>, August, 2021.08.04.452489. <a href="https://doi.org/10.1101/2021.08.04.452489">https://doi.org/10.1101/2021.08.04.452489</a>.
 </div>
 </div>
             </section>
@@ -478,7 +481,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["OSTA-book.pdf", "OSTA-book.epub"],
+"download": null,
 "toc": {
 "collapse": "section"
 },

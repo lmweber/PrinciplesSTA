@@ -341,6 +341,12 @@ div.csl-indent {
 <div id="overview-4" class="section level2" number="18.1">
 <h2><span class="header-section-number">18.1</span> Overview</h2>
 <p>In the previous workflow, <a href="visium-human-dlpfc-workflow.html#visium-human-dlpfc-workflow">Visium human DLPFC workflow</a>, you practiced some of the basics with a portion of the postmortem human brain dataset <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Kristen R. Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>. The goal of this workflow is to learn what steps you need to carry out in order to create an interactive website to visualize this type of data. For this, we’ll use the <a href="http://bioconductor.org/packages/spatialLIBD"><code>spatialLIBD</code></a> Bioconductor package <span class="citation"><a href="#ref-Pardo2021" role="doc-biblioref">Pardo et al.</a> (<a href="#ref-Pardo2021" role="doc-biblioref">2021</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<img src="images/spatialLIBD_Figure1.png" alt="`spatialLIBD` overview. Source: [Pardo et al, _bioRxiv_, 2021](https://doi.org/10.1101/2021.04.29.440149)." width="100%" />
+<p class="caption">
+Figure 2.1: <code>spatialLIBD</code> overview. Source: <a href="https://doi.org/10.1101/2021.04.29.440149">Pardo et al, <em>bioRxiv</em>, 2021</a>.
+</p>
+</div>
 </div>
 <div id="spatiallibd" class="section level2" number="18.2">
 <h2><span class="header-section-number">18.2</span> spatialLIBD</h2>
@@ -352,17 +358,17 @@ div.csl-indent {
 <li>multiple tissue sections at a time, either interactively or statically</li>
 </ul>
 <p>Both options work with continuous and discrete variables such as the gene expression and clusters, respectively. The interactive version for discrete variables such as clusters is useful if you want to manually annotate Visium spots, as it was done in the initial project <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Kristen R. Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>. <code>spatialLIBD</code> allows users to download the annotated spots and resume your spot annotation work later.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
 <img src="images/spatialLIBD_interactive_cluster.png" alt="Screenshot of the 'clusters (interactive)' section of the 'spot-level data' panel created with the full spatialLIBD dataset. The website was created with `spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))` version 1.4.0 and then using the lasso selection, we selected a set of spots in the UMAP interactive plot colored by the estimated number of cells per spot (`cell_count`) on the bottom left, which automatically updated the other three plots." width="100%" />
 <p class="caption">
-Figure 2.1: Screenshot of the ‘clusters (interactive)’ section of the ‘spot-level data’ panel created with the full spatialLIBD dataset. The website was created with <code>spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))</code> version 1.4.0 and then using the lasso selection, we selected a set of spots in the UMAP interactive plot colored by the estimated number of cells per spot (<code>cell_count</code>) on the bottom left, which automatically updated the other three plots.
+Figure 5.1: Screenshot of the ‘clusters (interactive)’ section of the ‘spot-level data’ panel created with the full spatialLIBD dataset. The website was created with <code>spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))</code> version 1.4.0 and then using the lasso selection, we selected a set of spots in the UMAP interactive plot colored by the estimated number of cells per spot (<code>cell_count</code>) on the bottom left, which automatically updated the other three plots.
 </p>
 </div>
 <p>Visualizing genes or clusters across multiple tissue sections can be quite useful. For example, here we show the expression levels of <em>PCP4</em> across two sets of spatially-adjacent replicates. <em>PCP4</em> is a marker gene for layer 5 in the grey matter of the dorsolateral prefrontal cortex (DLPFC) in the human brain. Spatially-adjacent replicates are about 10 microns apart from each other and visualizations like the one below help assess the technical variability in the Visium technology.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
 <img src="images/spatialLIBD_gene_grid.png" alt="Screenshot of the 'gene grid (static)' section of the 'spot-level data' panel created with the full spatialLIBD dataset. The website was created with `spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))` version 1.4.0, selecting the _PCP4_ gene, selecting the _paper_ gene color scale, changing the number of rows and columns in the grid 2, selecting two pairs of spatially-adjacent replicate samples (151507, 151508, 151673, and 151674), and clicking on the _upgrade grid plot_ button. Note that the default _viridis_ gene color scale is color-blind friendly." width="100%" />
 <p class="caption">
-Figure 5.1: Screenshot of the ‘gene grid (static)’ section of the ‘spot-level data’ panel created with the full spatialLIBD dataset. The website was created with <code>spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))</code> version 1.4.0, selecting the <em>PCP4</em> gene, selecting the <em>paper</em> gene color scale, changing the number of rows and columns in the grid 2, selecting two pairs of spatially-adjacent replicate samples (151507, 151508, 151673, and 151674), and clicking on the <em>upgrade grid plot</em> button. Note that the default <em>viridis</em> gene color scale is color-blind friendly.
+Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-level data’ panel created with the full spatialLIBD dataset. The website was created with <code>spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))</code> version 1.4.0, selecting the <em>PCP4</em> gene, selecting the <em>paper</em> gene color scale, changing the number of rows and columns in the grid 2, selecting two pairs of spatially-adjacent replicate samples (151507, 151508, 151673, and 151674), and clicking on the <em>upgrade grid plot</em> button. Note that the default <em>viridis</em> gene color scale is color-blind friendly.
 </p>
 </div>
 <p>You can try out a <code>spatialLIBD</code>-powered website yourself by opening <a href="https://spatial.libd.org/spatialLIBD">it on your browser</a>.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
@@ -540,7 +546,7 @@ Figure 5.1: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb242-94"><a href="visium-spatiallibd-workflow.html#cb242-94" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb242-95"><a href="visium-spatiallibd-workflow.html#cb242-95" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb242-96"><a href="visium-spatiallibd-workflow.html#cb242-96" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
-<pre><code>## Time difference of 2.597296 mins</code></pre>
+<pre><code>## Time difference of 2.634398 mins</code></pre>
 </div>
 <div id="prepare-for-spatiallibd" class="section level2" number="18.4">
 <h2><span class="header-section-number">18.4</span> Prepare for spatialLIBD</h2>
@@ -568,7 +574,7 @@ Figure 5.1: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="visium-spatiallibd-workflow.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
 <span id="cb247-2"><a href="visium-spatiallibd-workflow.html#cb247-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
 <pre><code>##                                                                            BFC1 
-## &quot;/github/home/.cache/R/BiocFileCache/54759746f8d_gencode.v32.annotation.gtf.gz&quot;</code></pre>
+## &quot;/github/home/.cache/R/BiocFileCache/55375f96806_gencode.v32.annotation.gtf.gz&quot;</code></pre>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="visium-spatiallibd-workflow.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
 <span id="cb249-2"><a href="visium-spatiallibd-workflow.html#cb249-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
 <span id="cb249-3"><a href="visium-spatiallibd-workflow.html#cb249-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -727,8 +733,8 @@ Figure 5.1: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb263-3"><a href="visium-spatiallibd-workflow.html#cb263-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb263-4"><a href="visium-spatiallibd-workflow.html#cb263-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb263-5"><a href="visium-spatiallibd-workflow.html#cb263-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
-<pre><code>## Time difference of 53.49101 secs</code></pre>
-<p>Creating our final <code>spe</code> object took 3.48881294329961 to run. So you might want to save this object for later use.</p>
+<pre><code>## Time difference of 48.34085 secs</code></pre>
+<p>Creating our final <code>spe</code> object took 3.44007866382599 to run. So you might want to save this object for later use.</p>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="visium-spatiallibd-workflow.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 <p>You can then re-load it with the following code on a later session.</p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="visium-spatiallibd-workflow.html#cb266-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
@@ -846,10 +852,10 @@ Figure 5.1: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb271-24"><a href="visium-spatiallibd-workflow.html#cb271-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">default_cluster =</span> <span class="st">&quot;label&quot;</span></span>
 <span id="cb271-25"><a href="visium-spatiallibd-workflow.html#cb271-25" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb271-26"><a href="visium-spatiallibd-workflow.html#cb271-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
 <img src="images/spatialLIBD_demo_result.png" alt="Screenshot of the 'clusters (interactive)' section of the 'spot-level data' panel created with with the data from this workflow." width="100%" />
 <p class="caption">
-Figure 5.2: Screenshot of the ‘clusters (interactive)’ section of the ‘spot-level data’ panel created with with the data from this workflow.
+Figure 5.3: Screenshot of the ‘clusters (interactive)’ section of the ‘spot-level data’ panel created with with the data from this workflow.
 </p>
 </div>
 </div>
@@ -897,10 +903,10 @@ Figure 5.2: Screenshot of the ‘clusters (interactive)’ section of the ‘spo
 ##      docs_path = &quot;www&quot;
 ##  )</code></pre>
 <p>You can then open R in a new session in the same directory where you saved the <code>app.R</code> file, run the code and click on the “publish” blue button at the top right of your RStudio window. You’ll then need to upload the <code>app.R</code> file, your <code>spe_workflow_Visium_spatialLIBD.rds</code> file and the files under the <code>www</code> directory which enable you to customize your <code>spatialLIDB</code> website.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
 <img src="images/spatialLIBD_publish.png" alt="Screenshot of the RStudio window for publishing your spatialLIBD-powered website to shinyapps.io" width="80%" />
 <p class="caption">
-Figure 5.3: Screenshot of the RStudio window for publishing your spatialLIBD-powered website to shinyapps.io
+Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-powered website to shinyapps.io
 </p>
 </div>
 <p>The RStudio prompts will guide you along the process for authenticating to your shinyapps.io account, which will involve copy pasting some code that starts with <code>rsconnect::setAccountInfo()</code>. Alternatively, you can create a <code>deploy.R</code> script and write the code for uploading your files to shinyapps.io as shown below.</p>
@@ -1222,7 +1228,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["OSTA-book.pdf", "OSTA-book.epub"],
+"download": null,
 "toc": {
 "collapse": "section"
 },

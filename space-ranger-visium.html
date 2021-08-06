@@ -410,9 +410,9 @@ div.csl-indent {
 <p>A more detailed description of this pipeline can be found <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count">here</a>.</p>
 <p>Here is an example of the parameters used to run <code>spaceranger count</code>. Note how we are using the gene annotation information provided by 10x Genomics, which is actually the same data they provide for their single cell data processing software called Cell Ranger. So if you have both types of data, you can save some disk space by re-using these gene annotation files. One important input file is the <code>--loupe-alignment</code> file, which is why you’ll need to use <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a> first.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
-<img src="images/space_ranger_input.png" alt="`spaceranger count` example usage." width="100%" />
+<img src="images/space_ranger_input.png" alt="`spaceranger count` example usage. Source: [10x Genomics](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count)." width="100%" />
 <p class="caption">
-Figure 5.1: <code>spaceranger count</code> example usage.
+Figure 5.1: <code>spaceranger count</code> example usage. Source: <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count">10x Genomics</a>.
 </p>
 </div>
 </div>
@@ -420,9 +420,9 @@ Figure 5.1: <code>spaceranger count</code> example usage.
 <h2><span class="header-section-number">7.5</span> Output files</h2>
 <p>The <code>spaceranger count</code> pipeline outputs the following files. The ones we use for downstream analysis are the files contained in the <code>raw_features_bc_matrix</code> folder and can be imported into R using the <code>SpatialExperiment::read10xVisium()</code> function.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
-<img src="images/space_ranger_output.png" alt="`spaceranger count` output files." width="40%" />
+<img src="images/space_ranger_output.png" alt="`spaceranger count` output files. See the [10x Genomics `spaceranger count` documentation](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count) for detailed descriptions of each of these files." width="40%" />
 <p class="caption">
-Figure 5.2: <code>spaceranger count</code> output files.
+Figure 5.2: <code>spaceranger count</code> output files. See the <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count">10x Genomics <code>spaceranger count</code> documentation</a> for detailed descriptions of each of these files.
 </p>
 </div>
 <p>Among the output files, we have the two image files:</p>
@@ -456,14 +456,14 @@ Figure 5.4: Example <code>SpatialExperiment::read10xVisium()</code> function cal
 </div>
 <div id="vistoseg-for-quantifying-cells-per-spot" class="section level2" number="7.8">
 <h2><span class="header-section-number">7.8</span> VistoSeg for quantifying cells per spot</h2>
-<p>As was explained earlier in <a href="image-segmentation-visium.html#what-is-vistoseg">What is VistoSeg?</a>, <a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> is a MATLAB pipeline that can be used to estimate the number of cells per spot, which can used for downstream analyses. It is ideal to first segment the bright field images as described in the <a href="image-segmentation-visium.html#image-segmentation-visium">Image segmentation (Visium)</a> chapter. <code>VistoSeg</code> can also be used prior to running <code>Loupe</code> as it can help create high resolution images for each Visium tissue section. In particular, <code>VistoSeg</code> provides a graphical user interface (GUI) that can be be used for counting the number of cells or nuclei in the Visium spots of a given tissue capture area. This is described in detail in the <a href="http://research.libd.org/VistoSeg/step-4-gui-to-count-nuclei-in-a-visium-spot.html"><code>VistoSeg</code> documentation website chapter 4</a>.</p>
+<p>As was explained earlier in <a href="image-segmentation-visium.html#what-is-vistoseg">What is VistoSeg?</a>, <a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> is a MATLAB pipeline that can be used to estimate the number of cells per spot, which can used for downstream analyses <span class="citation"><a href="#ref-Tippani2021" role="doc-biblioref">Tippani et al.</a> (<a href="#ref-Tippani2021" role="doc-biblioref">2021</a>)</span>. It is ideal to first segment the bright field images as described in the <a href="image-segmentation-visium.html#image-segmentation-visium">Image segmentation (Visium)</a> chapter. <code>VistoSeg</code> can also be used prior to running <code>Loupe</code> as it can help create high resolution images for each Visium tissue section. In particular, <code>VistoSeg</code> provides a graphical user interface (GUI) that can be be used for counting the number of cells or nuclei in the Visium spots of a given tissue capture area. This is described in detail in the <a href="http://research.libd.org/VistoSeg/step-4-gui-to-count-nuclei-in-a-visium-spot.html"><code>VistoSeg</code> documentation website chapter 4</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
 <img src="http://research.libd.org/VistoSeg/images/zoom%20in%202.png" alt="A screenshot of the `spotspotcheck` GUI from `VistoSeg` that can be used for counting the number of cells or nuclei per Visium spot. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/step-4-gui-to-count-nuclei-in-a-visium-spot.html)." width="100%" />
 <p class="caption">
 Figure 5.5: A screenshot of the <code>spotspotcheck</code> GUI from <code>VistoSeg</code> that can be used for counting the number of cells or nuclei per Visium spot. Source: <a href="http://research.libd.org/VistoSeg/step-4-gui-to-count-nuclei-in-a-visium-spot.html"><code>VistoSeg</code></a>.
 </p>
 </div>
-<p>In addition to <code>spotspotcheck</code>, you will need to use the <code>countNuclei</code> MATLAB function. Actually, <code>spotspotcheck</code> is optional though we highly recommend using it to visually inspect the results prior to running <code>countNuclei</code>. <code>countNuclei</code> will then estimate the number of cells/nuclei per Visium spot for each capture area. The output is saved in a spreadsheet file (<code>tissue_spot_counts.csv</code>) that contains one row per Visium spot barcode and a column with the estimated number of cells per spot. The data for nuclei counts for the tissue per Visium spot can then be incorporated with the outputs of Space Ranger by being stored in the <code>SpatialExperiment</code> object or used for downstream analysis such as <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Kristen R. Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>.</p>
+<p>The <code>spotspotcheck</code> GUI, will allow the user to visually inspect the nuclei segmentations along with generating nuclei counts per Visium spot for each capture area. The <code>countNuclei</code> MATLAB function is the command line version for <code>spotspotcheck</code> which only extracts the number of cells/nuclei per Visium spot without any visualization. The output is saved in a spreadsheet file (<code>tissue_spot_counts.csv</code>) that contains one row per Visium spot barcode and a column with the estimated number of cells per spot. The data for nuclei counts for the tissue per Visium spot can then be incorporated with the outputs of Space Ranger by being stored in the <code>SpatialExperiment</code> object or used for downstream analysis such as in <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Kristen R. Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>.</p>
 <p>For more information about <code>VistoSeg</code> please see <a href="http://research.libd.org/VistoSeg/">its documentation website</a>.</p>
 </div>
 <div id="wrapping-up-2" class="section level2" number="7.9">
@@ -479,6 +479,9 @@ Figure 5.5: A screenshot of the <code>spotspotcheck</code> GUI from <code>VistoS
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Maynard2021" class="csl-entry">
 Maynard, Kristen R., Leonardo Collado-Torres, Lukas M. Weber, Cedric Uytingco, Brianna K. Barry, Stephen R. Williams, Joseph L. Catallini II, et al. 2021. <span>“Transcriptome-Scale Spatial Gene Expression in the Human Dorsolateral Prefrontal Cortex.”</span> <em>Nature Neuroscience</em>. <a href="https://doi.org/10.1038/s41593-020-00787-0">https://doi.org/10.1038/s41593-020-00787-0</a>.
+</div>
+<div id="ref-Tippani2021" class="csl-entry">
+Tippani, Madhavi, Heena Rajesh Divecha, Joseph L. Catallini, Lukas M. Weber, Abby Spangler, Andrew E. Jaffe, Stephanie C. Hicks, et al. 2021. <span>“<span>VistoSeg</span>: A <span>MATLAB</span> Pipeline to Process, Analyze and Visualize High Resolution Histology Images for <span>Visium</span> Spatial Transcriptomics Data.”</span> <em>bioRxiv</em>, August, 2021.08.04.452489. <a href="https://doi.org/10.1101/2021.08.04.452489">https://doi.org/10.1101/2021.08.04.452489</a>.
 </div>
 </div>
 <div class="footnotes">
@@ -536,7 +539,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["OSTA-book.pdf", "OSTA-book.epub"],
+"download": null,
 "toc": {
 "collapse": "section"
 },
