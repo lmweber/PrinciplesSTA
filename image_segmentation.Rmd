@@ -26,7 +26,7 @@ You likely will image a full Visium slide with four tissue capture areas. So bef
 
 ## What is VistoSeg?
 
-[`VistoSeg`](http://research.libd.org/VistoSeg/) is a MATLAB pipeline used to process, analyze, and interactively visualize the high-resolution histology images from the 10x Genomics Visium experiment @Tippani2021. The output from `VistoSeg` is the estimated number of cells per spot, which can used for downstream analyses. `VistoSeg` can also be used prior to running `Loupe` as it can help create high resolution images for each Visium tissue section. The main steps in `VistoSeg` are as follows:
+[`VistoSeg`](http://research.libd.org/VistoSeg/) is a MATLAB pipeline used to process, analyze, and interactively visualize the high-resolution histology images from the 10x Genomics Visium experiment @Tippani2021. The output from `VistoSeg` is the estimated number of cells per spot, which can be used for downstream analyses. `VistoSeg` can also be used prior to running `Loupe` as it can help create high resolution images for each Visium tissue section. The main steps in `VistoSeg` are as follows:
 
 - *Split Image*: This step is used to split the large Visium histology whole slide image into individual capture areas, creating four individual `.tif` files. These images can then be used with [Loupe Browser (Visium)]
 - *Nuclei Segmentation*: This is a two-step process where nuclei segmentation is performed for images. Nuclei segmentation is followed by a refining step to get a cleaner image of the nuclei segmentation.
