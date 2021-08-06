@@ -9,10 +9,10 @@ In this chapter, you will learn the basics about the [`spaceranger count`](https
 
 Space Ranger is a set of analysis pipelines for processing 10x Genomics Visium sequence data ([`FASTQ`](https://en.wikipedia.org/wiki/FASTQ_format) files) with high resolution microscope images of tissue. In short, it maps the transcriptomic reads to the microscope image of the tissue from which the reads were obtained. Space Ranger includes 5 pipelines but we only use one for our work with Visium -- this is the `spaceranger count` pipeline. 
 
-You can find more information about the various pipelines [on the 10x Genomiics website](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger).
+You can find more information about the various pipelines [on the 10x Genomics website](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger).
 
 
-## Installating Space Ranger
+## Installing Space Ranger
 
 Installing Space Ranger is fairly simple and can be completed in around 3 steps which can be found [in their documentation](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/installation). Briefly, these are:
 
@@ -80,7 +80,7 @@ The `spaceranger count` pipeline requires several inputs (the microscope image a
 
 A more detailed description of this pipeline can be found [here](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count). 
 
-Here is an example of the parameters used to run `spaceranger count`. Note how we are using the gene annotation information provided by 10x Genomics, which is actually the same data they provide for their single cell data processing software called `cellranger`. So if you have both types of data, you can save some disk space by re-using these gene annotation files. One important input file is the `--loupe-alignment` file, which is why you'll need to use the [Loupe Browser (Visium)] first.
+Here is an example of the parameters used to run `spaceranger count`. Note how we are using the gene annotation information provided by 10x Genomics, which is actually the same data they provide for their single cell data processing software called Cell Ranger. So if you have both types of data, you can save some disk space by re-using these gene annotation files. One important input file is the `--loupe-alignment` file, which is why you'll need to use [Loupe Browser (Visium)] first.
 
 ```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="`spaceranger count` example usage."}
 knitr::include_graphics("images/space_ranger_input.png")
@@ -89,7 +89,7 @@ knitr::include_graphics("images/space_ranger_input.png")
 
 ## Output files
 
-The Space Ranger `count` pipeline outputs the following files. The ones we use for downstream analysis are the files contained in the `raw_features_bc_matrix` folder and can be imported into R using the `SpatialExperiment::read10xVisium()` function.
+The `spaceranger count` pipeline outputs the following files. The ones we use for downstream analysis are the files contained in the `raw_features_bc_matrix` folder and can be imported into R using the `SpatialExperiment::read10xVisium()` function.
 
 ```{r, echo=FALSE, out.width = "40%", fig.align="center", fig.cap="`spaceranger count` output files."}
 knitr::include_graphics("images/space_ranger_output.png")
@@ -100,14 +100,14 @@ Among the output files, we have the two image files:
 * `tissue_lowres_image.png`: max 600 pixels
 * `tissue_hires_image.png`: max 2000 pixels
 
-though you might have a much higher quality image than the `hires` one that is proportional to these two. The `scalefactors_json.json` file includes the scaling factors to convert spot coordinates to pixel coordinates from either the `lowres` or `highres` image. The spot coordinates information is stored in the `tissue_positions_list.csv` text file. In addition, you might be interested in the `metrics_summary.csv` file ^[Note that the format of this file has changed across `spaceranger` versions.] which includes the metrics displayed in the interactive website `web_summary.html`. While it's nice that `spaceranger count` provides files in the `filtered_feature_bc_matrix` directory with the data filtered to the spots overlapping tissue, as determined by your [Loupe Browser (Visium)] alignment file, we recommend using the `raw_feature_bc_matrix` data. Doing so will enable you to inspect the data in spots that theoretically don't overlap your tissue. Then later on, you can easily filter out those spots when using `SpatialExperiment`.
+though you might have a much higher quality image than the `hires` one that is proportional to these two. The `scalefactors_json.json` file includes the scaling factors to convert spot coordinates to pixel coordinates from either the `lowres` or `highres` image. The spot coordinates information is stored in the `tissue_positions_list.csv` text file. In addition, you might be interested in the `metrics_summary.csv` file ^[Note that the format of this file has changed across `spaceranger` versions.] which includes the metrics displayed in the interactive website `web_summary.html`. While it is nice that `spaceranger count` provides files in the `filtered_feature_bc_matrix` directory with the data filtered to the spots overlapping tissue, as determined by your [Loupe Browser (Visium)] alignment file, we recommend using the `raw_feature_bc_matrix` data. Doing so will enable you to inspect the data in spots that theoretically don't overlap your tissue. Then later on, you can easily filter out those spots when using `SpatialExperiment`.
 
 If you are interested in accessing some `spaceranger count` output files, 10x Genomics provides [several public datasets](https://support.10xgenomics.com/spatial-gene-expression/datasets) that you can use. You can also access the `spatialLIBD` data from [this collection of links](https://github.com/LieberInstitute/HumanPilot#raw-data) @Maynard2021.
 
 
 ## Web summary .html file
 
-The web summary `web_summary.html` is the first file we look at after Space Ranger is done running because it tells us if the run was successful. It provides general quality control statistics and visualizations. These include clustering results using k-means and graph based clustering methods visualized on reduced dimensions such as t-SNE and UMAP. One metric that you might want to check is the number of reads per spot overlapping tissue, since according to 10x Genomics, you should target 50,000 mean reads per spot. If you are too low, the median number of genes per spot will suffer and you might need to consider sequencing your cDNA library a bit more.
+The web summary `web_summary.html` is the first file we look at after Space Ranger is done running because it tells us if the run was successful. It provides general quality control statistics and visualizations. These include clustering results using k-means and graph-based clustering methods visualized on reduced dimensions such as t-SNE and UMAP. One metric that you might want to check is the number of reads per spot overlapping tissue, since according to 10x Genomics, you should target 50,000 mean reads per spot. If you are too low, the median number of genes per spot will suffer and you might need to consider sequencing your cDNA library a bit more.
 
 ```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Basic summary portion of the `web_summary.html` file."}
 knitr::include_graphics("images/web_summary.png")
@@ -136,7 +136,7 @@ knitr::include_graphics("images/build_spe.png")
 
 The data for nuclei counts for the tissue per Visium spot can be incorporated with the outputs of Space Ranger by being stored in the `SpatialExperiment` object or used for downstream analysis such as @Maynard2021.
 
-For more information about `VistoSeg` please see [it's documentation website](http://research.libd.org/VistoSeg/).
+For more information about `VistoSeg` please see [its documentation website](http://research.libd.org/VistoSeg/).
 
 ## Wrapping up
 
