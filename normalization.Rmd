@@ -14,7 +14,7 @@ Here we apply normalization methods developed for scRNA-seq data, treating each 
 
 library(SpatialExperiment)
 library(STexampleData)
-spe <- load_data("Visium_humanDLPFC")
+spe <- Visium_humanDLPFC()
 
 # QUALITY CONTROL (QC)
 

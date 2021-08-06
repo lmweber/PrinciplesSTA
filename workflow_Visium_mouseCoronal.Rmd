@@ -19,7 +19,7 @@ library(SpatialExperiment)
 library(STexampleData)
 
 # load object
-spe <- load_data("Visium_mouseCoronal")
+spe <- Visium_mouseCoronal()
 spe
 ```
 
