@@ -4,7 +4,7 @@
 
 Below you can find all the related software to `SpatialExperiment` available on Bioconductor or CRAN.
 
-```{r SpatialExperiment_rev_dep, echo = FALSE}
+```{r SpatialExperiment_rev_dep, echo = FALSE, message = FALSE}
 ## Related to https://github.com/r-lib/devtools/issues/2368
 packages_all <- function() {
     repos <- BiocManager::repositories()
@@ -32,9 +32,6 @@ revdep_all <- function(pkg, dependencies = c("Depends", "Imports", "Suggests",
     deps <- setdiff(deps, ignore)
     devtools:::sort_ci(deps)
 }
-    
-revdep_all("SpatialExperiment", recursive = TRUE, bioconductor = TRUE)
-devtools::revdep("SpatialExperiment", recursive = TRUE, bioconductor = TRUE)
 
 ## Get the data and format it
 all <- packages_all()
