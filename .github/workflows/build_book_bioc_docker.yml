@@ -184,7 +184,7 @@ jobs:
           ## details at https://github.com/nturaga/bioc2021-bioconductor-binaries
           ## The speed gains only apply to the docker builds.
           message(paste('****', Sys.time(), 'pass number 1 at installing dependencies: local dependencies ****'))
-          remotes::install_local(dependencies = TRUE, repos = gha_repos, build_vignettes = TRUE, upgrade = TRUE)
+          remotes::install_local(dependencies = TRUE, repos = gha_repos, build_vignettes = FALSE, upgrade = TRUE)
         continue-on-error: true
         shell: Rscript {0}
 
