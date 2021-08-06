@@ -9,7 +9,7 @@ As we saw in the introduction to [Spatially resolved transcriptomics], the Visiu
 knitr::include_graphics("https://kb.10xgenomics.com/hc/article_attachments/360042142472/Picture1.png")
 ```
 
-While 10x Genomics will sell you the Visium slide, you can use many different imaging scopes to obtain bright field and/or fluorescent images for regular Visium or Visium IF, respectively.
+While 10x Genomics will provide the Visium slide, you can use many different imaging scopes to obtain bright field and/or fluorescent images for regular Visium or Visium immunofluorescence (IF), respectively.
 
 ```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Visium images you might generate using your preferred imaging scope: bright field images showing the tissue or multi-channel fluorescent images. Source: [10x Genomics](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/input-recommendations)."}
 knitr::include_graphics("https://support.10xgenomics.com/img/spatial/tissue_lowres_image_brightfield.png")
@@ -52,7 +52,7 @@ Example images for trying out `splitSplide` and the corresponding code are avail
 
 ### File size issues
 
-As noted on the [`VistoSeg` software requirements](http://research.libd.org/VistoSeg/index.html#software-requirements), high quality images for a full Visium slide can be as big as ~25 GB each. This means that you'll need plenty of memory in order to load the full Visium slide image into MATLAB before you can run `splitSlide`. This could be two or three times the amount of the image size on disk. Once you have run `splitSlide`, the rest of the `VistoSeg` pipeline can run on a machine with 16 GB of RAM (or even less).
+As noted on the [`VistoSeg` software requirements](http://research.libd.org/VistoSeg/index.html#software-requirements), high quality images for a full Visium slide can be as big as ~25 GB each. This means that you will need plenty of memory in order to load the full Visium slide image into MATLAB before you can run `splitSlide`. This could be two or three times the amount of the image size on disk. Once you have run `splitSlide`, the rest of the `VistoSeg` pipeline can run on a machine with 16 GB of RAM (or even less).
 
 ## Segment cell nuclei
 
@@ -76,4 +76,4 @@ For more details and a detailed example check the [`VistoSeg` documentation webs
 
 ## Wrapping up
 
-In this chapter we learned that Visium experiments can be trickier than expected. That is, before we can use the processing tools provided by 10x Genomics, we have to learn how to work with the images we generate. Given the broad spectrum of imaging scopes, it's not surprising that 10x Genomics does not support this. However, [`VistoSeg`](http://research.libd.org/VistoSeg/) among other software, can help us split our images and process them in such a way that we'll be able to estimate the number of cells or nuclei per Visium spot. 
+In this chapter we learned that Visium experiments can be trickier than expected. That is, before we can use the processing tools provided by 10x Genomics, we have to learn how to work with the images we generate. Given the broad spectrum of imaging scopes, it is not surprising that 10x Genomics does not support this. However, [`VistoSeg`](http://research.libd.org/VistoSeg/) among other software, can help us split our images and process them in such a way that we will be able to estimate the number of cells or nuclei per Visium spot. 
