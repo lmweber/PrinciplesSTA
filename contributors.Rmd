@@ -2,13 +2,13 @@
 
 # Contributors
 
-[Lukas M. Weber](https://twitter.com/lmwebr), *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
+[Lukas M. Weber](https://lmweber.org/), *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
 
 [Abby Spangler](https://twitter.com/abspangler), *Lieber Institute for Brain Development, Baltimore, MD, USA*
 
 [Leonardo Collado-Torres](https://twitter.com/lcolladotor), *Lieber Institute for Brain Development, Baltimore, MD, USA*
 
-[Stephanie C. Hicks](https://twitter.com/stephaniehicks), *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
+[Stephanie C. Hicks](https://www.stephaniehicks.com/), *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
 
 As well as [GitHub contributors](https://github.com/lmweber/OSTA-book/graphs/contributors) who have helped us improve this book over time. Thank you for your contributions!
 
