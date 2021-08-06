@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-08-05" />
+<meta name="date" content="2021-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -196,12 +196,14 @@ div.csl-indent {
 <li class="chapter" data-level="7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html"><i class="fa fa-check"></i><b>7</b> Space Ranger (Visium)</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
-<li class="chapter" data-level="7.2" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#installation"><i class="fa fa-check"></i><b>7.2</b> Installation</a></li>
-<li class="chapter" data-level="7.3" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#run-spaceranger-count"><i class="fa fa-check"></i><b>7.3</b> Run spaceranger count</a></li>
-<li class="chapter" data-level="7.4" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#output-files-1"><i class="fa fa-check"></i><b>7.4</b> Output files</a></li>
-<li class="chapter" data-level="7.5" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#web-summary-.html-file"><i class="fa fa-check"></i><b>7.5</b> Web summary .html file</a></li>
-<li class="chapter" data-level="7.6" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#import-outputs-into-r"><i class="fa fa-check"></i><b>7.6</b> Import outputs into R</a></li>
-<li class="chapter" data-level="7.7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#vistoseg-for-quantifying-cells-per-spot"><i class="fa fa-check"></i><b>7.7</b> VistoSeg for quantifying cells per spot</a></li>
+<li class="chapter" data-level="7.2" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#what-is-space-ranger"><i class="fa fa-check"></i><b>7.2</b> What is Space Ranger?</a></li>
+<li class="chapter" data-level="7.3" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#installing-space-ranger"><i class="fa fa-check"></i><b>7.3</b> Installing Space Ranger</a></li>
+<li class="chapter" data-level="7.4" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#run-spaceranger-count"><i class="fa fa-check"></i><b>7.4</b> Run spaceranger count</a></li>
+<li class="chapter" data-level="7.5" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#output-files-1"><i class="fa fa-check"></i><b>7.5</b> Output files</a></li>
+<li class="chapter" data-level="7.6" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#web-summary-.html-file"><i class="fa fa-check"></i><b>7.6</b> Web summary .html file</a></li>
+<li class="chapter" data-level="7.7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#import-outputs-into-r"><i class="fa fa-check"></i><b>7.7</b> Import outputs into R</a></li>
+<li class="chapter" data-level="7.8" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#vistoseg-for-quantifying-cells-per-spot"><i class="fa fa-check"></i><b>7.8</b> VistoSeg for quantifying cells per spot</a></li>
+<li class="chapter" data-level="7.9" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#wrapping-up"><i class="fa fa-check"></i><b>7.9</b> Wrapping up</a></li>
 </ul></li>
 <li class="part"><span><b>III Analysis steps</b></span></li>
 <li class="chapter" data-level="8" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>8</b> Analysis steps</a>
@@ -303,7 +305,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html#explore-the-data"><i class="fa fa-check"></i><b>18.5</b> Explore the data</a></li>
 <li class="chapter" data-level="18.6" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html#sharing-your-website"><i class="fa fa-check"></i><b>18.6</b> Sharing your website</a></li>
-<li class="chapter" data-level="18.7" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html#wrapping-up"><i class="fa fa-check"></i><b>18.7</b> Wrapping up</a></li>
+<li class="chapter" data-level="18.7" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html#wrapping-up-1"><i class="fa fa-check"></i><b>18.7</b> Wrapping up</a></li>
 <li class="chapter" data-level="" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html#r-session-information"><i class="fa fa-check"></i>R session information</a></li>
 </ul></li>
 <li class="part"><span><b>V Appendix</b></span></li>
@@ -333,73 +335,153 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 7</span> Space Ranger (Visium)</h1>
 <div id="overview-2" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Overview</h2>
-<p>Space Ranger is a set of analysis pipelines for processing 10x Genomics Visium sequence data (<code>fastq</code> files) with high resolution microscope images of tissue. In short, it maps the transcriptomic reads to the microscope image of the tissue from which the reads were obtained. Space Ranger includes 5 pipelines but we only use one for our work with Visium – this is the <code>spaceranger count</code> pipeline.</p>
-<p>You can find more information about the various pipelines <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger">here</a>.</p>
+<p>In this chapter, you will learn the basics about the <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger"><code>spaceranger count</code></a> processing pipeline by 10x Genomics for Visium data, and the <a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> software you can use for segmenting the images to estimate the number of the cells per spot.</p>
 </div>
-<div id="installation" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Installation</h2>
-<p>Installing Space Ranger is fairly simple and can be completed in around 3 steps which can be found <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/installation">here</a>.</p>
+<div id="what-is-space-ranger" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> What is Space Ranger?</h2>
+<p>Space Ranger is a set of analysis pipelines for processing 10x Genomics Visium sequence data (<a href="https://en.wikipedia.org/wiki/FASTQ_format"><code>FASTQ</code></a> files) with high resolution microscope images of tissue. In short, it maps the transcriptomic reads to the microscope image of the tissue from which the reads were obtained. Space Ranger includes 5 pipelines but we only use one for our work with Visium – this is the <code>spaceranger count</code> pipeline.</p>
+<p>You can find more information about the various pipelines <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger">on the 10x Genomics website</a>.</p>
 </div>
-<div id="run-spaceranger-count" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> Run spaceranger count</h2>
-<p>This pipeline takes the microscope image and <code>fastq</code> files and performs sequence alignment, tissue detection and alignment using the fiducial frame, and barcode/UMI counting. The most important output is the gene-spot matrix which we combine with other data generated by VistoSeg (see below) into a <code>SpatialExperiment</code> object for downstream analysis.</p>
-<p>A more detailed description of this pipeline can be found <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count">here</a>.</p>
-<p>Here is an example of the parameters used to run <code>spaceranger count</code>.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
-<img src="images/space_ranger_input.png" alt="Figure caption." width="40%" />
-<p class="caption">
-Figure 6.1: Figure caption.
-</p>
-</div>
-</div>
-<div id="output-files-1" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> Output files</h2>
-<p>The Space Ranger pipeline outputs the following files. The ones we use for downstream analysis are the files contained in the <code>raw_features_bc_matrix</code> folder.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
-<img src="images/space_ranger_output.png" alt="Figure caption." width="40%" />
-<p class="caption">
-Figure 6.2: Figure caption.
-</p>
-</div>
-</div>
-<div id="web-summary-.html-file" class="section level2" number="7.5">
-<h2><span class="header-section-number">7.5</span> Web summary .html file</h2>
-<p>The web summary <code>.html</code> is the first file we look at after Space Ranger is done running because it tells us if the run was successful. It provides general quality control statistics and visualizations.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
-<img src="images/web_summary.png" alt="Figure caption." width="75%" />
-<p class="caption">
-Figure 6.3: Figure caption.
-</p>
-</div>
-<p>The <code>.cloupe</code> file is also useful for checking the quality of the data. There is more information on this file the <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a> section of this book.</p>
-</div>
-<div id="import-outputs-into-r" class="section level2" number="7.6">
-<h2><span class="header-section-number">7.6</span> Import outputs into R</h2>
-<p>We use the <a href="https://bioconductor.org/packages/SpatialExperiment">SpatialExperiment</a> package to store the data from Space Ranger and VistoSeg (see below) in one convenient object (<code>spe</code>). Below is an example of the code we use to build the <code>spe</code> object.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
-<img src="images/build_spe.png" alt="Figure caption." width="75%" />
-<p class="caption">
-Figure 6.4: Figure caption.
-</p>
-</div>
-</div>
-<div id="vistoseg-for-quantifying-cells-per-spot" class="section level2" number="7.7">
-<h2><span class="header-section-number">7.7</span> VistoSeg for quantifying cells per spot</h2>
-<p>VistoSeg is a MATLAB pipeline used to process, analyze, and interactively visualize the high-resolution histology images from the 10x Genomics Visium experiment. The output from VistoSeg is used for downstream analyses. The main steps in VistoSeg are as follows:</p>
+<div id="installing-space-ranger" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Installing Space Ranger</h2>
+<p>Installing Space Ranger is fairly simple and can be completed in around 3 steps which can be found <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/installation">in their documentation</a>. Briefly, these are:</p>
+<ol style="list-style-type: decimal">
+<li>Download and unpack the Space Ranger <code>.tar.gz</code> file in any location</li>
+<li>Download and unpack any of the reference data <code>.tar.gz</code> file in a convenient location</li>
+<li>Pre-pend the Space Ranger directory to your <code>$PATH</code></li>
+</ol>
+<p>If you use the <a href="https://lmod.readthedocs.io/en/latest/"><code>lmod</code></a> software management utility in your high performance computing environment, you can create a module with commands such as the ones described at:</p>
 <ul>
-<li>Split Image: This step is used to split the large Visium histology whole slide image into individual capture areas, creating 4 individual <code>.tif</code> files.</li>
-<li>Nuclei Segmentation: This is a two-step process where nuclei segmentation is performed for images. Nuclei segmentation is followed by a refining step to get a cleaner image of the nuclei segmentation.</li>
-<li>Space Ranger</li>
-<li>CountNuclei: This steps is performed to get the count of cells/nuclei per Visium spot for each capture area. The output is saved in a spreadsheet file (<code>tissue_spot_counts.csv</code>).</li>
+<li><a href="https://github.com/LieberInstitute/jhpce_mod_source/tree/master/spaceranger/1.3.0">JHPCE module source</a> for <code>spaceranger</code> version 1.3.0</li>
+<li><a href="https://github.com/LieberInstitute/jhpce_module_config/blob/master/spaceranger/1.3.0.lua">JHPCE module config</a> for <code>spaceranger</code> version 1.3.0</li>
 </ul>
-<p>The data for nuclei counts for the tissue per Visium spot is incorporated with the outputs of Space Ranger by being stored in the <code>SpatialExperiment</code> object or used for downstream analysis.</p>
-<p>For more information about VistoSeg please see <a href="http://research.libd.org/VistoSeg/index.html">VistoSeg</a></p>
+<p>Thus in the future, you can use <code>spaceranger</code> with commands such as</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="space-ranger-visium.html#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">$</span> module load spaceranger/1.3.0</span>
+<span id="cb1-2"><a href="space-ranger-visium.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Loading</span> LIBD module for spaceranger/1.3.0</span>
+<span id="cb1-3"><a href="space-ranger-visium.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Reference</span> files, for use with the <span class="st">&#39;--transcriptome&#39;</span> argument, can be</span>
+<span id="cb1-4"><a href="space-ranger-visium.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">accessed</span> or downloaded into</span>
+<span id="cb1-5"><a href="space-ranger-visium.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/dcl01/ajaffe/data/lab/singleCell/cellranger_reference/.</span></span>
+<span id="cb1-6"><a href="space-ranger-visium.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="space-ranger-visium.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> spaceranger <span class="at">--help</span></span>
+<span id="cb1-8"><a href="space-ranger-visium.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">spaceranger</span> spaceranger-1.3.0</span>
+<span id="cb1-9"><a href="space-ranger-visium.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 10x Genomics Spatial Gene Expression data</span>
+<span id="cb1-10"><a href="space-ranger-visium.html#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="space-ranger-visium.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">USAGE:</span></span>
+<span id="cb1-12"><a href="space-ranger-visium.html#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">spaceranger</span> <span class="op">&lt;</span>SUBCOMMAND<span class="op">&gt;</span></span>
+<span id="cb1-13"><a href="space-ranger-visium.html#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="space-ranger-visium.html#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">FLAGS:</span></span>
+<span id="cb1-15"><a href="space-ranger-visium.html#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-h,</span> <span class="at">--help</span>       Prints help information</span>
+<span id="cb1-16"><a href="space-ranger-visium.html#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-V,</span> <span class="at">--version</span>    Prints version information</span>
+<span id="cb1-17"><a href="space-ranger-visium.html#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="space-ranger-visium.html#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ex">SUBCOMMANDS:</span></span>
+<span id="cb1-19"><a href="space-ranger-visium.html#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="ex">count</span>               Count gene expression and feature barcoding reads</span>
+<span id="cb1-20"><a href="space-ranger-visium.html#cb1-20" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">from</span> a single capture area</span>
+<span id="cb1-21"><a href="space-ranger-visium.html#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="ex">aggr</span>                Aggregate data from multiple <span class="st">&#39;spaceranger count&#39;</span></span>
+<span id="cb1-22"><a href="space-ranger-visium.html#cb1-22" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">runs</span></span>
+<span id="cb1-23"><a href="space-ranger-visium.html#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="ex">targeted-compare</span>    Analyze targeted enrichment performance by</span>
+<span id="cb1-24"><a href="space-ranger-visium.html#cb1-24" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">comparing</span> a targeted sample to its cognate parent</span>
+<span id="cb1-25"><a href="space-ranger-visium.html#cb1-25" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">WTA</span> sample <span class="er">(</span><span class="ex">used</span> as input for targeted gene</span>
+<span id="cb1-26"><a href="space-ranger-visium.html#cb1-26" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">expression</span><span class="kw">)</span></span>
+<span id="cb1-27"><a href="space-ranger-visium.html#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="ex">targeted-depth</span>      Estimate targeted read depth values <span class="er">(</span><span class="ex">mean</span> reads</span>
+<span id="cb1-28"><a href="space-ranger-visium.html#cb1-28" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">per</span> spot<span class="kw">)</span> <span class="cf">for</span> a <span class="ex">specified</span> input parent WTA sample</span>
+<span id="cb1-29"><a href="space-ranger-visium.html#cb1-29" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">and</span> a target panel CSV file</span>
+<span id="cb1-30"><a href="space-ranger-visium.html#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mkfastq</span>             Run Illumina demultiplexer on sample sheets that</span>
+<span id="cb1-31"><a href="space-ranger-visium.html#cb1-31" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">contain</span> 10x-specific sample index sets</span>
+<span id="cb1-32"><a href="space-ranger-visium.html#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="ex">testrun</span>             Execute the <span class="st">&#39;count&#39;</span> pipeline on a small test</span>
+<span id="cb1-33"><a href="space-ranger-visium.html#cb1-33" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">dataset</span></span>
+<span id="cb1-34"><a href="space-ranger-visium.html#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mat2csv</span>             Convert a gene count matrix to CSV format</span>
+<span id="cb1-35"><a href="space-ranger-visium.html#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mkref</span>               Prepare a reference for use with 10x analysis</span>
+<span id="cb1-36"><a href="space-ranger-visium.html#cb1-36" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">software.</span> Requires a GTF and FASTA</span>
+<span id="cb1-37"><a href="space-ranger-visium.html#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mkgtf</span>               Filter a GTF file by attribute prior to creating</span>
+<span id="cb1-38"><a href="space-ranger-visium.html#cb1-38" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">a</span> 10x reference</span>
+<span id="cb1-39"><a href="space-ranger-visium.html#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="ex">upload</span>              Upload analysis logs to 10x Genomics support</span>
+<span id="cb1-40"><a href="space-ranger-visium.html#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sitecheck</span>           Collect linux system configuration information</span>
+<span id="cb1-41"><a href="space-ranger-visium.html#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">help</span>                Prints this message or the help of the given</span>
+<span id="cb1-42"><a href="space-ranger-visium.html#cb1-42" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">subcommand</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span></span></code></pre></div>
+</div>
+<div id="run-spaceranger-count" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Run spaceranger count</h2>
+<p>The <code>spaceranger count</code> pipeline requires several inputs (the microscope image and <code>FASTQ</code> files) and performs sequence alignment, tissue detection and alignment using the fiducial frame, and barcode/UMI counting. The most important output is the gene-spot matrix which we combine with other data generated by <a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> (see below) into a <a href="http://bioconductor.org/packages/SpatialExperiment/"><code>SpatialExperiment</code></a> R object for downstream analysis.</p>
+<p>A more detailed description of this pipeline can be found <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count">here</a>.</p>
+<p>Here is an example of the parameters used to run <code>spaceranger count</code>. Note how we are using the gene annotation information provided by 10x Genomics, which is actually the same data they provide for their single cell data processing software called Cell Ranger. So if you have both types of data, you can save some disk space by re-using these gene annotation files. One important input file is the <code>--loupe-alignment</code> file, which is why you’ll need to use <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a> first.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="images/space_ranger_input.png" alt="`spaceranger count` example usage." width="100%" />
+<p class="caption">
+Figure 6.2: <code>spaceranger count</code> example usage.
+</p>
+</div>
+</div>
+<div id="output-files-1" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Output files</h2>
+<p>The <code>spaceranger count</code> pipeline outputs the following files. The ones we use for downstream analysis are the files contained in the <code>raw_features_bc_matrix</code> folder and can be imported into R using the <code>SpatialExperiment::read10xVisium()</code> function.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="images/space_ranger_output.png" alt="`spaceranger count` output files." width="40%" />
+<p class="caption">
+Figure 6.3: <code>spaceranger count</code> output files.
+</p>
+</div>
+<p>Among the output files, we have the two image files:</p>
+<ul>
+<li><code>tissue_lowres_image.png</code>: max 600 pixels</li>
+<li><code>tissue_hires_image.png</code>: max 2000 pixels</li>
+</ul>
+<p>though you might have a much higher quality image than the <code>hires</code> one that is proportional to these two. The <code>scalefactors_json.json</code> file includes the scaling factors to convert spot coordinates to pixel coordinates from either the <code>lowres</code> or <code>highres</code> image. The spot coordinates information is stored in the <code>tissue_positions_list.csv</code> text file. In addition, you might be interested in the <code>metrics_summary.csv</code> file<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> which includes the metrics displayed in the interactive website <code>web_summary.html</code>. While it is nice that <code>spaceranger count</code> provides files in the <code>filtered_feature_bc_matrix</code> directory with the data filtered to the spots overlapping tissue, as determined by your <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a> alignment file, we recommend using the <code>raw_feature_bc_matrix</code> data. Doing so will enable you to inspect the data in spots that theoretically don’t overlap your tissue. Then later on, you can easily filter out those spots when using <code>SpatialExperiment</code>.</p>
+<p>If you are interested in accessing some <code>spaceranger count</code> output files, 10x Genomics provides <a href="https://support.10xgenomics.com/spatial-gene-expression/datasets">several public datasets</a> that you can use. You can also access the <code>spatialLIBD</code> data from <a href="https://github.com/LieberInstitute/HumanPilot#raw-data">this collection of links</a> <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>.</p>
+</div>
+<div id="web-summary-.html-file" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Web summary .html file</h2>
+<p>The web summary <code>web_summary.html</code> is the first file we look at after Space Ranger is done running because it tells us if the run was successful. It provides general quality control statistics and visualizations. These include clustering results using k-means and graph-based clustering methods visualized on reduced dimensions such as t-SNE and UMAP. One metric that you might want to check is the number of reads per spot overlapping tissue, since according to 10x Genomics, you should target 50,000 mean reads per spot. If you are too low, the median number of genes per spot will suffer and you might need to consider sequencing your cDNA library a bit more.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="images/web_summary.png" alt="Basic summary portion of the `web_summary.html` file." width="100%" />
+<p class="caption">
+Figure 6.4: Basic summary portion of the <code>web_summary.html</code> file.
+</p>
+</div>
+<p>The <code>.cloupe</code> file is also useful for checking the quality of the data. There is more information on this file in the <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a> chapter of this book.</p>
+</div>
+<div id="import-outputs-into-r" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Import outputs into R</h2>
+<p>We use the <a href="https://bioconductor.org/packages/SpatialExperiment"><code>SpatialExperiment</code></a> package to store the data from Space Ranger and <code>VistoSeg</code> (see below) in one convenient object (<code>spe</code>). Below is an example of the code we use to build the <code>spe</code> object.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="images/build_spe.png" alt="Example `SpatialExperiment::read10xVisium()` function call. This example will load the data from multiple Visium tissue sections since `sample_info$sample_path` and `sample_info$sample_id` are vectors of length greater than one. This can be quite useful for downstream analyses where you want to perform quality control, dimension reduction, clustering, etc across all Visium tissue sections instead of one tissue section at a time." width="40%" />
+<p class="caption">
+Figure 6.5: Example <code>SpatialExperiment::read10xVisium()</code> function call. This example will load the data from multiple Visium tissue sections since <code>sample_info$sample_path</code> and <code>sample_info$sample_id</code> are vectors of length greater than one. This can be quite useful for downstream analyses where you want to perform quality control, dimension reduction, clustering, etc across all Visium tissue sections instead of one tissue section at a time.
+</p>
+</div>
+</div>
+<div id="vistoseg-for-quantifying-cells-per-spot" class="section level2" number="7.8">
+<h2><span class="header-section-number">7.8</span> VistoSeg for quantifying cells per spot</h2>
+<p><a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> is a MATLAB pipeline used to process, analyze, and interactively visualize the high-resolution histology images from the 10x Genomics Visium experiment. The output from <code>VistoSeg</code> is the estimated number of cells per spot, which can used for downstream analyses. <code>VistoSeg</code> can also be used prior to running <code>Loupe</code> as it can help create high resolution images for each Visium tissue section. The main steps in <code>VistoSeg</code> are as follows:</p>
+<ul>
+<li>Split Image: This step is used to split the large Visium histology whole slide image into individual capture areas, creating 4 individual <code>.tif</code> files. This can be useful prior to <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a></li>
+<li>Nuclei Segmentation: This is a two-step process where nuclei segmentation is performed for images. Nuclei segmentation is followed by a refining step to get a cleaner image of the nuclei segmentation.</li>
+<li>Space Ranger: as in, you need to run <code>spaceranger count</code> to create the input files for the next <code>VistoSeg</code> step</li>
+<li>CountNuclei: This steps is performed to get the count of cells/nuclei per Visium spot for each capture area. The output is saved in a spreadsheet file (<code>tissue_spot_counts.csv</code>) that contains one row per Visium spot barcode and a column with the estimated number of cells per spot.</li>
+</ul>
+<p>The data for nuclei counts for the tissue per Visium spot can be incorporated with the outputs of Space Ranger by being stored in the <code>SpatialExperiment</code> object or used for downstream analysis such as <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>.</p>
+<p>For more information about <code>VistoSeg</code> please see <a href="http://research.libd.org/VistoSeg/">its documentation website</a>.</p>
+</div>
+<div id="wrapping-up" class="section level2" number="7.9">
+<h2><span class="header-section-number">7.9</span> Wrapping up</h2>
+<p>By now you are familiar with how to use <code>Loupe</code> to align your images with the Visium fiducial frame, how to run <code>spaceranger count</code> to process the gene expression data, and how <code>VistoSeg</code> can help you with creating the images for <code>Loupe</code> as well as estimating the number of spots per cell. The next chapters will walk you through several of the analysis steps you can do with R and Bioconductor.</p>
 
 </div>
 </div>
 
 
 
+<h3> References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Maynard2021" class="csl-entry">
+Maynard, Kristen R., Leonardo Collado-Torres, Lukas M. Weber, Cedric Uytingco, Brianna K. Barry, Stephen R. Williams, Joseph L. Catallini II, et al. 2021. <span>“Transcriptome-Scale Spatial Gene Expression in the Human Dorsolateral Prefrontal Cortex.”</span> <em>Nature Neuroscience</em>. <a href="https://doi.org/10.1038/s41593-020-00787-0">https://doi.org/10.1038/s41593-020-00787-0</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Note that the format of this file has changed across <code>spaceranger</code> versions.<a href="space-ranger-visium.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>

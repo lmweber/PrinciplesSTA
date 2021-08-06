@@ -32,12 +32,14 @@ output-files-and-space-ranger
 downstream-analyses-in-loupe-browser
 space-ranger-visium
 overview-2
-installation
+what-is-space-ranger
+installing-space-ranger
 run-spaceranger-count
 output-files-1
 web-summary-.html-file
 import-outputs-into-r
 vistoseg-for-quantifying-cells-per-spot
+wrapping-up
 analysis-steps
 load-data
 spatialexperiment-object-structure
@@ -112,6 +114,6 @@ gene-annotation
 extra-information-and-filtering
 explore-the-data
 sharing-your-website
-wrapping-up
+wrapping-up-1
 contributors
 references

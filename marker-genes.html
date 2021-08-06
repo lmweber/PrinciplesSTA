@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-08-05" />
+<meta name="date" content="2021-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -196,12 +196,14 @@ div.csl-indent {
 <li class="chapter" data-level="7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html"><i class="fa fa-check"></i><b>7</b> Space Ranger (Visium)</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
-<li class="chapter" data-level="7.2" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#installation"><i class="fa fa-check"></i><b>7.2</b> Installation</a></li>
-<li class="chapter" data-level="7.3" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#run-spaceranger-count"><i class="fa fa-check"></i><b>7.3</b> Run spaceranger count</a></li>
-<li class="chapter" data-level="7.4" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#output-files-1"><i class="fa fa-check"></i><b>7.4</b> Output files</a></li>
-<li class="chapter" data-level="7.5" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#web-summary-.html-file"><i class="fa fa-check"></i><b>7.5</b> Web summary .html file</a></li>
-<li class="chapter" data-level="7.6" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#import-outputs-into-r"><i class="fa fa-check"></i><b>7.6</b> Import outputs into R</a></li>
-<li class="chapter" data-level="7.7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#vistoseg-for-quantifying-cells-per-spot"><i class="fa fa-check"></i><b>7.7</b> VistoSeg for quantifying cells per spot</a></li>
+<li class="chapter" data-level="7.2" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#what-is-space-ranger"><i class="fa fa-check"></i><b>7.2</b> What is Space Ranger?</a></li>
+<li class="chapter" data-level="7.3" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#installing-space-ranger"><i class="fa fa-check"></i><b>7.3</b> Installing Space Ranger</a></li>
+<li class="chapter" data-level="7.4" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#run-spaceranger-count"><i class="fa fa-check"></i><b>7.4</b> Run spaceranger count</a></li>
+<li class="chapter" data-level="7.5" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#output-files-1"><i class="fa fa-check"></i><b>7.5</b> Output files</a></li>
+<li class="chapter" data-level="7.6" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#web-summary-.html-file"><i class="fa fa-check"></i><b>7.6</b> Web summary .html file</a></li>
+<li class="chapter" data-level="7.7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#import-outputs-into-r"><i class="fa fa-check"></i><b>7.7</b> Import outputs into R</a></li>
+<li class="chapter" data-level="7.8" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#vistoseg-for-quantifying-cells-per-spot"><i class="fa fa-check"></i><b>7.8</b> VistoSeg for quantifying cells per spot</a></li>
+<li class="chapter" data-level="7.9" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#wrapping-up"><i class="fa fa-check"></i><b>7.9</b> Wrapping up</a></li>
 </ul></li>
 <li class="part"><span><b>III Analysis steps</b></span></li>
 <li class="chapter" data-level="8" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>8</b> Analysis steps</a>
@@ -303,7 +305,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html#explore-the-data"><i class="fa fa-check"></i><b>18.5</b> Explore the data</a></li>
 <li class="chapter" data-level="18.6" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html#sharing-your-website"><i class="fa fa-check"></i><b>18.6</b> Sharing your website</a></li>
-<li class="chapter" data-level="18.7" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html#wrapping-up"><i class="fa fa-check"></i><b>18.7</b> Wrapping up</a></li>
+<li class="chapter" data-level="18.7" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html#wrapping-up-1"><i class="fa fa-check"></i><b>18.7</b> Wrapping up</a></li>
 <li class="chapter" data-level="" data-path="visium-spatiallibd-workflow.html"><a href="visium-spatiallibd-workflow.html#r-session-information"><i class="fa fa-check"></i>R session information</a></li>
 </ul></li>
 <li class="part"><span><b>V Appendix</b></span></li>
@@ -338,102 +340,102 @@ div.csl-indent {
 <div id="previous-steps-4" class="section level2" number="14.2">
 <h2><span class="header-section-number">14.2</span> Previous steps</h2>
 <p><em>Code to run steps from the previous chapters to generate the <code>SpatialExperiment</code> object required for this chapter.</em></p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="marker-genes.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
-<span id="cb119-2"><a href="marker-genes.html#cb119-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-3"><a href="marker-genes.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
-<span id="cb119-4"><a href="marker-genes.html#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
-<span id="cb119-5"><a href="marker-genes.html#cb119-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;Visium_humanDLPFC&quot;</span>)</span>
-<span id="cb119-6"><a href="marker-genes.html#cb119-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-7"><a href="marker-genes.html#cb119-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
-<span id="cb119-8"><a href="marker-genes.html#cb119-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-9"><a href="marker-genes.html#cb119-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb119-10"><a href="marker-genes.html#cb119-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
-<span id="cb119-11"><a href="marker-genes.html#cb119-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb119-12"><a href="marker-genes.html#cb119-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
-<span id="cb119-13"><a href="marker-genes.html#cb119-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
-<span id="cb119-14"><a href="marker-genes.html#cb119-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
-<span id="cb119-15"><a href="marker-genes.html#cb119-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
-<span id="cb119-16"><a href="marker-genes.html#cb119-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
-<span id="cb119-17"><a href="marker-genes.html#cb119-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
-<span id="cb119-18"><a href="marker-genes.html#cb119-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
-<span id="cb119-19"><a href="marker-genes.html#cb119-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
-<span id="cb119-20"><a href="marker-genes.html#cb119-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
-<span id="cb119-21"><a href="marker-genes.html#cb119-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
-<span id="cb119-22"><a href="marker-genes.html#cb119-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
-<span id="cb119-23"><a href="marker-genes.html#cb119-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
-<span id="cb119-24"><a href="marker-genes.html#cb119-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
-<span id="cb119-25"><a href="marker-genes.html#cb119-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
-<span id="cb119-26"><a href="marker-genes.html#cb119-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-27"><a href="marker-genes.html#cb119-27" aria-hidden="true" tabindex="-1"></a><span class="co"># NORMALIZATION</span></span>
-<span id="cb119-28"><a href="marker-genes.html#cb119-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-29"><a href="marker-genes.html#cb119-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
-<span id="cb119-30"><a href="marker-genes.html#cb119-30" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
-<span id="cb119-31"><a href="marker-genes.html#cb119-31" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb119-32"><a href="marker-genes.html#cb119-32" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
-<span id="cb119-33"><a href="marker-genes.html#cb119-33" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors</span></span>
-<span id="cb119-34"><a href="marker-genes.html#cb119-34" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
-<span id="cb119-35"><a href="marker-genes.html#cb119-35" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts)</span></span>
-<span id="cb119-36"><a href="marker-genes.html#cb119-36" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
-<span id="cb119-37"><a href="marker-genes.html#cb119-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-38"><a href="marker-genes.html#cb119-38" aria-hidden="true" tabindex="-1"></a><span class="co"># FEATURE SELECTION</span></span>
-<span id="cb119-39"><a href="marker-genes.html#cb119-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-40"><a href="marker-genes.html#cb119-40" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
-<span id="cb119-41"><a href="marker-genes.html#cb119-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
-<span id="cb119-42"><a href="marker-genes.html#cb119-42" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
-<span id="cb119-43"><a href="marker-genes.html#cb119-43" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
-<span id="cb119-44"><a href="marker-genes.html#cb119-44" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
-<span id="cb119-45"><a href="marker-genes.html#cb119-45" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
-<span id="cb119-46"><a href="marker-genes.html#cb119-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-47"><a href="marker-genes.html#cb119-47" aria-hidden="true" tabindex="-1"></a><span class="co"># DIMENSIONALITY REDUCTION</span></span>
-<span id="cb119-48"><a href="marker-genes.html#cb119-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-49"><a href="marker-genes.html#cb119-49" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
-<span id="cb119-50"><a href="marker-genes.html#cb119-50" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb119-51"><a href="marker-genes.html#cb119-51" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
-<span id="cb119-52"><a href="marker-genes.html#cb119-52" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
-<span id="cb119-53"><a href="marker-genes.html#cb119-53" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb119-54"><a href="marker-genes.html#cb119-54" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb119-55"><a href="marker-genes.html#cb119-55" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names</span></span>
-<span id="cb119-56"><a href="marker-genes.html#cb119-56" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
-<span id="cb119-57"><a href="marker-genes.html#cb119-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-58"><a href="marker-genes.html#cb119-58" aria-hidden="true" tabindex="-1"></a><span class="co"># CLUSTERING</span></span>
-<span id="cb119-59"><a href="marker-genes.html#cb119-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-60"><a href="marker-genes.html#cb119-60" aria-hidden="true" tabindex="-1"></a><span class="co"># graph-based clustering</span></span>
-<span id="cb119-61"><a href="marker-genes.html#cb119-61" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb119-62"><a href="marker-genes.html#cb119-62" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb119-63"><a href="marker-genes.html#cb119-63" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">k =</span> k, <span class="at">use.dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb119-64"><a href="marker-genes.html#cb119-64" aria-hidden="true" tabindex="-1"></a>g_walk <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">cluster_walktrap</span>(g)</span>
-<span id="cb119-65"><a href="marker-genes.html#cb119-65" aria-hidden="true" tabindex="-1"></a>clus <span class="ot">&lt;-</span> g_walk<span class="sc">$</span>membership</span>
-<span id="cb119-66"><a href="marker-genes.html#cb119-66" aria-hidden="true" tabindex="-1"></a><span class="fu">colLabels</span>(spe) <span class="ot">&lt;-</span> <span class="fu">factor</span>(clus)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="marker-genes.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
+<span id="cb120-2"><a href="marker-genes.html#cb120-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-3"><a href="marker-genes.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb120-4"><a href="marker-genes.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
+<span id="cb120-5"><a href="marker-genes.html#cb120-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;Visium_humanDLPFC&quot;</span>)</span>
+<span id="cb120-6"><a href="marker-genes.html#cb120-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-7"><a href="marker-genes.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
+<span id="cb120-8"><a href="marker-genes.html#cb120-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-9"><a href="marker-genes.html#cb120-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
+<span id="cb120-10"><a href="marker-genes.html#cb120-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
+<span id="cb120-11"><a href="marker-genes.html#cb120-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb120-12"><a href="marker-genes.html#cb120-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
+<span id="cb120-13"><a href="marker-genes.html#cb120-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
+<span id="cb120-14"><a href="marker-genes.html#cb120-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
+<span id="cb120-15"><a href="marker-genes.html#cb120-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
+<span id="cb120-16"><a href="marker-genes.html#cb120-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
+<span id="cb120-17"><a href="marker-genes.html#cb120-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
+<span id="cb120-18"><a href="marker-genes.html#cb120-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
+<span id="cb120-19"><a href="marker-genes.html#cb120-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
+<span id="cb120-20"><a href="marker-genes.html#cb120-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
+<span id="cb120-21"><a href="marker-genes.html#cb120-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
+<span id="cb120-22"><a href="marker-genes.html#cb120-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
+<span id="cb120-23"><a href="marker-genes.html#cb120-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
+<span id="cb120-24"><a href="marker-genes.html#cb120-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
+<span id="cb120-25"><a href="marker-genes.html#cb120-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
+<span id="cb120-26"><a href="marker-genes.html#cb120-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-27"><a href="marker-genes.html#cb120-27" aria-hidden="true" tabindex="-1"></a><span class="co"># NORMALIZATION</span></span>
+<span id="cb120-28"><a href="marker-genes.html#cb120-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-29"><a href="marker-genes.html#cb120-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
+<span id="cb120-30"><a href="marker-genes.html#cb120-30" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
+<span id="cb120-31"><a href="marker-genes.html#cb120-31" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb120-32"><a href="marker-genes.html#cb120-32" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
+<span id="cb120-33"><a href="marker-genes.html#cb120-33" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors</span></span>
+<span id="cb120-34"><a href="marker-genes.html#cb120-34" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
+<span id="cb120-35"><a href="marker-genes.html#cb120-35" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts)</span></span>
+<span id="cb120-36"><a href="marker-genes.html#cb120-36" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb120-37"><a href="marker-genes.html#cb120-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-38"><a href="marker-genes.html#cb120-38" aria-hidden="true" tabindex="-1"></a><span class="co"># FEATURE SELECTION</span></span>
+<span id="cb120-39"><a href="marker-genes.html#cb120-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-40"><a href="marker-genes.html#cb120-40" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
+<span id="cb120-41"><a href="marker-genes.html#cb120-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
+<span id="cb120-42"><a href="marker-genes.html#cb120-42" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
+<span id="cb120-43"><a href="marker-genes.html#cb120-43" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb120-44"><a href="marker-genes.html#cb120-44" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
+<span id="cb120-45"><a href="marker-genes.html#cb120-45" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
+<span id="cb120-46"><a href="marker-genes.html#cb120-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-47"><a href="marker-genes.html#cb120-47" aria-hidden="true" tabindex="-1"></a><span class="co"># DIMENSIONALITY REDUCTION</span></span>
+<span id="cb120-48"><a href="marker-genes.html#cb120-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-49"><a href="marker-genes.html#cb120-49" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
+<span id="cb120-50"><a href="marker-genes.html#cb120-50" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb120-51"><a href="marker-genes.html#cb120-51" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
+<span id="cb120-52"><a href="marker-genes.html#cb120-52" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
+<span id="cb120-53"><a href="marker-genes.html#cb120-53" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb120-54"><a href="marker-genes.html#cb120-54" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb120-55"><a href="marker-genes.html#cb120-55" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names</span></span>
+<span id="cb120-56"><a href="marker-genes.html#cb120-56" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb120-57"><a href="marker-genes.html#cb120-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-58"><a href="marker-genes.html#cb120-58" aria-hidden="true" tabindex="-1"></a><span class="co"># CLUSTERING</span></span>
+<span id="cb120-59"><a href="marker-genes.html#cb120-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-60"><a href="marker-genes.html#cb120-60" aria-hidden="true" tabindex="-1"></a><span class="co"># graph-based clustering</span></span>
+<span id="cb120-61"><a href="marker-genes.html#cb120-61" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb120-62"><a href="marker-genes.html#cb120-62" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb120-63"><a href="marker-genes.html#cb120-63" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">k =</span> k, <span class="at">use.dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb120-64"><a href="marker-genes.html#cb120-64" aria-hidden="true" tabindex="-1"></a>g_walk <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">cluster_walktrap</span>(g)</span>
+<span id="cb120-65"><a href="marker-genes.html#cb120-65" aria-hidden="true" tabindex="-1"></a>clus <span class="ot">&lt;-</span> g_walk<span class="sc">$</span>membership</span>
+<span id="cb120-66"><a href="marker-genes.html#cb120-66" aria-hidden="true" tabindex="-1"></a><span class="fu">colLabels</span>(spe) <span class="ot">&lt;-</span> <span class="fu">factor</span>(clus)</span></code></pre></div>
 </div>
 <div id="marker-genes-1" class="section level2" number="14.3">
 <h2><span class="header-section-number">14.3</span> Marker genes</h2>
 <p>Identify marker genes by testing for differential gene expression between clusters.</p>
 <p>We use the <code>findMarkers</code> implementation in <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, using a binomial test, which tests for genes that differ in the proportion expressed vs. not expressed between clusters. This is a more stringent test than the default t-tests, and tends to select genes that are easier to interpret and validate experimentally.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="marker-genes.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
-<span id="cb120-2"><a href="marker-genes.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb120-3"><a href="marker-genes.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span></code></pre></div>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="marker-genes.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set gene names as row names for easier plotting</span></span>
-<span id="cb121-2"><a href="marker-genes.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(spe) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name</span>
-<span id="cb121-3"><a href="marker-genes.html#cb121-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb121-4"><a href="marker-genes.html#cb121-4" aria-hidden="true" tabindex="-1"></a><span class="co"># test for marker genes</span></span>
-<span id="cb121-5"><a href="marker-genes.html#cb121-5" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">test =</span> <span class="st">&quot;binom&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>)</span>
-<span id="cb121-6"><a href="marker-genes.html#cb121-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb121-7"><a href="marker-genes.html#cb121-7" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a list with one DataFrame per cluster</span></span>
-<span id="cb121-8"><a href="marker-genes.html#cb121-8" aria-hidden="true" tabindex="-1"></a>markers</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="marker-genes.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
+<span id="cb121-2"><a href="marker-genes.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
+<span id="cb121-3"><a href="marker-genes.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="marker-genes.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set gene names as row names for easier plotting</span></span>
+<span id="cb122-2"><a href="marker-genes.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(spe) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name</span>
+<span id="cb122-3"><a href="marker-genes.html#cb122-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-4"><a href="marker-genes.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="co"># test for marker genes</span></span>
+<span id="cb122-5"><a href="marker-genes.html#cb122-5" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">test =</span> <span class="st">&quot;binom&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>)</span>
+<span id="cb122-6"><a href="marker-genes.html#cb122-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-7"><a href="marker-genes.html#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a list with one DataFrame per cluster</span></span>
+<span id="cb122-8"><a href="marker-genes.html#cb122-8" aria-hidden="true" tabindex="-1"></a>markers</span></code></pre></div>
 <pre><code>## List of length 6
 ## names(6): 1 2 3 4 5 6</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="marker-genes.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-fold changes for one cluster over all other clusters</span></span>
-<span id="cb123-2"><a href="marker-genes.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting cluster 1</span></span>
-<span id="cb123-3"><a href="marker-genes.html#cb123-3" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> markers[[<span class="dv">1</span>]]</span>
-<span id="cb123-4"><a href="marker-genes.html#cb123-4" aria-hidden="true" tabindex="-1"></a>best_set <span class="ot">&lt;-</span> interesting[interesting<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">5</span>, ]</span>
-<span id="cb123-5"><a href="marker-genes.html#cb123-5" aria-hidden="true" tabindex="-1"></a>logFCs <span class="ot">&lt;-</span> <span class="fu">getMarkerEffects</span>(best_set)</span>
-<span id="cb123-6"><a href="marker-genes.html#cb123-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb123-7"><a href="marker-genes.html#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(logFCs, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">101</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="marker-genes.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-fold changes for one cluster over all other clusters</span></span>
+<span id="cb124-2"><a href="marker-genes.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting cluster 1</span></span>
+<span id="cb124-3"><a href="marker-genes.html#cb124-3" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> markers[[<span class="dv">1</span>]]</span>
+<span id="cb124-4"><a href="marker-genes.html#cb124-4" aria-hidden="true" tabindex="-1"></a>best_set <span class="ot">&lt;-</span> interesting[interesting<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">5</span>, ]</span>
+<span id="cb124-5"><a href="marker-genes.html#cb124-5" aria-hidden="true" tabindex="-1"></a>logFCs <span class="ot">&lt;-</span> <span class="fu">getMarkerEffects</span>(best_set)</span>
+<span id="cb124-6"><a href="marker-genes.html#cb124-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-7"><a href="marker-genes.html#cb124-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(logFCs, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">101</span>))</span></code></pre></div>
 <p><img src="marker_genes_files/figure-html/marker_genes_heatmap-1.png" width="480" /></p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="marker-genes.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-transformed normalized expression of top genes for one cluster</span></span>
-<span id="cb124-2"><a href="marker-genes.html#cb124-2" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">rownames</span>(interesting))</span>
-<span id="cb124-3"><a href="marker-genes.html#cb124-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb124-4"><a href="marker-genes.html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotExpression</span>(spe, <span class="at">x =</span> <span class="st">&quot;label&quot;</span>, <span class="at">features =</span> top_genes)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="marker-genes.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-transformed normalized expression of top genes for one cluster</span></span>
+<span id="cb125-2"><a href="marker-genes.html#cb125-2" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">rownames</span>(interesting))</span>
+<span id="cb125-3"><a href="marker-genes.html#cb125-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-4"><a href="marker-genes.html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotExpression</span>(spe, <span class="at">x =</span> <span class="st">&quot;label&quot;</span>, <span class="at">features =</span> top_genes)</span></code></pre></div>
 <p><img src="marker_genes_files/figure-html/marker_genes_expression-1.png" width="672" /></p>
 
 </div>
