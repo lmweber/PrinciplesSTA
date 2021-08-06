@@ -11,7 +11,7 @@ The class builds on the more general [SingleCellExperiment](https://bioconductor
 
 A summary of the `SpatialExperiment` object structure is show in the following figure. Briefly, a `SpatialExperiment` object consists of (i) `assays` containing expression counts, (ii) `rowData` containing information on features, i.e. genes, (iii) `colData` containing information on spots or cells, (iv) `spatialData` and `spatialCoords` containing spatial coordinates and other spatial information, and (v) `imgData` containing information on image files. For spot-based ST data (e.g. 10x Genomics Visium), a single `assay` named `counts` is used. For molecule-based ST data (e.g. seqFISH), two `assays` named `counts` and `molecules` are used.
 
-For more details, see our preprint [SpatialExperiment: infrastructure for spatially resolved transcriptomics data in R using Bioconductor](https://www.biorxiv.org/content/10.1101/2021.01.27.428431v1).
+For more details, see our preprint [_SpatialExperiment: infrastructure for spatially resolved transcriptomics data in R using Bioconductor_](https://www.biorxiv.org/content/10.1101/2021.01.27.428431v1) @Righelli2021.
 
 
 ```{r spe-schematic, echo=FALSE, out.width = "40%", fig.align="center", fig.cap="Overview of the `SpatialExperiment` object class for storing spatially resolved transcriptomics datasets in the Bioconductor framework."}

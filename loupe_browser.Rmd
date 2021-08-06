@@ -10,62 +10,68 @@ Loupe Browser is a desktop application from 10x Genomics that allows you to visu
 
 ## Manual alignment of images
 
-One of the crucial first steps for processing Visium data is to align the gene expression spots to a high resolution (we use 40x) image of the tissue. While Space Ranger can do this automatically, if you want to ensure a high quality alignment with no mistakes it is best to do this manually in the Loupe browser. First, you upload the image and enter the serial number for the slide:
+One of the crucial first steps for processing Visium data is to align the gene expression spots to a high resolution image of the tissue, which in some cases can be at 40x magnification. While Space Ranger can do this automatically, if you want to ensure a high quality alignment with no mistakes it is best to do this manually in the Loupe browser. First, you upload the image and enter the serial number for the slide.
 
-```{r, echo=FALSE, out.width = "75%", fig.align="center", fig.cap="Figure caption."}
+```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Input your Visium Slide Serial Number and select your input image to start the alignment process using `Loupe` by 10x Genomics."}
 knitr::include_graphics("images/alignment_load_image.png")
 ```
 
-Then, you align the fiducial frame:
+Then, you align the fiducial frame such that the red circles are visibly aligned with the fiducial frame pattern of spots. 
 
-```{r, echo=FALSE, out.width = "75%", fig.align="center", fig.cap="Figure caption."}
+```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Visual alignment of the Visium fiducial frame to the bright field histology image using `Loupe` by 10x Genomics."}
 knitr::include_graphics("images/alignment_fiducial.png")
 ```
 
-Then, you manually select the spots that contain tissue:
+Then, you manually select the spots that contain tissue by drawing a contour line. This information will later on be used by `SpatialExperiment` to determine which spots overlap tissue and which do not.
 
-```{r, echo=FALSE, out.width = "75%", fig.align="center", fig.cap="Figure caption."}
+```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Manual selection of the Visium spots that overlap tissue based on the selected alignemnt between the image and the Visium slide fiducial frame."}
 knitr::include_graphics("images/alignment_tissue.png")
 ```
 
 
 ## Output files and Space Ranger
 
-The output files from Space Ranger are detailed in the Space Ranger section of this book. The `.cloupe` file is the one you need to import into the Loupe Browser in order to explore your processed data. For us they are generally between 1 and 2 GB. 
+The output files from Space Ranger are detailed in the [Space Ranger (Visium)] chapter of this book. The `.cloupe` file is the one you need to import into the Loupe Browser in order to explore your processed data. These files are generally between 1 and 2 GB each.
 
 
 ## Downstream analyses in Loupe Browser
 
-You can look at the dimensionality reduction of the data through either a t-SNE or UMAP as well as apply graph-based or k-means clustering. 
+After running [Space Ranger (Visium)], you can open the `.cloupe` file with `Loupe` and visually inspect the dimensionality reduction of the data through either a t-SNE or UMAP as well as apply graph-based or k-means clustering. 
 
-```{r, echo=FALSE, out.width = "75%", fig.align="center", fig.cap="Figure caption."}
+```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Gene expression analysis results from `spaceranger count` visualized with `Loupe`."}
 knitr::include_graphics("images/tsne_kmeans.png")
 ```
 
-Most importantly you can overlay the gene expression data or annotated clusters onto the histology image. 
+Most importantly you can overlay the gene expression data or annotated clusters onto the histology image. We will later learn how to do this using R and Bioconductor packages.
 
-```{r, echo=FALSE, out.width = "75%", fig.align="center", fig.cap="Figure caption."}
+```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Visual inspection of the graph-based clustering results from `spaceranger count` visualized with the tissue histology image in the background using `Loupe`."}
 knitr::include_graphics("images/spatial_graph_based.png")
 ```
 
-You can make genes lists and plot marker genes spatially.
+`Loupe` has many features, including the ability to make genes lists and plot marker genes spatially.
 
-```{r, echo=FALSE, out.width = "75%", fig.align="center", fig.cap="Figure caption."}
+```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Visualization with `Loupe` of four marker genes in the dorsolaterl prefrontal cortex (DLPFC): _SNAP25_ for neurons, _MBP_ for glia, _RELN_ for DLPFC layer 1 of the greay matter (neurons), and _PCP4_ for DLPFC layer 5. Only _PCP4_ is shown since it is the selected gene in our gene list."}
 knitr::include_graphics("images/gene_expression.png")
 ```
 
-Or make violin plots.
+You can also make violin plots to explore gene expression differences across spots grouped by some discrete variable, such as cluster membership.
 
-```{r, echo=FALSE, out.width = "75%", fig.align="center", fig.cap="Figure caption."}
+```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="_PCP4_ violin plots made with `Loupe` showing the log2 gene expression counts on the Y-axis."}
 knitr::include_graphics("images/violin_plots.png")
 ```
 
-Lastly, you can look at differential expression.
+Furthermore with `Loupe` you can look at differential expression statistic results for each gene across clusters.
 
-```{r, echo=FALSE, out.width = "75%", fig.align="center", fig.cap="Figure caption."}
+```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Differential gene expression statistics displayed by `Loupe`."}
 knitr::include_graphics("images/deg.png")
 ```
 
-
 <!-- ##add part about annotating cell populations? -->
+
+## Wrapping up
+
+`Loupe` can be particularly useful for annotating spots based on the clustering, dimension reduction, and known marker gene expression results from `spaceranger count`. That is, `Loupe` is a much more powerful interactive software than the `web_summary.html` file we will see in the [Space Ranger (Visium)] chapter.
+
+While all these downstream analyses `Loupe` enables are the ones we are interested in doing, you might want to have more control in the choice of algorithms and parameters. Furthermore, you might want to analyze the data from multiple Visium capture tissue sections together, depending on the design of your Visium experiment. We will learn how to do so using R and Bioconductor in the majority of the remaining chapters of this book.
+
 

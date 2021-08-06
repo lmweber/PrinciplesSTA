@@ -4,3 +4,13 @@
 .Ruserdata
 .Rbuildignore
 .DS_Store
+*_files
+*.rds
+[image_seg_first_version 540f903] _book
+ 14 files changed, 297 insertions(+), 104 deletions(-)
+ rewrite contributors.Rmd (88%)
+ create mode 100644 icon_192.png
+ create mode 100644 icon_32.png
+ create mode 100644 images/Maynard2020_spatial.png
+ create mode 100644 images/dotdotdot_fig1.jpeg
+_book

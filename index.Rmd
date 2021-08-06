@@ -2,6 +2,9 @@
 title: "Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+apple-touch-sin: "icon_192.png"
+apple-touch-icon-size: 192
+favicon: "icon_32.png"
 documentclass: book
 bibliography: book.bib
 biblio-style: apalike
