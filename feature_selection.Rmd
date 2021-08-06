@@ -81,8 +81,3 @@ top_hvgs <- getTopHVGs(dec, prop = 0.1)
 length(top_hvgs)
 ```
 
-
-## Spatially variable genes (SVGs)
-
-To do: add section on alternative methods for identifying SVGs
-

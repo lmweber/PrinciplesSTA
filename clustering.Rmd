@@ -123,8 +123,3 @@ plotDimRed(spe, type = "UMAP",
            annotate = "label", palette = "libd_layer_colors")
 ```
 
-
-## Clustering on HVGs and spatial dimensions
-
-To do: describe approach from our publication @Maynard2021 to combine molecular and spatial features with appropriate scaling.
-
