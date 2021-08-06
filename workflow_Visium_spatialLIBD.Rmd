@@ -119,7 +119,7 @@ library("spatialLIBD")
 time_start <- Sys.time()
 
 # load object
-spe <- load_data("Visium_humanDLPFC")
+spe <- Visium_humanDLPFC()
 
 # subset to keep only spots over tissue
 spe <- spe[, spatialData(spe)$in_tissue == 1]
