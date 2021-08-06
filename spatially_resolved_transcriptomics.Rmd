@@ -2,11 +2,11 @@
 
 Spatially resolved transcriptomics (ST) technologies allow transcriptome-wide gene expression to be measured at spatial resolution. There are several technological platforms, each with their unique advantages. In 2020 Spatially resolved transcriptomics was named the Nature Methods Method of the Year @Mark2020 and we expect that it will help put the genome-wide expression on the map @Maynard2020Spatial.
 
+Here we describe the platforms used to generate the example datasets in this book.
+
 ```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Illustration of potential uses of spatially resolved transcriptomics data and how it can be combined with single cell/nucleus RNA-seq to study tissues of interest such as the human brain. Source: [Maynard et al, _Neuropsychopharmacol._, 2020](https://doi.org/10.1038/s41386-019-0484-7)."}
 knitr::include_graphics("images/Maynard2020_spatial.png")
 ```
-
-Here we describe the platforms used to generate the example datasets in this book.
 
 
 ## 10x Genomics Visium
