@@ -165,7 +165,11 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#contents-of-this-book"><i class="fa fa-check"></i><b>1.1</b> Contents of this book</a></li>
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#who-this-book-is-for"><i class="fa fa-check"></i><b>1.2</b> Who this book is for</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#bioconductor"><i class="fa fa-check"></i><b>1.3</b> Bioconductor</a></li>
-<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#contribution-guidelines"><i class="fa fa-check"></i><b>1.4</b> Contribution guidelines</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#contributions"><i class="fa fa-check"></i><b>1.4</b> Contributions</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction.html"><a href="introduction.html#contribution-guidelines"><i class="fa fa-check"></i><b>1.4.1</b> Contribution guidelines</a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction.html"><a href="introduction.html#workflows"><i class="fa fa-check"></i><b>1.4.2</b> Workflows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html"><i class="fa fa-check"></i><b>2</b> Spatially resolved transcriptomics</a>
 <ul>
@@ -265,7 +269,7 @@ div.csl-indent {
 <li class="chapter" data-level="14.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>14.3</b> Marker genes</a></li>
 </ul></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
-<li class="chapter" data-level="15" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>15</b> Workflows</a></li>
+<li class="chapter" data-level="15" data-path="workflows-1.html"><a href="workflows-1.html"><i class="fa fa-check"></i><b>15</b> Workflows</a></li>
 <li class="chapter" data-level="16" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>16</b> Visium human DLPFC workflow</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="visium-human-dlpfc-workflow.html"><a href="visium-human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>16.1</b> Description of dataset</a></li>
@@ -370,8 +374,10 @@ div.csl-indent {
 <p>One of the main advantages of Bioconductor is the modularity and open development philosophy. R packages implementing analysis methods are contributed by numerous research groups, with the Bioconductor Core Team coordinating the overall project and maintaining infrastructure such as data class structures and package testing infrastructure. A key feature is that contributed packages use consistent data structures, such as <a href="http://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html">SingleCellExperiment</a> or <a href="https://bioconductor.org/packages/SpatialExperiment">SpatialExperiment</a>, which allows packages to interact nicely (e.g. output from one package can easily be provided as input to another package). In addition, contributed Bioconductor packages are expected to have comprehensive documentation, including vignettes (long-form examples including R code).</p>
 <p>This modular and open-development approach allows end users to readily combine and substitute analysis methods contributed by different research groups, instead of being “locked in” to using methods or packages maintained by a single group. In a fast-moving field such as single-cell or ST analysis, having the ability to update analysis pipelines to use the latest methods is a crucial advantage. Any research group can contribute new packages implementing new methods to Bioconductor by following the contribution guidelines.</p>
 </div>
-<div id="contribution-guidelines" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Contribution guidelines</h2>
+<div id="contributions" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Contributions</h2>
+<div id="contribution-guidelines" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Contribution guidelines</h3>
 <p>We welcome suggestions for contributions to OSTA. These should follow the following contribution guidelines, which are intended to maximize the usefulness of OSTA as a streamlined resource for new and advanced readers:</p>
 <ul>
 <li><em>Openness</em>: all methods and tools described should be freely available</li>
@@ -381,8 +387,15 @@ div.csl-indent {
 <li><em>Testability</em>: code examples will be tested regularly on the Bioconductor build system, which requires that R package dependencies are available from Bioconductor or CRAN</li>
 <li><em>Maintenance</em>: ongoing commitment to maintain contributed code as part of the regular <a href="http://bioconductor.org/developers/">Bioconductor release schedule</a></li>
 </ul>
-<p>In particular, we welcome new <a href="workflows.html#workflows">Workflows</a>. These are chapters in OSTA that describe a complete workflow, consisting of several individual analysis steps. For example, these may be focused on a specific type of technological platform, or designed to showcase a certain type of analysis. To make the examples easier for readers to follow, we recommend re-using code from the individual analysis chapters within workflows, e.g. for standard analysis steps.</p>
+</div>
+<div id="workflows" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Workflows</h3>
+<p>In particular, we welcome contributions to <a href="workflows-1.html#workflows-1">Workflows</a>. These are chapters in OSTA that describe a complete workflow, consisting of several individual analysis steps. For example, these may be focused on a specific type of technological platform, or designed to showcase a certain type of analysis.</p>
+<p>If you want to demonstrate the use of a new method (e.g. spatially aware clustering in a package you have developed), we recommend adding it to the relevant workflow(s) to compare against other methods performing a similar task.</p>
+<p>If you decide to add to an existing workflow, the new function should run relatively fast (seconds to minutes) on the given dataset, due to limitations on the time it takes to build the book.</p>
+<p>If you decide to contribute a new workflow, we ask that you open up a <a href="https://github.com/lmweber/OSTA-book/issues">GitHub issue</a> to propose this idea with an outline of the workflow you propose to build. The OSTA team can give you initial feedback and then you can proceed to make a pull request. For new workflows, we also recommend re-using code from the individual analysis chapters within OSTA (e.g. for standard analysis steps) to make the examples easier for readers to follow.</p>
 
+</div>
 </div>
 </div>
 <h3> References</h3>

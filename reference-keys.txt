@@ -12,7 +12,9 @@ introduction
 contents-of-this-book
 who-this-book-is-for
 bioconductor
+contributions
 contribution-guidelines
+workflows
 spatially-resolved-transcriptomics
 x-genomics-visium
 spatialexperiment
@@ -80,7 +82,7 @@ marker-genes
 background-4
 previous-steps-4
 marker-genes-1
-workflows
+workflows-1
 visium-human-dlpfc-workflow
 description-of-dataset
 load-data-2
