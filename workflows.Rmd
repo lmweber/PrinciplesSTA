@@ -2,5 +2,5 @@
 
 # Workflows
 
-The chapters in this part each contain a complete workflow for one dataset. This shows how the individual analysis steps from the previous part fit together. The workflows have been selected to cover different tissue types and platforms. For more details on the individual analysis steps, see the previous chapters.
+This part contains several chapters describing complete workflows for a specific dataset, illustrating how the individual analysis steps fit together. For example, workflows may demonstrate a complete analysis for a specific technological platform, tissue type, or showcase a certain type of methodology. Individual analysis steps are described in more detail in the earlier parts. The workflows re-use code from the individual analysis chapters in a condensed format to provide a convenient overview.
 
