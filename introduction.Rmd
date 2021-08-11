@@ -44,14 +44,16 @@ One of the main advantages of Bioconductor is the modularity and open developmen
 This modular and open-development approach allows end users to readily combine and substitute analysis methods contributed by different research groups, instead of being "locked in" to using methods or packages maintained by a single group. In a fast-moving field such as single-cell or ST analysis, having the ability to update analysis pipelines to use the latest methods is a crucial advantage. Any research group can contribute new packages implementing new methods to Bioconductor by following the contribution guidelines.
 
 
-## Contributions
+## Contribution guidelines
 
-We welcome suggestions for contributions to OSTA. In general, we will adopt the following contribution guidelines, which are intended to maximize the usefulness of OSTA as a streamlined resource for new and advanced readers:
+We welcome suggestions for contributions to OSTA. These should follow the following contribution guidelines, which are intended to maximize the usefulness of OSTA as a streamlined resource for new and advanced readers:
 
-- *Openness*: all tools and methods described in workflows should be freely available
-- *Neutrality*: workflows should rely on standard methods or tools that have been demonstrated to perform well in comprehensive benchmarks, to avoid perceived bias towards tools developed by specific groups
-- *Bioconductor-based*: workflows should be based largely on Bioconductor packages, if available
-- *Data structures*: workflows and examples should use Bioconductor data structures, e.g. `SpatialExperiment`
-- *Testability*: workflows and chapters will be tested regularly on the Bioconductor build system, which requires R package dependencies to be available from CRAN or Bioconductor
-- *Maintenance*: commitment to maintain contributed code as part of the regular Bioconductor release schedule
+- *Openness*: all methods and tools described should be freely available
+- *Neutrality*: workflows should rely on standard methods that have been demonstrated to perform well in independent benchmarks, to avoid perceived bias towards methods developed by specific groups
+- *Bioconductor-based*: workflows should be based largely on Bioconductor packages, where possible
+- *Data structures*: examples should make use of Bioconductor data structures, i.e. [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment)
+- *Testability*: code examples will be tested regularly on the Bioconductor build system, which requires that R package dependencies are available from Bioconductor or CRAN
+- *Maintenance*: ongoing commitment to maintain contributed code as part of the regular [Bioconductor release schedule](http://bioconductor.org/developers/)
+
+In particular, we welcome new [Workflows]. These are chapters in OSTA that describe a complete workflow, consisting of several individual analysis steps. For example, these may be focused on a specific type of technological platform, or designed to showcase a certain type of analysis. To make the examples easier for readers to follow, we recommend re-using code from the individual analysis chapters within workflows, e.g. for standard analysis steps.
 
