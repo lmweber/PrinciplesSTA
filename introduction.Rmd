@@ -44,7 +44,9 @@ One of the main advantages of Bioconductor is the modularity and open developmen
 This modular and open-development approach allows end users to readily combine and substitute analysis methods contributed by different research groups, instead of being "locked in" to using methods or packages maintained by a single group. In a fast-moving field such as single-cell or ST analysis, having the ability to update analysis pipelines to use the latest methods is a crucial advantage. Any research group can contribute new packages implementing new methods to Bioconductor by following the contribution guidelines.
 
 
-## Contribution guidelines
+## Contributions
+
+### Contribution guidelines
 
 We welcome suggestions for contributions to OSTA. These should follow the following contribution guidelines, which are intended to maximize the usefulness of OSTA as a streamlined resource for new and advanced readers:
 
@@ -55,5 +57,14 @@ We welcome suggestions for contributions to OSTA. These should follow the follow
 - *Testability*: code examples will be tested regularly on the Bioconductor build system, which requires that R package dependencies are available from Bioconductor or CRAN
 - *Maintenance*: ongoing commitment to maintain contributed code as part of the regular [Bioconductor release schedule](http://bioconductor.org/developers/)
 
-In particular, we welcome new [Workflows]. These are chapters in OSTA that describe a complete workflow, consisting of several individual analysis steps. For example, these may be focused on a specific type of technological platform, or designed to showcase a certain type of analysis. To make the examples easier for readers to follow, we recommend re-using code from the individual analysis chapters within workflows, e.g. for standard analysis steps.
+
+### Workflows
+
+In particular, we welcome contributions to [Workflows]. These are chapters in OSTA that describe a complete workflow, consisting of several individual analysis steps. For example, these may be focused on a specific type of technological platform, or designed to showcase a certain type of analysis.
+
+If you want to demonstrate the use of a new method (e.g. spatially aware clustering in a package you have developed), we recommend adding it to the relevant workflow(s) to compare against other methods performing a similar task.
+
+If you decide to add to an existing workflow, the new function should run relatively fast (seconds to minutes) on the given dataset, due to limitations on the time it takes to build the book.
+
+If you decide to contribute a new workflow, we ask that you open up a [GitHub issue](https://github.com/lmweber/OSTA-book/issues) to propose this idea with an outline of the workflow you propose to build. The OSTA team can give you initial feedback and then you can proceed to make a pull request. For new workflows, we also recommend re-using code from the individual analysis chapters within OSTA (e.g. for standard analysis steps) to make the examples easier for readers to follow.
 
