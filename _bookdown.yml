@@ -8,7 +8,7 @@ new_session: yes
 rmd_files: ["index.Rmd",
     # Part 1: Introduction
     "introduction.Rmd",
-    "spatially_resolved_transcriptomics.Rmd",
+    "spatial_transcriptomics.Rmd",
     "spatialexperiment.Rmd",
     # Part 2: Preprocessing steps
     "preprocessing_steps.Rmd",
