@@ -12,7 +12,7 @@ introduction
 contents-of-this-book
 who-this-book-is-for
 bioconductor
-contributions
+contribution-guidelines
 spatially-resolved-transcriptomics
 x-genomics-visium
 spatialexperiment

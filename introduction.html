@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-08-06" />
+<meta name="date" content="2021-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   <link rel="shortcut icon" href="icon_32.png" type="image/x-icon" />
 <link rel="prev" href="index.html"/>
 <link rel="next" href="spatially-resolved-transcriptomics.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -165,7 +165,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#contents-of-this-book"><i class="fa fa-check"></i><b>1.1</b> Contents of this book</a></li>
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#who-this-book-is-for"><i class="fa fa-check"></i><b>1.2</b> Who this book is for</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#bioconductor"><i class="fa fa-check"></i><b>1.3</b> Bioconductor</a></li>
-<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#contributions"><i class="fa fa-check"></i><b>1.4</b> Contributions</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#contribution-guidelines"><i class="fa fa-check"></i><b>1.4</b> Contribution guidelines</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html"><i class="fa fa-check"></i><b>2</b> Spatially resolved transcriptomics</a>
 <ul>
@@ -370,17 +370,18 @@ div.csl-indent {
 <p>One of the main advantages of Bioconductor is the modularity and open development philosophy. R packages implementing analysis methods are contributed by numerous research groups, with the Bioconductor Core Team coordinating the overall project and maintaining infrastructure such as data class structures and package testing infrastructure. A key feature is that contributed packages use consistent data structures, such as <a href="http://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html">SingleCellExperiment</a> or <a href="https://bioconductor.org/packages/SpatialExperiment">SpatialExperiment</a>, which allows packages to interact nicely (e.g. output from one package can easily be provided as input to another package). In addition, contributed Bioconductor packages are expected to have comprehensive documentation, including vignettes (long-form examples including R code).</p>
 <p>This modular and open-development approach allows end users to readily combine and substitute analysis methods contributed by different research groups, instead of being “locked in” to using methods or packages maintained by a single group. In a fast-moving field such as single-cell or ST analysis, having the ability to update analysis pipelines to use the latest methods is a crucial advantage. Any research group can contribute new packages implementing new methods to Bioconductor by following the contribution guidelines.</p>
 </div>
-<div id="contributions" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Contributions</h2>
-<p>We welcome suggestions for contributions to OSTA. In general, we will adopt the following contribution guidelines, which are intended to maximize the usefulness of OSTA as a streamlined resource for new and advanced readers:</p>
+<div id="contribution-guidelines" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Contribution guidelines</h2>
+<p>We welcome suggestions for contributions to OSTA. These should follow the following contribution guidelines, which are intended to maximize the usefulness of OSTA as a streamlined resource for new and advanced readers:</p>
 <ul>
-<li><em>Openness</em>: all tools and methods described in workflows should be freely available</li>
-<li><em>Neutrality</em>: workflows should rely on standard methods or tools that have been demonstrated to perform well in comprehensive benchmarks, to avoid perceived bias towards tools developed by specific groups</li>
-<li><em>Bioconductor-based</em>: workflows should be based largely on Bioconductor packages, if available</li>
-<li><em>Data structures</em>: workflows and examples should use Bioconductor data structures, e.g. <code>SpatialExperiment</code></li>
-<li><em>Testability</em>: workflows and chapters will be tested regularly on the Bioconductor build system, which requires R package dependencies to be available from CRAN or Bioconductor</li>
-<li><em>Maintenance</em>: commitment to maintain contributed code as part of the regular Bioconductor release schedule</li>
+<li><em>Openness</em>: all methods and tools described should be freely available</li>
+<li><em>Neutrality</em>: workflows should rely on standard methods that have been demonstrated to perform well in independent benchmarks, to avoid perceived bias towards methods developed by specific groups</li>
+<li><em>Bioconductor-based</em>: workflows should be based largely on Bioconductor packages, where possible</li>
+<li><em>Data structures</em>: examples should make use of Bioconductor data structures, i.e. <a href="https://bioconductor.org/packages/SpatialExperiment">SpatialExperiment</a></li>
+<li><em>Testability</em>: code examples will be tested regularly on the Bioconductor build system, which requires that R package dependencies are available from Bioconductor or CRAN</li>
+<li><em>Maintenance</em>: ongoing commitment to maintain contributed code as part of the regular <a href="http://bioconductor.org/developers/">Bioconductor release schedule</a></li>
 </ul>
+<p>In particular, we welcome new <a href="workflows.html#workflows">Workflows</a>. These are chapters in OSTA that describe a complete workflow, consisting of several individual analysis steps. For example, these may be focused on a specific type of technological platform, or designed to showcase a certain type of analysis. To make the examples easier for readers to follow, we recommend re-using code from the individual analysis chapters within workflows, e.g. for standard analysis steps.</p>
 
 </div>
 </div>
