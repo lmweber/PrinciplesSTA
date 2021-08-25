@@ -85,13 +85,9 @@ This table is generated automatically based on all the reverse package dependenc
 ## OSTA
 
 - [Lukas M. Weber](https://lmweber.org/), *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
-
 - [Abby Spangler](https://twitter.com/abspangler), *Lieber Institute for Brain Development, Baltimore, MD, USA*
-
 - [Madhavi Tippani](https://twitter.com/MadhaviTippani), *Lieber Institute for Brain Development, Baltimore, MD, USA*
-
 - [Leonardo Collado-Torres](https://lcolladotor.github.io/), *Lieber Institute for Brain Development, Baltimore, MD, USA*
-
 - [Stephanie C. Hicks](https://www.stephaniehicks.com/), *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
 
 As well as [GitHub contributors](https://github.com/lmweber/OSTA-book/graphs/contributors) who have helped us improve this book over time. Thank you for your contributions!
