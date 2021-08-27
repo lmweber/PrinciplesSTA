@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-08-26" />
+<meta name="date" content="2021-08-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -247,6 +247,7 @@ div.csl-indent {
 <li class="chapter" data-level="11.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
 <li class="chapter" data-level="11.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
 <li class="chapter" data-level="11.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>11.3</b> Highly variable genes (HVGs)</a></li>
+<li class="chapter" data-level="11.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>11.4</b> Spatially variable genes (SVGs)</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>12</b> Dimensionality reduction</a>
 <ul>
@@ -414,6 +415,12 @@ div.csl-indent {
 <span id="cb96-2"><a href="feature-selection.html#cb96-2" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
 <span id="cb96-3"><a href="feature-selection.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(top_hvgs)</span></code></pre></div>
 <pre><code>## [1] 1448</code></pre>
+</div>
+<div id="spatially-variable-genes-svgs" class="section level2" number="11.4">
+<h2><span class="header-section-number">11.4</span> Spatially variable genes (SVGs)</h2>
+<p>Alternatively, in ST data, we can apply methods to identify spatially variable genes (SVGs) instead of HVGs.</p>
+<p>Standard statistical measures such as <a href="https://en.wikipedia.org/wiki/Moran%27s_I">Moran’s I</a> can be used to rank genes by the observed spatial autocorrelation, after making some assumptions such as the bandwidth. Here, we will demonstrate some examples.</p>
+<p>Several new statistical methods adapted to identify SVGs in ST data have also recently been developed. However, in our view, these are not yet ready to integrate into the standardized pipelines we aim to demonstrate in OSTA. For example, some methods do not scale to large datasets with thousands of spatial coordinates, and others are only available as GitHub packages that do not meet Bioconductor standards of robustness / testing / documentation. In the future, we will expand this section to include additional examples as these methods become further developed.</p>
 
 </div>
 </div>
