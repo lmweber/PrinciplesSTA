@@ -81,3 +81,12 @@ top_hvgs <- getTopHVGs(dec, prop = 0.1)
 length(top_hvgs)
 ```
 
+
+## Spatially variable genes (SVGs)
+
+Alternatively, in ST data, we can apply methods to identify spatially variable genes (SVGs) instead of HVGs.
+
+Standard statistical measures such as [Moran's I](https://en.wikipedia.org/wiki/Moran%27s_I) can be used to rank genes by the observed spatial autocorrelation, after making some assumptions such as the bandwidth. Here, we will demonstrate some examples.
+
+Several new statistical methods adapted to identify SVGs in ST data have also recently been developed. However, in our view, these are not yet ready to integrate into the standardized pipelines we aim to demonstrate in OSTA. For example, some methods do not scale to large datasets with thousands of spatial coordinates, and others are only available as GitHub packages that do not meet Bioconductor standards of robustness / testing / documentation. In the future, we will expand this section to include additional examples as these methods become further developed.
+
