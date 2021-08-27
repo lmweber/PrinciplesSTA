@@ -123,3 +123,10 @@ plotDimRed(spe, type = "UMAP",
            annotate = "label", palette = "libd_layer_colors")
 ```
 
+
+## Spatially-aware clustering
+
+In ST data, we can also perform clustering that takes spatial information into account, for example to identify spatially compact or spatially connected clusters.
+
+A simple strategy is to perform graph-based clustering on a set of features (columns) that includes both molecular features (gene expression) and spatial features (x-y coordinates). In this case, a crucial tuning parameter is the relative amount of scaling between the two data modalities -- if the scaling is chosen poorly, either the molecular or spatial features will dominate the clustering. Depending on data availability, further modalities could also be included. In this section, we will include some examples on this clustering approach.
+
