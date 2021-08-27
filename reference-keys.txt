@@ -79,6 +79,7 @@ clustering
 overview-3
 previous-steps-3
 clustering-on-hvgs
+spatially-aware-clustering
 marker-genes
 background-4
 previous-steps-4

@@ -262,6 +262,7 @@ div.csl-indent {
 <li class="chapter" data-level="13.1" data-path="clustering.html"><a href="clustering.html#overview-3"><i class="fa fa-check"></i><b>13.1</b> Overview</a></li>
 <li class="chapter" data-level="13.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
 <li class="chapter" data-level="13.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>13.3</b> Clustering on HVGs</a></li>
+<li class="chapter" data-level="13.4" data-path="clustering.html"><a href="clustering.html#spatially-aware-clustering"><i class="fa fa-check"></i><b>13.4</b> Spatially-aware clustering</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>14</b> Marker genes</a>
 <ul>
@@ -449,6 +450,11 @@ div.csl-indent {
 <span id="cb119-2"><a href="clustering.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
 <span id="cb119-3"><a href="clustering.html#cb119-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
 <p><img src="clustering_files/figure-html/clustering_plots_reduced-2.png" width="480" /></p>
+</div>
+<div id="spatially-aware-clustering" class="section level2" number="13.4">
+<h2><span class="header-section-number">13.4</span> Spatially-aware clustering</h2>
+<p>In ST data, we can also perform clustering that takes spatial information into account, for example to identify spatially compact or spatially connected clusters.</p>
+<p>A simple strategy is to perform graph-based clustering on a set of features (columns) that includes both molecular features (gene expression) and spatial features (x-y coordinates). In this case, a crucial tuning parameter is the relative amount of scaling between the two data modalities – if the scaling is chosen poorly, either the molecular or spatial features will dominate the clustering. Depending on data availability, further modalities could also be included. In this section, we will include some examples on this clustering approach.</p>
 
 </div>
 </div>
