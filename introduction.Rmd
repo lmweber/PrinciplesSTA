@@ -51,7 +51,7 @@ This modular and open-development approach allows end users to readily combine a
 We welcome suggestions for contributions to OSTA. These should follow the following contribution guidelines, which are intended to maximize the usefulness of OSTA as a streamlined resource for new and advanced readers:
 
 - *Openness*: all methods and tools described should be freely available
-- *Neutrality*: workflows should largely rely on standard methods that have been demonstrated to perform well in independent benchmarks, to avoid perceived bias towards methods developed by specific groups
+- *Neutrality*: workflows should largely rely on standard methods that have been demonstrated to perform well (for example in published independent benchmark papers), to avoid perceived bias towards methods developed by specific groups
 - *Bioconductor-based*: workflows should be based on Bioconductor packages, where possible
 - *Data structures*: examples should make use of Bioconductor data structures such as [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment)
 - *Testability*: code examples will be tested regularly on the Bioconductor build system, which requires that R package dependencies are available from Bioconductor or CRAN
@@ -60,9 +60,9 @@ We welcome suggestions for contributions to OSTA. These should follow the follow
 
 ### Contributions to workflows
 
-In particular, we welcome contributions of [Workflows]. These are chapters in OSTA that each describe a complete workflow, consisting of several individual analysis steps. For example, these may be focused on a specific type of technological platform, or designed to showcase a certain type of analysis.
+In particular, we welcome contributions to [Workflows]. These are chapters in OSTA that each describe a complete workflow, consisting of several individual analysis steps. For example, these may be focused on a specific type of technological platform, or designed to showcase a certain type of analysis.
 
 If you want to demonstrate a new method (e.g. a method for spatially aware clustering implemented in a Bioconductor package you have developed), we recommend adding it to the relevant workflow(s) to compare against other methods performing a similar task. If you decide to add to an existing workflow, the new method should run relatively fast (seconds to minutes) on the given dataset, due to limitations on the time it takes to build the book.
 
-If you decide to contribute a new workflow, we ask that you first open a [GitHub issue](https://github.com/lmweber/OSTA-book/issues) to propose the idea along with an outline of your proposed workflow. The OSTA team can then give you initial feedback and you can proceed to make a pull request on GitHub. For new workflows, we recommend re-using code from the individual analysis chapters within OSTA (e.g. for standard analysis steps), which will make the examples easier for readers to follow.
+If you decide to contribute to an existing or new workflow, we ask that you first open a [GitHub issue](https://github.com/lmweber/OSTA-book/issues) to propose the idea along with an outline of your proposed examples or workflow. The OSTA team can then give you initial feedback and you can proceed to make a pull request on GitHub. Where possible, we recommend re-using code from the individual analysis chapters within OSTA (e.g. for standard analysis steps), which will make the examples easier for readers to follow.
 
