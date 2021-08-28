@@ -23,6 +23,7 @@ rmd_files: ["index.Rmd",
     "dimensionality_reduction.Rmd",
     "clustering.Rmd",
     "marker_genes.Rmd",
+    "deconvolution.Rmd",
     # Part 4: Workflows
     "workflows.Rmd",
     "workflow_Visium_humanDLPFC.Rmd",
