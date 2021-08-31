@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-08-28" />
+<meta name="date" content="2021-08-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -427,6 +427,7 @@ div.csl-indent {
 <p>Alternatively, in ST data, we can apply methods to identify spatially variable genes (SVGs) instead of HVGs.</p>
 <p>Standard statistical measures such as <a href="https://en.wikipedia.org/wiki/Moran%27s_I">Moran’s I</a> can be used to rank genes by the observed spatial autocorrelation, after making some assumptions such as the bandwidth. Here, we will demonstrate some examples.</p>
 <p>Several new statistical methods adapted to identify SVGs in ST data have also recently been developed. These include <a href="https://github.com/Teichlab/SpatialDE">SpatialDE</a>, <a href="https://xzhoulab.github.io/SPARK/">SPARK</a>, and <a href="https://xzhoulab.github.io/SPARK/">SPARK-X</a>. SpatialDE and SPARK do not scale to large datasets containing thousands of spatial coordinates, while SPARK-X is available from GitHub and therefore (due to Bioconductor guidelines) cannot be included in the interactive examples here. We encourage developers to contribute their packages to managed repositories (i.e. CRAN, Bioconductor, and pip), and will expand this section in the future to include additional examples as these methods become available.</p>
+<p>A recent benchmark paper (<a href="https://www.biorxiv.org/content/10.1101/2021.08.27.457741v1">Li et al. 2021</a>) has shown that integrating HVGs and SVGs can improve downstream clustering performance in ST data, confirming that SVGs contain additional biologically relevant information that is not captured by HVGs in ST data. For example, one simple way to combine these features is to concatenate columns of PCs calculated on disjoint sets of HVGs and SVGs respectively (<a href="https://www.biorxiv.org/content/10.1101/2021.08.27.457741v1">Li et al. 2021</a>).</p>
 
 </div>
 </div>
