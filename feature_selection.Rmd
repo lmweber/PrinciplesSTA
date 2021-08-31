@@ -90,3 +90,5 @@ Standard statistical measures such as [Moran's I](https://en.wikipedia.org/wiki/
 
 Several new statistical methods adapted to identify SVGs in ST data have also recently been developed. These include [SpatialDE](https://github.com/Teichlab/SpatialDE), [SPARK](https://xzhoulab.github.io/SPARK/), and [SPARK-X](https://xzhoulab.github.io/SPARK/). SpatialDE and SPARK do not scale to large datasets containing thousands of spatial coordinates, while SPARK-X is available from GitHub and therefore (due to Bioconductor guidelines) cannot be included in the interactive examples here. We encourage developers to contribute their packages to managed repositories (i.e. CRAN, Bioconductor, and pip), and will expand this section in the future to include additional examples as these methods become available.
 
+A recent benchmark paper ([Li et al. 2021](https://www.biorxiv.org/content/10.1101/2021.08.27.457741v1)) has shown that integrating HVGs and SVGs can improve downstream clustering performance in ST data, confirming that SVGs contain additional biologically relevant information that is not captured by HVGs in ST data.
+
