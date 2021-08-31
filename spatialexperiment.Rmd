@@ -13,7 +13,7 @@ A summary of the `SpatialExperiment` object structure is shown in the following 
 
 The following schematic illustrates this structure.
 
-For more details, see our [preprint](https://www.biorxiv.org/content/10.1101/2021.01.27.428431v2) [@Righelli2021].
+For more details, see our [preprint](https://www.biorxiv.org/content/10.1101/2021.01.27.428431v2) describing `SpatialExperiment` [@Righelli2021].
 
 
 ```{r spe-schematic, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Overview of the `SpatialExperiment` object class for storing spatially resolved transcriptomics datasets in the Bioconductor framework."}
