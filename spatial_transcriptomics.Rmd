@@ -29,11 +29,11 @@ Additional platforms include the following.
 
 Spot-based platforms:
 
-- [Slide-seqV2](https://www.nature.com/articles/s41587-020-0739-1) @Stickels2020
+- [Slide-seqV2](https://www.nature.com/articles/s41587-020-0739-1) [@Stickels2020]
 
 
 Molecule-based platforms:
 
-- [SeqFISH+](https://www.nature.com/articles/s41586-019-1049-y) @Eng2019
-- [MERFISH](https://www.pnas.org/content/116/39/19490) @Xia2019
+- [SeqFISH+](https://www.nature.com/articles/s41586-019-1049-y) [@Eng2019]
+- [MERFISH](https://www.pnas.org/content/116/39/19490) [@Xia2019]
 
