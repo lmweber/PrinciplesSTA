@@ -275,6 +275,8 @@ div.csl-indent {
 <li class="chapter" data-level="15" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html"><i class="fa fa-check"></i><b>15</b> Spot-level deconvolution</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#background-5"><i class="fa fa-check"></i><b>15.1</b> Background</a></li>
+<li class="chapter" data-level="15.2" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#previous-steps-5"><i class="fa fa-check"></i><b>15.2</b> Previous steps</a></li>
+<li class="chapter" data-level="15.3" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#number-of-cells-per-spot-1"><i class="fa fa-check"></i><b>15.3</b> Number of cells per spot</a></li>
 </ul></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
 <li class="chapter" data-level="16" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>16</b> Workflows</a></li>
@@ -357,8 +359,30 @@ div.csl-indent {
 <div id="background-5" class="section level2" number="15.1">
 <h2><span class="header-section-number">15.1</span> Background</h2>
 <p>Spot-level ST data can contain zero, one, or multiple cells per spot, depending on the tissue density and technological platform used. This characteristic of the data influences several steps in analysis pipelines, especially <a href="quality-control.html#quality-control">Quality control</a> and <a href="visium-mouse-coronal-workflow.html#clustering-2">Clustering</a>.</p>
-<p>This is also a unique characteristic of ST data, which is distinct from single-cell data, so here we cannot apply existing methods from single-cell pipelines.</p>
+<p>This is also a unique characteristic of ST data, which is distinct from single-cell data, so here we cannot easily apply existing methods from single-cell pipelines.</p>
 <p>In this section, we will demonstrate methods to deconvolve cell types per spot. Several methods exist from the bulk RNA-seq literature, as well as new methods designed for ST data.</p>
+</div>
+<div id="previous-steps-5" class="section level2" number="15.2">
+<h2><span class="header-section-number">15.2</span> Previous steps</h2>
+<p><em>Code to run steps from the previous chapters to generate the <code>SpatialExperiment</code> object required for this chapter.</em></p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="spot-level-deconvolution.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
+<span id="cb126-2"><a href="spot-level-deconvolution.html#cb126-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-3"><a href="spot-level-deconvolution.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb126-4"><a href="spot-level-deconvolution.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
+<span id="cb126-5"><a href="spot-level-deconvolution.html#cb126-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span></code></pre></div>
+</div>
+<div id="number-of-cells-per-spot-1" class="section level2" number="15.3">
+<h2><span class="header-section-number">15.3</span> Number of cells per spot</h2>
+<p>The following figure provides an overview of the number of cells per spot in this dataset, which is known in this dataset and stored in a column in <code>colData</code> in the <code>SpatialExperiment</code> object. We use a visualization function from <a href="https://github.com/lmweber/ggspavis">ggspavis</a> to generate the plot.</p>
+<p>We see that spots in this dataset contain around 0-10 cells, with a mode of 3. Therefore, it is plausible that some spots contain multiple cell types, and spot-level deconvolution could improve downstream analyses by deconvolving these cell types.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="spot-level-deconvolution.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
+<span id="cb127-2"><a href="spot-level-deconvolution.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-3"><a href="spot-level-deconvolution.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of cells per spot</span></span>
+<span id="cb127-4"><a href="spot-level-deconvolution.html#cb127-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;bar&quot;</span>, <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1353 rows containing non-finite values (stat_count).
+
+## Warning: Removed 1353 rows containing non-finite values (stat_count).</code></pre>
+<p><img src="deconvolution_files/figure-html/n_cells-1.png" width="480" /></p>
 
 </div>
 </div>

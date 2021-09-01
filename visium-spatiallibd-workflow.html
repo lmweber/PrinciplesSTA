@@ -275,6 +275,8 @@ div.csl-indent {
 <li class="chapter" data-level="15" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html"><i class="fa fa-check"></i><b>15</b> Spot-level deconvolution</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#background-5"><i class="fa fa-check"></i><b>15.1</b> Background</a></li>
+<li class="chapter" data-level="15.2" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#previous-steps-5"><i class="fa fa-check"></i><b>15.2</b> Previous steps</a></li>
+<li class="chapter" data-level="15.3" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#number-of-cells-per-spot-1"><i class="fa fa-check"></i><b>15.3</b> Number of cells per spot</a></li>
 </ul></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
 <li class="chapter" data-level="16" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>16</b> Workflows</a></li>
@@ -397,7 +399,7 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <li><a href="http://research.libd.org/spatialLIBD/articles/TenX_data_download.html">Using spatialLIBD with 10x Genomics public datasets</a></li>
 </ul>
 <p>You can also read more about <code>spatialLIBD</code> in the associated publication.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="visium-spatiallibd-workflow.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;spatialLIBD&quot;</span>)[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="visium-spatiallibd-workflow.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;spatialLIBD&quot;</span>)[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## 
 ## Pardo B, Spangler A, Weber LM, Hicks SC, Jaffe AE, Martinowich K,
 ## Maynard KR, Collado-Torres L (2021). &quot;spatialLIBD: an R/Bioconductor
@@ -446,187 +448,187 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <li><a href="https://cran.r-project.org/package=igraph"><code>lobstr</code></a>: for checking object memory usage</li>
 </ul>
 <p>You’ll need to have the R version compatible with <code>bioc-release</code><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> installed in your computer, as <a href="http://bioconductor.org/install/">documented by Bioconductor</a>. Alternatively, you can use the <a href="http://bioconductor.org/help/docker/">Bioconductor docker images</a>. Next, if you haven’t installed these packages, please do so with the following R code.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="visium-spatiallibd-workflow.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb241-2"><a href="visium-spatiallibd-workflow.html#cb241-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
-<span id="cb241-3"><a href="visium-spatiallibd-workflow.html#cb241-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb241-4"><a href="visium-spatiallibd-workflow.html#cb241-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb241-5"><a href="visium-spatiallibd-workflow.html#cb241-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Check that you have a valid installation</span></span>
-<span id="cb241-6"><a href="visium-spatiallibd-workflow.html#cb241-6" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">valid</span>()</span>
-<span id="cb241-7"><a href="visium-spatiallibd-workflow.html#cb241-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb241-8"><a href="visium-spatiallibd-workflow.html#cb241-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Install the required R packages for this workflow</span></span>
-<span id="cb241-9"><a href="visium-spatiallibd-workflow.html#cb241-9" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(</span>
-<span id="cb241-10"><a href="visium-spatiallibd-workflow.html#cb241-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SpatialExperiment&quot;</span>,</span>
-<span id="cb241-11"><a href="visium-spatiallibd-workflow.html#cb241-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;STexampleData&quot;</span>,</span>
-<span id="cb241-12"><a href="visium-spatiallibd-workflow.html#cb241-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;scater&quot;</span>,</span>
-<span id="cb241-13"><a href="visium-spatiallibd-workflow.html#cb241-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;scran&quot;</span>,</span>
-<span id="cb241-14"><a href="visium-spatiallibd-workflow.html#cb241-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;igraph&quot;</span>,</span>
-<span id="cb241-15"><a href="visium-spatiallibd-workflow.html#cb241-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;BiocFileCache&quot;</span>,</span>
-<span id="cb241-16"><a href="visium-spatiallibd-workflow.html#cb241-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;rtracklayer&quot;</span>,</span>
-<span id="cb241-17"><a href="visium-spatiallibd-workflow.html#cb241-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;lobstr&quot;</span>,</span>
-<span id="cb241-18"><a href="visium-spatiallibd-workflow.html#cb241-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;spatialLIBD&quot;</span></span>
-<span id="cb241-19"><a href="visium-spatiallibd-workflow.html#cb241-19" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="visium-spatiallibd-workflow.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb244-2"><a href="visium-spatiallibd-workflow.html#cb244-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb244-3"><a href="visium-spatiallibd-workflow.html#cb244-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb244-4"><a href="visium-spatiallibd-workflow.html#cb244-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb244-5"><a href="visium-spatiallibd-workflow.html#cb244-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Check that you have a valid installation</span></span>
+<span id="cb244-6"><a href="visium-spatiallibd-workflow.html#cb244-6" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">valid</span>()</span>
+<span id="cb244-7"><a href="visium-spatiallibd-workflow.html#cb244-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb244-8"><a href="visium-spatiallibd-workflow.html#cb244-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Install the required R packages for this workflow</span></span>
+<span id="cb244-9"><a href="visium-spatiallibd-workflow.html#cb244-9" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(</span>
+<span id="cb244-10"><a href="visium-spatiallibd-workflow.html#cb244-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SpatialExperiment&quot;</span>,</span>
+<span id="cb244-11"><a href="visium-spatiallibd-workflow.html#cb244-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;STexampleData&quot;</span>,</span>
+<span id="cb244-12"><a href="visium-spatiallibd-workflow.html#cb244-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;scater&quot;</span>,</span>
+<span id="cb244-13"><a href="visium-spatiallibd-workflow.html#cb244-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;scran&quot;</span>,</span>
+<span id="cb244-14"><a href="visium-spatiallibd-workflow.html#cb244-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;igraph&quot;</span>,</span>
+<span id="cb244-15"><a href="visium-spatiallibd-workflow.html#cb244-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;BiocFileCache&quot;</span>,</span>
+<span id="cb244-16"><a href="visium-spatiallibd-workflow.html#cb244-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;rtracklayer&quot;</span>,</span>
+<span id="cb244-17"><a href="visium-spatiallibd-workflow.html#cb244-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;lobstr&quot;</span>,</span>
+<span id="cb244-18"><a href="visium-spatiallibd-workflow.html#cb244-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;spatialLIBD&quot;</span></span>
+<span id="cb244-19"><a href="visium-spatiallibd-workflow.html#cb244-19" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
 <p>We can now run the following R code to re-make the <code>spe</code> object from the <a href="visium-human-dlpfc-workflow.html#visium-human-dlpfc-workflow">Visium human DLPFC workflow</a>. This will take a bit of time.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="visium-spatiallibd-workflow.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load packages required for the</span></span>
-<span id="cb242-2"><a href="visium-spatiallibd-workflow.html#cb242-2" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Visium human DLPFC workflow&quot;</span></span>
-<span id="cb242-3"><a href="visium-spatiallibd-workflow.html#cb242-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;SpatialExperiment&quot;</span>)</span>
-<span id="cb242-4"><a href="visium-spatiallibd-workflow.html#cb242-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;STexampleData&quot;</span>)</span>
-<span id="cb242-5"><a href="visium-spatiallibd-workflow.html#cb242-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;scater&quot;</span>)</span>
-<span id="cb242-6"><a href="visium-spatiallibd-workflow.html#cb242-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;scran&quot;</span>)</span>
-<span id="cb242-7"><a href="visium-spatiallibd-workflow.html#cb242-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;igraph&quot;</span>)</span>
-<span id="cb242-8"><a href="visium-spatiallibd-workflow.html#cb242-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;BiocFileCache&quot;</span>)</span>
-<span id="cb242-9"><a href="visium-spatiallibd-workflow.html#cb242-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;rtracklayer&quot;</span>)</span>
-<span id="cb242-10"><a href="visium-spatiallibd-workflow.html#cb242-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lobstr&quot;</span>)</span>
-<span id="cb242-11"><a href="visium-spatiallibd-workflow.html#cb242-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;spatialLIBD&quot;</span>)</span>
-<span id="cb242-12"><a href="visium-spatiallibd-workflow.html#cb242-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-13"><a href="visium-spatiallibd-workflow.html#cb242-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Start tracking time</span></span>
-<span id="cb242-14"><a href="visium-spatiallibd-workflow.html#cb242-14" aria-hidden="true" tabindex="-1"></a>time_start <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb242-15"><a href="visium-spatiallibd-workflow.html#cb242-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-16"><a href="visium-spatiallibd-workflow.html#cb242-16" aria-hidden="true" tabindex="-1"></a><span class="co"># load object</span></span>
-<span id="cb242-17"><a href="visium-spatiallibd-workflow.html#cb242-17" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
-<span id="cb242-18"><a href="visium-spatiallibd-workflow.html#cb242-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-19"><a href="visium-spatiallibd-workflow.html#cb242-19" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
-<span id="cb242-20"><a href="visium-spatiallibd-workflow.html#cb242-20" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb242-21"><a href="visium-spatiallibd-workflow.html#cb242-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-22"><a href="visium-spatiallibd-workflow.html#cb242-22" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
-<span id="cb242-23"><a href="visium-spatiallibd-workflow.html#cb242-23" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
-<span id="cb242-24"><a href="visium-spatiallibd-workflow.html#cb242-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-25"><a href="visium-spatiallibd-workflow.html#cb242-25" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics and store in colData</span></span>
-<span id="cb242-26"><a href="visium-spatiallibd-workflow.html#cb242-26" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
-<span id="cb242-27"><a href="visium-spatiallibd-workflow.html#cb242-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-28"><a href="visium-spatiallibd-workflow.html#cb242-28" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
-<span id="cb242-29"><a href="visium-spatiallibd-workflow.html#cb242-29" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
-<span id="cb242-30"><a href="visium-spatiallibd-workflow.html#cb242-30" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
-<span id="cb242-31"><a href="visium-spatiallibd-workflow.html#cb242-31" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
-<span id="cb242-32"><a href="visium-spatiallibd-workflow.html#cb242-32" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
-<span id="cb242-33"><a href="visium-spatiallibd-workflow.html#cb242-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-34"><a href="visium-spatiallibd-workflow.html#cb242-34" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
-<span id="cb242-35"><a href="visium-spatiallibd-workflow.html#cb242-35" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
-<span id="cb242-36"><a href="visium-spatiallibd-workflow.html#cb242-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-37"><a href="visium-spatiallibd-workflow.html#cb242-37" aria-hidden="true" tabindex="-1"></a><span class="co"># store in object</span></span>
-<span id="cb242-38"><a href="visium-spatiallibd-workflow.html#cb242-38" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
-<span id="cb242-39"><a href="visium-spatiallibd-workflow.html#cb242-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-40"><a href="visium-spatiallibd-workflow.html#cb242-40" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
-<span id="cb242-41"><a href="visium-spatiallibd-workflow.html#cb242-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
-<span id="cb242-42"><a href="visium-spatiallibd-workflow.html#cb242-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-43"><a href="visium-spatiallibd-workflow.html#cb242-43" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
-<span id="cb242-44"><a href="visium-spatiallibd-workflow.html#cb242-44" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb242-45"><a href="visium-spatiallibd-workflow.html#cb242-45" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
-<span id="cb242-46"><a href="visium-spatiallibd-workflow.html#cb242-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-47"><a href="visium-spatiallibd-workflow.html#cb242-47" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors and store in object</span></span>
-<span id="cb242-48"><a href="visium-spatiallibd-workflow.html#cb242-48" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
-<span id="cb242-49"><a href="visium-spatiallibd-workflow.html#cb242-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-50"><a href="visium-spatiallibd-workflow.html#cb242-50" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts) and store in object</span></span>
-<span id="cb242-51"><a href="visium-spatiallibd-workflow.html#cb242-51" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
-<span id="cb242-52"><a href="visium-spatiallibd-workflow.html#cb242-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-53"><a href="visium-spatiallibd-workflow.html#cb242-53" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
-<span id="cb242-54"><a href="visium-spatiallibd-workflow.html#cb242-54" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
-<span id="cb242-55"><a href="visium-spatiallibd-workflow.html#cb242-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-56"><a href="visium-spatiallibd-workflow.html#cb242-56" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
-<span id="cb242-57"><a href="visium-spatiallibd-workflow.html#cb242-57" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
-<span id="cb242-58"><a href="visium-spatiallibd-workflow.html#cb242-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-59"><a href="visium-spatiallibd-workflow.html#cb242-59" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
-<span id="cb242-60"><a href="visium-spatiallibd-workflow.html#cb242-60" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
-<span id="cb242-61"><a href="visium-spatiallibd-workflow.html#cb242-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-62"><a href="visium-spatiallibd-workflow.html#cb242-62" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
-<span id="cb242-63"><a href="visium-spatiallibd-workflow.html#cb242-63" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb242-64"><a href="visium-spatiallibd-workflow.html#cb242-64" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
-<span id="cb242-65"><a href="visium-spatiallibd-workflow.html#cb242-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-66"><a href="visium-spatiallibd-workflow.html#cb242-66" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
-<span id="cb242-67"><a href="visium-spatiallibd-workflow.html#cb242-67" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb242-68"><a href="visium-spatiallibd-workflow.html#cb242-68" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb242-69"><a href="visium-spatiallibd-workflow.html#cb242-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-70"><a href="visium-spatiallibd-workflow.html#cb242-70" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names for easier plotting</span></span>
-<span id="cb242-71"><a href="visium-spatiallibd-workflow.html#cb242-71" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
-<span id="cb242-72"><a href="visium-spatiallibd-workflow.html#cb242-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-73"><a href="visium-spatiallibd-workflow.html#cb242-73" aria-hidden="true" tabindex="-1"></a><span class="co"># graph-based clustering</span></span>
-<span id="cb242-74"><a href="visium-spatiallibd-workflow.html#cb242-74" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb242-75"><a href="visium-spatiallibd-workflow.html#cb242-75" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb242-76"><a href="visium-spatiallibd-workflow.html#cb242-76" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">k =</span> k, <span class="at">use.dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb242-77"><a href="visium-spatiallibd-workflow.html#cb242-77" aria-hidden="true" tabindex="-1"></a>g_walk <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">cluster_walktrap</span>(g)</span>
-<span id="cb242-78"><a href="visium-spatiallibd-workflow.html#cb242-78" aria-hidden="true" tabindex="-1"></a>clus <span class="ot">&lt;-</span> g_walk<span class="sc">$</span>membership</span>
-<span id="cb242-79"><a href="visium-spatiallibd-workflow.html#cb242-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-80"><a href="visium-spatiallibd-workflow.html#cb242-80" aria-hidden="true" tabindex="-1"></a><span class="co"># store cluster labels in column &#39;label&#39; in colData</span></span>
-<span id="cb242-81"><a href="visium-spatiallibd-workflow.html#cb242-81" aria-hidden="true" tabindex="-1"></a><span class="fu">colLabels</span>(spe) <span class="ot">&lt;-</span> <span class="fu">factor</span>(clus)</span>
-<span id="cb242-82"><a href="visium-spatiallibd-workflow.html#cb242-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-83"><a href="visium-spatiallibd-workflow.html#cb242-83" aria-hidden="true" tabindex="-1"></a><span class="co"># set gene names as row names for easier plotting</span></span>
-<span id="cb242-84"><a href="visium-spatiallibd-workflow.html#cb242-84" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(spe) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name</span>
-<span id="cb242-85"><a href="visium-spatiallibd-workflow.html#cb242-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-86"><a href="visium-spatiallibd-workflow.html#cb242-86" aria-hidden="true" tabindex="-1"></a><span class="co"># test for marker genes</span></span>
-<span id="cb242-87"><a href="visium-spatiallibd-workflow.html#cb242-87" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">test =</span> <span class="st">&quot;binom&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>)</span>
-<span id="cb242-88"><a href="visium-spatiallibd-workflow.html#cb242-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-89"><a href="visium-spatiallibd-workflow.html#cb242-89" aria-hidden="true" tabindex="-1"></a><span class="do">## Find the interesting markers for each cluster</span></span>
-<span id="cb242-90"><a href="visium-spatiallibd-workflow.html#cb242-90" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> <span class="fu">sapply</span>(markers, <span class="cf">function</span>(x) x<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">5</span>)</span>
-<span id="cb242-91"><a href="visium-spatiallibd-workflow.html#cb242-91" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(interesting) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;gene_interest_&quot;</span>, <span class="fu">seq_len</span>(<span class="fu">length</span>(markers)))</span>
-<span id="cb242-92"><a href="visium-spatiallibd-workflow.html#cb242-92" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rowData</span>(spe), interesting)</span>
-<span id="cb242-93"><a href="visium-spatiallibd-workflow.html#cb242-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-94"><a href="visium-spatiallibd-workflow.html#cb242-94" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
-<span id="cb242-95"><a href="visium-spatiallibd-workflow.html#cb242-95" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb242-96"><a href="visium-spatiallibd-workflow.html#cb242-96" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
-<pre><code>## Time difference of 3.302376 mins</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="visium-spatiallibd-workflow.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load packages required for the</span></span>
+<span id="cb245-2"><a href="visium-spatiallibd-workflow.html#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Visium human DLPFC workflow&quot;</span></span>
+<span id="cb245-3"><a href="visium-spatiallibd-workflow.html#cb245-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;SpatialExperiment&quot;</span>)</span>
+<span id="cb245-4"><a href="visium-spatiallibd-workflow.html#cb245-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;STexampleData&quot;</span>)</span>
+<span id="cb245-5"><a href="visium-spatiallibd-workflow.html#cb245-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;scater&quot;</span>)</span>
+<span id="cb245-6"><a href="visium-spatiallibd-workflow.html#cb245-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;scran&quot;</span>)</span>
+<span id="cb245-7"><a href="visium-spatiallibd-workflow.html#cb245-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;igraph&quot;</span>)</span>
+<span id="cb245-8"><a href="visium-spatiallibd-workflow.html#cb245-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;BiocFileCache&quot;</span>)</span>
+<span id="cb245-9"><a href="visium-spatiallibd-workflow.html#cb245-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;rtracklayer&quot;</span>)</span>
+<span id="cb245-10"><a href="visium-spatiallibd-workflow.html#cb245-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lobstr&quot;</span>)</span>
+<span id="cb245-11"><a href="visium-spatiallibd-workflow.html#cb245-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;spatialLIBD&quot;</span>)</span>
+<span id="cb245-12"><a href="visium-spatiallibd-workflow.html#cb245-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-13"><a href="visium-spatiallibd-workflow.html#cb245-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Start tracking time</span></span>
+<span id="cb245-14"><a href="visium-spatiallibd-workflow.html#cb245-14" aria-hidden="true" tabindex="-1"></a>time_start <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb245-15"><a href="visium-spatiallibd-workflow.html#cb245-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-16"><a href="visium-spatiallibd-workflow.html#cb245-16" aria-hidden="true" tabindex="-1"></a><span class="co"># load object</span></span>
+<span id="cb245-17"><a href="visium-spatiallibd-workflow.html#cb245-17" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
+<span id="cb245-18"><a href="visium-spatiallibd-workflow.html#cb245-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-19"><a href="visium-spatiallibd-workflow.html#cb245-19" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
+<span id="cb245-20"><a href="visium-spatiallibd-workflow.html#cb245-20" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb245-21"><a href="visium-spatiallibd-workflow.html#cb245-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-22"><a href="visium-spatiallibd-workflow.html#cb245-22" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
+<span id="cb245-23"><a href="visium-spatiallibd-workflow.html#cb245-23" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
+<span id="cb245-24"><a href="visium-spatiallibd-workflow.html#cb245-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-25"><a href="visium-spatiallibd-workflow.html#cb245-25" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics and store in colData</span></span>
+<span id="cb245-26"><a href="visium-spatiallibd-workflow.html#cb245-26" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
+<span id="cb245-27"><a href="visium-spatiallibd-workflow.html#cb245-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-28"><a href="visium-spatiallibd-workflow.html#cb245-28" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
+<span id="cb245-29"><a href="visium-spatiallibd-workflow.html#cb245-29" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
+<span id="cb245-30"><a href="visium-spatiallibd-workflow.html#cb245-30" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
+<span id="cb245-31"><a href="visium-spatiallibd-workflow.html#cb245-31" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
+<span id="cb245-32"><a href="visium-spatiallibd-workflow.html#cb245-32" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
+<span id="cb245-33"><a href="visium-spatiallibd-workflow.html#cb245-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-34"><a href="visium-spatiallibd-workflow.html#cb245-34" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
+<span id="cb245-35"><a href="visium-spatiallibd-workflow.html#cb245-35" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
+<span id="cb245-36"><a href="visium-spatiallibd-workflow.html#cb245-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-37"><a href="visium-spatiallibd-workflow.html#cb245-37" aria-hidden="true" tabindex="-1"></a><span class="co"># store in object</span></span>
+<span id="cb245-38"><a href="visium-spatiallibd-workflow.html#cb245-38" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
+<span id="cb245-39"><a href="visium-spatiallibd-workflow.html#cb245-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-40"><a href="visium-spatiallibd-workflow.html#cb245-40" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
+<span id="cb245-41"><a href="visium-spatiallibd-workflow.html#cb245-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
+<span id="cb245-42"><a href="visium-spatiallibd-workflow.html#cb245-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-43"><a href="visium-spatiallibd-workflow.html#cb245-43" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
+<span id="cb245-44"><a href="visium-spatiallibd-workflow.html#cb245-44" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb245-45"><a href="visium-spatiallibd-workflow.html#cb245-45" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
+<span id="cb245-46"><a href="visium-spatiallibd-workflow.html#cb245-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-47"><a href="visium-spatiallibd-workflow.html#cb245-47" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors and store in object</span></span>
+<span id="cb245-48"><a href="visium-spatiallibd-workflow.html#cb245-48" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
+<span id="cb245-49"><a href="visium-spatiallibd-workflow.html#cb245-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-50"><a href="visium-spatiallibd-workflow.html#cb245-50" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts) and store in object</span></span>
+<span id="cb245-51"><a href="visium-spatiallibd-workflow.html#cb245-51" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb245-52"><a href="visium-spatiallibd-workflow.html#cb245-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-53"><a href="visium-spatiallibd-workflow.html#cb245-53" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
+<span id="cb245-54"><a href="visium-spatiallibd-workflow.html#cb245-54" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
+<span id="cb245-55"><a href="visium-spatiallibd-workflow.html#cb245-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-56"><a href="visium-spatiallibd-workflow.html#cb245-56" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
+<span id="cb245-57"><a href="visium-spatiallibd-workflow.html#cb245-57" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb245-58"><a href="visium-spatiallibd-workflow.html#cb245-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-59"><a href="visium-spatiallibd-workflow.html#cb245-59" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
+<span id="cb245-60"><a href="visium-spatiallibd-workflow.html#cb245-60" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
+<span id="cb245-61"><a href="visium-spatiallibd-workflow.html#cb245-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-62"><a href="visium-spatiallibd-workflow.html#cb245-62" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
+<span id="cb245-63"><a href="visium-spatiallibd-workflow.html#cb245-63" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb245-64"><a href="visium-spatiallibd-workflow.html#cb245-64" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
+<span id="cb245-65"><a href="visium-spatiallibd-workflow.html#cb245-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-66"><a href="visium-spatiallibd-workflow.html#cb245-66" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
+<span id="cb245-67"><a href="visium-spatiallibd-workflow.html#cb245-67" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb245-68"><a href="visium-spatiallibd-workflow.html#cb245-68" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb245-69"><a href="visium-spatiallibd-workflow.html#cb245-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-70"><a href="visium-spatiallibd-workflow.html#cb245-70" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names for easier plotting</span></span>
+<span id="cb245-71"><a href="visium-spatiallibd-workflow.html#cb245-71" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb245-72"><a href="visium-spatiallibd-workflow.html#cb245-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-73"><a href="visium-spatiallibd-workflow.html#cb245-73" aria-hidden="true" tabindex="-1"></a><span class="co"># graph-based clustering</span></span>
+<span id="cb245-74"><a href="visium-spatiallibd-workflow.html#cb245-74" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb245-75"><a href="visium-spatiallibd-workflow.html#cb245-75" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb245-76"><a href="visium-spatiallibd-workflow.html#cb245-76" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">k =</span> k, <span class="at">use.dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb245-77"><a href="visium-spatiallibd-workflow.html#cb245-77" aria-hidden="true" tabindex="-1"></a>g_walk <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">cluster_walktrap</span>(g)</span>
+<span id="cb245-78"><a href="visium-spatiallibd-workflow.html#cb245-78" aria-hidden="true" tabindex="-1"></a>clus <span class="ot">&lt;-</span> g_walk<span class="sc">$</span>membership</span>
+<span id="cb245-79"><a href="visium-spatiallibd-workflow.html#cb245-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-80"><a href="visium-spatiallibd-workflow.html#cb245-80" aria-hidden="true" tabindex="-1"></a><span class="co"># store cluster labels in column &#39;label&#39; in colData</span></span>
+<span id="cb245-81"><a href="visium-spatiallibd-workflow.html#cb245-81" aria-hidden="true" tabindex="-1"></a><span class="fu">colLabels</span>(spe) <span class="ot">&lt;-</span> <span class="fu">factor</span>(clus)</span>
+<span id="cb245-82"><a href="visium-spatiallibd-workflow.html#cb245-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-83"><a href="visium-spatiallibd-workflow.html#cb245-83" aria-hidden="true" tabindex="-1"></a><span class="co"># set gene names as row names for easier plotting</span></span>
+<span id="cb245-84"><a href="visium-spatiallibd-workflow.html#cb245-84" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(spe) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name</span>
+<span id="cb245-85"><a href="visium-spatiallibd-workflow.html#cb245-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-86"><a href="visium-spatiallibd-workflow.html#cb245-86" aria-hidden="true" tabindex="-1"></a><span class="co"># test for marker genes</span></span>
+<span id="cb245-87"><a href="visium-spatiallibd-workflow.html#cb245-87" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">test =</span> <span class="st">&quot;binom&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>)</span>
+<span id="cb245-88"><a href="visium-spatiallibd-workflow.html#cb245-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-89"><a href="visium-spatiallibd-workflow.html#cb245-89" aria-hidden="true" tabindex="-1"></a><span class="do">## Find the interesting markers for each cluster</span></span>
+<span id="cb245-90"><a href="visium-spatiallibd-workflow.html#cb245-90" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> <span class="fu">sapply</span>(markers, <span class="cf">function</span>(x) x<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">5</span>)</span>
+<span id="cb245-91"><a href="visium-spatiallibd-workflow.html#cb245-91" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(interesting) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;gene_interest_&quot;</span>, <span class="fu">seq_len</span>(<span class="fu">length</span>(markers)))</span>
+<span id="cb245-92"><a href="visium-spatiallibd-workflow.html#cb245-92" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rowData</span>(spe), interesting)</span>
+<span id="cb245-93"><a href="visium-spatiallibd-workflow.html#cb245-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-94"><a href="visium-spatiallibd-workflow.html#cb245-94" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
+<span id="cb245-95"><a href="visium-spatiallibd-workflow.html#cb245-95" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb245-96"><a href="visium-spatiallibd-workflow.html#cb245-96" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
+<pre><code>## Time difference of 2.564875 mins</code></pre>
 </div>
 <div id="prepare-for-spatiallibd" class="section level2" number="19.4">
 <h2><span class="header-section-number">19.4</span> Prepare for spatialLIBD</h2>
 <p>Now that we have a <code>spe</code> object with quality control information, dimension reduction results, clustering data, among other things, we can proceed to visualize the object using <code>spatialLIBD</code>. Well, almost. First we need to modify the <code>spe</code> object, similar to steps we need to carry out when <a href="http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#modify-spe-for-spatiallibd-1">using spatialLIBD with 10x Genomics public datasets</a></p>
 <div id="basic-information" class="section level3" number="19.4.1">
 <h3><span class="header-section-number">19.4.1</span> Basic information</h3>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="visium-spatiallibd-workflow.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add some information used by spatialLIBD</span></span>
-<span id="cb244-2"><a href="visium-spatiallibd-workflow.html#cb244-2" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>key <span class="ot">&lt;-</span> <span class="fu">paste0</span>(spe<span class="sc">$</span>sample_id, <span class="st">&quot;_&quot;</span>, <span class="fu">colnames</span>(spe))</span>
-<span id="cb244-3"><a href="visium-spatiallibd-workflow.html#cb244-3" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>sum_umi <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe))</span>
-<span id="cb244-4"><a href="visium-spatiallibd-workflow.html#cb244-4" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>sum_gene <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe) <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="visium-spatiallibd-workflow.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add some information used by spatialLIBD</span></span>
+<span id="cb247-2"><a href="visium-spatiallibd-workflow.html#cb247-2" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>key <span class="ot">&lt;-</span> <span class="fu">paste0</span>(spe<span class="sc">$</span>sample_id, <span class="st">&quot;_&quot;</span>, <span class="fu">colnames</span>(spe))</span>
+<span id="cb247-3"><a href="visium-spatiallibd-workflow.html#cb247-3" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>sum_umi <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe))</span>
+<span id="cb247-4"><a href="visium-spatiallibd-workflow.html#cb247-4" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>sum_gene <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe) <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
 </div>
 <div id="gene-annotation" class="section level3" number="19.4.2">
 <h3><span class="header-section-number">19.4.2</span> Gene annotation</h3>
 <p>Since the gene information is missing, we’ll <a href="http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#add-gene-annotation-information-1">add the gene annotation data from Gencode</a> although you would ideally add this information from the same gene annotation you used for running <code>spaceranger</code>.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="visium-spatiallibd-workflow.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Download the Gencode v32 GTF file and cache it</span></span>
-<span id="cb245-2"><a href="visium-spatiallibd-workflow.html#cb245-2" aria-hidden="true" tabindex="-1"></a>bfc <span class="ot">&lt;-</span> BiocFileCache<span class="sc">::</span><span class="fu">BiocFileCache</span>()</span>
-<span id="cb245-3"><a href="visium-spatiallibd-workflow.html#cb245-3" aria-hidden="true" tabindex="-1"></a>gtf_cache <span class="ot">&lt;-</span> BiocFileCache<span class="sc">::</span><span class="fu">bfcrpath</span>(</span>
-<span id="cb245-4"><a href="visium-spatiallibd-workflow.html#cb245-4" aria-hidden="true" tabindex="-1"></a>    bfc,</span>
-<span id="cb245-5"><a href="visium-spatiallibd-workflow.html#cb245-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(</span>
-<span id="cb245-6"><a href="visium-spatiallibd-workflow.html#cb245-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/&quot;</span>,</span>
-<span id="cb245-7"><a href="visium-spatiallibd-workflow.html#cb245-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;release_32/gencode.v32.annotation.gtf.gz&quot;</span></span>
-<span id="cb245-8"><a href="visium-spatiallibd-workflow.html#cb245-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb245-9"><a href="visium-spatiallibd-workflow.html#cb245-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="visium-spatiallibd-workflow.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Download the Gencode v32 GTF file and cache it</span></span>
+<span id="cb248-2"><a href="visium-spatiallibd-workflow.html#cb248-2" aria-hidden="true" tabindex="-1"></a>bfc <span class="ot">&lt;-</span> BiocFileCache<span class="sc">::</span><span class="fu">BiocFileCache</span>()</span>
+<span id="cb248-3"><a href="visium-spatiallibd-workflow.html#cb248-3" aria-hidden="true" tabindex="-1"></a>gtf_cache <span class="ot">&lt;-</span> BiocFileCache<span class="sc">::</span><span class="fu">bfcrpath</span>(</span>
+<span id="cb248-4"><a href="visium-spatiallibd-workflow.html#cb248-4" aria-hidden="true" tabindex="-1"></a>    bfc,</span>
+<span id="cb248-5"><a href="visium-spatiallibd-workflow.html#cb248-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(</span>
+<span id="cb248-6"><a href="visium-spatiallibd-workflow.html#cb248-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/&quot;</span>,</span>
+<span id="cb248-7"><a href="visium-spatiallibd-workflow.html#cb248-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;release_32/gencode.v32.annotation.gtf.gz&quot;</span></span>
+<span id="cb248-8"><a href="visium-spatiallibd-workflow.html#cb248-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb248-9"><a href="visium-spatiallibd-workflow.html#cb248-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## adding rname &#39;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz&#39;</code></pre>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="visium-spatiallibd-workflow.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
-<span id="cb247-2"><a href="visium-spatiallibd-workflow.html#cb247-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="visium-spatiallibd-workflow.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
+<span id="cb250-2"><a href="visium-spatiallibd-workflow.html#cb250-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
 <pre><code>##                                                                            BFC1 
-## &quot;/github/home/.cache/R/BiocFileCache/693162e9df1_gencode.v32.annotation.gtf.gz&quot;</code></pre>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="visium-spatiallibd-workflow.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
-<span id="cb249-2"><a href="visium-spatiallibd-workflow.html#cb249-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
-<span id="cb249-3"><a href="visium-spatiallibd-workflow.html#cb249-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb249-4"><a href="visium-spatiallibd-workflow.html#cb249-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Subset to genes only</span></span>
-<span id="cb249-5"><a href="visium-spatiallibd-workflow.html#cb249-5" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> gtf[gtf<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;gene&quot;</span>]</span>
-<span id="cb249-6"><a href="visium-spatiallibd-workflow.html#cb249-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb249-7"><a href="visium-spatiallibd-workflow.html#cb249-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove the .x part of the gene IDs</span></span>
-<span id="cb249-8"><a href="visium-spatiallibd-workflow.html#cb249-8" aria-hidden="true" tabindex="-1"></a>gtf<span class="sc">$</span>gene_id <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..*&quot;</span>, <span class="st">&quot;&quot;</span>, gtf<span class="sc">$</span>gene_id)</span>
-<span id="cb249-9"><a href="visium-spatiallibd-workflow.html#cb249-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb249-10"><a href="visium-spatiallibd-workflow.html#cb249-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the names to be the gene IDs</span></span>
-<span id="cb249-11"><a href="visium-spatiallibd-workflow.html#cb249-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gtf) <span class="ot">&lt;-</span> gtf<span class="sc">$</span>gene_id</span>
-<span id="cb249-12"><a href="visium-spatiallibd-workflow.html#cb249-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb249-13"><a href="visium-spatiallibd-workflow.html#cb249-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Match the genes</span></span>
-<span id="cb249-14"><a href="visium-spatiallibd-workflow.html#cb249-14" aria-hidden="true" tabindex="-1"></a>match_genes <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_id, gtf<span class="sc">$</span>gene_id)</span>
-<span id="cb249-15"><a href="visium-spatiallibd-workflow.html#cb249-15" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(match_genes))</span></code></pre></div>
+## &quot;/github/home/.cache/R/BiocFileCache/69318f24002_gencode.v32.annotation.gtf.gz&quot;</code></pre>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="visium-spatiallibd-workflow.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
+<span id="cb252-2"><a href="visium-spatiallibd-workflow.html#cb252-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
+<span id="cb252-3"><a href="visium-spatiallibd-workflow.html#cb252-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-4"><a href="visium-spatiallibd-workflow.html#cb252-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Subset to genes only</span></span>
+<span id="cb252-5"><a href="visium-spatiallibd-workflow.html#cb252-5" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> gtf[gtf<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;gene&quot;</span>]</span>
+<span id="cb252-6"><a href="visium-spatiallibd-workflow.html#cb252-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-7"><a href="visium-spatiallibd-workflow.html#cb252-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove the .x part of the gene IDs</span></span>
+<span id="cb252-8"><a href="visium-spatiallibd-workflow.html#cb252-8" aria-hidden="true" tabindex="-1"></a>gtf<span class="sc">$</span>gene_id <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..*&quot;</span>, <span class="st">&quot;&quot;</span>, gtf<span class="sc">$</span>gene_id)</span>
+<span id="cb252-9"><a href="visium-spatiallibd-workflow.html#cb252-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-10"><a href="visium-spatiallibd-workflow.html#cb252-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the names to be the gene IDs</span></span>
+<span id="cb252-11"><a href="visium-spatiallibd-workflow.html#cb252-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gtf) <span class="ot">&lt;-</span> gtf<span class="sc">$</span>gene_id</span>
+<span id="cb252-12"><a href="visium-spatiallibd-workflow.html#cb252-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-13"><a href="visium-spatiallibd-workflow.html#cb252-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Match the genes</span></span>
+<span id="cb252-14"><a href="visium-spatiallibd-workflow.html#cb252-14" aria-hidden="true" tabindex="-1"></a>match_genes <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_id, gtf<span class="sc">$</span>gene_id)</span>
+<span id="cb252-15"><a href="visium-spatiallibd-workflow.html#cb252-15" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(match_genes))</span></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
 ## 33267   258</code></pre>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="visium-spatiallibd-workflow.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Drop the few genes for which we don&#39;t have information</span></span>
-<span id="cb251-2"><a href="visium-spatiallibd-workflow.html#cb251-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span><span class="fu">is.na</span>(match_genes), ]</span>
-<span id="cb251-3"><a href="visium-spatiallibd-workflow.html#cb251-3" aria-hidden="true" tabindex="-1"></a>match_genes <span class="ot">&lt;-</span> match_genes[<span class="sc">!</span><span class="fu">is.na</span>(match_genes)]</span>
-<span id="cb251-4"><a href="visium-spatiallibd-workflow.html#cb251-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-5"><a href="visium-spatiallibd-workflow.html#cb251-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Keep only some columns from the gtf</span></span>
-<span id="cb251-6"><a href="visium-spatiallibd-workflow.html#cb251-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mcols</span>(gtf) <span class="ot">&lt;-</span> <span class="fu">mcols</span>(gtf)[, <span class="fu">c</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;gene_id&quot;</span>, <span class="st">&quot;gene_name&quot;</span>, <span class="st">&quot;gene_type&quot;</span>)]</span>
-<span id="cb251-7"><a href="visium-spatiallibd-workflow.html#cb251-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-8"><a href="visium-spatiallibd-workflow.html#cb251-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Save the &quot;interest&quot;ing columns from our original spe object</span></span>
-<span id="cb251-9"><a href="visium-spatiallibd-workflow.html#cb251-9" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)[, <span class="fu">grepl</span>(<span class="st">&quot;interest&quot;</span>, <span class="fu">colnames</span>(<span class="fu">rowData</span>(spe)))]</span>
-<span id="cb251-10"><a href="visium-spatiallibd-workflow.html#cb251-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-11"><a href="visium-spatiallibd-workflow.html#cb251-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Add the gene info to our SPE object</span></span>
-<span id="cb251-12"><a href="visium-spatiallibd-workflow.html#cb251-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(spe) <span class="ot">&lt;-</span> gtf[match_genes]</span>
-<span id="cb251-13"><a href="visium-spatiallibd-workflow.html#cb251-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-14"><a href="visium-spatiallibd-workflow.html#cb251-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Add back the &quot;interest&quot; coolumns</span></span>
-<span id="cb251-15"><a href="visium-spatiallibd-workflow.html#cb251-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rowData</span>(spe), interesting)</span>
-<span id="cb251-16"><a href="visium-spatiallibd-workflow.html#cb251-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-17"><a href="visium-spatiallibd-workflow.html#cb251-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Inspect the gene annotation data we added</span></span>
-<span id="cb251-18"><a href="visium-spatiallibd-workflow.html#cb251-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="visium-spatiallibd-workflow.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Drop the few genes for which we don&#39;t have information</span></span>
+<span id="cb254-2"><a href="visium-spatiallibd-workflow.html#cb254-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span><span class="fu">is.na</span>(match_genes), ]</span>
+<span id="cb254-3"><a href="visium-spatiallibd-workflow.html#cb254-3" aria-hidden="true" tabindex="-1"></a>match_genes <span class="ot">&lt;-</span> match_genes[<span class="sc">!</span><span class="fu">is.na</span>(match_genes)]</span>
+<span id="cb254-4"><a href="visium-spatiallibd-workflow.html#cb254-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-5"><a href="visium-spatiallibd-workflow.html#cb254-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Keep only some columns from the gtf</span></span>
+<span id="cb254-6"><a href="visium-spatiallibd-workflow.html#cb254-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mcols</span>(gtf) <span class="ot">&lt;-</span> <span class="fu">mcols</span>(gtf)[, <span class="fu">c</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;gene_id&quot;</span>, <span class="st">&quot;gene_name&quot;</span>, <span class="st">&quot;gene_type&quot;</span>)]</span>
+<span id="cb254-7"><a href="visium-spatiallibd-workflow.html#cb254-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-8"><a href="visium-spatiallibd-workflow.html#cb254-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Save the &quot;interest&quot;ing columns from our original spe object</span></span>
+<span id="cb254-9"><a href="visium-spatiallibd-workflow.html#cb254-9" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)[, <span class="fu">grepl</span>(<span class="st">&quot;interest&quot;</span>, <span class="fu">colnames</span>(<span class="fu">rowData</span>(spe)))]</span>
+<span id="cb254-10"><a href="visium-spatiallibd-workflow.html#cb254-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-11"><a href="visium-spatiallibd-workflow.html#cb254-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Add the gene info to our SPE object</span></span>
+<span id="cb254-12"><a href="visium-spatiallibd-workflow.html#cb254-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(spe) <span class="ot">&lt;-</span> gtf[match_genes]</span>
+<span id="cb254-13"><a href="visium-spatiallibd-workflow.html#cb254-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-14"><a href="visium-spatiallibd-workflow.html#cb254-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Add back the &quot;interest&quot; coolumns</span></span>
+<span id="cb254-15"><a href="visium-spatiallibd-workflow.html#cb254-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rowData</span>(spe), interesting)</span>
+<span id="cb254-16"><a href="visium-spatiallibd-workflow.html#cb254-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-17"><a href="visium-spatiallibd-workflow.html#cb254-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Inspect the gene annotation data we added</span></span>
+<span id="cb254-18"><a href="visium-spatiallibd-workflow.html#cb254-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(spe)</span></code></pre></div>
 <pre><code>## GRanges object with 33267 ranges and 11 metadata columns:
 ##                   seqnames            ranges strand |   source     type
 ##                      &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;factor&gt; &lt;factor&gt;
@@ -683,49 +685,49 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 ##   -------
 ##   seqinfo: 25 sequences from an unspecified genome; no seqlengths</code></pre>
 <p>Now that we have the gene annotation information, we can use it to add a few more pieces to our <code>spe</code> object that <code>spatialLIBD</code> will use. For example, we want to enable users to search genes by either their gene symbol or their Ensembl ID. We also like to visualize the amount and percent of the mitochondrial gene expression.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="visium-spatiallibd-workflow.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add information used by spatialLIBD</span></span>
-<span id="cb253-2"><a href="visium-spatiallibd-workflow.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_search <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb253-3"><a href="visium-spatiallibd-workflow.html#cb253-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name, <span class="st">&quot;; &quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_id</span>
-<span id="cb253-4"><a href="visium-spatiallibd-workflow.html#cb253-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb253-5"><a href="visium-spatiallibd-workflow.html#cb253-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb253-6"><a href="visium-spatiallibd-workflow.html#cb253-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute chrM expression and chrM expression ratio</span></span>
-<span id="cb253-7"><a href="visium-spatiallibd-workflow.html#cb253-7" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">seqnames</span>(spe) <span class="sc">==</span> <span class="st">&quot;chrM&quot;</span>)</span>
-<span id="cb253-8"><a href="visium-spatiallibd-workflow.html#cb253-8" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>expr_chrM <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe)[is_mito, , <span class="at">drop =</span> <span class="cn">FALSE</span>])</span>
-<span id="cb253-9"><a href="visium-spatiallibd-workflow.html#cb253-9" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>expr_chrM_ratio <span class="ot">&lt;-</span> spe<span class="sc">$</span>expr_chrM <span class="sc">/</span> spe<span class="sc">$</span>sum_umi</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="visium-spatiallibd-workflow.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add information used by spatialLIBD</span></span>
+<span id="cb256-2"><a href="visium-spatiallibd-workflow.html#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_search <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb256-3"><a href="visium-spatiallibd-workflow.html#cb256-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name, <span class="st">&quot;; &quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_id</span>
+<span id="cb256-4"><a href="visium-spatiallibd-workflow.html#cb256-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb256-5"><a href="visium-spatiallibd-workflow.html#cb256-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-6"><a href="visium-spatiallibd-workflow.html#cb256-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute chrM expression and chrM expression ratio</span></span>
+<span id="cb256-7"><a href="visium-spatiallibd-workflow.html#cb256-7" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">seqnames</span>(spe) <span class="sc">==</span> <span class="st">&quot;chrM&quot;</span>)</span>
+<span id="cb256-8"><a href="visium-spatiallibd-workflow.html#cb256-8" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>expr_chrM <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe)[is_mito, , <span class="at">drop =</span> <span class="cn">FALSE</span>])</span>
+<span id="cb256-9"><a href="visium-spatiallibd-workflow.html#cb256-9" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>expr_chrM_ratio <span class="ot">&lt;-</span> spe<span class="sc">$</span>expr_chrM <span class="sc">/</span> spe<span class="sc">$</span>sum_umi</span></code></pre></div>
 </div>
 <div id="extra-information-and-filtering" class="section level3" number="19.4.3">
 <h3><span class="header-section-number">19.4.3</span> Extra information and filtering</h3>
 <p>Now that we have the full gene annotation information we need, we can proceed to add some last touches as well as <a href="http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#filter-the-spe-object-1">filter the object</a> to reduce the memory required for visualizing the data.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="visium-spatiallibd-workflow.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add a variable for saving the manual annotations</span></span>
-<span id="cb254-2"><a href="visium-spatiallibd-workflow.html#cb254-2" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>ManualAnnotation <span class="ot">&lt;-</span> <span class="st">&quot;NA&quot;</span></span>
-<span id="cb254-3"><a href="visium-spatiallibd-workflow.html#cb254-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb254-4"><a href="visium-spatiallibd-workflow.html#cb254-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove genes with no data</span></span>
-<span id="cb254-5"><a href="visium-spatiallibd-workflow.html#cb254-5" aria-hidden="true" tabindex="-1"></a>no_expr <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">rowSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb254-6"><a href="visium-spatiallibd-workflow.html#cb254-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb254-7"><a href="visium-spatiallibd-workflow.html#cb254-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of genes with no counts</span></span>
-<span id="cb254-8"><a href="visium-spatiallibd-workflow.html#cb254-8" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(no_expr)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="visium-spatiallibd-workflow.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add a variable for saving the manual annotations</span></span>
+<span id="cb257-2"><a href="visium-spatiallibd-workflow.html#cb257-2" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>ManualAnnotation <span class="ot">&lt;-</span> <span class="st">&quot;NA&quot;</span></span>
+<span id="cb257-3"><a href="visium-spatiallibd-workflow.html#cb257-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb257-4"><a href="visium-spatiallibd-workflow.html#cb257-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove genes with no data</span></span>
+<span id="cb257-5"><a href="visium-spatiallibd-workflow.html#cb257-5" aria-hidden="true" tabindex="-1"></a>no_expr <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">rowSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb257-6"><a href="visium-spatiallibd-workflow.html#cb257-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb257-7"><a href="visium-spatiallibd-workflow.html#cb257-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of genes with no counts</span></span>
+<span id="cb257-8"><a href="visium-spatiallibd-workflow.html#cb257-8" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(no_expr)</span></code></pre></div>
 <pre><code>## [1] 11568</code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="visium-spatiallibd-workflow.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute the percent of genes with no counts</span></span>
-<span id="cb256-2"><a href="visium-spatiallibd-workflow.html#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(no_expr) <span class="sc">/</span> <span class="fu">nrow</span>(spe) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="visium-spatiallibd-workflow.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute the percent of genes with no counts</span></span>
+<span id="cb259-2"><a href="visium-spatiallibd-workflow.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(no_expr) <span class="sc">/</span> <span class="fu">nrow</span>(spe) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
 <pre><code>## [1] 34.7732</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="visium-spatiallibd-workflow.html#cb258-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">-</span>no_expr, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb258-2"><a href="visium-spatiallibd-workflow.html#cb258-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb258-3"><a href="visium-spatiallibd-workflow.html#cb258-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove spots without counts</span></span>
-<span id="cb258-4"><a href="visium-spatiallibd-workflow.html#cb258-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(spe<span class="sc">$</span>sum_umi)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="visium-spatiallibd-workflow.html#cb261-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">-</span>no_expr, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb261-2"><a href="visium-spatiallibd-workflow.html#cb261-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb261-3"><a href="visium-spatiallibd-workflow.html#cb261-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove spots without counts</span></span>
+<span id="cb261-4"><a href="visium-spatiallibd-workflow.html#cb261-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(spe<span class="sc">$</span>sum_umi)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     462    2397    3452    3855    4932   15862</code></pre>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="visium-spatiallibd-workflow.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="do">## If we had spots with no counts, we would remove them</span></span>
-<span id="cb260-2"><a href="visium-spatiallibd-workflow.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">any</span>(spe<span class="sc">$</span>sum_umi <span class="sc">==</span> <span class="dv">0</span>)) {</span>
-<span id="cb260-3"><a href="visium-spatiallibd-workflow.html#cb260-3" aria-hidden="true" tabindex="-1"></a>    spots_no_counts <span class="ot">&lt;-</span> <span class="fu">which</span>(spe<span class="sc">$</span>sum_umi <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb260-4"><a href="visium-spatiallibd-workflow.html#cb260-4" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Number of spots with no counts</span></span>
-<span id="cb260-5"><a href="visium-spatiallibd-workflow.html#cb260-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">length</span>(spots_no_counts))</span>
-<span id="cb260-6"><a href="visium-spatiallibd-workflow.html#cb260-6" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Percent of spots with no counts</span></span>
-<span id="cb260-7"><a href="visium-spatiallibd-workflow.html#cb260-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">length</span>(spots_no_counts) <span class="sc">/</span> <span class="fu">ncol</span>(spe) <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb260-8"><a href="visium-spatiallibd-workflow.html#cb260-8" aria-hidden="true" tabindex="-1"></a>    spe <span class="ot">&lt;-</span> spe[, <span class="sc">-</span>spots_no_counts, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb260-9"><a href="visium-spatiallibd-workflow.html#cb260-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="visium-spatiallibd-workflow.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="do">## If we had spots with no counts, we would remove them</span></span>
+<span id="cb263-2"><a href="visium-spatiallibd-workflow.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">any</span>(spe<span class="sc">$</span>sum_umi <span class="sc">==</span> <span class="dv">0</span>)) {</span>
+<span id="cb263-3"><a href="visium-spatiallibd-workflow.html#cb263-3" aria-hidden="true" tabindex="-1"></a>    spots_no_counts <span class="ot">&lt;-</span> <span class="fu">which</span>(spe<span class="sc">$</span>sum_umi <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb263-4"><a href="visium-spatiallibd-workflow.html#cb263-4" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Number of spots with no counts</span></span>
+<span id="cb263-5"><a href="visium-spatiallibd-workflow.html#cb263-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">length</span>(spots_no_counts))</span>
+<span id="cb263-6"><a href="visium-spatiallibd-workflow.html#cb263-6" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Percent of spots with no counts</span></span>
+<span id="cb263-7"><a href="visium-spatiallibd-workflow.html#cb263-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">length</span>(spots_no_counts) <span class="sc">/</span> <span class="fu">ncol</span>(spe) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb263-8"><a href="visium-spatiallibd-workflow.html#cb263-8" aria-hidden="true" tabindex="-1"></a>    spe <span class="ot">&lt;-</span> spe[, <span class="sc">-</span>spots_no_counts, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb263-9"><a href="visium-spatiallibd-workflow.html#cb263-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>We <em>think</em> that we are ready to proceed to making our interactive website. Let’s use the <code>spatialLIBD::check_spe()</code> function, just to verify that we are right. If we aren’t, then it’ll try to tell us what we missed.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="visium-spatiallibd-workflow.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run check_spe() function</span></span>
-<span id="cb261-2"><a href="visium-spatiallibd-workflow.html#cb261-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">check_spe</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="visium-spatiallibd-workflow.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run check_spe() function</span></span>
+<span id="cb264-2"><a href="visium-spatiallibd-workflow.html#cb264-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">check_spe</span>(spe)</span></code></pre></div>
 <pre><code>## class: SpatialExperiment 
 ## dim: 21699 3582 
 ## metadata(0):
@@ -744,38 +746,38 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 ##   pxl_row_in_fullres
 ## spatialCoords names(2) : x y
 ## imgData names(4): sample_id image_id data scaleFactor</code></pre>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="visium-spatiallibd-workflow.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="do">## End tracking time</span></span>
-<span id="cb263-2"><a href="visium-spatiallibd-workflow.html#cb263-2" aria-hidden="true" tabindex="-1"></a>time_end <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb263-3"><a href="visium-spatiallibd-workflow.html#cb263-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-4"><a href="visium-spatiallibd-workflow.html#cb263-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
-<span id="cb263-5"><a href="visium-spatiallibd-workflow.html#cb263-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
-<pre><code>## Time difference of 52.71101 secs</code></pre>
-<p>Creating our final <code>spe</code> object took 4.1808931072553 to run. So you might want to save this object for later use.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="visium-spatiallibd-workflow.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="visium-spatiallibd-workflow.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="do">## End tracking time</span></span>
+<span id="cb266-2"><a href="visium-spatiallibd-workflow.html#cb266-2" aria-hidden="true" tabindex="-1"></a>time_end <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb266-3"><a href="visium-spatiallibd-workflow.html#cb266-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-4"><a href="visium-spatiallibd-workflow.html#cb266-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
+<span id="cb266-5"><a href="visium-spatiallibd-workflow.html#cb266-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
+<pre><code>## Time difference of 52.25974 secs</code></pre>
+<p>Creating our final <code>spe</code> object took 3.435870830218 to run. So you might want to save this object for later use.</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="visium-spatiallibd-workflow.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 <p>You can then re-load it with the following code on a later session.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="visium-spatiallibd-workflow.html#cb266-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="visium-spatiallibd-workflow.html#cb269-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="explore-the-data" class="section level2" number="19.5">
 <h2><span class="header-section-number">19.5</span> Explore the data</h2>
 <p>In order to visualize the data, we can then use <code>spatialLIBD::vis_gene()</code>. Note that we didn’t need to do all that hard work just for that. But well, this is a nice quick check before we try launching our interactive website.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="visium-spatiallibd-workflow.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Sum of UMI</span></span>
-<span id="cb267-2"><a href="visium-spatiallibd-workflow.html#cb267-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">vis_gene</span>(</span>
-<span id="cb267-3"><a href="visium-spatiallibd-workflow.html#cb267-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">spe =</span> spe,</span>
-<span id="cb267-4"><a href="visium-spatiallibd-workflow.html#cb267-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sampleid =</span> <span class="st">&quot;sample_151673&quot;</span>,</span>
-<span id="cb267-5"><a href="visium-spatiallibd-workflow.html#cb267-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">geneid =</span> <span class="st">&quot;sum_umi&quot;</span></span>
-<span id="cb267-6"><a href="visium-spatiallibd-workflow.html#cb267-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="visium-spatiallibd-workflow.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Sum of UMI</span></span>
+<span id="cb270-2"><a href="visium-spatiallibd-workflow.html#cb270-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">vis_gene</span>(</span>
+<span id="cb270-3"><a href="visium-spatiallibd-workflow.html#cb270-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">spe =</span> spe,</span>
+<span id="cb270-4"><a href="visium-spatiallibd-workflow.html#cb270-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sampleid =</span> <span class="st">&quot;sample_151673&quot;</span>,</span>
+<span id="cb270-5"><a href="visium-spatiallibd-workflow.html#cb270-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">geneid =</span> <span class="st">&quot;sum_umi&quot;</span></span>
+<span id="cb270-6"><a href="visium-spatiallibd-workflow.html#cb270-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="workflow_Visium_spatialLIBD_files/figure-html/spatialLIBD_vis_gene-1.png" width="768" /></p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="visium-spatiallibd-workflow.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="do">## PCP4, a layer 5 marker gene</span></span>
-<span id="cb268-2"><a href="visium-spatiallibd-workflow.html#cb268-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">vis_gene</span>(</span>
-<span id="cb268-3"><a href="visium-spatiallibd-workflow.html#cb268-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">spe =</span> spe,</span>
-<span id="cb268-4"><a href="visium-spatiallibd-workflow.html#cb268-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sampleid =</span> <span class="st">&quot;sample_151673&quot;</span>,</span>
-<span id="cb268-5"><a href="visium-spatiallibd-workflow.html#cb268-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">geneid =</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_search[<span class="fu">which</span>(<span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name <span class="sc">==</span> <span class="st">&quot;PCP4&quot;</span>)]</span>
-<span id="cb268-6"><a href="visium-spatiallibd-workflow.html#cb268-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="visium-spatiallibd-workflow.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="do">## PCP4, a layer 5 marker gene</span></span>
+<span id="cb271-2"><a href="visium-spatiallibd-workflow.html#cb271-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">vis_gene</span>(</span>
+<span id="cb271-3"><a href="visium-spatiallibd-workflow.html#cb271-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">spe =</span> spe,</span>
+<span id="cb271-4"><a href="visium-spatiallibd-workflow.html#cb271-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sampleid =</span> <span class="st">&quot;sample_151673&quot;</span>,</span>
+<span id="cb271-5"><a href="visium-spatiallibd-workflow.html#cb271-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">geneid =</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_search[<span class="fu">which</span>(<span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name <span class="sc">==</span> <span class="st">&quot;PCP4&quot;</span>)]</span>
+<span id="cb271-6"><a href="visium-spatiallibd-workflow.html#cb271-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="workflow_Visium_spatialLIBD_files/figure-html/spatialLIBD_vis_gene-2.png" width="768" /></p>
 <p>As we wanted let’s proceed to <a href="http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#run-the-interactive-website-1">visualize the data interactively</a> with a <code>spatialLIBD</code>-powered website. We have lots of variables to choose from. We’ll specify which are our continuous and discrete variables in our <code>spatialLIBD::run_app()</code> call.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="visium-spatiallibd-workflow.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Explore all the variables we can use</span></span>
-<span id="cb269-2"><a href="visium-spatiallibd-workflow.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="visium-spatiallibd-workflow.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Explore all the variables we can use</span></span>
+<span id="cb272-2"><a href="visium-spatiallibd-workflow.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)</span></code></pre></div>
 <pre><code>## DataFrame with 3582 rows and 18 columns
 ##                    cell_count ground_truth     sample_id       sum  detected
 ##                     &lt;integer&gt;     &lt;factor&gt;   &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt;
@@ -842,32 +844,32 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 ## TTGTTTCATTAGTCTA-1               0               NA
 ## TTGTTTCCATACAACT-1               0               NA
 ## TTGTTTGTGTAAATTC-1               0               NA</code></pre>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="visium-spatiallibd-workflow.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run our shiny app</span></span>
-<span id="cb271-2"><a href="visium-spatiallibd-workflow.html#cb271-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) {</span>
-<span id="cb271-3"><a href="visium-spatiallibd-workflow.html#cb271-3" aria-hidden="true" tabindex="-1"></a>    spatialLIBD<span class="sc">::</span><span class="fu">run_app</span>(</span>
-<span id="cb271-4"><a href="visium-spatiallibd-workflow.html#cb271-4" aria-hidden="true" tabindex="-1"></a>        spe,</span>
-<span id="cb271-5"><a href="visium-spatiallibd-workflow.html#cb271-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">sce_layer =</span> <span class="cn">NULL</span>,</span>
-<span id="cb271-6"><a href="visium-spatiallibd-workflow.html#cb271-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">modeling_results =</span> <span class="cn">NULL</span>,</span>
-<span id="cb271-7"><a href="visium-spatiallibd-workflow.html#cb271-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">sig_genes =</span> <span class="cn">NULL</span>,</span>
-<span id="cb271-8"><a href="visium-spatiallibd-workflow.html#cb271-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">&quot;OSTA spatialLIBD workflow example&quot;</span>,</span>
-<span id="cb271-9"><a href="visium-spatiallibd-workflow.html#cb271-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">spe_discrete_vars =</span> <span class="fu">c</span>(<span class="st">&quot;ground_truth&quot;</span>, <span class="st">&quot;label&quot;</span>, <span class="st">&quot;ManualAnnotation&quot;</span>),</span>
-<span id="cb271-10"><a href="visium-spatiallibd-workflow.html#cb271-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">spe_continuous_vars =</span> <span class="fu">c</span>(</span>
-<span id="cb271-11"><a href="visium-spatiallibd-workflow.html#cb271-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;cell_count&quot;</span>,</span>
-<span id="cb271-12"><a href="visium-spatiallibd-workflow.html#cb271-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum_umi&quot;</span>,</span>
-<span id="cb271-13"><a href="visium-spatiallibd-workflow.html#cb271-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum_gene&quot;</span>,</span>
-<span id="cb271-14"><a href="visium-spatiallibd-workflow.html#cb271-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;expr_chrM&quot;</span>,</span>
-<span id="cb271-15"><a href="visium-spatiallibd-workflow.html#cb271-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;expr_chrM_ratio&quot;</span>,</span>
-<span id="cb271-16"><a href="visium-spatiallibd-workflow.html#cb271-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum&quot;</span>,</span>
-<span id="cb271-17"><a href="visium-spatiallibd-workflow.html#cb271-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;detected&quot;</span>,</span>
-<span id="cb271-18"><a href="visium-spatiallibd-workflow.html#cb271-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_sum&quot;</span>,</span>
-<span id="cb271-19"><a href="visium-spatiallibd-workflow.html#cb271-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_detected&quot;</span>,</span>
-<span id="cb271-20"><a href="visium-spatiallibd-workflow.html#cb271-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_percent&quot;</span>,</span>
-<span id="cb271-21"><a href="visium-spatiallibd-workflow.html#cb271-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;total&quot;</span>,</span>
-<span id="cb271-22"><a href="visium-spatiallibd-workflow.html#cb271-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sizeFactor&quot;</span></span>
-<span id="cb271-23"><a href="visium-spatiallibd-workflow.html#cb271-23" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb271-24"><a href="visium-spatiallibd-workflow.html#cb271-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">default_cluster =</span> <span class="st">&quot;label&quot;</span></span>
-<span id="cb271-25"><a href="visium-spatiallibd-workflow.html#cb271-25" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb271-26"><a href="visium-spatiallibd-workflow.html#cb271-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="visium-spatiallibd-workflow.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run our shiny app</span></span>
+<span id="cb274-2"><a href="visium-spatiallibd-workflow.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) {</span>
+<span id="cb274-3"><a href="visium-spatiallibd-workflow.html#cb274-3" aria-hidden="true" tabindex="-1"></a>    spatialLIBD<span class="sc">::</span><span class="fu">run_app</span>(</span>
+<span id="cb274-4"><a href="visium-spatiallibd-workflow.html#cb274-4" aria-hidden="true" tabindex="-1"></a>        spe,</span>
+<span id="cb274-5"><a href="visium-spatiallibd-workflow.html#cb274-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">sce_layer =</span> <span class="cn">NULL</span>,</span>
+<span id="cb274-6"><a href="visium-spatiallibd-workflow.html#cb274-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">modeling_results =</span> <span class="cn">NULL</span>,</span>
+<span id="cb274-7"><a href="visium-spatiallibd-workflow.html#cb274-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">sig_genes =</span> <span class="cn">NULL</span>,</span>
+<span id="cb274-8"><a href="visium-spatiallibd-workflow.html#cb274-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">&quot;OSTA spatialLIBD workflow example&quot;</span>,</span>
+<span id="cb274-9"><a href="visium-spatiallibd-workflow.html#cb274-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">spe_discrete_vars =</span> <span class="fu">c</span>(<span class="st">&quot;ground_truth&quot;</span>, <span class="st">&quot;label&quot;</span>, <span class="st">&quot;ManualAnnotation&quot;</span>),</span>
+<span id="cb274-10"><a href="visium-spatiallibd-workflow.html#cb274-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">spe_continuous_vars =</span> <span class="fu">c</span>(</span>
+<span id="cb274-11"><a href="visium-spatiallibd-workflow.html#cb274-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;cell_count&quot;</span>,</span>
+<span id="cb274-12"><a href="visium-spatiallibd-workflow.html#cb274-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum_umi&quot;</span>,</span>
+<span id="cb274-13"><a href="visium-spatiallibd-workflow.html#cb274-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum_gene&quot;</span>,</span>
+<span id="cb274-14"><a href="visium-spatiallibd-workflow.html#cb274-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;expr_chrM&quot;</span>,</span>
+<span id="cb274-15"><a href="visium-spatiallibd-workflow.html#cb274-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;expr_chrM_ratio&quot;</span>,</span>
+<span id="cb274-16"><a href="visium-spatiallibd-workflow.html#cb274-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum&quot;</span>,</span>
+<span id="cb274-17"><a href="visium-spatiallibd-workflow.html#cb274-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;detected&quot;</span>,</span>
+<span id="cb274-18"><a href="visium-spatiallibd-workflow.html#cb274-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_sum&quot;</span>,</span>
+<span id="cb274-19"><a href="visium-spatiallibd-workflow.html#cb274-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_detected&quot;</span>,</span>
+<span id="cb274-20"><a href="visium-spatiallibd-workflow.html#cb274-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_percent&quot;</span>,</span>
+<span id="cb274-21"><a href="visium-spatiallibd-workflow.html#cb274-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;total&quot;</span>,</span>
+<span id="cb274-22"><a href="visium-spatiallibd-workflow.html#cb274-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sizeFactor&quot;</span></span>
+<span id="cb274-23"><a href="visium-spatiallibd-workflow.html#cb274-23" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb274-24"><a href="visium-spatiallibd-workflow.html#cb274-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">default_cluster =</span> <span class="st">&quot;label&quot;</span></span>
+<span id="cb274-25"><a href="visium-spatiallibd-workflow.html#cb274-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb274-26"><a href="visium-spatiallibd-workflow.html#cb274-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
 <img src="images/spatialLIBD_demo_result.png" alt="Screenshot of the 'clusters (interactive)' section of the 'spot-level data' panel created with with the data from this workflow." width="100%" />
 <p class="caption">
@@ -878,8 +880,8 @@ Figure 5.3: Screenshot of the ‘clusters (interactive)’ section of the ‘spo
 <div id="sharing-your-website" class="section level2" number="19.6">
 <h2><span class="header-section-number">19.6</span> Sharing your website</h2>
 <p>Now that you have created a <code>spatialLIBD</code>-powered website, you might be interested in sharing it. To do so, it’ll be useful to have saved a small <code>spe</code> object using <code>saveRDS()</code> like we did earlier. The smaller the object, the better in terms of performance. For example, you might want to remove the lowly expressed genes to save space. One function you can use to measure how big your object is is <code>lobstr::obj_size()</code> as shown below.</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="visium-spatiallibd-workflow.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Object size</span></span>
-<span id="cb272-2"><a href="visium-spatiallibd-workflow.html#cb272-2" aria-hidden="true" tabindex="-1"></a>lobstr<span class="sc">::</span><span class="fu">obj_size</span>(spe) <span class="sc">/</span> <span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span> <span class="do">## Convert to MB</span></span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="visium-spatiallibd-workflow.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Object size</span></span>
+<span id="cb275-2"><a href="visium-spatiallibd-workflow.html#cb275-2" aria-hidden="true" tabindex="-1"></a>lobstr<span class="sc">::</span><span class="fu">obj_size</span>(spe) <span class="sc">/</span> <span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span> <span class="do">## Convert to MB</span></span></code></pre></div>
 <pre><code>## 296.4198 B</code></pre>
 <p>If your data is small enough, you might want to share your website by hosting on <a href="https://www.shinyapps.io/">shinyapps.io</a> by RStudio, which you can try for free. Once you have created your account, you’ll want to create an <code>app.R</code> file like the one we have <a href="https://github.com/lmweber/OSTA-book/blob/main/spatialLIBD_demo">on the <code>spatialLIBD_demo</code> directory</a>.</p>
 <pre><code>## library(&quot;spatialLIBD&quot;)
@@ -975,8 +977,8 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 <div id="r-session-information" class="section level2 unnumbered">
 <h2>R session information</h2>
 <p>Here’s the R session information for this workflow.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="visium-spatiallibd-workflow.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width =</span> <span class="dv">120</span>)</span>
-<span id="cb276-2"><a href="visium-spatiallibd-workflow.html#cb276-2" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="visium-spatiallibd-workflow.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width =</span> <span class="dv">120</span>)</span>
+<span id="cb279-2"><a href="visium-spatiallibd-workflow.html#cb279-2" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 4.1.0 (2021-05-18)

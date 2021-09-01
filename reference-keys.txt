@@ -88,6 +88,8 @@ previous-steps-4
 marker-genes-1
 spot-level-deconvolution
 background-5
+previous-steps-5
+number-of-cells-per-spot-1
 workflows
 visium-human-dlpfc-workflow
 description-of-dataset

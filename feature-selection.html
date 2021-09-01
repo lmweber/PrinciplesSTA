@@ -275,6 +275,8 @@ div.csl-indent {
 <li class="chapter" data-level="15" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html"><i class="fa fa-check"></i><b>15</b> Spot-level deconvolution</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#background-5"><i class="fa fa-check"></i><b>15.1</b> Background</a></li>
+<li class="chapter" data-level="15.2" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#previous-steps-5"><i class="fa fa-check"></i><b>15.2</b> Previous steps</a></li>
+<li class="chapter" data-level="15.3" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#number-of-cells-per-spot-1"><i class="fa fa-check"></i><b>15.3</b> Number of cells per spot</a></li>
 </ul></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
 <li class="chapter" data-level="16" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>16</b> Workflows</a></li>
@@ -429,6 +431,7 @@ div.csl-indent {
 <p>Alternatively, we can apply methods to identify spatially variable genes (SVGs) instead of HVGs. SVGs are defined as genes with a highly spatially correlated pattern of expression, which varies along with the spatial distribution of a tissue structure of interest.</p>
 <p>For example, standard statistical measures such as <a href="https://en.wikipedia.org/wiki/Moran%27s_I">Moran’s I</a> or <a href="https://en.wikipedia.org/wiki/Geary%27s_C">Geary’s C</a> can be used to rank genes by the observed spatial autocorrelation. This requires assumptions such as the distance metric and bandwidth.</p>
 <p>Several sophisticated new statistical methods to identify SVGs in ST data have also recently been developed. These include <a href="https://github.com/Teichlab/SpatialDE">SpatialDE</a> <span class="citation">(<a href="#ref-Svensson2018" role="doc-biblioref">Svensson, Teichmann, and Stegle 2018</a>)</span>, <a href="https://xzhoulab.github.io/SPARK/">SPARK</a> <span class="citation">(<a href="#ref-Sun2020" role="doc-biblioref">Sun, Zhu, and Zhou 2020</a>)</span>, and <a href="https://xzhoulab.github.io/SPARK/">SPARK-X</a> <span class="citation">(<a href="#ref-Zhu2021" role="doc-biblioref">Zhu, Sun, and Zhou 2021</a>)</span>. However, these methods do not scale to large datasets containing thousands of spatial coordinates and / or are only available from GitHub. Therefore, due to Bioconductor build guidelines, they cannot be included in the interactive examples here. We encourage developers to contribute their packages to managed repositories (i.e. CRAN, Bioconductor, and pip), and will expand this section in the future to include additional examples as these methods become available.</p>
+<p>Here, we will demonstrate a short example showing how to define a set of top SVGs by ranking genes according to Moran’s I statistic, using an efficient implementation of the calculation that takes advantage of sparsity in ST data. Alternatively, widely used implementations of Moran’s I in existing R packages such as <a href="https://cran.r-project.org/web/packages/ape/index.html">ape</a> <span class="citation">(<a href="#ref-Paradis2019" role="doc-biblioref">Paradis and Schliep 2019</a>)</span> (from CRAN) can be used for individual genes, but these calculations do not scale to tens of thousands of genes.</p>
 </div>
 <div id="integration-of-hvgs-and-svgs" class="section level2" number="11.5">
 <h2><span class="header-section-number">11.5</span> Integration of HVGs and SVGs</h2>
@@ -443,6 +446,9 @@ Li, Yijun, Stefan Stanojevic, Bing He, Zheng Jing, Qianhui Huang, Jian Kang, and
 </div>
 <div id="ref-Lun2016" class="csl-entry">
 Lun, Aaron T L, Davis J McCarthy, and John C Marioni. 2016. <span>“A Step-by-Step Workflow for Low-Level Analysis of Single-Cell <span class="nocase">RNA-seq</span> Data with <span>Bioconductor</span>.”</span> <em>F1000Research</em> 5: 2122. <a href="https://doi.org/10.12688/f1000research.9501.2">https://doi.org/10.12688/f1000research.9501.2</a>.
+</div>
+<div id="ref-Paradis2019" class="csl-entry">
+Paradis, E., and K. Schliep. 2019. <span>“Ape 5.0: An Environment for Modern Phylogenetics and Evolutionary Analyses in <span>R</span>.”</span> <em>Bioinformatics</em> 35: 526–28.
 </div>
 <div id="ref-Sun2020" class="csl-entry">
 Sun, Shiquan, Jiaqiang Zhu, and Xiang Zhou. 2020. <span>“Statistical Analysis of Spatial Expression Patterns for Spatially Resolved Transcriptomic Studies.”</span> <em>Nature Methods</em> 17 (2): 193–200. <a href="https://doi.org/doi.org/10.1038/s41592-019-0701-7">https://doi.org/doi.org/10.1038/s41592-019-0701-7</a>.
