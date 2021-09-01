@@ -50,8 +50,7 @@ Imports:
     SingleCellExperiment,
     spatialLIBD,
     STexampleData,
-    uwot,
-    ape
+    uwot
 Suggests:
     RefManageR
 VignetteBuilder: knitr
