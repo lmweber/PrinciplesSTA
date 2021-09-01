@@ -378,7 +378,9 @@ div.csl-indent {
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="spot-level-deconvolution.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
 <span id="cb127-2"><a href="spot-level-deconvolution.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb127-3"><a href="spot-level-deconvolution.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of cells per spot</span></span>
-<span id="cb127-4"><a href="spot-level-deconvolution.html#cb127-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;bar&quot;</span>, <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>)</span></code></pre></div>
+<span id="cb127-4"><a href="spot-level-deconvolution.html#cb127-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;bar&quot;</span>, <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb127-5"><a href="spot-level-deconvolution.html#cb127-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;number of cells&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb127-6"><a href="spot-level-deconvolution.html#cb127-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Number of cells per spot&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 1353 rows containing non-finite values (stat_count).
 
 ## Warning: Removed 1353 rows containing non-finite values (stat_count).</code></pre>
