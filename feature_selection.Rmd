@@ -92,6 +92,8 @@ For example, standard statistical measures such as [Moran's I](https://en.wikipe
 
 Several sophisticated new statistical methods to identify SVGs in ST data have also recently been developed. These include [SpatialDE](https://github.com/Teichlab/SpatialDE) [@Svensson2018], [SPARK](https://xzhoulab.github.io/SPARK/) [@Sun2020], and [SPARK-X](https://xzhoulab.github.io/SPARK/) [@Zhu2021]. However, these methods do not scale to large datasets containing thousands of spatial coordinates and / or are only available from GitHub. Therefore, due to Bioconductor build guidelines, they cannot be included in the interactive examples here. We encourage developers to contribute their packages to managed repositories (i.e. CRAN, Bioconductor, and pip), and will expand this section in the future to include additional examples as these methods become available.
 
+Here, we will demonstrate a short example showing how to define a set of top SVGs by ranking genes according to Moran's I statistic, using an efficient implementation of the calculation that takes advantage of sparsity in ST data. Alternatively, widely used implementations of Moran's I in existing R packages such as [ape](https://cran.r-project.org/web/packages/ape/index.html) [@Paradis2019] (from CRAN) can be used for individual genes, but these calculations do not scale to tens of thousands of genes.
+
 
 ## Integration of HVGs and SVGs
 
