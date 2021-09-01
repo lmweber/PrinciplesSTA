@@ -28,10 +28,12 @@ The following figure provides an overview of the number of cells per spot in thi
 
 We see that spots in this dataset contain around 0-10 cells, with a mode of 3. Therefore, it is plausible that some spots contain multiple cell types, and spot-level deconvolution could improve downstream analyses by deconvolving these cell types.
 
-```{r n_cells, message=FALSE, fig.width=5, fig.height=4}
+```{r n_cells, message=FALSE, warnings=FALSE, fig.width=5, fig.height=4}
 library(ggspavis)
 
 # plot number of cells per spot
-plotQC(spe, type = "bar", metric_x = "cell_count")
+plotQC(spe, type = "bar", metric_x = "cell_count") + 
+  xlab("number of cells") + 
+  ggtitle("Number of cells per spot")
 ```
 
