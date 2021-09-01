@@ -218,7 +218,7 @@ div.csl-indent {
 <li class="chapter" data-level="8" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>8</b> Analysis steps</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>8.1</b> Load data</a></li>
-<li class="chapter" data-level="8.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>8.2</b> SpatialExperiment object structure</a></li>
+<li class="chapter" data-level="8.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object"><i class="fa fa-check"></i><b>8.2</b> SpatialExperiment object</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>9</b> Quality control</a>
 <ul>
@@ -249,6 +249,7 @@ div.csl-indent {
 <li class="chapter" data-level="11.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
 <li class="chapter" data-level="11.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>11.3</b> Highly variable genes (HVGs)</a></li>
 <li class="chapter" data-level="11.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>11.4</b> Spatially variable genes (SVGs)</a></li>
+<li class="chapter" data-level="11.5" data-path="feature-selection.html"><a href="feature-selection.html#integration-of-hvgs-and-svgs"><i class="fa fa-check"></i><b>11.5</b> Integration of HVGs and SVGs</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>12</b> Dimensionality reduction</a>
 <ul>
@@ -355,7 +356,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 11</span> Feature selection</h1>
 <div id="background-2" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Background</h2>
-<p>Here we apply feature selection methods to identify highly variable genes (HVGs) for further downstream analyses.</p>
+<p>Here we apply feature selection methods to identify highly variable genes (HVGs) or spatially variable genes (SVGs), which can then be investigated individually or used as the input for further downstream analyses.</p>
 </div>
 <div id="previous-steps-1" class="section level2" number="11.2">
 <h2><span class="header-section-number">11.2</span> Previous steps</h2>
@@ -399,13 +400,14 @@ div.csl-indent {
 </div>
 <div id="highly-variable-genes-hvgs" class="section level2" number="11.3">
 <h2><span class="header-section-number">11.3</span> Highly variable genes (HVGs)</h2>
-<p>We use methods from <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span> to identify a set of top highly variable genes (HVGs), which will be used to define cell types. These methods were originally developed for single-cell RNA sequencing, so here we assume that spots can be treated as equivalent to cells, and we use only molecular features (gene expression).</p>
-<p>First, we remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of biological interest.</p>
+<p>We use methods from <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span> to identify a set of top highly variable genes (HVGs), which can be used to define major cell types. These methods were originally developed for single-cell RNA sequencing (scRNA-seq) data, so here we are making the implicit assumption that spots can be treated as equivalent to cells.</p>
+<p>It is important to note that HVGs are defined purely based on molecular features (i.e. gene expression), and do not take any spatial information into account. If the biologically meaningful spatial information in this dataset mainly reflects spatial distributions of major cell types, then relying on HVGs for downstream analyses may be sufficient. But if there are additional important spatial features in the dataset, then it may be more meaningful to define spatially variable genes (SVGs) (see below).</p>
+<p>To identify HVGs, we first remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of main biological interest.</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="feature-selection.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
 <span id="cb93-2"><a href="feature-selection.html#cb93-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
 <span id="cb93-3"><a href="feature-selection.html#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
 <pre><code>## [1] 33525  3582</code></pre>
-<p>Then, apply methods from <code>scran</code>. This gives us a list of HVGs, which can be used for further downstream analyses.</p>
+<p>Then, we apply methods from <code>scran</code>. This gives us a list of HVGs, which can be used for further downstream analyses. The parameter <code>prop</code> defines how many HVGs we want. For example <code>prop = 0.1</code> returns the top 10% of genes.</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="feature-selection.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
 <span id="cb95-2"><a href="feature-selection.html#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb95-3"><a href="feature-selection.html#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
@@ -424,17 +426,32 @@ div.csl-indent {
 </div>
 <div id="spatially-variable-genes-svgs" class="section level2" number="11.4">
 <h2><span class="header-section-number">11.4</span> Spatially variable genes (SVGs)</h2>
-<p>Alternatively, in ST data, we can apply methods to identify spatially variable genes (SVGs) instead of HVGs.</p>
-<p>Standard statistical measures such as <a href="https://en.wikipedia.org/wiki/Moran%27s_I">Moran’s I</a> can be used to rank genes by the observed spatial autocorrelation, after making some assumptions such as the bandwidth. Here, we will demonstrate some examples.</p>
-<p>Several new statistical methods adapted to identify SVGs in ST data have also recently been developed. These include <a href="https://github.com/Teichlab/SpatialDE">SpatialDE</a>, <a href="https://xzhoulab.github.io/SPARK/">SPARK</a>, and <a href="https://xzhoulab.github.io/SPARK/">SPARK-X</a>. SpatialDE and SPARK do not scale to large datasets containing thousands of spatial coordinates, while SPARK-X is available from GitHub and therefore (due to Bioconductor guidelines) cannot be included in the interactive examples here. We encourage developers to contribute their packages to managed repositories (i.e. CRAN, Bioconductor, and pip), and will expand this section in the future to include additional examples as these methods become available.</p>
-<p>A recent benchmark paper (<a href="https://www.biorxiv.org/content/10.1101/2021.08.27.457741v1">Li et al. 2021</a>) has shown that integrating HVGs and SVGs can improve downstream clustering performance in ST data, confirming that SVGs contain additional biologically relevant information that is not captured by HVGs in ST data. For example, one simple way to combine these features is to concatenate columns of PCs calculated on disjoint sets of HVGs and SVGs respectively (<a href="https://www.biorxiv.org/content/10.1101/2021.08.27.457741v1">Li et al. 2021</a>).</p>
+<p>Alternatively, we can apply methods to identify spatially variable genes (SVGs) instead of HVGs. SVGs are defined as genes with a highly spatially correlated pattern of expression, which varies along with the spatial distribution of a tissue structure of interest.</p>
+<p>For example, standard statistical measures such as <a href="https://en.wikipedia.org/wiki/Moran%27s_I">Moran’s I</a> or <a href="https://en.wikipedia.org/wiki/Geary%27s_C">Geary’s C</a> can be used to rank genes by the observed spatial autocorrelation. This requires assumptions such as the distance metric and bandwidth.</p>
+<p>Several sophisticated new statistical methods to identify SVGs in ST data have also recently been developed. These include <a href="https://github.com/Teichlab/SpatialDE">SpatialDE</a> <span class="citation">(<a href="#ref-Svensson2018" role="doc-biblioref">Svensson, Teichmann, and Stegle 2018</a>)</span>, <a href="https://xzhoulab.github.io/SPARK/">SPARK</a> <span class="citation">(<a href="#ref-Sun2020" role="doc-biblioref">Sun, Zhu, and Zhou 2020</a>)</span>, and <a href="https://xzhoulab.github.io/SPARK/">SPARK-X</a> <span class="citation">(<a href="#ref-Zhu2021" role="doc-biblioref">Zhu, Sun, and Zhou 2021</a>)</span>. However, these methods do not scale to large datasets containing thousands of spatial coordinates and / or are only available from GitHub. Therefore, due to Bioconductor build guidelines, they cannot be included in the interactive examples here. We encourage developers to contribute their packages to managed repositories (i.e. CRAN, Bioconductor, and pip), and will expand this section in the future to include additional examples as these methods become available.</p>
+</div>
+<div id="integration-of-hvgs-and-svgs" class="section level2" number="11.5">
+<h2><span class="header-section-number">11.5</span> Integration of HVGs and SVGs</h2>
+<p>A recent benchmark paper <span class="citation">(<a href="#ref-Li2021" role="doc-biblioref">Li et al. 2021</a>)</span> showed that integrating HVGs and SVGs to generate a combined set of features can improve downstream clustering performance in ST data. This confirms that SVGs contain additional biologically relevant information that is not captured by HVGs in these datasets. For example, a simple way to combine these features is to concatenate columns of principal components (PCs) calculated on the set of HVGs and the set of SVGs (excluding overlapping HVGs), and then using the combined set of features for further downstream analyses <span class="citation">(<a href="#ref-Li2021" role="doc-biblioref">Li et al. 2021</a>)</span>.</p>
 
 </div>
 </div>
 <h3> References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Li2021" class="csl-entry">
+Li, Yijun, Stefan Stanojevic, Bing He, Zheng Jing, Qianhui Huang, Jian Kang, and Lana X. Garmire. 2021. <span>“Benchmarking Computational Integration Methods for Spatial Transcriptomics Data.”</span> <em>bioRxiv</em>. <a href="https://www.biorxiv.org/content/10.1101/2021.08.27.457741v1">https://www.biorxiv.org/content/10.1101/2021.08.27.457741v1</a>.
+</div>
 <div id="ref-Lun2016" class="csl-entry">
 Lun, Aaron T L, Davis J McCarthy, and John C Marioni. 2016. <span>“A Step-by-Step Workflow for Low-Level Analysis of Single-Cell <span class="nocase">RNA-seq</span> Data with <span>Bioconductor</span>.”</span> <em>F1000Research</em> 5: 2122. <a href="https://doi.org/10.12688/f1000research.9501.2">https://doi.org/10.12688/f1000research.9501.2</a>.
+</div>
+<div id="ref-Sun2020" class="csl-entry">
+Sun, Shiquan, Jiaqiang Zhu, and Xiang Zhou. 2020. <span>“Statistical Analysis of Spatial Expression Patterns for Spatially Resolved Transcriptomic Studies.”</span> <em>Nature Methods</em> 17 (2): 193–200. <a href="https://doi.org/doi.org/10.1038/s41592-019-0701-7">https://doi.org/doi.org/10.1038/s41592-019-0701-7</a>.
+</div>
+<div id="ref-Svensson2018" class="csl-entry">
+Svensson, Valentine, Sarah A Teichmann, and Oliver Stegle. 2018. <span>“<span>SpatialDE</span>: Identification of Spatially Variable Genes.”</span> <em>Nature Methods</em> 15 (5): 343–46. <a href="https://doi.org/10.1038/nmeth.4636">https://doi.org/10.1038/nmeth.4636</a>.
+</div>
+<div id="ref-Zhu2021" class="csl-entry">
+Zhu, Jiaqiang, Shiquan Sun, and Xiang Zhou. 2021. <span>“<span>SPARK-X</span>: Non-Parametric Modeling Enables Scalable and Robust Detection of Spatial Expression Patterns for Large Spatial Transcriptomic Studies.”</span> <em>Genome Biology</em> 22: 184. <a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02404-0">https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02404-0</a>.
 </div>
 </div>
             </section>

@@ -218,7 +218,7 @@ div.csl-indent {
 <li class="chapter" data-level="8" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>8</b> Analysis steps</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>8.1</b> Load data</a></li>
-<li class="chapter" data-level="8.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object-structure"><i class="fa fa-check"></i><b>8.2</b> SpatialExperiment object structure</a></li>
+<li class="chapter" data-level="8.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object"><i class="fa fa-check"></i><b>8.2</b> SpatialExperiment object</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>9</b> Quality control</a>
 <ul>
@@ -249,6 +249,7 @@ div.csl-indent {
 <li class="chapter" data-level="11.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
 <li class="chapter" data-level="11.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>11.3</b> Highly variable genes (HVGs)</a></li>
 <li class="chapter" data-level="11.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>11.4</b> Spatially variable genes (SVGs)</a></li>
+<li class="chapter" data-level="11.5" data-path="feature-selection.html"><a href="feature-selection.html#integration-of-hvgs-and-svgs"><i class="fa fa-check"></i><b>11.5</b> Integration of HVGs and SVGs</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>12</b> Dimensionality reduction</a>
 <ul>
@@ -353,25 +354,22 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="analysis-steps" class="section level1" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Analysis steps</h1>
-<p>This part consists of several chapters for steps in a computational analysis pipeline for spatially resolved transcriptomics (ST) data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, and identifying marker genes.</p>
+<p>This part consists of several chapters for steps in a computational analysis pipeline for spatially resolved transcriptomics (ST) data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, identifying marker genes, and spot-level deconvolution.</p>
 <p>These steps require that the raw data has been loaded into R. In the previous part, we provide instructions and examples showing how to do this for the 10x Genomics Visium platform.</p>
-<p>Throughout these chapters, we follow the Bioconductor principle of modularity – for steps where multiple alternative analysis tools exist, we show how to substitute these, using the <code>SpatialExperiment</code> class to store input and output objects.</p>
+<p>Throughout these chapters, we will rely on the <a href="contributors.html#spatialexperiment-1">SpatialExperiment</a> data structure to connect the steps in the pipeline. Following the Bioconductor principle of modularity, you can substitute alternative methods for individual steps if you prefer, as long as these can interface with the <code>SpatialExperiment</code> structure.</p>
 <div id="load-data" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Load data</h2>
-<p>In the following analysis chapters, we use a pre-prepared dataset where we have previously applied the steps described in <a href="preprocessing-steps.html#preprocessing-steps">Preprocessing steps</a>, and saved the object in the <code>SpatialExperiment</code> format. This is available from the <a href="https://github.com/lmweber/STexampleData">STexampleData</a> package.</p>
-<p>The dataset consists of a single sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform, from our publication <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Kristen R. Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>. The dataset is described in more detail in <a href="visium-human-dlpfc-workflow.html#visium-human-dlpfc-workflow">Visium human DLPFC workflow</a>.</p>
-<p>Here, we show how to load the data from the <a href="https://github.com/lmweber/STexampleData">STexampleData</a> package.</p>
+<p>In the following analysis chapters, we use a pre-prepared dataset where we have previously applied the steps described in <a href="preprocessing-steps.html#preprocessing-steps">Preprocessing steps</a>, and saved the object in the <code>SpatialExperiment</code> format. This is available from the <a href="https://bioconductor.org/packages/STexampleData">STexampleData</a> package.</p>
+<p>The dataset consists of a single sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform, sourced from <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Kristen R. Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>. The dataset is also described in more detail in <a href="visium-human-dlpfc-workflow.html#visium-human-dlpfc-workflow">Visium human DLPFC workflow</a>.</p>
+<p>Here, we show how to load the data from the <code>STexampleData</code> package.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="analysis-steps.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
 <span id="cb2-2"><a href="analysis-steps.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
 <span id="cb2-3"><a href="analysis-steps.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="analysis-steps.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load object</span></span>
-<span id="cb2-5"><a href="analysis-steps.html#cb2-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
-<span id="cb2-6"><a href="analysis-steps.html#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="analysis-steps.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># alternatively: if working in release version of Bioc 3.13</span></span>
-<span id="cb2-8"><a href="analysis-steps.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># spe &lt;- load_data(&quot;Visium_humanDLPFC&quot;)</span></span></code></pre></div>
+<span id="cb2-5"><a href="analysis-steps.html#cb2-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span></code></pre></div>
 </div>
-<div id="spatialexperiment-object-structure" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> SpatialExperiment object structure</h2>
+<div id="spatialexperiment-object" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> SpatialExperiment object</h2>
 <p>Next, we inspect the <code>SpatialExperiment</code> object. For more details, see <a href="contributors.html#spatialexperiment-1">SpatialExperiment</a>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="analysis-steps.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check object</span></span>
 <span id="cb3-2"><a href="analysis-steps.html#cb3-2" aria-hidden="true" tabindex="-1"></a>spe</span></code></pre></div>
