@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-08-31" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -357,10 +357,10 @@ div.csl-indent {
 <div id="spatialexperiment-class" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> SpatialExperiment class</h2>
 <p><code>SpatialExperiment</code> is a specialized object class for storing spatially resolved transcriptomics datasets from several technological platforms within the Bioconductor framework.</p>
-<p>The class builds on the more general <a href="https://bioconductor.org/packages/SingleCellExperiment">SingleCellExperiment</a> class for single-cell RNA sequencing data, with additional customizations to store spatial information, such as spatial coordinates and image files.</p>
+<p>The class builds on the more general <a href="https://bioconductor.org/packages/SingleCellExperiment">SingleCellExperiment</a> class <span class="citation">(<a href="#ref-Amezquita2020" role="doc-biblioref">Amezquita et al. 2020</a>)</span> for single-cell RNA sequencing data, with additional customizations to store spatial information, such as spatial coordinates and image files.</p>
 <p>A summary of the <code>SpatialExperiment</code> object structure is shown in the following figure. Briefly, a <code>SpatialExperiment</code> object consists of (i) <code>assays</code> containing expression counts, (ii) <code>rowData</code> containing information on features, i.e. genes, (iii) <code>colData</code> containing information on spots or cells, (iv) <code>spatialData</code> containing spatial metadata, (v) <code>spatialCoords</code> containing spatial coordinates, and (vi) <code>imgData</code> containing image data. For spot-based ST data (e.g. 10x Genomics Visium), a single <code>assay</code> named <code>counts</code> is used. For molecule-based ST data (e.g. seqFISH), two <code>assays</code> named <code>counts</code> and <code>molecules</code> can be used.</p>
 <p>The following schematic illustrates this structure.</p>
-<p>For more details, see our preprint <a href="https://www.biorxiv.org/content/10.1101/2021.01.27.428431v2"><em>SpatialExperiment: infrastructure for spatially resolved transcriptomics data in R using Bioconductor</em></a> <span class="citation">(<a href="#ref-Righelli2021" role="doc-biblioref">Righelli et al. 2021</a>)</span>.</p>
+<p>For more details, see our <a href="https://www.biorxiv.org/content/10.1101/2021.01.27.428431v2">preprint</a> describing <code>SpatialExperiment</code> <span class="citation">(<a href="#ref-Righelli2021" role="doc-biblioref">Righelli et al. 2021</a>)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:spe-schematic"></span>
 <img src="images/spe.png" alt="Overview of the `SpatialExperiment` object class for storing spatially resolved transcriptomics datasets in the Bioconductor framework." width="100%" />
 <p class="caption">
@@ -375,6 +375,9 @@ Figure 3.1: Overview of the <code>SpatialExperiment</code> object class for stor
 
 <h3> References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Amezquita2020" class="csl-entry">
+Amezquita, Robert A., Aaron T. L. Lun, Etienne Becht, Vince J. Carey, Lindsay N. Carpp, Ludwig Geistlinger, Federico Marini, et al. 2020. <span>“Orchestrating Single-Cell Analysis with <span>Bioconductor</span>.”</span> <em>Nature Methods</em> 17 (2): 137–45. <a href="https://doi.org/10.1038/s41592-019-0654-x">https://doi.org/10.1038/s41592-019-0654-x</a>.
+</div>
 <div id="ref-Righelli2021" class="csl-entry">
 Righelli, Dario, Lukas M. Weber, Helena L. Crowell, Brenda Pardo, Leonardo Collado-Torres, Shila Ghazanfar, Aaron T. L. Lun, Stephanie C. Hicks, and Davide Risso. 2021. <span>“<span>SpatialExperiment</span>: Infrastructure for Spatially Resolved Transcriptomics Data in <span>R</span> Using <span>Bioconductor</span>.”</span> <em>bioRxiv</em>, January, 2021.01.27.428431. <a href="https://doi.org/10.1101/2021.01.27.428431">https://doi.org/10.1101/2021.01.27.428431</a>.
 </div>
