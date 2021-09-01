@@ -20,7 +20,7 @@ Authors@R:
              comment = c(ORCID = "0000-0002-7858-0231")))
 Description: This package contains source materials to build the Orchestrating 
     Spatially Resolved Transcriptomics Analysis with Bioconductor (OSTA) book.
-License: Artistic-2.0
+License: CC BY-NC-ND 3.0 US
 URL: https://github.com/lmweber/OSTA-book
 BugReports: https://github.com/lmweber/OSTA-book/issues
 Encoding: UTF-8
