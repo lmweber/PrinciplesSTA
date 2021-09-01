@@ -2,7 +2,7 @@
 
 ## Background
 
-Here we apply feature selection methods to identify highly variable genes (HVGs) for further downstream analyses.
+Here we apply feature selection methods to identify highly variable genes (HVGs) or spatially variable genes (SVGs), which can then be investigated individually or used as the input for further downstream analyses.
 
 
 ## Previous steps
@@ -51,9 +51,11 @@ spe <- logNormCounts(spe)
 
 ## Highly variable genes (HVGs)
 
-We use methods from `scran` [@Lun2016] to identify a set of top highly variable genes (HVGs), which will be used to define cell types. These methods were originally developed for single-cell RNA sequencing, so here we assume that spots can be treated as equivalent to cells, and we use only molecular features (gene expression).
+We use methods from `scran` [@Lun2016] to identify a set of top highly variable genes (HVGs), which can be used to define major cell types. These methods were originally developed for single-cell RNA sequencing (scRNA-seq) data, so here we are making the implicit assumption that spots can be treated as equivalent to cells.
 
-First, we remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of biological interest.
+It is important to note that HVGs are defined purely based on molecular features (i.e. gene expression), and do not take any spatial information into account. If the biologically meaningful spatial information in this dataset mainly reflects spatial distributions of major cell types, then relying on HVGs for downstream analyses may be sufficient. But if there are additional important spatial features in the dataset, then it may be more meaningful to define spatially variable genes (SVGs) (see below).
+
+To identify HVGs, we first remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of main biological interest.
 
 ```{r remove_mito, message=FALSE}
 # remove mitochondrial genes
