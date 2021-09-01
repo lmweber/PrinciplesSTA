@@ -2,20 +2,20 @@
 
 # Analysis steps
 
-This part consists of several chapters for steps in a computational analysis pipeline for spatially resolved transcriptomics (ST) data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, and identifying marker genes.
+This part consists of several chapters for steps in a computational analysis pipeline for spatially resolved transcriptomics (ST) data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, identifying marker genes, and spot-level deconvolution.
 
 These steps require that the raw data has been loaded into R. In the previous part, we provide instructions and examples showing how to do this for the 10x Genomics Visium platform.
 
-Throughout these chapters, we follow the Bioconductor principle of modularity -- for steps where multiple alternative analysis tools exist, we show how to substitute these, using the `SpatialExperiment` class to store input and output objects.
+Throughout these chapters, we will rely on the [SpatialExperiment] data structure to connect the steps in the pipeline. Following the Bioconductor principle of modularity, you can substitute alternative methods for individual steps if you prefer, as long as these can interface with the `SpatialExperiment` structure.
 
 
 ## Load data
 
-In the following analysis chapters, we use a pre-prepared dataset where we have previously applied the steps described in [Preprocessing steps], and saved the object in the `SpatialExperiment` format. This is available from the [STexampleData](https://github.com/lmweber/STexampleData) package.
+In the following analysis chapters, we use a pre-prepared dataset where we have previously applied the steps described in [Preprocessing steps], and saved the object in the `SpatialExperiment` format. This is available from the [STexampleData](https://bioconductor.org/packages/STexampleData) package.
 
-The dataset consists of a single sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform, from our publication @Maynard2021. The dataset is described in more detail in [Visium human DLPFC workflow].
+The dataset consists of a single sample of human brain from the dorsolateral prefrontal cortex (DLPFC) region, measured using the 10x Genomics Visium platform, sourced from @Maynard2021. The dataset is also described in more detail in [Visium human DLPFC workflow].
 
-Here, we show how to load the data from the [STexampleData](https://github.com/lmweber/STexampleData) package.
+Here, we show how to load the data from the `STexampleData` package.
 
 ```{r load_data, message=FALSE}
 library(SpatialExperiment)
@@ -23,13 +23,10 @@ library(STexampleData)
 
 # load object
 spe <- Visium_humanDLPFC()
-
-# alternatively: if working in release version of Bioc 3.13
-# spe <- load_data("Visium_humanDLPFC")
 ```
 
 
-## SpatialExperiment object structure
+## SpatialExperiment object
 
 Next, we inspect the `SpatialExperiment` object. For more details, see [SpatialExperiment].
 
