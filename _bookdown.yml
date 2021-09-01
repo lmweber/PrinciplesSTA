@@ -29,6 +29,8 @@ rmd_files: ["index.Rmd",
     "workflow_Visium_humanDLPFC.Rmd",
     "workflow_Visium_mouseCoronal.Rmd",
     "workflow_Visium_spatialLIBD.Rmd",
+    "comparison_svgs",
+    "comparison_clustering.Rmd",
     "external_workflows.Rmd",
     # Part 5: Appendix
     "contributors.Rmd",
