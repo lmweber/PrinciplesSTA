@@ -55,4 +55,8 @@ Imports:
 Suggests:
     RefManageR
 VignetteBuilder: knitr
-biocViews: Book
+biocViews: 
+    Book,
+    Transcriptomics,
+    SingleCell,
+    Spatial
