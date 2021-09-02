@@ -1,8 +1,10 @@
-# (PART) Workflows {-}
+# (PART) Workflows and comparisons {-}
 
-# Workflows
+# Workflows and comparisons
 
-This part contains several chapters describing complete workflows for a specific dataset, illustrating how the individual analysis steps fit together. For example, workflows may demonstrate a complete analysis for a specific technological platform or tissue type. Individual analysis steps are described in more detail in the earlier parts. The workflows re-use code from the individual analysis chapters in a condensed format to provide a convenient overview.
+This part contains several longer chapters describing complete workflows or comparisons of methods for individual analysis steps.
 
-In addition, we include workflow chapters to compare alternative methods for certain steps in the analysis pipeline, such as spatially-aware clustering. This provides a way to showcase new methods as these are developed and implemented within the Bioconductor framework, and provides users with additional information on the performance of the various methods by comparing them using consistent datasets and evaluation metrics.
+The workflow chapters each describe a complete analysis workflow for a single dataset, illustrating how the individual analysis steps fit together. For example, workflows may demonstrate an analysis for a dataset from a specific technological platform or tissue type. The workflows reuse code from the individual analysis chapters in a condensed format for consistency. For more details on individual analysis steps, see the chapters in the previous part.
+
+The comparison chapters compare alternative methods for a specific analysis step, such as spatially-aware clustering. Methods are compared in terms of performance using a given dataset and evaluation metrics. This provides a way to showcase new methods as these are developed and implemented in the Bioconductor framework, and provides readers with information on which methods may be appropriate for their analyses.
 
