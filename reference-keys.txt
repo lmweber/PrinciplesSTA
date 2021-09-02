@@ -126,7 +126,7 @@ explore-the-data
 sharing-your-website
 wrapping-up-3
 methods-to-identify-svgs
-methods-for-spatially-aware-clustering
+methods-for-spatial-clustering
 external-workflows
 related-software
 contributors
