@@ -1,4 +1,4 @@
-# Comparison of clustering methods
+# Methods for spatially-aware clustering
 
 In this workflow chapter, we compare alternative methods that have been developed for spatially-aware clustering.
 

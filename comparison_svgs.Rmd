@@ -1,4 +1,4 @@
-# Comparison of SVGs methods
+# Methods to identify SVGs
 
 In this workflow chapter, we compare alternative methods that have been developed to identify spatially variable genes (SVGs) in ST data.
 

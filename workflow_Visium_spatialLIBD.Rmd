@@ -1,8 +1,8 @@
-# Visium spatialLIBD workflow
+# spatialLIBD workflow
 
 ## Overview
 
-In the previous workflow, [Visium human DLPFC workflow], you practiced some of the basics with a portion of the postmortem human brain dataset @Maynard2021. The goal of this workflow is to learn what steps you need to carry out in order to create an interactive website to visualize this type of data. For this, we'll use the [`spatialLIBD`](http://bioconductor.org/packages/spatialLIBD) Bioconductor package @Pardo2021.
+In the previous workflow, [Human DLPFC workflow], you practiced some of the basics with a portion of the postmortem human brain dataset @Maynard2021. The goal of this workflow is to learn what steps you need to carry out in order to create an interactive website to visualize this type of data. For this, we'll use the [`spatialLIBD`](http://bioconductor.org/packages/spatialLIBD) Bioconductor package @Pardo2021.
 
 ```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="`spatialLIBD` overview. Source: [Pardo et al, _bioRxiv_, 2021](https://doi.org/10.1101/2021.04.29.440149)."}
 knitr::include_graphics("images/spatialLIBD_Figure1.png")
@@ -65,7 +65,7 @@ You might also be interested in this video demonstration of `spatialLIBD` for th
 
 ## Code prerequisites
 
-Ok, let's get started! First we need to re-create the `spe` object from the [Visium human DLPFC workflow] in the previous chapter. That chapter included code for visualizing results along the way, which we'll skip here. Thus, we'll use the following packages in addition to `spatialLIBD`:
+Ok, let's get started! First we need to re-create the `spe` object from the [Human DLPFC workflow] in the previous chapter. That chapter included code for visualizing results along the way, which we'll skip here. Thus, we'll use the following packages in addition to `spatialLIBD`:
 
 * [`SpatialExperiment`](http://bioconductor.org/packages/SpatialExperiment): for storing our data in a common object
 * [`STexampleData`](http://bioconductor.org/packages/STexampleData): for accessing the example data
@@ -100,7 +100,7 @@ BiocManager::install(c(
 ))
 ```
 
-We can now run the following R code to re-make the `spe` object from the [Visium human DLPFC workflow]. This will take a bit of time.
+We can now run the following R code to re-make the `spe` object from the [Human DLPFC workflow]. This will take a bit of time.
 
 ```{r spatialLIBD_prereq_code, message = FALSE}
 ## Load packages required for the
@@ -440,7 +440,7 @@ The `Max Worker Processes` determines how many R sessions are open per instance.
 Thank you for reading this far! In this workflow we showed you:
 
 * why you might be interested in using `spatialLIBD`,
-* we re-used the `spe` object from the [Visium human DLPFC workflow] chapter,
+* we re-used the `spe` object from the [Human DLPFC workflow] chapter,
 * we adapted the `spe` object to make it compatible with `spatialLIBD`,
 * we created an interactive website in our laptops,
 * we shared the website with others using shinyapps.io.
