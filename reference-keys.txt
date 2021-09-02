@@ -90,8 +90,8 @@ spot-level-deconvolution
 background-5
 previous-steps-5
 number-of-cells-per-spot-1
-workflows
-visium-human-dlpfc-workflow
+workflows-and-comparisons
+human-dlpfc-workflow
 description-of-dataset
 load-data-2
 plot-data-1
@@ -101,7 +101,7 @@ feature-selection-1
 dimensionality-reduction-1
 clustering-1
 marker-genes-2
-visium-mouse-coronal-workflow
+mouse-coronal-workflow
 description-of-dataset-1
 load-data-3
 plot-data-2
@@ -111,7 +111,7 @@ feature-selection-2
 dimensionality-reduction-2
 clustering-2
 marker-genes-3
-visium-spatiallibd-workflow
+spatiallibd-workflow
 overview-4
 spatiallibd
 why-use-spatiallibd
@@ -125,8 +125,8 @@ extra-information-and-filtering
 explore-the-data
 sharing-your-website
 wrapping-up-3
-comparison-of-svgs-methods
-comparison-of-clustering-methods
+methods-to-identify-svgs
+methods-for-spatially-aware-clustering
 external-workflows
 related-software
 contributors
