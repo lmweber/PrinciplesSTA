@@ -75,7 +75,10 @@ For more information and a detailed example check the [`VistoSeg` documentation 
 
 ## Identify number of cells per spot
 
-`VistoSeg` has two utilities for estimating the number of cells per spot. However, before you can use them, you need to first align the individual tissue capture areas using [Loupe Browser (Visium)]. This process is key in order to identify the centers of each of the Visium spots and their coordinates in the images. As long as all downstream segmented images use the exact same proportions as the input image for `Loupe`, we can compute a scaling factor and use it for computing the coordinates of the Visium spots in the new images. [Space Ranger (Visium)] will provide us the spot coordinate file as well as process the gene expression data. The spot coordinate files will enable us to estimate the number of cells per spot `VistoSeg` as shown in the [Space Ranger (Visium)] chapter.
+`VistoSeg` has two utilities for estimating the number of cells per spot. As noted above, for this step you first need to also run [Loupe Browser (Visium)] and [Space Ranger (Visium)] to generate the Space Ranger output files, which are required here as an input.
+
+The alignment of the individual tissue capture areas with `Loupe Browser` is required to identify the centers of each of the Visium spots and their coordinates in the images. As long as all downstream segmented images use the exact same proportions as the input image for `Loupe Browser`, we can compute a scaling factor and use it for computing the coordinates of the Visium spots in the new images. `Space Ranger` will then provide us the spot coordinate file as well as process the gene expression data. The spot coordinate files will enable us to estimate the number of cells per spot with `VistoSeg`, as shown in the [Space Ranger (Visium)] chapter.
+
 
 ## Wrapping up
 
