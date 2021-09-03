@@ -82,4 +82,5 @@ The alignment of the individual tissue capture areas with `Loupe Browser` is req
 
 ## Wrapping up
 
-In this chapter we learned that Visium experiments can be trickier than expected. That is, before we can use the processing tools provided by 10x Genomics, we have to learn how to work with the images we generate. Given the broad spectrum of imaging scopes, it is not surprising that 10x Genomics does not support this. However, [`VistoSeg`](http://research.libd.org/VistoSeg/) among other software, can help us split our images and process them in such a way that we will be able to estimate the number of cells or nuclei per Visium spot. 
+In this chapter we learned about image processing steps required to work with the images we generate as part of our Visium experiments. Given the broad spectrum of imaging scopes, these tools are not available directly within the software provided by 10x Genomics. [`VistoSeg`](http://research.libd.org/VistoSeg/) can help us split our images and process them so that we can estimate the number of cells or nuclei per Visium spot, which we can then use as an input during downstream analyses.
+
