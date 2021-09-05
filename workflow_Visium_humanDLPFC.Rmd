@@ -32,7 +32,7 @@ spe
 
 As an initial check, plot the spatial coordinates (spots) in x-y dimensions on the tissue slide, to check that the object has loaded correctly and that the orientation is as expected.
 
-We use visualization functions from the [ggspavis](https://github.com/lmweber/ggspavis) package to generate plots.
+We use visualization functions from the [ggspavis](https://bioconductor.org/packages/ggspavis) package to generate plots.
 
 ```{r, message=FALSE}
 library(ggspavis)

@@ -95,7 +95,7 @@ colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 
 ## Visualizations
 
-Generate plots using plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package. In the next chapter on clustering, we will add cluster labels to these reduced dimension plots.
+Generate plots using plotting functions from the [ggspavis](https://bioconductor.org/packages/ggspavis) package. In the next chapter on clustering, we will add cluster labels to these reduced dimension plots.
 
 ```{r, message=FALSE}
 library(ggspavis)
