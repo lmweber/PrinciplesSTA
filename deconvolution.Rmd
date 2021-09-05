@@ -24,7 +24,7 @@ spe <- Visium_humanDLPFC()
 
 ## Number of cells per spot
 
-The following figure provides an overview of the number of cells per spot in this dataset, which is known in this dataset and stored in a column in `colData` in the `SpatialExperiment` object. We use a visualization function from [ggspavis](https://github.com/lmweber/ggspavis) to generate the plot.
+The following figure provides an overview of the number of cells per spot in this dataset, which is known in this dataset and stored in a column in `colData` in the `SpatialExperiment` object. We use a visualization function from [ggspavis](https://bioconductor.org/packages/ggspavis) to generate the plot.
 
 We see that spots in this dataset contain around 0-10 cells, with a mode of 3. Therefore, it is plausible that some spots contain multiple cell types, and spot-level deconvolution could improve downstream analyses by deconvolving these cell types.
 

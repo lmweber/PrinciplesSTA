@@ -93,7 +93,7 @@ colLabels(spe) <- factor(clus)
 ```
 
 
-Visualize the clusters by plotting in (i) spatial (x-y) coordinates on the tissue slide, and (ii) reduced dimension space (PCA or UMAP). We use plotting functions from the [ggspavis](https://github.com/lmweber/ggpavis) package.
+Visualize the clusters by plotting in (i) spatial (x-y) coordinates on the tissue slide, and (ii) reduced dimension space (PCA or UMAP). We use plotting functions from the [ggspavis](https://bioconductor.org/packages/ggspavis) package.
 
 For reference, we also display the ground truth (manually annotated) labels available for this dataset (in spatial coordinates).
 
