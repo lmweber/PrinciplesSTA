@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Spatially resolved transcriptomics | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Spatially resolved transcriptomics | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
@@ -33,7 +33,8 @@
 <link rel="prev" href="introduction.html"/>
 <link rel="next" href="spatialexperiment.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -360,7 +360,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 2</span> Spatially resolved transcriptomics</h1>
 <p>Spatially resolved transcriptomics (ST) technologies allow transcriptome-wide gene expression to be measured at spatial resolution. There are several technological platforms, each with their unique advantages. ST was named the Method of the Year by Nature Methods in 2020 <span class="citation">(<a href="#ref-Mark2020" role="doc-biblioref"><span>“Method of the <span>Year</span>: Spatially Resolved Transcriptomics <span><span></span></span> <span>Nature</span> <span>Methods</span>”</span> n.d.</a>)</span> and we expect that it will help put genome-wide expression on the map <span class="citation">(<a href="#ref-Maynard2020Spatial" role="doc-biblioref">K. R. Maynard, Jaffe, and Martinowich 2020</a>)</span>.</p>
 <p>Here we describe the platforms used to generate the example datasets in this book.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
 <img src="images/Maynard2020_spatial.png" alt="Illustration of potential uses of spatially resolved transcriptomics data and how it can be combined with single cell/nucleus RNA-seq to study tissues of interest such as the human brain. Source: [Maynard et al, _Neuropsychopharmacol._, 2020](https://doi.org/10.1038/s41386-019-0484-7)." width="100%" />
 <p class="caption">
 Figure 2.1: Illustration of potential uses of spatially resolved transcriptomics data and how it can be combined with single cell/nucleus RNA-seq to study tissues of interest such as the human brain. Source: <a href="https://doi.org/10.1038/s41386-019-0484-7">Maynard et al, <em>Neuropsychopharmacol.</em>, 2020</a>.
@@ -371,7 +371,7 @@ Figure 2.1: Illustration of potential uses of spatially resolved transcriptomics
 <p>The <a href="https://www.10xgenomics.com/products/spatial-gene-expression">10x Genomics Visium</a> platform measures transcriptome-wide gene expression at a two-dimensional grid of “spots” on a tissue slide. Fresh-frozen tissue is placed onto the slide, fixed, stained, and permeabilized. Each spot contains millions of spatially-barcoded capture oligonucleotides, which bind to mRNAs from the tissue. A cDNA library is then generated for sequencing, which includes the spatial barcodes, allowing reads to be mapped back to their spatial locations.</p>
 <p>The dimensions of the tissue slide are approximately 6.5mm by 6.5mm, and contains around 5000 barcoded spots. Spots are located in a regular hexagonal arrangement, with each spot 55µm in diameter, and 100µm center to center. The number of cells per spot depends on the organism and tissue type, e.g. 0-10 for human brain, or around 50 for mouse brain. Each slide contains 4 capture areas (6.5mm x 6.5mm each). The following figure provides an illustration.</p>
 <p>This platform is commercially available from 10x Genomics, making it relatively accessible, affordable, and easy for new labs to get started with, especially compared to platforms that require more specialized equipment and expertise. In our view, this makes it likely that Visium (and its future extensions) will see widespread adoption over the coming years.</p>
-<div class="figure" style="text-align: center"><span id="fig:Visium-schematic"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Visium-schematic"></span>
 <img src="images/Visium.png" alt="Schematic of 10x Genomics Visium platform. Source: [10x Genomics Visium website](https://www.10xgenomics.com/spatial-transcriptomics/)" width="574" />
 <p class="caption">
 Figure 2.2: Schematic of 10x Genomics Visium platform. Source: <a href="https://www.10xgenomics.com/spatial-transcriptomics/">10x Genomics Visium website</a>
@@ -421,7 +421,6 @@ Xia, Chenglong, Jean Fan, George Emanuel, Junjie Hao, and Xiaowei Zhuang. 2019. 
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -461,6 +460,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },

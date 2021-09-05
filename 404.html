@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Loupe Browser (Visium) | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
+  <title>Page not found | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Loupe Browser (Visium) | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta property="og:title" content="Page not found | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Loupe Browser (Visium) | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta name="twitter:title" content="Page not found | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   
   <meta name="twitter:description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="icon_32.png" type="image/x-icon" />
-<link rel="prev" href="image-segmentation-visium.html"/>
-<link rel="next" href="space-ranger-visium.html"/>
+
+
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -356,94 +356,19 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="loupe-browser-visium" class="section level1" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Loupe Browser (Visium)</h1>
-<div id="overview-1" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Overview</h2>
-<p>Loupe Browser is a desktop application from 10x Genomics that allows you to visualize your gene expression data without having to write code. You can utilize this software for most types of single cell transcriptomic data generated from 10x protocols, however we will discuss specifically how to use it for data generated from the Visium Spatial Gene Expression protocol. In general, you can use the Loupe Browser to align gene expression spots to histology images, look for marker gene expression, annotate populations, and cluster with three different clustering methods.</p>
-<p><a href="https://support.10xgenomics.com/spatial-gene-expression/software/visualization/latest/analysis">Here</a> is a tutorial from 10x Genomics on how to use the Loupe Browser.</p>
-</div>
-<div id="manual-alignment-of-images" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Manual alignment of images</h2>
-<p>One of the crucial first steps for processing Visium data is to align the gene expression spots to a high resolution image of the tissue, which in some cases can be at 40x magnification. While Space Ranger can do this automatically, if you want to ensure a high quality alignment with no mistakes it is best to do this manually in the Loupe browser. First, you upload the image and enter the serial number for the slide.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
-<img src="images/alignment_load_image.png" alt="Input your Visium Slide Serial Number and select your input image to start the alignment process using `Loupe` by 10x Genomics." width="100%" />
-<p class="caption">
-Figure 2.1: Input your Visium Slide Serial Number and select your input image to start the alignment process using <code>Loupe</code> by 10x Genomics.
-</p>
-</div>
-<p>Then, you align the fiducial frame such that the red circles are visibly aligned with the fiducial frame pattern of spots.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
-<img src="images/alignment_fiducial.png" alt="Visual alignment of the Visium fiducial frame to the bright field histology image using `Loupe` by 10x Genomics." width="100%" />
-<p class="caption">
-Figure 5.1: Visual alignment of the Visium fiducial frame to the bright field histology image using <code>Loupe</code> by 10x Genomics.
-</p>
-</div>
-<p>Then, you manually select the spots that contain tissue by drawing a contour line. This information will later on be used by <code>SpatialExperiment</code> to determine which spots overlap tissue and which do not.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="images/alignment_tissue.png" alt="Manual selection of the Visium spots that overlap tissue based on the selected alignemnt between the image and the Visium slide fiducial frame." width="100%" />
-<p class="caption">
-Figure 5.2: Manual selection of the Visium spots that overlap tissue based on the selected alignemnt between the image and the Visium slide fiducial frame.
-</p>
-</div>
-</div>
-<div id="output-files-and-space-ranger" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Output files and Space Ranger</h2>
-<p>The output files from Space Ranger are detailed in the <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a> chapter of this book. The <code>.cloupe</code> file is the one you need to import into the Loupe Browser in order to explore your processed data. These files are generally between 1 and 2 GB each.</p>
-</div>
-<div id="downstream-analyses-in-loupe-browser" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> Downstream analyses in Loupe Browser</h2>
-<p>After running <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a>, you can open the <code>.cloupe</code> file with <code>Loupe</code> and visually inspect the dimensionality reduction of the data through either a t-SNE or UMAP as well as apply graph-based or k-means clustering.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="images/tsne_kmeans.png" alt="Gene expression analysis results from `spaceranger count` visualized with `Loupe`." width="100%" />
-<p class="caption">
-Figure 5.3: Gene expression analysis results from <code>spaceranger count</code> visualized with <code>Loupe</code>.
-</p>
-</div>
-<p>Most importantly you can overlay the gene expression data or annotated clusters onto the histology image. We will later learn how to do this using R and Bioconductor packages.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="images/spatial_graph_based.png" alt="Visual inspection of the graph-based clustering results from `spaceranger count` visualized with the tissue histology image in the background using `Loupe`." width="100%" />
-<p class="caption">
-Figure 5.4: Visual inspection of the graph-based clustering results from <code>spaceranger count</code> visualized with the tissue histology image in the background using <code>Loupe</code>.
-</p>
-</div>
-<p><code>Loupe</code> has many features, including the ability to make genes lists and plot marker genes spatially.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
-<img src="images/gene_expression.png" alt="Visualization with `Loupe` of four marker genes in the dorsolaterl prefrontal cortex (DLPFC): _SNAP25_ for neurons, _MBP_ for glia, _RELN_ for DLPFC layer 1 of the greay matter (neurons), and _PCP4_ for DLPFC layer 5. Only _PCP4_ is shown since it is the selected gene in our gene list." width="100%" />
-<p class="caption">
-Figure 5.5: Visualization with <code>Loupe</code> of four marker genes in the dorsolaterl prefrontal cortex (DLPFC): <em>SNAP25</em> for neurons, <em>MBP</em> for glia, <em>RELN</em> for DLPFC layer 1 of the greay matter (neurons), and <em>PCP4</em> for DLPFC layer 5. Only <em>PCP4</em> is shown since it is the selected gene in our gene list.
-</p>
-</div>
-<p>You can also make violin plots to explore gene expression differences across spots grouped by some discrete variable, such as cluster membership.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="images/violin_plots.png" alt="_PCP4_ violin plots made with `Loupe` showing the log2 gene expression counts on the Y-axis." width="100%" />
-<p class="caption">
-Figure 5.6: <em>PCP4</em> violin plots made with <code>Loupe</code> showing the log2 gene expression counts on the Y-axis.
-</p>
-</div>
-<p>Furthermore with <code>Loupe</code> you can look at differential expression statistic results for each gene across clusters.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
-<img src="images/deg.png" alt="Differential gene expression statistics displayed by `Loupe`." width="100%" />
-<p class="caption">
-Figure 6.1: Differential gene expression statistics displayed by <code>Loupe</code>.
-</p>
-</div>
-<!-- ##add part about annotating cell populations? -->
-</div>
-<div id="wrapping-up-1" class="section level2" number="6.5">
-<h2><span class="header-section-number">6.5</span> Wrapping up</h2>
-<p><code>Loupe</code> can be particularly useful for annotating spots based on the clustering, dimension reduction, and known marker gene expression results from <code>spaceranger count</code>. That is, <code>Loupe</code> is a much more powerful interactive software than the <code>web_summary.html</code> file we will see in the <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a> chapter.</p>
-<p>While all these downstream analyses <code>Loupe</code> enables are the ones we are interested in doing, you might want to have more control in the choice of algorithms and parameters. Furthermore, you might want to analyze the data from multiple Visium capture tissue sections together, depending on the design of your Visium experiment. We will learn how to do so using R and Bioconductor in the majority of the remaining chapters of this book.</p>
-
-</div>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="image-segmentation-visium.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="space-ranger-visium.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

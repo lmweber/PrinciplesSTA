@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 19 spatialLIBD workflow | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 19 spatialLIBD workflow | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
@@ -33,7 +33,8 @@
 <link rel="prev" href="mouse-coronal-workflow.html"/>
 <link rel="next" href="methods-to-identify-svgs.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -361,7 +361,7 @@ div.csl-indent {
 <div id="overview-4" class="section level2" number="19.1">
 <h2><span class="header-section-number">19.1</span> Overview</h2>
 <p>In the previous workflow, <a href="human-dlpfc-workflow.html#human-dlpfc-workflow">Human DLPFC workflow</a>, you practiced some of the basics with a portion of the postmortem human brain dataset <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Kristen R. Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>. The goal of this workflow is to learn what steps you need to carry out in order to create an interactive website to visualize this type of data. For this, we’ll use the <a href="http://bioconductor.org/packages/spatialLIBD"><code>spatialLIBD</code></a> Bioconductor package <span class="citation"><a href="#ref-Pardo2021" role="doc-biblioref">Pardo et al.</a> (<a href="#ref-Pardo2021" role="doc-biblioref">2021</a>)</span>.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
 <img src="images/spatialLIBD_Figure1.png" alt="`spatialLIBD` overview. Source: [Pardo et al, _bioRxiv_, 2021](https://doi.org/10.1101/2021.04.29.440149)." width="100%" />
 <p class="caption">
 Figure 2.1: <code>spatialLIBD</code> overview. Source: <a href="https://doi.org/10.1101/2021.04.29.440149">Pardo et al, <em>bioRxiv</em>, 2021</a>.
@@ -378,14 +378,14 @@ Figure 2.1: <code>spatialLIBD</code> overview. Source: <a href="https://doi.org/
 <li>multiple tissue sections at a time, either interactively or statically</li>
 </ul>
 <p>Both options work with continuous and discrete variables such as the gene expression and clusters, respectively. The interactive version for discrete variables such as clusters is useful if you want to manually annotate Visium spots, as it was done in the initial project <span class="citation"><a href="#ref-Maynard2021" role="doc-biblioref">Kristen R. Maynard et al.</a> (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>. <code>spatialLIBD</code> allows users to download the annotated spots and resume your spot annotation work later.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
 <img src="images/spatialLIBD_interactive_cluster.png" alt="Screenshot of the 'clusters (interactive)' section of the 'spot-level data' panel created with the full spatialLIBD dataset. The website was created with `spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))` version 1.4.0 and then using the lasso selection, we selected a set of spots in the UMAP interactive plot colored by the estimated number of cells per spot (`cell_count`) on the bottom left, which automatically updated the other three plots." width="100%" />
 <p class="caption">
 Figure 5.1: Screenshot of the ‘clusters (interactive)’ section of the ‘spot-level data’ panel created with the full spatialLIBD dataset. The website was created with <code>spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))</code> version 1.4.0 and then using the lasso selection, we selected a set of spots in the UMAP interactive plot colored by the estimated number of cells per spot (<code>cell_count</code>) on the bottom left, which automatically updated the other three plots.
 </p>
 </div>
 <p>Visualizing genes or clusters across multiple tissue sections can be quite useful. For example, here we show the expression levels of <em>PCP4</em> across two sets of spatially-adjacent replicates. <em>PCP4</em> is a marker gene for layer 5 in the grey matter of the dorsolateral prefrontal cortex (DLPFC) in the human brain. Spatially-adjacent replicates are about 10 microns apart from each other and visualizations like the one below help assess the technical variability in the Visium technology.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
 <img src="images/spatialLIBD_gene_grid.png" alt="Screenshot of the 'gene grid (static)' section of the 'spot-level data' panel created with the full spatialLIBD dataset. The website was created with `spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))` version 1.4.0, selecting the _PCP4_ gene, selecting the _paper_ gene color scale, changing the number of rows and columns in the grid 2, selecting two pairs of spatially-adjacent replicate samples (151507, 151508, 151673, and 151674), and clicking on the _upgrade grid plot_ button. Note that the default _viridis_ gene color scale is color-blind friendly." width="100%" />
 <p class="caption">
 Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-level data’ panel created with the full spatialLIBD dataset. The website was created with <code>spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))</code> version 1.4.0, selecting the <em>PCP4</em> gene, selecting the <em>paper</em> gene color scale, changing the number of rows and columns in the grid 2, selecting two pairs of spatially-adjacent replicate samples (151507, 151508, 151673, and 151674), and clicking on the <em>upgrade grid plot</em> button. Note that the default <em>viridis</em> gene color scale is color-blind friendly.
@@ -566,7 +566,7 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb245-94"><a href="spatiallibd-workflow.html#cb245-94" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb245-95"><a href="spatiallibd-workflow.html#cb245-95" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb245-96"><a href="spatiallibd-workflow.html#cb245-96" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
-<pre><code>## Time difference of 2.58255 mins</code></pre>
+<pre><code>## Time difference of 3.727543 mins</code></pre>
 </div>
 <div id="prepare-for-spatiallibd" class="section level2" number="19.4">
 <h2><span class="header-section-number">19.4</span> Prepare for spatialLIBD</h2>
@@ -593,8 +593,8 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <pre><code>## adding rname &#39;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz&#39;</code></pre>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="spatiallibd-workflow.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
 <span id="cb250-2"><a href="spatiallibd-workflow.html#cb250-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
-<pre><code>##                                                                            BFC1 
-## &quot;/github/home/.cache/R/BiocFileCache/6f74d59469b_gencode.v32.annotation.gtf.gz&quot;</code></pre>
+<pre><code>##                                                                             BFC1 
+## &quot;/github/home/.cache/R/BiocFileCache/5a2843d2ea5e_gencode.v32.annotation.gtf.gz&quot;</code></pre>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="spatiallibd-workflow.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
 <span id="cb252-2"><a href="spatiallibd-workflow.html#cb252-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
 <span id="cb252-3"><a href="spatiallibd-workflow.html#cb252-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -753,8 +753,8 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb266-3"><a href="spatiallibd-workflow.html#cb266-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb266-4"><a href="spatiallibd-workflow.html#cb266-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb266-5"><a href="spatiallibd-workflow.html#cb266-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
-<pre><code>## Time difference of 53.5786 secs</code></pre>
-<p>Creating our final <code>spe</code> object took 3.47552702029546 to run. So you might want to save this object for later use.</p>
+<pre><code>## Time difference of 1.002582 mins</code></pre>
+<p>Creating our final <code>spe</code> object took 4.73012412786484 to run. So you might want to save this object for later use.</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="spatiallibd-workflow.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 <p>You can then re-load it with the following code on a later session.</p>
 <div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="spatiallibd-workflow.html#cb269-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
@@ -872,7 +872,7 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb274-24"><a href="spatiallibd-workflow.html#cb274-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">default_cluster =</span> <span class="st">&quot;label&quot;</span></span>
 <span id="cb274-25"><a href="spatiallibd-workflow.html#cb274-25" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb274-26"><a href="spatiallibd-workflow.html#cb274-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="images/spatialLIBD_demo_result.png" alt="Screenshot of the 'clusters (interactive)' section of the 'spot-level data' panel created with with the data from this workflow." width="100%" />
 <p class="caption">
 Figure 5.3: Screenshot of the ‘clusters (interactive)’ section of the ‘spot-level data’ panel created with with the data from this workflow.
@@ -923,7 +923,7 @@ Figure 5.3: Screenshot of the ‘clusters (interactive)’ section of the ‘spo
 ##      docs_path = &quot;www&quot;
 ##  )</code></pre>
 <p>You can then open R in a new session in the same directory where you saved the <code>app.R</code> file, run the code and click on the “publish” blue button at the top right of your RStudio window. You’ll then need to upload the <code>app.R</code> file, your <code>spe_workflow_Visium_spatialLIBD.rds</code> file and the files under the <code>www</code> directory which enable you to customize your <code>spatialLIDB</code> website.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="images/spatialLIBD_publish.png" alt="Screenshot of the RStudio window for publishing your spatialLIBD-powered website to shinyapps.io" width="80%" />
 <p class="caption">
 Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-powered website to shinyapps.io
@@ -1018,9 +1018,10 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  bitops                   1.0-7    2021-04-24 [1] RSPM (R 4.1.0)
 ##  blob                     1.2.2    2021-07-23 [1] RSPM (R 4.1.0)
 ##  bluster                  1.3.2    2021-08-30 [1] Bioconductor  
-##  bookdown                 0.22     2021-04-22 [1] RSPM (R 4.1.0)
-##  bslib                    0.2.5.1  2021-05-18 [1] RSPM (R 4.1.0)
-##  cachem                   1.0.5    2021-05-15 [2] RSPM (R 4.1.0)
+##  bookdown                 0.24     2021-09-02 [1] CRAN (R 4.1.0)
+##  bslib                    0.3.0    2021-09-02 [1] CRAN (R 4.1.0)
+##  cachem                   1.0.6    2021-08-19 [1] CRAN (R 4.1.0)
+##  callr                    3.7.0    2021-04-20 [2] RSPM (R 4.1.0)
 ##  cli                      3.0.1    2021-07-17 [2] RSPM (R 4.1.0)
 ##  cluster                  2.1.2    2021-04-17 [3] CRAN (R 4.1.0)
 ##  codetools                0.2-18   2020-11-04 [3] CRAN (R 4.1.0)
@@ -1036,13 +1037,13 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  DelayedMatrixStats       1.15.4   2021-08-26 [1] Bioconductor  
 ##  desc                     1.3.0    2021-03-05 [2] RSPM (R 4.1.0)
 ##  digest                   0.6.27   2020-10-24 [2] RSPM (R 4.1.0)
-##  dockerfiler              0.1.3    2019-03-19 [1] RSPM (R 4.1.0)
+##  dockerfiler              0.1.4    2021-09-03 [1] CRAN (R 4.1.0)
 ##  doParallel               1.0.16   2020-10-16 [1] RSPM (R 4.1.0)
 ##  dotCall64                1.0-1    2021-02-11 [1] RSPM (R 4.1.0)
 ##  dplyr                    1.0.7    2021-06-18 [2] RSPM (R 4.1.0)
 ##  dqrng                    0.3.0    2021-05-01 [1] RSPM (R 4.1.0)
 ##  DropletUtils             1.13.2   2021-08-12 [1] Bioconductor  
-##  DT                       0.18     2021-04-14 [1] RSPM (R 4.1.0)
+##  DT                       0.19     2021-09-02 [1] CRAN (R 4.1.0)
 ##  edgeR                    3.35.1   2021-09-01 [1] Bioconductor  
 ##  ellipsis                 0.3.2    2021-04-29 [2] RSPM (R 4.1.0)
 ##  evaluate                 0.14     2019-05-28 [2] RSPM (R 4.1.0)
@@ -1069,9 +1070,9 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  gtable                   0.3.0    2019-03-25 [1] RSPM (R 4.1.0)
 ##  HDF5Array                1.21.0   2021-05-19 [1] Bioconductor  
 ##  highr                    0.9      2021-04-16 [2] RSPM (R 4.1.0)
-##  htmltools                0.5.1.1  2021-01-22 [1] RSPM (R 4.1.0)
+##  htmltools                0.5.2    2021-08-25 [1] CRAN (R 4.1.0)
 ##  htmlwidgets              1.5.3    2020-12-10 [1] RSPM (R 4.1.0)
-##  httpuv                   1.6.1    2021-05-07 [1] RSPM (R 4.1.0)
+##  httpuv                   1.6.2    2021-08-18 [1] CRAN (R 4.1.0)
 ##  httr                     1.4.2    2020-07-20 [2] RSPM (R 4.1.0)
 ##  igraph                 * 1.2.6    2020-10-06 [1] RSPM (R 4.1.0)
 ##  interactiveDisplayBase   1.31.2   2021-07-30 [1] Bioconductor  
@@ -1083,39 +1084,43 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  KEGGREST                 1.33.0   2021-05-19 [1] Bioconductor  
 ##  knitr                    1.33     2021-04-24 [2] RSPM (R 4.1.0)
 ##  labeling                 0.4.2    2020-10-20 [1] RSPM (R 4.1.0)
-##  later                    1.2.0    2021-04-23 [1] RSPM (R 4.1.0)
+##  later                    1.3.0    2021-08-18 [1] CRAN (R 4.1.0)
 ##  lattice                  0.20-44  2021-05-02 [3] CRAN (R 4.1.0)
 ##  lazyeval                 0.2.2    2019-03-15 [1] RSPM (R 4.1.0)
 ##  lifecycle                1.0.0    2021-02-15 [2] RSPM (R 4.1.0)
 ##  limma                    3.49.4   2021-08-08 [1] Bioconductor  
 ##  lobstr                 * 1.1.1    2019-07-02 [1] RSPM (R 4.1.0)
 ##  locfit                   1.5-9.4  2020-03-25 [1] RSPM (R 4.1.0)
-##  magick                   2.7.2    2021-05-02 [1] RSPM (R 4.1.0)
+##  magick                   2.7.3    2021-08-18 [1] CRAN (R 4.1.0)
 ##  magrittr                 2.0.1    2020-11-17 [2] RSPM (R 4.1.0)
 ##  maps                     3.3.0    2018-04-03 [1] RSPM (R 4.1.0)
 ##  Matrix                   1.3-4    2021-06-01 [2] RSPM (R 4.1.0)
-##  MatrixGenerics         * 1.5.3    2021-08-05 [1] Bioconductor  
-##  matrixStats            * 0.60.0   2021-07-26 [1] RSPM (R 4.1.0)
+##  MatrixGenerics         * 1.5.4    2021-08-26 [1] Bioconductor  
+##  matrixStats            * 0.60.1   2021-08-23 [1] CRAN (R 4.1.0)
 ##  memoise                  2.0.0    2021-01-26 [2] RSPM (R 4.1.0)
 ##  metapod                  1.1.0    2021-05-19 [1] Bioconductor  
 ##  mime                     0.11     2021-06-23 [2] RSPM (R 4.1.0)
 ##  munsell                  0.5.0    2018-06-12 [1] RSPM (R 4.1.0)
 ##  pillar                   1.6.2    2021-07-29 [2] RSPM (R 4.1.0)
+##  pkgbuild                 1.2.0    2020-12-15 [2] RSPM (R 4.1.0)
 ##  pkgconfig                2.0.3    2019-09-22 [2] RSPM (R 4.1.0)
 ##  pkgload                  1.2.1    2021-04-06 [2] RSPM (R 4.1.0)
 ##  plotly                   4.9.4.1  2021-06-18 [1] RSPM (R 4.1.0)
 ##  png                      0.1-7    2013-12-03 [1] RSPM (R 4.1.0)
 ##  Polychrome               1.3.1    2021-07-16 [1] RSPM (R 4.1.0)
+##  prettyunits              1.1.1    2020-01-24 [2] RSPM (R 4.1.0)
+##  processx                 3.5.2    2021-04-30 [2] RSPM (R 4.1.0)
 ##  promises                 1.2.0.1  2021-02-11 [1] RSPM (R 4.1.0)
+##  ps                       1.6.0    2021-02-28 [2] RSPM (R 4.1.0)
 ##  purrr                    0.3.4    2020-04-17 [2] RSPM (R 4.1.0)
 ##  R.methodsS3              1.8.1    2020-08-26 [1] RSPM (R 4.1.0)
 ##  R.oo                     1.24.0   2020-08-26 [1] RSPM (R 4.1.0)
 ##  R.utils                  2.10.1   2020-08-26 [1] RSPM (R 4.1.0)
-##  R6                       2.5.0    2020-10-28 [2] RSPM (R 4.1.0)
+##  R6                       2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
 ##  rappdirs                 0.3.3    2021-01-31 [2] RSPM (R 4.1.0)
 ##  RColorBrewer             1.1-2    2014-12-07 [1] RSPM (R 4.1.0)
 ##  Rcpp                     1.0.7    2021-07-07 [2] RSPM (R 4.1.0)
-##  RCurl                    1.98-1.3 2021-03-16 [1] RSPM (R 4.1.0)
+##  RCurl                    1.98-1.4 2021-08-17 [1] CRAN (R 4.1.0)
 ##  remotes                  2.4.0    2021-06-02 [1] RSPM (R 4.1.0)
 ##  restfulr                 0.0.13   2017-08-06 [1] RSPM (R 4.1.0)
 ##  rhdf5                    2.37.0   2021-05-19 [1] Bioconductor  
@@ -1128,7 +1133,7 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  rprojroot                2.0.2    2020-11-15 [2] RSPM (R 4.1.0)
 ##  Rsamtools                2.9.1    2021-06-17 [1] Bioconductor  
 ##  RSpectra                 0.16-0   2019-12-01 [1] RSPM (R 4.1.0)
-##  RSQLite                  2.2.7    2021-04-22 [1] RSPM (R 4.1.0)
+##  RSQLite                  2.2.8    2021-08-21 [1] CRAN (R 4.1.0)
 ##  rstudioapi               0.13     2020-11-12 [2] RSPM (R 4.1.0)
 ##  rsvd                     1.0.5    2021-04-16 [1] RSPM (R 4.1.0)
 ##  rtracklayer            * 1.53.1   2021-08-13 [1] Bioconductor  
@@ -1150,11 +1155,11 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  spatialLIBD            * 1.5.3    2021-08-07 [1] Bioconductor  
 ##  statmod                  1.4.36   2021-05-10 [1] RSPM (R 4.1.0)
 ##  STexampleData          * 1.1.13   2021-08-05 [1] Bioconductor  
-##  stringi                  1.7.3    2021-07-16 [2] RSPM (R 4.1.0)
+##  stringi                  1.7.4    2021-08-25 [1] CRAN (R 4.1.0)
 ##  stringr                  1.4.0    2019-02-10 [2] RSPM (R 4.1.0)
 ##  SummarizedExperiment   * 1.23.4   2021-08-25 [1] Bioconductor  
 ##  testthat                 3.0.4    2021-07-01 [2] RSPM (R 4.1.0)
-##  tibble                   3.1.3    2021-07-23 [2] RSPM (R 4.1.0)
+##  tibble                   3.1.4    2021-08-25 [1] CRAN (R 4.1.0)
 ##  tidyr                    1.1.3    2021-03-03 [2] RSPM (R 4.1.0)
 ##  tidyselect               1.1.1    2021-04-30 [2] RSPM (R 4.1.0)
 ##  usethis                  2.0.1    2021-02-10 [2] RSPM (R 4.1.0)
@@ -1166,7 +1171,7 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  viridisLite              0.4.0    2021-04-13 [1] RSPM (R 4.1.0)
 ##  withr                    2.4.2    2021-04-18 [2] RSPM (R 4.1.0)
 ##  xfun                     0.25     2021-08-06 [2] RSPM (R 4.1.0)
-##  XML                      3.99-0.6 2021-03-16 [1] RSPM (R 4.1.0)
+##  XML                      3.99-0.7 2021-08-17 [1] CRAN (R 4.1.0)
 ##  xml2                     1.3.2    2020-04-23 [2] RSPM (R 4.1.0)
 ##  xtable                   1.8-4    2019-04-21 [1] RSPM (R 4.1.0)
 ##  XVector                  0.33.0   2021-05-19 [1] Bioconductor  
@@ -1206,7 +1211,6 @@ Pardo, Brenda, Abby Spangler, Lukas M. Weber, Stephanie C. Hicks, Andrew E. Jaff
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1246,6 +1250,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },

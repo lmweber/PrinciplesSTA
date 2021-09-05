@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Preprocessing steps | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online textbook on ‘Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Preprocessing steps | Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
@@ -33,7 +33,8 @@
 <link rel="prev" href="spatialexperiment.html"/>
 <link rel="next" href="image-segmentation-visium.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -359,7 +359,7 @@ div.csl-indent {
 <div id="preprocessing-steps" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Preprocessing steps</h1>
 <p>In this part, we describe several preprocessing steps required to prepare raw data files to load the data into R. These steps require the use of tools outside R and Bioconductor. In the examples, we primarily focus on data from the 10x Genomics Visium platform.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
 <img src="images/visium_spot.png" alt="An overview of the Visium technology by 10x Genomics for generating spatially resolved transcriptomics data. Each Visium slide has four tissue capture areas. Each of these capture areas has around 5000 barcoded spots. The tissue capture areas are delineated by a fiducial frame that is useful for aligning the images and determining the location of the spots in order to map the gene expression data with the imaging data. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/)." width="100%" />
 <p class="caption">
 Figure 2.1: An overview of the Visium technology by 10x Genomics for generating spatially resolved transcriptomics data. Each Visium slide has four tissue capture areas. Each of these capture areas has around 5000 barcoded spots. The tissue capture areas are delineated by a fiducial frame that is useful for aligning the images and determining the location of the spots in order to map the gene expression data with the imaging data. Source: <a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a>.
@@ -377,7 +377,6 @@ Figure 2.1: An overview of the Visium technology by 10x Genomics for generating 
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -417,6 +416,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },
