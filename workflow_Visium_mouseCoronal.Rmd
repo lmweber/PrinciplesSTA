@@ -12,7 +12,7 @@ Due to the small size of the mouse brain and the dimensions of the Visium slide 
 
 ## Load data
 
-The dataset is available in `SpatialExperiment` format from the [STexampleData](https://github.com/lmweber/STexampleData) package.
+The dataset is available in `SpatialExperiment` format from the [STexampleData](https://bioconductor.org/packages/STexampleData) package.
 
 ```{r load_data, message=FALSE}
 library(SpatialExperiment)
