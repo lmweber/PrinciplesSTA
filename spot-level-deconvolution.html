@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-09-03" />
+<meta name="date" content="2021-09-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -375,7 +375,7 @@ div.csl-indent {
 </div>
 <div id="number-of-cells-per-spot-1" class="section level2" number="15.3">
 <h2><span class="header-section-number">15.3</span> Number of cells per spot</h2>
-<p>The following figure provides an overview of the number of cells per spot in this dataset, which is known in this dataset and stored in a column in <code>colData</code> in the <code>SpatialExperiment</code> object. We use a visualization function from <a href="https://github.com/lmweber/ggspavis">ggspavis</a> to generate the plot.</p>
+<p>The following figure provides an overview of the number of cells per spot in this dataset, which is known in this dataset and stored in a column in <code>colData</code> in the <code>SpatialExperiment</code> object. We use a visualization function from <a href="https://bioconductor.org/packages/ggspavis">ggspavis</a> to generate the plot.</p>
 <p>We see that spots in this dataset contain around 0-10 cells, with a mode of 3. Therefore, it is plausible that some spots contain multiple cell types, and spot-level deconvolution could improve downstream analyses by deconvolving these cell types.</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="spot-level-deconvolution.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
 <span id="cb127-2"><a href="spot-level-deconvolution.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
