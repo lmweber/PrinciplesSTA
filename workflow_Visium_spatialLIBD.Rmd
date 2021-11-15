@@ -29,7 +29,7 @@ Visualizing genes or clusters across multiple tissue sections can be quite usefu
 knitr::include_graphics("images/spatialLIBD_gene_grid.png")
 ```
 
-You can try out a `spatialLIBD`-powered website yourself by opening [it on your browser](https://spatial.libd.org/spatialLIBD) ^[Check https://github.com/LieberInstitute/spatialLIBD#shiny-website-mirrors in case you need to use a mirror. `shiny`-powered websites work best on browsers such as Google Chrome and Mozilla Firefox, among others.].
+You can try out a `spatialLIBD`-powered website yourself by opening [it on your browser](http://spatial.libd.org/spatialLIBD) ^[Check https://github.com/LieberInstitute/spatialLIBD#shiny-website-mirrors in case you need to use a mirror. `shiny`-powered websites work best on browsers such as Google Chrome and Mozilla Firefox, among others.].
 
 ### Want to learn more about spatialLIBD?
 
@@ -433,7 +433,7 @@ If you follow this workflow, you'll end up with a website [just like this one](h
 * _Advanced_ `Max Worker Processes`: 1
 * _Advanced_ `Max Connections`: 15
 
-The `Max Worker Processes` determines how many R sessions are open per instance. Then `Max Connections` specifies the number of connections to each R session. The `Instance Size` determines the memory available. In this case, 8000 / 300 is approximately 27, but we decided to be conservative and set the total number of users per instance to be 15. This is why it can be important to reduce the size of your `spe` object before sharing the website. Alternatively, you can rent an AWS Instance and deploy your app there, which is how https://spatial.libd.org/spatialLIBD is hosted along with these [error configuration files](https://github.com/LieberInstitute/spatialLIBD/tree/master/dev/shiny-server-files).
+The `Max Worker Processes` determines how many R sessions are open per instance. Then `Max Connections` specifies the number of connections to each R session. The `Instance Size` determines the memory available. In this case, 8000 / 300 is approximately 27, but we decided to be conservative and set the total number of users per instance to be 15. This is why it can be important to reduce the size of your `spe` object before sharing the website. Alternatively, you can rent an AWS Instance and deploy your app there, which is how http://spatial.libd.org/spatialLIBD is hosted along with these [error configuration files](https://github.com/LieberInstitute/spatialLIBD/tree/master/dev/shiny-server-files).
 
 ## Wrapping up
 
