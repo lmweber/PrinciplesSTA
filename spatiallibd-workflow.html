@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-09-05" />
+<meta name="date" content="2021-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   <link rel="shortcut icon" href="icon_32.png" type="image/x-icon" />
 <link rel="prev" href="mouse-coronal-workflow.html"/>
 <link rel="next" href="methods-to-identify-svgs.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -391,7 +391,7 @@ Figure 5.1: Screenshot of the ‘clusters (interactive)’ section of the ‘spo
 Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-level data’ panel created with the full spatialLIBD dataset. The website was created with <code>spatialLIBD::run_app(spatialLIBD::fetch_data('spe'))</code> version 1.4.0, selecting the <em>PCP4</em> gene, selecting the <em>paper</em> gene color scale, changing the number of rows and columns in the grid 2, selecting two pairs of spatially-adjacent replicate samples (151507, 151508, 151673, and 151674), and clicking on the <em>upgrade grid plot</em> button. Note that the default <em>viridis</em> gene color scale is color-blind friendly.
 </p>
 </div>
-<p>You can try out a <code>spatialLIBD</code>-powered website yourself by opening <a href="https://spatial.libd.org/spatialLIBD">it on your browser</a>.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>You can try out a <code>spatialLIBD</code>-powered website yourself by opening <a href="http://spatial.libd.org/spatialLIBD">it on your browser</a>.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 </div>
 <div id="want-to-learn-more-about-spatiallibd" class="section level3" number="19.2.2">
 <h3><span class="header-section-number">19.2.2</span> Want to learn more about spatialLIBD?</h3>
@@ -566,7 +566,7 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb245-94"><a href="spatiallibd-workflow.html#cb245-94" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb245-95"><a href="spatiallibd-workflow.html#cb245-95" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb245-96"><a href="spatiallibd-workflow.html#cb245-96" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
-<pre><code>## Time difference of 3.727543 mins</code></pre>
+<pre><code>## Time difference of 2.964201 mins</code></pre>
 </div>
 <div id="prepare-for-spatiallibd" class="section level2" number="19.4">
 <h2><span class="header-section-number">19.4</span> Prepare for spatialLIBD</h2>
@@ -594,7 +594,7 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="spatiallibd-workflow.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
 <span id="cb250-2"><a href="spatiallibd-workflow.html#cb250-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
 <pre><code>##                                                                             BFC1 
-## &quot;/github/home/.cache/R/BiocFileCache/5a2843d2ea5e_gencode.v32.annotation.gtf.gz&quot;</code></pre>
+## &quot;/github/home/.cache/R/BiocFileCache/710143cdc89f_gencode.v32.annotation.gtf.gz&quot;</code></pre>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="spatiallibd-workflow.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
 <span id="cb252-2"><a href="spatiallibd-workflow.html#cb252-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
 <span id="cb252-3"><a href="spatiallibd-workflow.html#cb252-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -753,8 +753,8 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb266-3"><a href="spatiallibd-workflow.html#cb266-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb266-4"><a href="spatiallibd-workflow.html#cb266-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb266-5"><a href="spatiallibd-workflow.html#cb266-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
-<pre><code>## Time difference of 1.002582 mins</code></pre>
-<p>Creating our final <code>spe</code> object took 4.73012412786484 to run. So you might want to save this object for later use.</p>
+<pre><code>## Time difference of 56.52898 secs</code></pre>
+<p>Creating our final <code>spe</code> object took 3.90635059674581 to run. So you might want to save this object for later use.</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="spatiallibd-workflow.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 <p>You can then re-load it with the following code on a later session.</p>
 <div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="spatiallibd-workflow.html#cb269-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
@@ -962,7 +962,7 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 <li><em>Advanced</em> <code>Max Worker Processes</code>: 1</li>
 <li><em>Advanced</em> <code>Max Connections</code>: 15</li>
 </ul>
-<p>The <code>Max Worker Processes</code> determines how many R sessions are open per instance. Then <code>Max Connections</code> specifies the number of connections to each R session. The <code>Instance Size</code> determines the memory available. In this case, 8000 / 300 is approximately 27, but we decided to be conservative and set the total number of users per instance to be 15. This is why it can be important to reduce the size of your <code>spe</code> object before sharing the website. Alternatively, you can rent an AWS Instance and deploy your app there, which is how <a href="https://spatial.libd.org/spatialLIBD" class="uri">https://spatial.libd.org/spatialLIBD</a> is hosted along with these <a href="https://github.com/LieberInstitute/spatialLIBD/tree/master/dev/shiny-server-files">error configuration files</a>.</p>
+<p>The <code>Max Worker Processes</code> determines how many R sessions are open per instance. Then <code>Max Connections</code> specifies the number of connections to each R session. The <code>Instance Size</code> determines the memory available. In this case, 8000 / 300 is approximately 27, but we decided to be conservative and set the total number of users per instance to be 15. This is why it can be important to reduce the size of your <code>spe</code> object before sharing the website. Alternatively, you can rent an AWS Instance and deploy your app there, which is how <a href="http://spatial.libd.org/spatialLIBD" class="uri">http://spatial.libd.org/spatialLIBD</a> is hosted along with these <a href="https://github.com/LieberInstitute/spatialLIBD/tree/master/dev/shiny-server-files">error configuration files</a>.</p>
 </div>
 <div id="wrapping-up-3" class="section level2" number="19.7">
 <h2><span class="header-section-number">19.7</span> Wrapping up</h2>
@@ -981,131 +981,134 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 <p>Here’s the R session information for this workflow.</p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="spatiallibd-workflow.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width =</span> <span class="dv">120</span>)</span>
 <span id="cb279-2"><a href="spatiallibd-workflow.html#cb279-2" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
-<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
-##  setting  value                       
-##  version  R version 4.1.0 (2021-05-18)
-##  os       Ubuntu 20.04.3 LTS          
-##  system   x86_64, linux-gnu           
-##  ui       X11                         
-##  language (EN)                        
-##  collate  en_US.UTF-8                 
-##  ctype    en_US.UTF-8                 
-##  tz       UTC                         
-##  date     2021-09-05                  
+<pre><code>## ─ Session info  ──────────────────────────────────────────────────────────────────────────────────────────────────────
+##  hash: woman farmer: medium-dark skin tone, five o’clock, cat
+## 
+##  setting  value
+##  version  R version 4.1.2 (2021-11-01)
+##  os       Ubuntu 20.04.3 LTS
+##  system   x86_64, linux-gnu
+##  ui       X11
+##  language (EN)
+##  collate  en_US.UTF-8
+##  ctype    en_US.UTF-8
+##  tz       UTC
+##  date     2021-11-15
+##  pandoc   2.14.0.3 @ /usr/local/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-##  package                * version  date       lib source        
-##  AnnotationDbi            1.55.1   2021-06-07 [1] Bioconductor  
-##  AnnotationHub          * 3.1.5    2021-08-12 [1] Bioconductor  
+##  package                * version  date (UTC) lib source
+##  AnnotationDbi            1.56.2   2021-11-09 [1] Bioconductor
+##  AnnotationHub          * 3.2.0    2021-10-26 [1] Bioconductor
 ##  assertthat               0.2.1    2019-03-21 [1] RSPM (R 4.1.0)
 ##  attempt                  0.3.1    2020-05-03 [1] RSPM (R 4.1.0)
-##  beachmat                 2.9.1    2021-08-11 [1] Bioconductor  
+##  beachmat                 2.10.0   2021-10-26 [1] Bioconductor
 ##  beeswarm                 0.4.0    2021-06-01 [1] RSPM (R 4.1.0)
 ##  benchmarkme              1.0.7    2021-03-21 [1] RSPM (R 4.1.0)
 ##  benchmarkmeData          1.0.4    2020-04-23 [1] RSPM (R 4.1.0)
-##  Biobase                * 2.53.0   2021-05-19 [1] Bioconductor  
-##  BiocFileCache          * 2.1.1    2021-06-23 [1] Bioconductor  
-##  BiocGenerics           * 0.39.2   2021-08-18 [1] Bioconductor  
-##  BiocIO                   1.3.0    2021-05-19 [1] Bioconductor  
-##  BiocManager              1.30.16  2021-06-15 [2] CRAN (R 4.1.0)
-##  BiocNeighbors            1.11.0   2021-05-19 [1] Bioconductor  
-##  BiocParallel             1.27.4   2021-08-19 [1] Bioconductor  
-##  BiocSingular             1.9.1    2021-06-08 [1] Bioconductor  
-##  BiocVersion              3.14.0   2021-05-19 [2] Bioconductor  
-##  Biostrings               2.61.2   2021-08-04 [1] Bioconductor  
+##  Biobase                * 2.54.0   2021-10-26 [1] Bioconductor
+##  BiocFileCache          * 2.2.0    2021-10-26 [1] Bioconductor
+##  BiocGenerics           * 0.40.0   2021-10-26 [1] Bioconductor
+##  BiocIO                   1.4.0    2021-10-26 [1] Bioconductor
+##  BiocManager              1.30.16  2021-06-15 [2] CRAN (R 4.1.2)
+##  BiocNeighbors            1.12.0   2021-10-26 [1] Bioconductor
+##  BiocParallel             1.28.0   2021-10-26 [1] Bioconductor
+##  BiocSingular             1.10.0   2021-10-26 [1] Bioconductor
+##  BiocVersion              3.14.0   2021-05-19 [2] Bioconductor
+##  Biostrings               2.62.0   2021-10-26 [1] Bioconductor
 ##  bit                      4.0.4    2020-08-04 [1] RSPM (R 4.1.0)
 ##  bit64                    4.0.5    2020-08-30 [1] RSPM (R 4.1.0)
 ##  bitops                   1.0-7    2021-04-24 [1] RSPM (R 4.1.0)
 ##  blob                     1.2.2    2021-07-23 [1] RSPM (R 4.1.0)
-##  bluster                  1.3.2    2021-08-30 [1] Bioconductor  
-##  bookdown                 0.24     2021-09-02 [1] CRAN (R 4.1.0)
-##  bslib                    0.3.0    2021-09-02 [1] CRAN (R 4.1.0)
-##  cachem                   1.0.6    2021-08-19 [1] CRAN (R 4.1.0)
+##  bluster                  1.4.0    2021-10-26 [1] Bioconductor
+##  bookdown                 0.24     2021-09-02 [1] RSPM (R 4.1.0)
+##  bslib                    0.3.1    2021-10-06 [1] RSPM (R 4.1.0)
+##  cachem                   1.0.6    2021-08-19 [2] RSPM (R 4.1.0)
 ##  callr                    3.7.0    2021-04-20 [2] RSPM (R 4.1.0)
-##  cli                      3.0.1    2021-07-17 [2] RSPM (R 4.1.0)
-##  cluster                  2.1.2    2021-04-17 [3] CRAN (R 4.1.0)
-##  codetools                0.2-18   2020-11-04 [3] CRAN (R 4.1.0)
+##  cli                      3.1.0    2021-10-27 [2] RSPM (R 4.1.0)
+##  cluster                  2.1.2    2021-04-17 [3] CRAN (R 4.1.2)
+##  codetools                0.2-18   2020-11-04 [3] CRAN (R 4.1.2)
 ##  colorspace               2.0-2    2021-06-24 [1] RSPM (R 4.1.0)
 ##  config                   0.3.1    2020-12-17 [1] RSPM (R 4.1.0)
 ##  cowplot                  1.1.1    2020-12-30 [1] RSPM (R 4.1.0)
-##  crayon                   1.4.1    2021-02-08 [2] RSPM (R 4.1.0)
+##  crayon                   1.4.2    2021-10-29 [2] RSPM (R 4.1.0)
 ##  curl                     4.3.2    2021-06-23 [2] RSPM (R 4.1.0)
-##  data.table               1.14.0   2021-02-21 [1] RSPM (R 4.1.0)
+##  data.table               1.14.2   2021-09-27 [1] RSPM (R 4.1.0)
 ##  DBI                      1.1.1    2021-01-15 [1] RSPM (R 4.1.0)
 ##  dbplyr                 * 2.1.1    2021-04-06 [1] RSPM (R 4.1.0)
-##  DelayedArray             0.19.2   2021-09-01 [1] Bioconductor  
-##  DelayedMatrixStats       1.15.4   2021-08-26 [1] Bioconductor  
-##  desc                     1.3.0    2021-03-05 [2] RSPM (R 4.1.0)
-##  digest                   0.6.27   2020-10-24 [2] RSPM (R 4.1.0)
-##  dockerfiler              0.1.4    2021-09-03 [1] CRAN (R 4.1.0)
+##  DelayedArray             0.20.0   2021-10-26 [1] Bioconductor
+##  DelayedMatrixStats       1.16.0   2021-10-26 [1] Bioconductor
+##  desc                     1.4.0    2021-09-28 [2] RSPM (R 4.1.0)
+##  digest                   0.6.28   2021-09-23 [2] RSPM (R 4.1.0)
+##  dockerfiler              0.1.4    2021-09-03 [1] RSPM (R 4.1.0)
 ##  doParallel               1.0.16   2020-10-16 [1] RSPM (R 4.1.0)
 ##  dotCall64                1.0-1    2021-02-11 [1] RSPM (R 4.1.0)
 ##  dplyr                    1.0.7    2021-06-18 [2] RSPM (R 4.1.0)
 ##  dqrng                    0.3.0    2021-05-01 [1] RSPM (R 4.1.0)
-##  DropletUtils             1.13.2   2021-08-12 [1] Bioconductor  
-##  DT                       0.19     2021-09-02 [1] CRAN (R 4.1.0)
-##  edgeR                    3.35.1   2021-09-01 [1] Bioconductor  
+##  DropletUtils             1.14.1   2021-11-08 [1] Bioconductor
+##  DT                       0.20     2021-11-15 [1] CRAN (R 4.1.2)
+##  edgeR                    3.36.0   2021-10-26 [1] Bioconductor
 ##  ellipsis                 0.3.2    2021-04-29 [2] RSPM (R 4.1.0)
 ##  evaluate                 0.14     2019-05-28 [2] RSPM (R 4.1.0)
-##  ExperimentHub          * 2.1.4    2021-07-27 [1] Bioconductor  
+##  ExperimentHub          * 2.2.0    2021-10-26 [1] Bioconductor
 ##  fansi                    0.5.0    2021-05-25 [2] RSPM (R 4.1.0)
 ##  farver                   2.1.0    2021-02-28 [1] RSPM (R 4.1.0)
 ##  fastmap                  1.1.0    2021-01-25 [2] RSPM (R 4.1.0)
-##  fields                   12.5     2021-06-25 [1] RSPM (R 4.1.0)
+##  fields                   13.3     2021-10-30 [1] RSPM (R 4.1.0)
 ##  filelock                 1.0.2    2018-10-05 [1] RSPM (R 4.1.0)
 ##  FNN                      1.1.3    2019-02-15 [1] RSPM (R 4.1.0)
 ##  foreach                  1.5.1    2020-10-15 [1] RSPM (R 4.1.0)
 ##  fs                       1.5.0    2020-07-31 [2] RSPM (R 4.1.0)
-##  generics                 0.1.0    2020-10-31 [2] RSPM (R 4.1.0)
-##  GenomeInfoDb           * 1.29.5   2021-08-30 [1] Bioconductor  
-##  GenomeInfoDbData         1.2.6    2021-07-30 [1] Bioconductor  
-##  GenomicAlignments        1.29.0   2021-05-19 [1] Bioconductor  
-##  GenomicRanges          * 1.45.0   2021-05-19 [1] Bioconductor  
+##  generics                 0.1.1    2021-10-25 [2] RSPM (R 4.1.0)
+##  GenomeInfoDb           * 1.30.0   2021-10-26 [1] Bioconductor
+##  GenomeInfoDbData         1.2.7    2021-11-15 [1] Bioconductor
+##  GenomicAlignments        1.30.0   2021-10-26 [1] Bioconductor
+##  GenomicRanges          * 1.46.0   2021-10-26 [1] Bioconductor
 ##  ggbeeswarm               0.6.0    2017-08-07 [1] RSPM (R 4.1.0)
 ##  ggplot2                * 3.3.5    2021-06-25 [1] RSPM (R 4.1.0)
 ##  ggrepel                  0.9.1    2021-01-15 [1] RSPM (R 4.1.0)
-##  glue                     1.4.2    2020-08-27 [2] RSPM (R 4.1.0)
+##  glue                     1.5.0    2021-11-07 [2] RSPM (R 4.1.0)
 ##  golem                    0.3.1    2021-04-17 [1] RSPM (R 4.1.0)
 ##  gridExtra                2.3      2017-09-09 [1] RSPM (R 4.1.0)
 ##  gtable                   0.3.0    2019-03-25 [1] RSPM (R 4.1.0)
-##  HDF5Array                1.21.0   2021-05-19 [1] Bioconductor  
+##  HDF5Array                1.22.1   2021-11-14 [1] Bioconductor
 ##  highr                    0.9      2021-04-16 [2] RSPM (R 4.1.0)
-##  htmltools                0.5.2    2021-08-25 [1] CRAN (R 4.1.0)
-##  htmlwidgets              1.5.3    2020-12-10 [1] RSPM (R 4.1.0)
-##  httpuv                   1.6.2    2021-08-18 [1] CRAN (R 4.1.0)
+##  htmltools                0.5.2    2021-08-25 [1] RSPM (R 4.1.0)
+##  htmlwidgets              1.5.4    2021-09-08 [1] RSPM (R 4.1.0)
+##  httpuv                   1.6.3    2021-09-09 [1] RSPM (R 4.1.0)
 ##  httr                     1.4.2    2020-07-20 [2] RSPM (R 4.1.0)
-##  igraph                 * 1.2.6    2020-10-06 [1] RSPM (R 4.1.0)
-##  interactiveDisplayBase   1.31.2   2021-07-30 [1] Bioconductor  
-##  IRanges                * 2.27.2   2021-08-18 [1] Bioconductor  
+##  igraph                 * 1.2.8    2021-11-07 [1] RSPM (R 4.1.0)
+##  interactiveDisplayBase   1.32.0   2021-10-26 [1] Bioconductor
+##  IRanges                * 2.28.0   2021-10-26 [1] Bioconductor
 ##  irlba                    2.3.3    2019-02-05 [1] RSPM (R 4.1.0)
 ##  iterators                1.0.13   2020-10-15 [1] RSPM (R 4.1.0)
 ##  jquerylib                0.1.4    2021-04-26 [1] RSPM (R 4.1.0)
 ##  jsonlite                 1.7.2    2020-12-09 [2] RSPM (R 4.1.0)
-##  KEGGREST                 1.33.0   2021-05-19 [1] Bioconductor  
-##  knitr                    1.33     2021-04-24 [2] RSPM (R 4.1.0)
+##  KEGGREST                 1.34.0   2021-10-26 [1] Bioconductor
+##  knitr                    1.36     2021-09-29 [2] RSPM (R 4.1.0)
 ##  labeling                 0.4.2    2020-10-20 [1] RSPM (R 4.1.0)
-##  later                    1.3.0    2021-08-18 [1] CRAN (R 4.1.0)
-##  lattice                  0.20-44  2021-05-02 [3] CRAN (R 4.1.0)
+##  later                    1.3.0    2021-08-18 [1] RSPM (R 4.1.0)
+##  lattice                  0.20-45  2021-09-22 [3] CRAN (R 4.1.2)
 ##  lazyeval                 0.2.2    2019-03-15 [1] RSPM (R 4.1.0)
-##  lifecycle                1.0.0    2021-02-15 [2] RSPM (R 4.1.0)
-##  limma                    3.49.4   2021-08-08 [1] Bioconductor  
+##  lifecycle                1.0.1    2021-09-24 [2] RSPM (R 4.1.0)
+##  limma                    3.50.0   2021-10-26 [1] Bioconductor
 ##  lobstr                 * 1.1.1    2019-07-02 [1] RSPM (R 4.1.0)
 ##  locfit                   1.5-9.4  2020-03-25 [1] RSPM (R 4.1.0)
-##  magick                   2.7.3    2021-08-18 [1] CRAN (R 4.1.0)
+##  magick                   2.7.3    2021-08-18 [1] RSPM (R 4.1.0)
 ##  magrittr                 2.0.1    2020-11-17 [2] RSPM (R 4.1.0)
-##  maps                     3.3.0    2018-04-03 [1] RSPM (R 4.1.0)
-##  Matrix                   1.3-4    2021-06-01 [2] RSPM (R 4.1.0)
-##  MatrixGenerics         * 1.5.4    2021-08-26 [1] Bioconductor  
-##  matrixStats            * 0.60.1   2021-08-23 [1] CRAN (R 4.1.0)
+##  maps                     3.4.0    2021-09-25 [1] RSPM (R 4.1.0)
+##  Matrix                   1.3-4    2021-06-01 [3] CRAN (R 4.1.2)
+##  MatrixGenerics         * 1.6.0    2021-10-26 [1] Bioconductor
+##  matrixStats            * 0.61.0   2021-09-17 [1] RSPM (R 4.1.0)
 ##  memoise                  2.0.0    2021-01-26 [2] RSPM (R 4.1.0)
-##  metapod                  1.1.0    2021-05-19 [1] Bioconductor  
-##  mime                     0.11     2021-06-23 [2] RSPM (R 4.1.0)
+##  metapod                  1.2.0    2021-10-26 [1] Bioconductor
+##  mime                     0.12     2021-09-28 [2] RSPM (R 4.1.0)
 ##  munsell                  0.5.0    2018-06-12 [1] RSPM (R 4.1.0)
-##  pillar                   1.6.2    2021-07-29 [2] RSPM (R 4.1.0)
+##  pillar                   1.6.4    2021-10-18 [2] RSPM (R 4.1.0)
 ##  pkgbuild                 1.2.0    2020-12-15 [2] RSPM (R 4.1.0)
 ##  pkgconfig                2.0.3    2019-09-22 [2] RSPM (R 4.1.0)
-##  pkgload                  1.2.1    2021-04-06 [2] RSPM (R 4.1.0)
-##  plotly                   4.9.4.1  2021-06-18 [1] RSPM (R 4.1.0)
+##  pkgload                  1.2.3    2021-10-13 [2] RSPM (R 4.1.0)
+##  plotly                   4.10.0   2021-10-09 [1] RSPM (R 4.1.0)
 ##  png                      0.1-7    2013-12-03 [1] RSPM (R 4.1.0)
 ##  Polychrome               1.3.1    2021-07-16 [1] RSPM (R 4.1.0)
 ##  prettyunits              1.1.1    2020-01-24 [2] RSPM (R 4.1.0)
@@ -1115,72 +1118,74 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  purrr                    0.3.4    2020-04-17 [2] RSPM (R 4.1.0)
 ##  R.methodsS3              1.8.1    2020-08-26 [1] RSPM (R 4.1.0)
 ##  R.oo                     1.24.0   2020-08-26 [1] RSPM (R 4.1.0)
-##  R.utils                  2.10.1   2020-08-26 [1] RSPM (R 4.1.0)
-##  R6                       2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
+##  R.utils                  2.11.0   2021-09-26 [1] RSPM (R 4.1.0)
+##  R6                       2.5.1    2021-08-19 [2] RSPM (R 4.1.0)
 ##  rappdirs                 0.3.3    2021-01-31 [2] RSPM (R 4.1.0)
 ##  RColorBrewer             1.1-2    2014-12-07 [1] RSPM (R 4.1.0)
-##  Rcpp                     1.0.7    2021-07-07 [2] RSPM (R 4.1.0)
-##  RCurl                    1.98-1.4 2021-08-17 [1] CRAN (R 4.1.0)
-##  remotes                  2.4.0    2021-06-02 [1] RSPM (R 4.1.0)
+##  Rcpp                     1.0.7    2021-07-07 [1] RSPM (R 4.1.0)
+##  RCurl                    1.98-1.5 2021-09-17 [1] RSPM (R 4.1.0)
+##  remotes                  2.4.1    2021-09-29 [1] RSPM (R 4.1.0)
 ##  restfulr                 0.0.13   2017-08-06 [1] RSPM (R 4.1.0)
-##  rhdf5                    2.37.0   2021-05-19 [1] Bioconductor  
-##  rhdf5filters             1.5.0    2021-05-19 [1] Bioconductor  
-##  Rhdf5lib                 1.15.2   2021-07-01 [1] Bioconductor  
+##  rhdf5                    2.38.0   2021-10-26 [1] Bioconductor
+##  rhdf5filters             1.6.0    2021-10-26 [1] Bioconductor
+##  Rhdf5lib                 1.16.0   2021-10-26 [1] Bioconductor
 ##  rjson                    0.2.20   2018-06-08 [1] RSPM (R 4.1.0)
-##  rlang                    0.4.11   2021-04-30 [2] RSPM (R 4.1.0)
-##  rmarkdown                2.10     2021-08-06 [1] RSPM (R 4.1.0)
-##  roxygen2                 7.1.1    2020-06-27 [2] RSPM (R 4.1.0)
+##  rlang                    0.4.12   2021-10-18 [2] RSPM (R 4.1.0)
+##  rmarkdown                2.11     2021-09-14 [1] RSPM (R 4.1.0)
+##  roxygen2                 7.1.2    2021-09-08 [2] RSPM (R 4.1.0)
 ##  rprojroot                2.0.2    2020-11-15 [2] RSPM (R 4.1.0)
-##  Rsamtools                2.9.1    2021-06-17 [1] Bioconductor  
+##  Rsamtools                2.10.0   2021-10-26 [1] Bioconductor
 ##  RSpectra                 0.16-0   2019-12-01 [1] RSPM (R 4.1.0)
-##  RSQLite                  2.2.8    2021-08-21 [1] CRAN (R 4.1.0)
+##  RSQLite                  2.2.8    2021-08-21 [1] RSPM (R 4.1.0)
 ##  rstudioapi               0.13     2020-11-12 [2] RSPM (R 4.1.0)
 ##  rsvd                     1.0.5    2021-04-16 [1] RSPM (R 4.1.0)
-##  rtracklayer            * 1.53.1   2021-08-13 [1] Bioconductor  
-##  S4Vectors              * 0.31.3   2021-08-26 [1] Bioconductor  
+##  rtracklayer            * 1.54.0   2021-10-26 [1] Bioconductor
+##  S4Vectors              * 0.32.2   2021-11-07 [1] Bioconductor
 ##  sass                     0.4.0    2021-05-12 [1] RSPM (R 4.1.0)
-##  ScaledMatrix             1.1.0    2021-05-19 [1] Bioconductor  
+##  ScaledMatrix             1.2.0    2021-10-26 [1] Bioconductor
 ##  scales                   1.1.1    2020-05-11 [1] RSPM (R 4.1.0)
-##  scater                 * 1.21.3   2021-08-01 [1] Bioconductor  
+##  scater                 * 1.22.0   2021-10-26 [1] Bioconductor
 ##  scatterplot3d            0.3-41   2018-03-14 [1] RSPM (R 4.1.0)
-##  scran                  * 1.21.3   2021-08-03 [1] Bioconductor  
-##  scuttle                * 1.3.1    2021-08-05 [1] Bioconductor  
-##  sessioninfo              1.1.1    2018-11-05 [2] RSPM (R 4.1.0)
-##  shiny                    1.6.0    2021-01-25 [1] RSPM (R 4.1.0)
-##  shinyWidgets             0.6.0    2021-03-15 [1] RSPM (R 4.1.0)
-##  SingleCellExperiment   * 1.15.2   2021-08-22 [1] Bioconductor  
+##  scran                  * 1.22.1   2021-11-14 [1] Bioconductor
+##  scuttle                * 1.4.0    2021-10-26 [1] Bioconductor
+##  sessioninfo              1.2.1    2021-11-02 [2] RSPM (R 4.1.0)
+##  shiny                    1.7.1    2021-10-02 [1] RSPM (R 4.1.0)
+##  shinyWidgets             0.6.2    2021-09-17 [1] RSPM (R 4.1.0)
+##  SingleCellExperiment   * 1.16.0   2021-10-26 [1] Bioconductor
 ##  spam                     2.7-0    2021-06-25 [1] RSPM (R 4.1.0)
-##  sparseMatrixStats        1.5.3    2021-08-27 [1] Bioconductor  
-##  SpatialExperiment      * 1.3.4    2021-08-24 [1] Bioconductor  
-##  spatialLIBD            * 1.5.3    2021-08-07 [1] Bioconductor  
+##  sparseMatrixStats        1.6.0    2021-10-26 [1] Bioconductor
+##  SpatialExperiment      * 1.4.0    2021-10-26 [1] Bioconductor
+##  spatialLIBD            * 1.6.0    2021-10-30 [1] Bioconductor
 ##  statmod                  1.4.36   2021-05-10 [1] RSPM (R 4.1.0)
-##  STexampleData          * 1.1.13   2021-08-05 [1] Bioconductor  
-##  stringi                  1.7.4    2021-08-25 [1] CRAN (R 4.1.0)
+##  STexampleData          * 1.2.0    2021-10-30 [1] Bioconductor
+##  stringi                  1.7.5    2021-10-04 [2] RSPM (R 4.1.0)
 ##  stringr                  1.4.0    2019-02-10 [2] RSPM (R 4.1.0)
-##  SummarizedExperiment   * 1.23.4   2021-08-25 [1] Bioconductor  
-##  testthat                 3.0.4    2021-07-01 [2] RSPM (R 4.1.0)
-##  tibble                   3.1.4    2021-08-25 [1] CRAN (R 4.1.0)
-##  tidyr                    1.1.3    2021-03-03 [2] RSPM (R 4.1.0)
+##  SummarizedExperiment   * 1.24.0   2021-10-26 [1] Bioconductor
+##  testthat                 3.1.0    2021-10-04 [2] RSPM (R 4.1.0)
+##  tibble                   3.1.6    2021-11-07 [2] RSPM (R 4.1.0)
+##  tidyr                    1.1.4    2021-09-27 [2] RSPM (R 4.1.0)
 ##  tidyselect               1.1.1    2021-04-30 [2] RSPM (R 4.1.0)
-##  usethis                  2.0.1    2021-02-10 [2] RSPM (R 4.1.0)
+##  usethis                  2.1.3    2021-10-27 [2] RSPM (R 4.1.0)
 ##  utf8                     1.2.2    2021-07-24 [2] RSPM (R 4.1.0)
 ##  uwot                     0.1.10   2020-12-15 [1] RSPM (R 4.1.0)
 ##  vctrs                    0.3.8    2021-04-29 [2] RSPM (R 4.1.0)
 ##  vipor                    0.4.5    2017-03-22 [1] RSPM (R 4.1.0)
-##  viridis                  0.6.1    2021-05-11 [1] RSPM (R 4.1.0)
+##  viridis                  0.6.2    2021-10-13 [1] RSPM (R 4.1.0)
 ##  viridisLite              0.4.0    2021-04-13 [1] RSPM (R 4.1.0)
 ##  withr                    2.4.2    2021-04-18 [2] RSPM (R 4.1.0)
-##  xfun                     0.25     2021-08-06 [2] RSPM (R 4.1.0)
-##  XML                      3.99-0.7 2021-08-17 [1] CRAN (R 4.1.0)
+##  xfun                     0.28     2021-11-04 [2] RSPM (R 4.1.0)
+##  XML                      3.99-0.8 2021-09-17 [1] RSPM (R 4.1.0)
 ##  xml2                     1.3.2    2020-04-23 [2] RSPM (R 4.1.0)
 ##  xtable                   1.8-4    2019-04-21 [1] RSPM (R 4.1.0)
-##  XVector                  0.33.0   2021-05-19 [1] Bioconductor  
+##  XVector                  0.34.0   2021-10-26 [1] Bioconductor
 ##  yaml                     2.2.1    2020-02-01 [2] RSPM (R 4.1.0)
-##  zlibbioc                 1.39.0   2021-05-19 [1] Bioconductor  
+##  zlibbioc                 1.40.0   2021-10-26 [1] Bioconductor
 ## 
-## [1] /__w/_temp/Library
-## [2] /usr/local/lib/R/site-library
-## [3] /usr/local/lib/R/library</code></pre>
+##  [1] /__w/_temp/Library
+##  [2] /usr/local/lib/R/site-library
+##  [3] /usr/local/lib/R/library
+## 
+## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
 
 </div>
 </div>
