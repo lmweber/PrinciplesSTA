@@ -1,4 +1,5 @@
 library("spatialLIBD")
+library("markdown") # for shinyapps.io
 
 ## spatialLIBD uses golem
 options("golem.app.prod" = TRUE)
