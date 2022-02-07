@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-01-07" />
+<meta name="date" content="2022-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -365,89 +365,89 @@ div.csl-indent {
 <div id="previous-steps-2" class="section level2" number="12.2">
 <h2><span class="header-section-number">12.2</span> Previous steps</h2>
 <p><em>Code to run steps from the previous chapters to generate the <code>SpatialExperiment</code> object required for this chapter.</em></p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="dimensionality-reduction.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
-<span id="cb98-2"><a href="dimensionality-reduction.html#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-3"><a href="dimensionality-reduction.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
-<span id="cb98-4"><a href="dimensionality-reduction.html#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
-<span id="cb98-5"><a href="dimensionality-reduction.html#cb98-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
-<span id="cb98-6"><a href="dimensionality-reduction.html#cb98-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-7"><a href="dimensionality-reduction.html#cb98-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
-<span id="cb98-8"><a href="dimensionality-reduction.html#cb98-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-9"><a href="dimensionality-reduction.html#cb98-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb98-10"><a href="dimensionality-reduction.html#cb98-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
-<span id="cb98-11"><a href="dimensionality-reduction.html#cb98-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb98-12"><a href="dimensionality-reduction.html#cb98-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
-<span id="cb98-13"><a href="dimensionality-reduction.html#cb98-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
-<span id="cb98-14"><a href="dimensionality-reduction.html#cb98-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
-<span id="cb98-15"><a href="dimensionality-reduction.html#cb98-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
-<span id="cb98-16"><a href="dimensionality-reduction.html#cb98-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
-<span id="cb98-17"><a href="dimensionality-reduction.html#cb98-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
-<span id="cb98-18"><a href="dimensionality-reduction.html#cb98-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
-<span id="cb98-19"><a href="dimensionality-reduction.html#cb98-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
-<span id="cb98-20"><a href="dimensionality-reduction.html#cb98-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
-<span id="cb98-21"><a href="dimensionality-reduction.html#cb98-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
-<span id="cb98-22"><a href="dimensionality-reduction.html#cb98-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
-<span id="cb98-23"><a href="dimensionality-reduction.html#cb98-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
-<span id="cb98-24"><a href="dimensionality-reduction.html#cb98-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
-<span id="cb98-25"><a href="dimensionality-reduction.html#cb98-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
-<span id="cb98-26"><a href="dimensionality-reduction.html#cb98-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-27"><a href="dimensionality-reduction.html#cb98-27" aria-hidden="true" tabindex="-1"></a><span class="co"># NORMALIZATION</span></span>
-<span id="cb98-28"><a href="dimensionality-reduction.html#cb98-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-29"><a href="dimensionality-reduction.html#cb98-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
-<span id="cb98-30"><a href="dimensionality-reduction.html#cb98-30" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
-<span id="cb98-31"><a href="dimensionality-reduction.html#cb98-31" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb98-32"><a href="dimensionality-reduction.html#cb98-32" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
-<span id="cb98-33"><a href="dimensionality-reduction.html#cb98-33" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors</span></span>
-<span id="cb98-34"><a href="dimensionality-reduction.html#cb98-34" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
-<span id="cb98-35"><a href="dimensionality-reduction.html#cb98-35" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts)</span></span>
-<span id="cb98-36"><a href="dimensionality-reduction.html#cb98-36" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
-<span id="cb98-37"><a href="dimensionality-reduction.html#cb98-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-38"><a href="dimensionality-reduction.html#cb98-38" aria-hidden="true" tabindex="-1"></a><span class="co"># FEATURE SELECTION</span></span>
-<span id="cb98-39"><a href="dimensionality-reduction.html#cb98-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-40"><a href="dimensionality-reduction.html#cb98-40" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
-<span id="cb98-41"><a href="dimensionality-reduction.html#cb98-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
-<span id="cb98-42"><a href="dimensionality-reduction.html#cb98-42" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
-<span id="cb98-43"><a href="dimensionality-reduction.html#cb98-43" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
-<span id="cb98-44"><a href="dimensionality-reduction.html#cb98-44" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
-<span id="cb98-45"><a href="dimensionality-reduction.html#cb98-45" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="dimensionality-reduction.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
+<span id="cb96-2"><a href="dimensionality-reduction.html#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-3"><a href="dimensionality-reduction.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb96-4"><a href="dimensionality-reduction.html#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
+<span id="cb96-5"><a href="dimensionality-reduction.html#cb96-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
+<span id="cb96-6"><a href="dimensionality-reduction.html#cb96-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-7"><a href="dimensionality-reduction.html#cb96-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
+<span id="cb96-8"><a href="dimensionality-reduction.html#cb96-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-9"><a href="dimensionality-reduction.html#cb96-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
+<span id="cb96-10"><a href="dimensionality-reduction.html#cb96-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
+<span id="cb96-11"><a href="dimensionality-reduction.html#cb96-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb96-12"><a href="dimensionality-reduction.html#cb96-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
+<span id="cb96-13"><a href="dimensionality-reduction.html#cb96-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
+<span id="cb96-14"><a href="dimensionality-reduction.html#cb96-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
+<span id="cb96-15"><a href="dimensionality-reduction.html#cb96-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
+<span id="cb96-16"><a href="dimensionality-reduction.html#cb96-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
+<span id="cb96-17"><a href="dimensionality-reduction.html#cb96-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
+<span id="cb96-18"><a href="dimensionality-reduction.html#cb96-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
+<span id="cb96-19"><a href="dimensionality-reduction.html#cb96-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
+<span id="cb96-20"><a href="dimensionality-reduction.html#cb96-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
+<span id="cb96-21"><a href="dimensionality-reduction.html#cb96-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
+<span id="cb96-22"><a href="dimensionality-reduction.html#cb96-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
+<span id="cb96-23"><a href="dimensionality-reduction.html#cb96-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
+<span id="cb96-24"><a href="dimensionality-reduction.html#cb96-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
+<span id="cb96-25"><a href="dimensionality-reduction.html#cb96-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
+<span id="cb96-26"><a href="dimensionality-reduction.html#cb96-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-27"><a href="dimensionality-reduction.html#cb96-27" aria-hidden="true" tabindex="-1"></a><span class="co"># NORMALIZATION</span></span>
+<span id="cb96-28"><a href="dimensionality-reduction.html#cb96-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-29"><a href="dimensionality-reduction.html#cb96-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
+<span id="cb96-30"><a href="dimensionality-reduction.html#cb96-30" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
+<span id="cb96-31"><a href="dimensionality-reduction.html#cb96-31" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb96-32"><a href="dimensionality-reduction.html#cb96-32" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
+<span id="cb96-33"><a href="dimensionality-reduction.html#cb96-33" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors</span></span>
+<span id="cb96-34"><a href="dimensionality-reduction.html#cb96-34" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
+<span id="cb96-35"><a href="dimensionality-reduction.html#cb96-35" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts)</span></span>
+<span id="cb96-36"><a href="dimensionality-reduction.html#cb96-36" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb96-37"><a href="dimensionality-reduction.html#cb96-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-38"><a href="dimensionality-reduction.html#cb96-38" aria-hidden="true" tabindex="-1"></a><span class="co"># FEATURE SELECTION</span></span>
+<span id="cb96-39"><a href="dimensionality-reduction.html#cb96-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-40"><a href="dimensionality-reduction.html#cb96-40" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
+<span id="cb96-41"><a href="dimensionality-reduction.html#cb96-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
+<span id="cb96-42"><a href="dimensionality-reduction.html#cb96-42" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
+<span id="cb96-43"><a href="dimensionality-reduction.html#cb96-43" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb96-44"><a href="dimensionality-reduction.html#cb96-44" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
+<span id="cb96-45"><a href="dimensionality-reduction.html#cb96-45" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 </div>
 <div id="principal-component-analysis-pca" class="section level2" number="12.3">
 <h2><span class="header-section-number">12.3</span> Principal component analysis (PCA)</h2>
 <p>Apply principal component analysis (PCA) to the set of top highly variable genes (HVGs) to reduce the dimensionality of the dataset, and retain the top 50 principal components (PCs) for further downstream analyses.</p>
 <p>This is done for two reasons: (i) to reduce noise due to random variation in expression of biologically uninteresting genes, which are assumed to have expression patterns that are independent of each other, and (ii) to improve computational efficiency during downstream analyses.</p>
 <p>We use the computationally efficient implementation of PCA provided in the <code>scater</code> package <span class="citation">(<a href="#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span>. This implementation uses randomization, and therefore requires setting a random seed for reproducibility.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="dimensionality-reduction.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
-<span id="cb99-2"><a href="dimensionality-reduction.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb99-3"><a href="dimensionality-reduction.html#cb99-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
-<span id="cb99-4"><a href="dimensionality-reduction.html#cb99-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-5"><a href="dimensionality-reduction.html#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="dimensionality-reduction.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
+<span id="cb97-2"><a href="dimensionality-reduction.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb97-3"><a href="dimensionality-reduction.html#cb97-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
+<span id="cb97-4"><a href="dimensionality-reduction.html#cb97-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-5"><a href="dimensionality-reduction.html#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
 <pre><code>## [1] &quot;PCA&quot;</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="dimensionality-reduction.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;PCA&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="dimensionality-reduction.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;PCA&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 3582   50</code></pre>
 </div>
 <div id="uniform-manifold-approximation-and-projection-umap" class="section level2" number="12.4">
 <h2><span class="header-section-number">12.4</span> Uniform Manifold Approximation and Projection (UMAP)</h2>
 <p>We also run UMAP <span class="citation">(<a href="#ref-McInnes2018" role="doc-biblioref">McInnes, Healy, and Melville 2018</a>)</span> on the set of top 50 PCs and retain the top 2 UMAP components, which will be used for visualization purposes.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="dimensionality-reduction.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
-<span id="cb103-2"><a href="dimensionality-reduction.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb103-3"><a href="dimensionality-reduction.html#cb103-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb103-4"><a href="dimensionality-reduction.html#cb103-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb103-5"><a href="dimensionality-reduction.html#cb103-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="dimensionality-reduction.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
+<span id="cb101-2"><a href="dimensionality-reduction.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb101-3"><a href="dimensionality-reduction.html#cb101-3" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb101-4"><a href="dimensionality-reduction.html#cb101-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-5"><a href="dimensionality-reduction.html#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDimNames</span>(spe)</span></code></pre></div>
 <pre><code>## [1] &quot;PCA&quot;  &quot;UMAP&quot;</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="dimensionality-reduction.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="dimensionality-reduction.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 3582    2</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="dimensionality-reduction.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names for easier plotting</span></span>
-<span id="cb107-2"><a href="dimensionality-reduction.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="dimensionality-reduction.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names for easier plotting</span></span>
+<span id="cb105-2"><a href="dimensionality-reduction.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
 </div>
 <div id="visualizations" class="section level2" number="12.5">
 <h2><span class="header-section-number">12.5</span> Visualizations</h2>
 <p>Generate plots using plotting functions from the <a href="https://bioconductor.org/packages/ggspavis">ggspavis</a> package. In the next chapter on clustering, we will add cluster labels to these reduced dimension plots.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="dimensionality-reduction.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span></code></pre></div>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="dimensionality-reduction.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot top 2 PCA dimensions</span></span>
-<span id="cb109-2"><a href="dimensionality-reduction.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;PCA&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="dimensionality-reduction.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="dimensionality-reduction.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot top 2 PCA dimensions</span></span>
+<span id="cb107-2"><a href="dimensionality-reduction.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;PCA&quot;</span>)</span></code></pre></div>
 <p><img src="dimensionality_reduction_files/figure-html/reduced_dim_plots-1.png" width="408" /></p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="dimensionality-reduction.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot top 2 UMAP dimensions</span></span>
-<span id="cb110-2"><a href="dimensionality-reduction.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="dimensionality-reduction.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot top 2 UMAP dimensions</span></span>
+<span id="cb108-2"><a href="dimensionality-reduction.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>)</span></code></pre></div>
 <p><img src="dimensionality_reduction_files/figure-html/reduced_dim_plots-2.png" width="408" /></p>
 
 </div>

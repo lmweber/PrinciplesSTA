@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-01-07" />
+<meta name="date" content="2022-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -367,98 +367,98 @@ div.csl-indent {
 <div id="previous-steps-3" class="section level2" number="13.2">
 <h2><span class="header-section-number">13.2</span> Previous steps</h2>
 <p><em>Code to run steps from the previous chapters to generate the <code>SpatialExperiment</code> object required for this chapter.</em></p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="clustering.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
-<span id="cb111-2"><a href="clustering.html#cb111-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-3"><a href="clustering.html#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
-<span id="cb111-4"><a href="clustering.html#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
-<span id="cb111-5"><a href="clustering.html#cb111-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
-<span id="cb111-6"><a href="clustering.html#cb111-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-7"><a href="clustering.html#cb111-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
-<span id="cb111-8"><a href="clustering.html#cb111-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-9"><a href="clustering.html#cb111-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb111-10"><a href="clustering.html#cb111-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
-<span id="cb111-11"><a href="clustering.html#cb111-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">spatialData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb111-12"><a href="clustering.html#cb111-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
-<span id="cb111-13"><a href="clustering.html#cb111-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
-<span id="cb111-14"><a href="clustering.html#cb111-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
-<span id="cb111-15"><a href="clustering.html#cb111-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
-<span id="cb111-16"><a href="clustering.html#cb111-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
-<span id="cb111-17"><a href="clustering.html#cb111-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
-<span id="cb111-18"><a href="clustering.html#cb111-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
-<span id="cb111-19"><a href="clustering.html#cb111-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
-<span id="cb111-20"><a href="clustering.html#cb111-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
-<span id="cb111-21"><a href="clustering.html#cb111-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
-<span id="cb111-22"><a href="clustering.html#cb111-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
-<span id="cb111-23"><a href="clustering.html#cb111-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
-<span id="cb111-24"><a href="clustering.html#cb111-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
-<span id="cb111-25"><a href="clustering.html#cb111-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
-<span id="cb111-26"><a href="clustering.html#cb111-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-27"><a href="clustering.html#cb111-27" aria-hidden="true" tabindex="-1"></a><span class="co"># NORMALIZATION</span></span>
-<span id="cb111-28"><a href="clustering.html#cb111-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-29"><a href="clustering.html#cb111-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
-<span id="cb111-30"><a href="clustering.html#cb111-30" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
-<span id="cb111-31"><a href="clustering.html#cb111-31" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb111-32"><a href="clustering.html#cb111-32" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
-<span id="cb111-33"><a href="clustering.html#cb111-33" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors</span></span>
-<span id="cb111-34"><a href="clustering.html#cb111-34" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
-<span id="cb111-35"><a href="clustering.html#cb111-35" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts)</span></span>
-<span id="cb111-36"><a href="clustering.html#cb111-36" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
-<span id="cb111-37"><a href="clustering.html#cb111-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-38"><a href="clustering.html#cb111-38" aria-hidden="true" tabindex="-1"></a><span class="co"># FEATURE SELECTION</span></span>
-<span id="cb111-39"><a href="clustering.html#cb111-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-40"><a href="clustering.html#cb111-40" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
-<span id="cb111-41"><a href="clustering.html#cb111-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
-<span id="cb111-42"><a href="clustering.html#cb111-42" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
-<span id="cb111-43"><a href="clustering.html#cb111-43" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
-<span id="cb111-44"><a href="clustering.html#cb111-44" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
-<span id="cb111-45"><a href="clustering.html#cb111-45" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
-<span id="cb111-46"><a href="clustering.html#cb111-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-47"><a href="clustering.html#cb111-47" aria-hidden="true" tabindex="-1"></a><span class="co"># DIMENSIONALITY REDUCTION</span></span>
-<span id="cb111-48"><a href="clustering.html#cb111-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-49"><a href="clustering.html#cb111-49" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
-<span id="cb111-50"><a href="clustering.html#cb111-50" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb111-51"><a href="clustering.html#cb111-51" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
-<span id="cb111-52"><a href="clustering.html#cb111-52" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
-<span id="cb111-53"><a href="clustering.html#cb111-53" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb111-54"><a href="clustering.html#cb111-54" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb111-55"><a href="clustering.html#cb111-55" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names</span></span>
-<span id="cb111-56"><a href="clustering.html#cb111-56" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="clustering.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
+<span id="cb109-2"><a href="clustering.html#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="clustering.html#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb109-4"><a href="clustering.html#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
+<span id="cb109-5"><a href="clustering.html#cb109-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
+<span id="cb109-6"><a href="clustering.html#cb109-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-7"><a href="clustering.html#cb109-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
+<span id="cb109-8"><a href="clustering.html#cb109-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-9"><a href="clustering.html#cb109-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
+<span id="cb109-10"><a href="clustering.html#cb109-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
+<span id="cb109-11"><a href="clustering.html#cb109-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb109-12"><a href="clustering.html#cb109-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
+<span id="cb109-13"><a href="clustering.html#cb109-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
+<span id="cb109-14"><a href="clustering.html#cb109-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
+<span id="cb109-15"><a href="clustering.html#cb109-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
+<span id="cb109-16"><a href="clustering.html#cb109-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
+<span id="cb109-17"><a href="clustering.html#cb109-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
+<span id="cb109-18"><a href="clustering.html#cb109-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
+<span id="cb109-19"><a href="clustering.html#cb109-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
+<span id="cb109-20"><a href="clustering.html#cb109-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
+<span id="cb109-21"><a href="clustering.html#cb109-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
+<span id="cb109-22"><a href="clustering.html#cb109-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
+<span id="cb109-23"><a href="clustering.html#cb109-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
+<span id="cb109-24"><a href="clustering.html#cb109-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
+<span id="cb109-25"><a href="clustering.html#cb109-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
+<span id="cb109-26"><a href="clustering.html#cb109-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-27"><a href="clustering.html#cb109-27" aria-hidden="true" tabindex="-1"></a><span class="co"># NORMALIZATION</span></span>
+<span id="cb109-28"><a href="clustering.html#cb109-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-29"><a href="clustering.html#cb109-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
+<span id="cb109-30"><a href="clustering.html#cb109-30" aria-hidden="true" tabindex="-1"></a><span class="co"># quick clustering for pool-based size factors</span></span>
+<span id="cb109-31"><a href="clustering.html#cb109-31" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb109-32"><a href="clustering.html#cb109-32" aria-hidden="true" tabindex="-1"></a>qclus <span class="ot">&lt;-</span> <span class="fu">quickCluster</span>(spe)</span>
+<span id="cb109-33"><a href="clustering.html#cb109-33" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate size factors</span></span>
+<span id="cb109-34"><a href="clustering.html#cb109-34" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeSumFactors</span>(spe, <span class="at">cluster =</span> qclus)</span>
+<span id="cb109-35"><a href="clustering.html#cb109-35" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts)</span></span>
+<span id="cb109-36"><a href="clustering.html#cb109-36" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb109-37"><a href="clustering.html#cb109-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-38"><a href="clustering.html#cb109-38" aria-hidden="true" tabindex="-1"></a><span class="co"># FEATURE SELECTION</span></span>
+<span id="cb109-39"><a href="clustering.html#cb109-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-40"><a href="clustering.html#cb109-40" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
+<span id="cb109-41"><a href="clustering.html#cb109-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
+<span id="cb109-42"><a href="clustering.html#cb109-42" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
+<span id="cb109-43"><a href="clustering.html#cb109-43" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb109-44"><a href="clustering.html#cb109-44" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
+<span id="cb109-45"><a href="clustering.html#cb109-45" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
+<span id="cb109-46"><a href="clustering.html#cb109-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-47"><a href="clustering.html#cb109-47" aria-hidden="true" tabindex="-1"></a><span class="co"># DIMENSIONALITY REDUCTION</span></span>
+<span id="cb109-48"><a href="clustering.html#cb109-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-49"><a href="clustering.html#cb109-49" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
+<span id="cb109-50"><a href="clustering.html#cb109-50" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb109-51"><a href="clustering.html#cb109-51" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
+<span id="cb109-52"><a href="clustering.html#cb109-52" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
+<span id="cb109-53"><a href="clustering.html#cb109-53" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb109-54"><a href="clustering.html#cb109-54" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb109-55"><a href="clustering.html#cb109-55" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names</span></span>
+<span id="cb109-56"><a href="clustering.html#cb109-56" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
 </div>
 <div id="clustering-on-hvgs" class="section level2" number="13.3">
 <h2><span class="header-section-number">13.3</span> Clustering on HVGs</h2>
 <p>We can perform clustering by applying standard clustering methods developed for single-cell RNA sequencing data, using molecular features (gene expression). Here, we apply graph-based clustering using the Walktrap method implemented in <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>, applied to the top 50 PCs calculated on the set of top HVGs.</p>
 <p>In the context of spatial data, this means we assume that biologically informative spatial distribution patterns of cell types can be detected from the molecular features (gene expression).</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="clustering.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graph-based clustering</span></span>
-<span id="cb112-2"><a href="clustering.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb112-3"><a href="clustering.html#cb112-3" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb112-4"><a href="clustering.html#cb112-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">k =</span> k, <span class="at">use.dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb112-5"><a href="clustering.html#cb112-5" aria-hidden="true" tabindex="-1"></a>g_walk <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">cluster_walktrap</span>(g)</span>
-<span id="cb112-6"><a href="clustering.html#cb112-6" aria-hidden="true" tabindex="-1"></a>clus <span class="ot">&lt;-</span> g_walk<span class="sc">$</span>membership</span>
-<span id="cb112-7"><a href="clustering.html#cb112-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(clus)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="clustering.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graph-based clustering</span></span>
+<span id="cb110-2"><a href="clustering.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb110-3"><a href="clustering.html#cb110-3" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb110-4"><a href="clustering.html#cb110-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">k =</span> k, <span class="at">use.dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb110-5"><a href="clustering.html#cb110-5" aria-hidden="true" tabindex="-1"></a>g_walk <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">cluster_walktrap</span>(g)</span>
+<span id="cb110-6"><a href="clustering.html#cb110-6" aria-hidden="true" tabindex="-1"></a>clus <span class="ot">&lt;-</span> g_walk<span class="sc">$</span>membership</span>
+<span id="cb110-7"><a href="clustering.html#cb110-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(clus)</span></code></pre></div>
 <pre><code>## clus
 ##    1    2    3    4    5    6 
 ##  372  916  342 1083  349  520</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="clustering.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store cluster labels in column &#39;label&#39; in colData</span></span>
-<span id="cb114-2"><a href="clustering.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colLabels</span>(spe) <span class="ot">&lt;-</span> <span class="fu">factor</span>(clus)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="clustering.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store cluster labels in column &#39;label&#39; in colData</span></span>
+<span id="cb112-2"><a href="clustering.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colLabels</span>(spe) <span class="ot">&lt;-</span> <span class="fu">factor</span>(clus)</span></code></pre></div>
 <p>Visualize the clusters by plotting in (i) spatial (x-y) coordinates on the tissue slide, and (ii) reduced dimension space (PCA or UMAP). We use plotting functions from the <a href="https://bioconductor.org/packages/ggspavis">ggspavis</a> package.</p>
 <p>For reference, we also display the ground truth (manually annotated) labels available for this dataset (in spatial coordinates).</p>
 <p>From the visualizations, we can see that the clustering reproduces the known biological structure (cortical layers), although not perfectly. The clusters are also separated in UMAP space, but again not perfectly.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="clustering.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span></code></pre></div>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="clustering.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in spatial x-y coordinates</span></span>
-<span id="cb116-2"><a href="clustering.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, </span>
-<span id="cb116-3"><a href="clustering.html#cb116-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="clustering.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="clustering.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in spatial x-y coordinates</span></span>
+<span id="cb114-2"><a href="clustering.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, </span>
+<span id="cb114-3"><a href="clustering.html#cb114-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
 <p><img src="clustering_files/figure-html/clustering_plots_spots-1.png" width="672" /></p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="clustering.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot ground truth labels in spatial coordinates</span></span>
-<span id="cb117-2"><a href="clustering.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">annotate =</span> <span class="st">&quot;ground_truth&quot;</span>, </span>
-<span id="cb117-3"><a href="clustering.html#cb117-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="clustering.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot ground truth labels in spatial coordinates</span></span>
+<span id="cb115-2"><a href="clustering.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">annotate =</span> <span class="st">&quot;ground_truth&quot;</span>, </span>
+<span id="cb115-3"><a href="clustering.html#cb115-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
 <p><img src="clustering_files/figure-html/clustering_plots_spots-2.png" width="672" /></p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="clustering.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in PCA reduced dimensions</span></span>
-<span id="cb118-2"><a href="clustering.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;PCA&quot;</span>, </span>
-<span id="cb118-3"><a href="clustering.html#cb118-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="clustering.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in PCA reduced dimensions</span></span>
+<span id="cb116-2"><a href="clustering.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;PCA&quot;</span>, </span>
+<span id="cb116-3"><a href="clustering.html#cb116-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
 <p><img src="clustering_files/figure-html/clustering_plots_reduced-1.png" width="480" /></p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="clustering.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in UMAP reduced dimensions</span></span>
-<span id="cb119-2"><a href="clustering.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
-<span id="cb119-3"><a href="clustering.html#cb119-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="clustering.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in UMAP reduced dimensions</span></span>
+<span id="cb117-2"><a href="clustering.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
+<span id="cb117-3"><a href="clustering.html#cb117-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
 <p><img src="clustering_files/figure-html/clustering_plots_reduced-2.png" width="480" /></p>
 </div>
 <div id="spatially-aware-clustering" class="section level2" number="13.4">

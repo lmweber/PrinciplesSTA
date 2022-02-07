@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-01-07" />
+<meta name="date" content="2022-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -367,25 +367,24 @@ div.csl-indent {
 <div id="previous-steps-5" class="section level2" number="15.2">
 <h2><span class="header-section-number">15.2</span> Previous steps</h2>
 <p><em>Code to run steps from the previous chapters to generate the <code>SpatialExperiment</code> object required for this chapter.</em></p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="spot-level-deconvolution.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
-<span id="cb126-2"><a href="spot-level-deconvolution.html#cb126-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-3"><a href="spot-level-deconvolution.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
-<span id="cb126-4"><a href="spot-level-deconvolution.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
-<span id="cb126-5"><a href="spot-level-deconvolution.html#cb126-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="spot-level-deconvolution.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
+<span id="cb124-2"><a href="spot-level-deconvolution.html#cb124-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-3"><a href="spot-level-deconvolution.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb124-4"><a href="spot-level-deconvolution.html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
+<span id="cb124-5"><a href="spot-level-deconvolution.html#cb124-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span></code></pre></div>
 </div>
 <div id="number-of-cells-per-spot-1" class="section level2" number="15.3">
 <h2><span class="header-section-number">15.3</span> Number of cells per spot</h2>
 <p>The following figure provides an overview of the number of cells per spot in this dataset, which is known in this dataset and stored in a column in <code>colData</code> in the <code>SpatialExperiment</code> object. We use a visualization function from <a href="https://bioconductor.org/packages/ggspavis">ggspavis</a> to generate the plot.</p>
 <p>We see that spots in this dataset contain around 0-10 cells, with a mode of 3. Therefore, it is plausible that some spots contain multiple cell types, and spot-level deconvolution could improve downstream analyses by deconvolving these cell types.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="spot-level-deconvolution.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
-<span id="cb127-2"><a href="spot-level-deconvolution.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb127-3"><a href="spot-level-deconvolution.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of cells per spot</span></span>
-<span id="cb127-4"><a href="spot-level-deconvolution.html#cb127-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;bar&quot;</span>, <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb127-5"><a href="spot-level-deconvolution.html#cb127-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;number of cells&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb127-6"><a href="spot-level-deconvolution.html#cb127-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Number of cells per spot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="spot-level-deconvolution.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
+<span id="cb125-2"><a href="spot-level-deconvolution.html#cb125-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-3"><a href="spot-level-deconvolution.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of cells per spot</span></span>
+<span id="cb125-4"><a href="spot-level-deconvolution.html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;bar&quot;</span>, <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb125-5"><a href="spot-level-deconvolution.html#cb125-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;number of cells&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb125-6"><a href="spot-level-deconvolution.html#cb125-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Number of cells per spot&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 1353 rows containing non-finite values (stat_count).
-
-## Warning: Removed 1353 rows containing non-finite values (stat_count).</code></pre>
+## Removed 1353 rows containing non-finite values (stat_count).</code></pre>
 <p><img src="deconvolution_files/figure-html/n_cells-1.png" width="480" /></p>
 
 </div>
