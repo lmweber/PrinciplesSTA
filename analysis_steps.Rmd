@@ -43,11 +43,8 @@ assayNames(spe)
 # features metadata
 head(rowData(spe))
 
-# spots metadata
+# spot-level metadata
 head(colData(spe))
-
-# spatial metadata
-head(spatialData(spe))
 
 # spatial coordinates
 head(spatialCoords(spe))
