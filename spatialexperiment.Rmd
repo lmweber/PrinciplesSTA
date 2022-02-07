@@ -17,6 +17,6 @@ For more details, see our [preprint](https://www.biorxiv.org/content/10.1101/202
 
 
 ```{r spe-schematic, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="Overview of the `SpatialExperiment` object class for storing spatially resolved transcriptomics datasets in the Bioconductor framework."}
-knitr::include_graphics("images/spe.png")
+knitr::include_graphics("images/SPE.png")
 ```
 
