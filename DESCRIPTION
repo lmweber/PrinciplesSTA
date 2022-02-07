@@ -1,7 +1,7 @@
 Package: OSTA
 Title: Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor
 Version: 0.99.0
-Date: 2021-12-04
+Date: 2022-02-06
 Authors@R: 
     c(person(given = "Lukas M.",
              family = "Weber",
