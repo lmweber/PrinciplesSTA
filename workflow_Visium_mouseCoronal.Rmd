@@ -46,7 +46,7 @@ Subset object to keep only spots over tissue.
 
 ```{r subset_in_tissue}
 # subset to keep only spots over tissue
-spe <- spe[, spatialData(spe)$in_tissue == 1]
+spe <- spe[, colData(spe)$in_tissue == 1]
 dim(spe)
 ```
 
