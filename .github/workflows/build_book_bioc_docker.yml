@@ -170,7 +170,8 @@ jobs:
           gha_repos <- if(.Platform$OS.type == "unix") c("AnVIL" = "https://bioconductordocker.blob.core.windows.net/packages/3.14/bioc", BiocManager::repositories()) else BiocManager::repositories()
 
           ## Packages under active development
-          ## remotes::install_github("lmweber/ggspavis", repos = gha_repos)
+          remotes::install_github("lmweber/ggspavis", repos = gha_repos)
+          remotes::install_github("LieberInstitute/spatialLIBD", repos = gha_repos)
           
           ## Pass #1 at installing dependencies
           ## This pass uses AnVIL-powered fast binaries
