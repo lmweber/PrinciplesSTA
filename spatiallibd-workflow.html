@@ -567,7 +567,7 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb243-94"><a href="spatiallibd-workflow.html#cb243-94" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb243-95"><a href="spatiallibd-workflow.html#cb243-95" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb243-96"><a href="spatiallibd-workflow.html#cb243-96" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
-<pre><code>## Time difference of 2.496443 mins</code></pre>
+<pre><code>## Time difference of 2.286115 mins</code></pre>
 </div>
 <div id="prepare-for-spatiallibd" class="section level2 hasAnchor" number="19.4">
 <h2><span class="header-section-number">19.4</span> Prepare for spatialLIBD<a href="spatiallibd-workflow.html#prepare-for-spatiallibd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -594,8 +594,8 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <pre><code>## adding rname &#39;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz&#39;</code></pre>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="spatiallibd-workflow.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
 <span id="cb248-2"><a href="spatiallibd-workflow.html#cb248-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
-<pre><code>##                                                                             BFC1 
-## &quot;/github/home/.cache/R/BiocFileCache/e0a356adac07_gencode.v32.annotation.gtf.gz&quot;</code></pre>
+<pre><code>##                                                                            BFC1 
+## &quot;/github/home/.cache/R/BiocFileCache/4c27c7edfde_gencode.v32.annotation.gtf.gz&quot;</code></pre>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="spatiallibd-workflow.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
 <span id="cb250-2"><a href="spatiallibd-workflow.html#cb250-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
 <span id="cb250-3"><a href="spatiallibd-workflow.html#cb250-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -752,8 +752,8 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb264-3"><a href="spatiallibd-workflow.html#cb264-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb264-4"><a href="spatiallibd-workflow.html#cb264-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb264-5"><a href="spatiallibd-workflow.html#cb264-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
-<pre><code>## Time difference of 46.97959 secs</code></pre>
-<p>Creating our final <code>spe</code> object took 3.27943577766418 to run. So you might want to save this object for later use.</p>
+<pre><code>## Time difference of 44.70438 secs</code></pre>
+<p>Creating our final <code>spe</code> object took 3.03118817011515 to run. So you might want to save this object for later use.</p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="spatiallibd-workflow.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 <p>You can then re-load it with the following code on a later session.</p>
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="spatiallibd-workflow.html#cb267-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
