@@ -1,7 +1,8 @@
 Package: OSTA
 Title: Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor
+Description: This package contains source materials to build the Orchestrating 
+    Spatially Resolved Transcriptomics Analysis with Bioconductor (OSTA) book.
 Version: 0.99.0
-Date: 2022-02-06
 Authors@R: 
     c(person(given = "Lukas M.",
              family = "Weber",
@@ -18,8 +19,6 @@ Authors@R:
              role = c("aut"),
              email = "shicks19@jhu.edu",
              comment = c(ORCID = "0000-0002-7858-0231")))
-Description: This package contains source materials to build the Orchestrating 
-    Spatially Resolved Transcriptomics Analysis with Bioconductor (OSTA) book.
 License: CC BY-NC-ND 3.0 US
 URL: https://github.com/lmweber/OSTA-book
 BugReports: https://github.com/lmweber/OSTA-book/issues
@@ -28,7 +27,6 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Depends: 
-    R (>= 4.1),
     SpatialExperiment
 Imports: 
     BiocFileCache,
