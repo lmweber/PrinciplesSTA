@@ -217,8 +217,8 @@ jobs:
 
       - name: Deploy 🚀
         if: github.ref == 'refs/heads/main' && runner.os == 'Linux'
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@releases/v4.3.4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: _book # The folder the action should deploy.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages # The branch the action should deploy to.
+          folder: _book # The folder the action should deploy.
