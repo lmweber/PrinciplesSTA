@@ -170,6 +170,57 @@ length(top_hvgs)
 ```
 
 
+## Spatially-aware feature selection
+
+Alternatively, run [nnSVG](https://bioconductor.org/packages/nnSVG) to identify a set of top spatially variable genes (SVGs) instead of HVGs.
+
+Here, we run nnSVG using a small subset of the dataset for faster runtime. We select a subset of the data by subsampling on the set of spots and including stringent filtering for low-expressed genes. For a full analysis, we recommend running `nnSVG` on all spots and using default filtering parameters (for Visium data), which takes around 45 minutes for one Visium slide on a standard laptop using multiple cores.
+
+```{r, message=FALSE}
+library(nnSVG)
+```
+
+```{r nnSVG}
+# subsample spots
+n <- 100
+set.seed(123)
+ix <- sample(seq_len(n), n)
+
+spe_nnSVG <- spe[, ix]
+
+# filter low-expressed and mitochondrial genes
+# using stringent filtering parameters for faster runtime in this example
+spe_nnSVG <- filter_genes(
+  spe_nnSVG, filter_genes_ncounts = 5, filter_genes_pcspots = 1
+)
+
+dim(spe_nnSVG)
+
+# re-calculate logcounts
+# using library size factors
+spe_nnSVG <- logNormCounts(spe_nnSVG)
+
+# run nnSVG
+# using a single core for build system
+set.seed(123)
+spe_nnSVG <- nnSVG(spe_nnSVG, n_threads = 1)
+
+# investigate results
+
+# show results
+rowData(spe_nnSVG)
+
+# number of significant SVGs
+table(rowData(spe_nnSVG)$padj <= 0.05)
+
+# show results for top n SVGs
+rowData(spe_nnSVG)[order(rowData(spe_nnSVG)$rank)[1:10], ]
+
+# identify top-ranked SVG
+rowData(spe_nnSVG)$gene_name[which(rowData(spe_nnSVG)$rank == 1)]
+```
+
+
 ## Dimensionality reduction
 
 Run principal component analysis (PCA) on the set of top HVGs, and retain the top 50 principal components (PCs) for further downstream analyses. This is done both to reduce noise and to improve computational efficiency. We also run UMAP on the set of top 50 PCs and retain the top 2 UMAP components for visualization purposes.

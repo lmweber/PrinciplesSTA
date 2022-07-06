@@ -48,7 +48,8 @@ Imports:
     SingleCellExperiment,
     spatialLIBD,
     STexampleData,
-    uwot
+    uwot, 
+    nnSVG
 Suggests:
     RefManageR
 VignetteBuilder: knitr
