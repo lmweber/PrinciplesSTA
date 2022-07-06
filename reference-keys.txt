@@ -98,6 +98,7 @@ plot-data-1
 quality-control-qc
 normalization-1
 feature-selection-1
+spatially-aware-feature-selection
 dimensionality-reduction-1
 clustering-1
 marker-genes-2
@@ -108,6 +109,7 @@ plot-data-2
 quality-control-qc-1
 normalization-2
 feature-selection-2
+spatially-aware-feature-selection-1
 dimensionality-reduction-2
 clustering-2
 marker-genes-3
