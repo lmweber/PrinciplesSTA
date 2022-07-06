@@ -201,7 +201,7 @@ dim(spe_nnSVG)
 spe_nnSVG <- logNormCounts(spe_nnSVG)
 
 # run nnSVG
-# using a single core for build system
+# using a single core for compatibility on build system
 set.seed(123)
 spe_nnSVG <- nnSVG(spe_nnSVG, n_threads = 1)
 
