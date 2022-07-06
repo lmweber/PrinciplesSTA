@@ -174,7 +174,7 @@ length(top_hvgs)
 
 Alternatively, run [nnSVG](https://bioconductor.org/packages/nnSVG) to identify a set of top spatially variable genes (SVGs) instead of HVGs.
 
-Here, we run nnSVG using a small subset of the dataset for faster runtime. We select a subset of the data by subsampling on the set of spots and including stringent filtering for low-expressed genes. For a full analysis, we recommend running `nnSVG` on all spots and using default filtering parameters (for Visium data), which takes around 45 minutes for one Visium slide on a standard laptop using multiple cores.
+Here, we run nnSVG using a small subset of the dataset for faster runtime. We select a subset of the data by subsampling on the set of spots and including stringent filtering for low-expressed genes. For a full analysis, we recommend running `nnSVG` on all spots and using default filtering parameters (for Visium data from human brain tissue), which takes around 45 minutes for one Visium slide on a standard laptop using multiple cores.
 
 ```{r, message=FALSE}
 library(nnSVG)
@@ -196,7 +196,7 @@ spe_nnSVG <- filter_genes(
 
 dim(spe_nnSVG)
 
-# re-calculate logcounts
+# re-calculate logcounts after filtering
 # using library size factors
 spe_nnSVG <- logNormCounts(spe_nnSVG)
 
@@ -208,13 +208,13 @@ spe_nnSVG <- nnSVG(spe_nnSVG, n_threads = 1)
 # investigate results
 
 # show results
-rowData(spe_nnSVG)
+head(rowData(spe_nnSVG), 3)
 
 # number of significant SVGs
 table(rowData(spe_nnSVG)$padj <= 0.05)
 
 # show results for top n SVGs
-rowData(spe_nnSVG)[order(rowData(spe_nnSVG)$rank)[1:10], ]
+rowData(spe_nnSVG)[order(rowData(spe_nnSVG)$rank)[1:6], ]
 
 # identify top-ranked SVG
 rowData(spe_nnSVG)$gene_name[which(rowData(spe_nnSVG)$rank == 1)]
