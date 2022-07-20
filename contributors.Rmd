@@ -1,6 +1,12 @@
 # (PART) Appendix {-}
 
-# Related software
+# Related resources
+
+## Resources for other spatially-resolved platforms
+
+
+
+## SpatialExperiment
 
 Below you can find all the related software to `SpatialExperiment` available on Bioconductor or CRAN.
 
@@ -78,7 +84,9 @@ Below you can find all the related software to `SpatialExperiment` available on 
 # )
 ```
 
-This table is generated automatically based on all the reverse package dependencies for `SpatialExperiment` @Righelli2021. 
+This table is generated automatically based on all the reverse package dependencies for `SpatialExperiment` @Righelli2021.
+
+
 
 # Contributors
 
@@ -92,6 +100,7 @@ This table is generated automatically based on all the reverse package dependenc
 
 As well as [GitHub contributors](https://github.com/lmweber/OSTA-book/graphs/contributors) who have helped us improve this book over time. Thank you for your contributions!
 
+
 ## SpatialExperiment
 
 - Dario Righelli, *Department of Statistical Sciences, University of Padova, Padova, Italy*
@@ -99,6 +108,7 @@ As well as [GitHub contributors](https://github.com/lmweber/OSTA-book/graphs/con
 - Aaron Lun, *Genentech, South San Francisco, CA, USA*
 - Stephanie C. Hicks, *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
 - Davide Risso, *Department of Statistical Sciences, University of Padova, Padova, Italy*
+
 
 
 # Software
@@ -112,3 +122,4 @@ sessioninfo::session_info(pkgs, include_base = TRUE)
 ```
 
 The GitHub Actions workflow used in this book is based on [`biocthis`](https://bioconductor.org/packages/biocthis) and is made possible thanks to the [Bioconductor docker images](http://bioconductor.org/help/docker/).
+
