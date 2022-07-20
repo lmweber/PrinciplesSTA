@@ -1,0 +1,100 @@
+# (PART) Appendix {-}
+
+# Related resources
+
+## Resources for other spatially-resolved platforms
+
+
+## SpatialExperiment
+
+Below you can find all the related software to `SpatialExperiment` available on Bioconductor or CRAN.
+
+```{r SpatialExperiment_rev_dep, echo = FALSE, message = FALSE}
+## Related to https://github.com/r-lib/devtools/issues/2368
+# packages_all <- function() {
+#   repos <- BiocManager::repositories()
+#   views <-
+#     paste(repos[grepl("BioC", names(repos))], "VIEWS", sep = "/")
+#   views <- views[!grepl("books", views)]
+#   
+#   all_pkgs <-
+#     c(
+#       lapply(views, devtools:::bioc_packages),
+#       list("CRAN" = devtools:::cran_packages())
+#     )
+#   
+#   Reduce(function(...)
+#     merge(..., all = TRUE), all_pkgs)
+#   
+# }
+# 
+# revdep_all <-
+#   function(pkg,
+#     dependencies = c("Depends", "Imports", "Suggests",
+#       "LinkingTo"),
+#     recursive = FALSE,
+#     ignore = NULL,
+#     bioconductor = FALSE)
+#   {
+#     if (missing(pkg))
+#       pkg <- as.package(".")$package
+#     all <- if (bioconductor)
+#       packages_all()
+#     else
+#       devtools:::cran_packages()
+#     deps <- tools::dependsOnPkgs(pkg, dependencies, recursive,
+#       installed = all)
+#     deps <- setdiff(deps, ignore)
+#     devtools:::sort_ci(deps)
+#   }
+
+## Get the data and format it
+# all <- packages_all()
+# deps <-
+#   revdep_all("SpatialExperiment",
+#     recursive = TRUE,
+#     bioconductor = TRUE)
+# deps_info <- subset(all, Package %in% deps)
+
+## Some entries have break lines
+# remove_enters <- function(x) {
+#   gsub("\n", "", x)
+# }
+
+## Put together in a table
+# df <- data.frame(do.call(cbind,
+#   lapply(deps_info[, c("Package", "Title", "URL")], remove_enters)
+# ))
+# df$URL <- sapply(df$URL, function(x) {
+#   if(is.na(x)) {
+#       return(x)
+#   } else {
+#       if (!grepl("^http", x)) x <- paste0("https://", x)
+#       return(paste0("[", basename(x), "](", x, ")"))
+#   }
+# })
+
+## Make a little table
+# knitr::kable(
+#   df,
+#   row.names = FALSE,
+#   caption = "Packages related to `SpatialExperiment`.",
+#   label = NA
+# )
+```
+
+This table is generated automatically based on all the reverse package dependencies for `SpatialExperiment` @Righelli2021.
+
+
+## Software
+
+This book would not be possible without an immense list of software and methods contributed by the open source R and Bioconductor communities. 
+
+```{r OSTA_dependencies}
+options(width = 120)
+pkgs <- installed.packages()[, "Package"]
+sessioninfo::session_info(pkgs, include_base = TRUE)
+```
+
+The GitHub Actions workflow used in this book is based on [`biocthis`](https://bioconductor.org/packages/biocthis) and is made possible thanks to the [Bioconductor docker images](http://bioconductor.org/help/docker/).
+
