@@ -1,6 +1,0 @@
-# Methods for spatial clustering
-
-In this workflow chapter, we compare alternative methods that have been developed for spatially-aware clustering.
-
-This provides a way to demonstrate new methods as these become available and implemented in the Bioconductor framework, and provides users with additional information about the performance of the various methods using a consistent choice of datasets and evaluation metrics.
-
