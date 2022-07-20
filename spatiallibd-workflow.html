@@ -277,8 +277,8 @@ div.csl-indent {
 <li class="chapter" data-level="15.2" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#previous-steps-5"><i class="fa fa-check"></i><b>15.2</b> Previous steps</a></li>
 <li class="chapter" data-level="15.3" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#number-of-cells-per-spot-1"><i class="fa fa-check"></i><b>15.3</b> Number of cells per spot</a></li>
 </ul></li>
-<li class="part"><span><b>IV Workflows and comparisons</b></span></li>
-<li class="chapter" data-level="16" data-path="workflows-and-comparisons.html"><a href="workflows-and-comparisons.html"><i class="fa fa-check"></i><b>16</b> Workflows and comparisons</a></li>
+<li class="part"><span><b>IV Workflows</b></span></li>
+<li class="chapter" data-level="16" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>16</b> Workflows</a></li>
 <li class="chapter" data-level="17" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>17</b> Human DLPFC workflow</a>
 <ul>
 <li class="chapter" data-level="17.1" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
@@ -331,14 +331,14 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="21.1" data-path="related-resources.html"><a href="related-resources.html#resources-for-other-spatially-resolved-platforms"><i class="fa fa-check"></i><b>21.1</b> Resources for other spatially-resolved platforms</a></li>
 <li class="chapter" data-level="21.2" data-path="related-resources.html"><a href="related-resources.html#spatialexperiment-1"><i class="fa fa-check"></i><b>21.2</b> SpatialExperiment</a></li>
+<li class="chapter" data-level="21.3" data-path="related-resources.html"><a href="related-resources.html#software"><i class="fa fa-check"></i><b>21.3</b> Software</a></li>
 </ul></li>
 <li class="chapter" data-level="22" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>22</b> Contributors</a>
 <ul>
 <li class="chapter" data-level="22.1" data-path="contributors.html"><a href="contributors.html#osta"><i class="fa fa-check"></i><b>22.1</b> OSTA</a></li>
 <li class="chapter" data-level="22.2" data-path="contributors.html"><a href="contributors.html#spatialexperiment-2"><i class="fa fa-check"></i><b>22.2</b> SpatialExperiment</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="software.html"><a href="software.html"><i class="fa fa-check"></i><b>23</b> Software</a></li>
-<li class="chapter" data-level="24" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>24</b> References</a></li>
+<li class="chapter" data-level="23" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>23</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -569,7 +569,7 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb275-94"><a href="spatiallibd-workflow.html#cb275-94" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb275-95"><a href="spatiallibd-workflow.html#cb275-95" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb275-96"><a href="spatiallibd-workflow.html#cb275-96" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
-<pre><code>## Time difference of 2.454556 mins</code></pre>
+<pre><code>## Time difference of 2.38158 mins</code></pre>
 </div>
 <div id="prepare-for-spatiallibd" class="section level2 hasAnchor" number="19.4">
 <h2><span class="header-section-number">19.4</span> Prepare for spatialLIBD<a href="spatiallibd-workflow.html#prepare-for-spatiallibd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -597,7 +597,7 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="spatiallibd-workflow.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
 <span id="cb280-2"><a href="spatiallibd-workflow.html#cb280-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
 <pre><code>##                                                                             BFC1 
-## &quot;/github/home/.cache/R/BiocFileCache/1b993718a288_gencode.v32.annotation.gtf.gz&quot;</code></pre>
+## &quot;/github/home/.cache/R/BiocFileCache/1bbc26cec9bc_gencode.v32.annotation.gtf.gz&quot;</code></pre>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="spatiallibd-workflow.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
 <span id="cb282-2"><a href="spatiallibd-workflow.html#cb282-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
 <span id="cb282-3"><a href="spatiallibd-workflow.html#cb282-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -754,8 +754,8 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb296-3"><a href="spatiallibd-workflow.html#cb296-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb296-4"><a href="spatiallibd-workflow.html#cb296-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb296-5"><a href="spatiallibd-workflow.html#cb296-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
-<pre><code>## Time difference of 48.5578 secs</code></pre>
-<p>Creating our final <code>spe</code> object took 3.26385239760081 to run. So you might want to save this object for later use.</p>
+<pre><code>## Time difference of 46.23062 secs</code></pre>
+<p>Creating our final <code>spe</code> object took 3.15209016005198 to run. So you might want to save this object for later use.</p>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="spatiallibd-workflow.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 <p>You can then re-load it with the following code on a later session.</p>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="spatiallibd-workflow.html#cb299-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>

@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="icon_32.png" type="image/x-icon" />
-<link rel="prev" href="workflows-and-comparisons.html"/>
+<link rel="prev" href="workflows.html"/>
 <link rel="next" href="mouse-coronal-workflow.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -277,8 +277,8 @@ div.csl-indent {
 <li class="chapter" data-level="15.2" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#previous-steps-5"><i class="fa fa-check"></i><b>15.2</b> Previous steps</a></li>
 <li class="chapter" data-level="15.3" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#number-of-cells-per-spot-1"><i class="fa fa-check"></i><b>15.3</b> Number of cells per spot</a></li>
 </ul></li>
-<li class="part"><span><b>IV Workflows and comparisons</b></span></li>
-<li class="chapter" data-level="16" data-path="workflows-and-comparisons.html"><a href="workflows-and-comparisons.html"><i class="fa fa-check"></i><b>16</b> Workflows and comparisons</a></li>
+<li class="part"><span><b>IV Workflows</b></span></li>
+<li class="chapter" data-level="16" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>16</b> Workflows</a></li>
 <li class="chapter" data-level="17" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>17</b> Human DLPFC workflow</a>
 <ul>
 <li class="chapter" data-level="17.1" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
@@ -331,14 +331,14 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="21.1" data-path="related-resources.html"><a href="related-resources.html#resources-for-other-spatially-resolved-platforms"><i class="fa fa-check"></i><b>21.1</b> Resources for other spatially-resolved platforms</a></li>
 <li class="chapter" data-level="21.2" data-path="related-resources.html"><a href="related-resources.html#spatialexperiment-1"><i class="fa fa-check"></i><b>21.2</b> SpatialExperiment</a></li>
+<li class="chapter" data-level="21.3" data-path="related-resources.html"><a href="related-resources.html#software"><i class="fa fa-check"></i><b>21.3</b> Software</a></li>
 </ul></li>
 <li class="chapter" data-level="22" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>22</b> Contributors</a>
 <ul>
 <li class="chapter" data-level="22.1" data-path="contributors.html"><a href="contributors.html#osta"><i class="fa fa-check"></i><b>22.1</b> OSTA</a></li>
 <li class="chapter" data-level="22.2" data-path="contributors.html"><a href="contributors.html#spatialexperiment-2"><i class="fa fa-check"></i><b>22.2</b> SpatialExperiment</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="software.html"><a href="software.html"><i class="fa fa-check"></i><b>23</b> Software</a></li>
-<li class="chapter" data-level="24" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>24</b> References</a></li>
+<li class="chapter" data-level="23" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>23</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -574,9 +574,9 @@ div.csl-indent {
 ## ENSG00000179403 ENSG00000179403        VWA1 Gene Expression 0.04567176
 ##                    tau.sq       phi    loglik   runtime      mean       var
 ##                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-## ENSG00000175756  0.607264  27.64408 -117.5988     0.055  0.795304  0.620477
-## ENSG00000242485  0.507165  21.87908 -108.5021     0.049  0.711430  0.517328
-## ENSG00000179403  0.377759   2.71165  -97.6059     0.055  0.343485  0.426008
+## ENSG00000175756  0.607264  27.64408 -117.5988     0.044  0.795304  0.620477
+## ENSG00000242485  0.507165  21.87908 -108.5021     0.039  0.711430  0.517328
+## ENSG00000179403  0.377759   2.71165  -97.6059     0.039  0.343485  0.426008
 ##                     spcov   prop_sv loglik_lm   LR_stat      rank      pval
 ##                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
 ## ENSG00000175756  0.111661 0.0128201 -117.5280 -0.141443      1174  1.000000
@@ -605,12 +605,12 @@ div.csl-indent {
 ## ENSG00000131095 ENSG00000131095        GFAP Gene Expression   2.52053  0.564870
 ##                       phi    loglik   runtime      mean       var     spcov
 ##                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-## ENSG00000197971  1.141101  -123.040     0.071  3.766159   2.82874  0.490598
-## ENSG00000123560  1.034486  -143.223     0.061  2.814804   3.11801  0.636245
-## ENSG00000173786  0.801438  -127.381     0.062  1.756521   1.99757  0.914174
-## ENSG00000109846  2.037123  -127.649     0.050  1.841579   1.91122  0.724499
-## ENSG00000013297  1.333526  -104.079     0.066  0.588596   1.06617  1.887383
-## ENSG00000131095  2.438995  -156.946     0.067  2.034384   2.84571  0.780392
+## ENSG00000197971  1.141101  -123.040     0.054  3.766159   2.82874  0.490598
+## ENSG00000123560  1.034486  -143.223     0.046  2.814804   3.11801  0.636245
+## ENSG00000173786  0.801438  -127.381     0.046  1.756521   1.99757  0.914174
+## ENSG00000109846  2.037123  -127.649     0.038  1.841579   1.91122  0.724499
+## ENSG00000013297  1.333526  -104.079     0.049  0.588596   1.06617  1.887383
+## ENSG00000131095  2.438995  -156.946     0.050  2.034384   2.84571  0.780392
 ##                   prop_sv loglik_lm   LR_stat      rank        pval       padj
 ##                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt;  &lt;numeric&gt;
 ## ENSG00000197971  0.944332  -193.383  140.6860         1 0.00000e+00 0.0000e+00
@@ -723,7 +723,7 @@ McCarthy, Davis J, Kieran R Campbell, Aaron T L Lun, and Quin F Wills. 2017. <sp
           </div>
         </div>
       </div>
-<a href="workflows-and-comparisons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="workflows.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="mouse-coronal-workflow.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

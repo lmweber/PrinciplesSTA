@@ -90,7 +90,7 @@ spot-level-deconvolution
 background-5
 previous-steps-5
 number-of-cells-per-spot-1
-workflows-and-comparisons
+workflows
 human-dlpfc-workflow
 description-of-dataset
 load-data-2
@@ -131,8 +131,8 @@ external-workflows
 related-resources
 resources-for-other-spatially-resolved-platforms
 spatialexperiment-1
+software
 contributors
 osta
 spatialexperiment-2
-software
 references
