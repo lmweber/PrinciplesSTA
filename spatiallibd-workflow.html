@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-07-06" />
+<meta name="date" content="2022-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -30,7 +30,7 @@
   
   <link rel="shortcut icon" href="icon_32.png" type="image/x-icon" />
 <link rel="prev" href="mouse-coronal-workflow.html"/>
-<link rel="next" href="methods-to-identify-svgs.html"/>
+<link rel="next" href="external-workflows.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -325,18 +325,20 @@ div.csl-indent {
 <li class="chapter" data-level="19.7" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#wrapping-up-3"><i class="fa fa-check"></i><b>19.7</b> Wrapping up</a></li>
 <li class="chapter" data-level="" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#r-session-information"><i class="fa fa-check"></i>R session information</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="methods-to-identify-svgs.html"><a href="methods-to-identify-svgs.html"><i class="fa fa-check"></i><b>20</b> Methods to identify SVGs</a></li>
-<li class="chapter" data-level="21" data-path="methods-for-spatial-clustering.html"><a href="methods-for-spatial-clustering.html"><i class="fa fa-check"></i><b>21</b> Methods for spatial clustering</a></li>
-<li class="chapter" data-level="22" data-path="external-workflows.html"><a href="external-workflows.html"><i class="fa fa-check"></i><b>22</b> External workflows</a></li>
+<li class="chapter" data-level="20" data-path="external-workflows.html"><a href="external-workflows.html"><i class="fa fa-check"></i><b>20</b> External workflows</a></li>
 <li class="part"><span><b>V Appendix</b></span></li>
-<li class="chapter" data-level="23" data-path="related-software.html"><a href="related-software.html"><i class="fa fa-check"></i><b>23</b> Related software</a></li>
-<li class="chapter" data-level="24" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>24</b> Contributors</a>
+<li class="chapter" data-level="21" data-path="related-resources.html"><a href="related-resources.html"><i class="fa fa-check"></i><b>21</b> Related resources</a>
 <ul>
-<li class="chapter" data-level="24.1" data-path="contributors.html"><a href="contributors.html#osta"><i class="fa fa-check"></i><b>24.1</b> OSTA</a></li>
-<li class="chapter" data-level="24.2" data-path="contributors.html"><a href="contributors.html#spatialexperiment-1"><i class="fa fa-check"></i><b>24.2</b> SpatialExperiment</a></li>
+<li class="chapter" data-level="21.1" data-path="related-resources.html"><a href="related-resources.html#resources-for-other-spatially-resolved-platforms"><i class="fa fa-check"></i><b>21.1</b> Resources for other spatially-resolved platforms</a></li>
+<li class="chapter" data-level="21.2" data-path="related-resources.html"><a href="related-resources.html#spatialexperiment-1"><i class="fa fa-check"></i><b>21.2</b> SpatialExperiment</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="software.html"><a href="software.html"><i class="fa fa-check"></i><b>25</b> Software</a></li>
-<li class="chapter" data-level="26" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>26</b> References</a></li>
+<li class="chapter" data-level="22" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>22</b> Contributors</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="contributors.html"><a href="contributors.html#osta"><i class="fa fa-check"></i><b>22.1</b> OSTA</a></li>
+<li class="chapter" data-level="22.2" data-path="contributors.html"><a href="contributors.html#spatialexperiment-2"><i class="fa fa-check"></i><b>22.2</b> SpatialExperiment</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="software.html"><a href="software.html"><i class="fa fa-check"></i><b>23</b> Software</a></li>
+<li class="chapter" data-level="24" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>24</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -405,21 +407,21 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="spatiallibd-workflow.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;spatialLIBD&quot;</span>)[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## 
 ## Pardo B, Spangler A, Weber LM, Hicks SC, Jaffe AE, Martinowich K,
-## Maynard KR, Collado-Torres L (2021). &quot;spatialLIBD: an R/Bioconductor
-## package to visualize spatially-resolved transcriptomics data.&quot;
-## _bioRxiv_. doi:10.1101/2021.04.29.440149
-## &lt;https://doi.org/10.1101/2021.04.29.440149&gt;,
-## &lt;https://www.biorxiv.org/content/10.1101/2021.04.29.440149v1&gt;.
+## Maynard KR, Collado-Torres L (2022). &quot;spatialLIBD: an R/Bioconductor
+## package to visualize spatially-resolved transcriptomics data.&quot; _BMC
+## Genomics_. doi:10.1186/s12864-022-08601-w
+## &lt;https://doi.org/10.1186/s12864-022-08601-w&gt;,
+## &lt;https://doi.org/10.1186/s12864-022-08601-w&gt;.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
 ##   @Article{,
 ##     title = {spatialLIBD: an R/Bioconductor package to visualize spatially-resolved transcriptomics data},
 ##     author = {Brenda Pardo and Abby Spangler and Lukas M. Weber and Stephanie C. Hicks and Andrew E. Jaffe and Keri Martinowich and Kristen R. Maynard and Leonardo Collado-Torres},
-##     year = {2021},
-##     journal = {bioRxiv},
-##     doi = {10.1101/2021.04.29.440149},
-##     url = {https://www.biorxiv.org/content/10.1101/2021.04.29.440149v1},
+##     year = {2022},
+##     journal = {BMC Genomics},
+##     doi = {10.1186/s12864-022-08601-w},
+##     url = {https://doi.org/10.1186/s12864-022-08601-w},
 ##   }</code></pre>
 <div id="recordings" class="section level4 hasAnchor" number="19.2.2.1">
 <h4><span class="header-section-number">19.2.2.1</span> Recordings<a href="spatiallibd-workflow.html#recordings" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -567,7 +569,7 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb275-94"><a href="spatiallibd-workflow.html#cb275-94" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb275-95"><a href="spatiallibd-workflow.html#cb275-95" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb275-96"><a href="spatiallibd-workflow.html#cb275-96" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
-<pre><code>## Time difference of 2.365797 mins</code></pre>
+<pre><code>## Time difference of 2.454556 mins</code></pre>
 </div>
 <div id="prepare-for-spatiallibd" class="section level2 hasAnchor" number="19.4">
 <h2><span class="header-section-number">19.4</span> Prepare for spatialLIBD<a href="spatiallibd-workflow.html#prepare-for-spatiallibd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -594,8 +596,8 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <pre><code>## adding rname &#39;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz&#39;</code></pre>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="spatiallibd-workflow.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
 <span id="cb280-2"><a href="spatiallibd-workflow.html#cb280-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
-<pre><code>##                                                                            BFC1 
-## &quot;/github/home/.cache/R/BiocFileCache/5f049df8e26_gencode.v32.annotation.gtf.gz&quot;</code></pre>
+<pre><code>##                                                                             BFC1 
+## &quot;/github/home/.cache/R/BiocFileCache/1b993718a288_gencode.v32.annotation.gtf.gz&quot;</code></pre>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="spatiallibd-workflow.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
 <span id="cb282-2"><a href="spatiallibd-workflow.html#cb282-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
 <span id="cb282-3"><a href="spatiallibd-workflow.html#cb282-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -752,8 +754,8 @@ Figure 5.2: Screenshot of the ‘gene grid (static)’ section of the ‘spot-le
 <span id="cb296-3"><a href="spatiallibd-workflow.html#cb296-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb296-4"><a href="spatiallibd-workflow.html#cb296-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb296-5"><a href="spatiallibd-workflow.html#cb296-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
-<pre><code>## Time difference of 42.3292 secs</code></pre>
-<p>Creating our final <code>spe</code> object took 3.07128349145253 to run. So you might want to save this object for later use.</p>
+<pre><code>## Time difference of 48.5578 secs</code></pre>
+<p>Creating our final <code>spe</code> object took 3.26385239760081 to run. So you might want to save this object for later use.</p>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="spatiallibd-workflow.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 <p>You can then re-load it with the following code on a later session.</p>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="spatiallibd-workflow.html#cb299-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
@@ -1004,7 +1006,7 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       UTC
-##  date     2022-07-06
+##  date     2022-07-20
 ##  pandoc   2.17.1.1 @ /usr/local/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -1033,7 +1035,7 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  blob                     1.2.3     2022-04-10 [1] CRAN (R 4.2.0)
 ##  bluster                  1.6.0     2022-04-26 [1] Bioconductor
 ##  bookdown                 0.27      2022-06-14 [1] RSPM (R 4.2.0)
-##  bslib                    0.3.1     2021-10-06 [1] CRAN (R 4.2.0)
+##  bslib                    0.4.0     2022-07-16 [1] RSPM (R 4.2.0)
 ##  cachem                   1.0.6     2021-08-19 [2] CRAN (R 4.2.0)
 ##  cli                      3.3.0     2022-04-25 [2] RSPM (R 4.2.0)
 ##  cluster                  2.1.3     2022-03-28 [3] CRAN (R 4.2.0)
@@ -1061,14 +1063,14 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  evaluate                 0.15      2022-02-18 [2] CRAN (R 4.2.0)
 ##  ExperimentHub          * 2.4.0     2022-04-26 [1] Bioconductor
 ##  fansi                    1.0.3     2022-03-24 [2] CRAN (R 4.2.0)
-##  farver                   2.1.0     2021-02-28 [1] CRAN (R 4.2.0)
+##  farver                   2.1.1     2022-07-06 [1] RSPM (R 4.2.0)
 ##  fastmap                  1.1.0     2021-01-25 [2] CRAN (R 4.2.0)
-##  fields                   14.0      2022-07-05 [1] CRAN (R 4.2.0)
+##  fields                   14.0      2022-07-05 [1] RSPM (R 4.2.0)
 ##  filelock                 1.0.2     2018-10-05 [1] CRAN (R 4.2.0)
 ##  FNN                      1.1.3.1   2022-05-23 [1] RSPM (R 4.2.0)
 ##  foreach                  1.5.2     2022-02-02 [1] RSPM (R 4.2.0)
 ##  fs                       1.5.2     2021-12-08 [2] CRAN (R 4.2.0)
-##  generics                 0.1.3     2022-07-05 [1] CRAN (R 4.2.0)
+##  generics                 0.1.3     2022-07-05 [1] RSPM (R 4.2.0)
 ##  GenomeInfoDb           * 1.32.2    2022-05-15 [1] Bioconductor
 ##  GenomeInfoDbData         1.2.8     2022-05-02 [1] Bioconductor
 ##  GenomicAlignments        1.32.0    2022-04-26 [1] Bioconductor
@@ -1077,23 +1079,23 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  ggplot2                * 3.3.6     2022-05-03 [1] RSPM (R 4.2.0)
 ##  ggrepel                  0.9.1     2021-01-15 [1] CRAN (R 4.2.0)
 ##  glue                     1.6.2     2022-02-24 [2] CRAN (R 4.2.0)
-##  golem                    0.3.2     2022-03-04 [1] RSPM (R 4.2.0)
+##  golem                    0.3.3     2022-07-13 [1] RSPM (R 4.2.0)
 ##  gridExtra                2.3       2017-09-09 [1] CRAN (R 4.2.0)
 ##  gtable                   0.3.0     2019-03-25 [1] CRAN (R 4.2.0)
 ##  HDF5Array                1.24.1    2022-06-02 [1] Bioconductor
 ##  highr                    0.9       2021-04-16 [2] CRAN (R 4.2.0)
-##  htmltools                0.5.2     2021-08-25 [1] CRAN (R 4.2.0)
+##  htmltools                0.5.3     2022-07-18 [1] RSPM (R 4.2.0)
 ##  htmlwidgets              1.5.4     2021-09-08 [1] CRAN (R 4.2.0)
 ##  httpuv                   1.6.5     2022-01-05 [1] CRAN (R 4.2.0)
 ##  httr                     1.4.3     2022-05-04 [2] RSPM (R 4.2.0)
-##  igraph                 * 1.3.2     2022-06-13 [1] RSPM (R 4.2.0)
+##  igraph                 * 1.3.4     2022-07-19 [1] CRAN (R 4.2.0)
 ##  interactiveDisplayBase   1.34.0    2022-04-26 [1] Bioconductor
 ##  IRanges                * 2.30.0    2022-04-26 [1] Bioconductor
 ##  irlba                    2.3.5     2021-12-06 [1] RSPM (R 4.2.0)
 ##  iterators                1.0.14    2022-02-05 [1] RSPM (R 4.2.0)
 ##  jquerylib                0.1.4     2021-04-26 [1] CRAN (R 4.2.0)
 ##  jsonlite                 1.8.0     2022-02-22 [2] CRAN (R 4.2.0)
-##  KEGGREST                 1.36.2    2022-06-09 [1] Bioconductor
+##  KEGGREST                 1.36.3    2022-07-12 [1] Bioconductor
 ##  knitr                    1.39      2022-04-26 [2] RSPM (R 4.2.0)
 ##  labeling                 0.4.2     2020-10-20 [1] CRAN (R 4.2.0)
 ##  later                    1.3.0     2021-08-18 [1] CRAN (R 4.2.0)
@@ -1102,7 +1104,7 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  lifecycle                1.0.1     2021-09-24 [2] CRAN (R 4.2.0)
 ##  limma                    3.52.2    2022-06-19 [1] Bioconductor
 ##  lobstr                 * 1.1.2     2022-06-22 [1] RSPM (R 4.2.0)
-##  locfit                   1.5-9.5   2022-03-03 [1] RSPM (R 4.2.0)
+##  locfit                   1.5-9.6   2022-07-11 [1] RSPM (R 4.2.0)
 ##  magick                   2.7.3     2021-08-18 [1] RSPM (R 4.2.0)
 ##  magrittr                 2.0.3     2022-03-30 [2] CRAN (R 4.2.0)
 ##  maps                     3.4.0     2021-09-25 [1] RSPM (R 4.2.0)
@@ -1114,7 +1116,7 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  mime                     0.12      2021-09-28 [2] CRAN (R 4.2.0)
 ##  munsell                  0.5.0     2018-06-12 [1] CRAN (R 4.2.0)
 ##  paletteer                1.4.0     2021-07-20 [1] RSPM (R 4.2.0)
-##  pillar                   1.7.0     2022-02-01 [2] CRAN (R 4.2.0)
+##  pillar                   1.8.0     2022-07-18 [2] RSPM (R 4.2.0)
 ##  pkgconfig                2.0.3     2019-09-22 [2] CRAN (R 4.2.0)
 ##  pkgload                  1.3.0     2022-06-27 [2] RSPM (R 4.2.0)
 ##  plotly                   4.10.0    2021-10-09 [1] RSPM (R 4.2.0)
@@ -1128,7 +1130,7 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  R6                       2.5.1     2021-08-19 [2] CRAN (R 4.2.0)
 ##  rappdirs                 0.3.3     2021-01-31 [2] CRAN (R 4.2.0)
 ##  RColorBrewer             1.1-3     2022-04-03 [1] CRAN (R 4.2.0)
-##  Rcpp                     1.0.8.3   2022-03-17 [1] CRAN (R 4.2.0)
+##  Rcpp                     1.0.9     2022-07-08 [1] RSPM (R 4.2.0)
 ##  RCurl                    1.98-1.7  2022-06-09 [1] RSPM (R 4.2.0)
 ##  rematch2                 2.1.2     2020-05-01 [2] CRAN (R 4.2.0)
 ##  restfulr                 0.0.15    2022-06-16 [1] RSPM (R 4.2.0)
@@ -1136,34 +1138,34 @@ Figure 5.4: Screenshot of the RStudio window for publishing your spatialLIBD-pow
 ##  rhdf5filters             1.8.0     2022-04-26 [1] Bioconductor
 ##  Rhdf5lib                 1.18.2    2022-05-15 [1] Bioconductor
 ##  rjson                    0.2.21    2022-01-09 [1] CRAN (R 4.2.0)
-##  rlang                    1.0.3     2022-06-27 [2] RSPM (R 4.2.0)
+##  rlang                    1.0.4     2022-07-12 [2] RSPM (R 4.2.0)
 ##  rmarkdown                2.14      2022-04-25 [1] RSPM (R 4.2.0)
-##  roxygen2                 7.2.0     2022-05-13 [2] RSPM (R 4.2.0)
+##  roxygen2                 7.2.1     2022-07-18 [2] RSPM (R 4.2.0)
 ##  rprojroot                2.0.3     2022-04-02 [2] CRAN (R 4.2.0)
 ##  Rsamtools                2.12.0    2022-04-26 [1] Bioconductor
 ##  RSpectra                 0.16-1    2022-04-24 [1] RSPM (R 4.2.0)
-##  RSQLite                  2.2.14    2022-05-07 [1] RSPM (R 4.2.0)
+##  RSQLite                  2.2.15    2022-07-17 [1] RSPM (R 4.2.0)
 ##  rstudioapi               0.13      2020-11-12 [2] CRAN (R 4.2.0)
 ##  rsvd                     1.0.5     2021-04-16 [1] RSPM (R 4.2.0)
 ##  rtracklayer            * 1.56.1    2022-06-23 [1] Bioconductor
 ##  S4Vectors              * 0.34.0    2022-04-26 [1] Bioconductor
-##  sass                     0.4.1     2022-03-23 [1] CRAN (R 4.2.0)
+##  sass                     0.4.2     2022-07-16 [1] RSPM (R 4.2.0)
 ##  ScaledMatrix             1.4.0     2022-04-26 [1] Bioconductor
 ##  scales                   1.2.0     2022-04-13 [1] RSPM (R 4.2.0)
 ##  scater                 * 1.24.0    2022-04-26 [1] Bioconductor
 ##  scran                  * 1.24.0    2022-04-26 [1] Bioconductor
 ##  scuttle                * 1.6.2     2022-05-15 [1] Bioconductor
 ##  sessioninfo              1.2.2     2021-12-06 [2] RSPM (R 4.2.0)
-##  shiny                    1.7.1     2021-10-02 [1] CRAN (R 4.2.0)
-##  shinyWidgets             0.7.0     2022-05-11 [1] RSPM (R 4.2.0)
+##  shiny                    1.7.2     2022-07-19 [1] CRAN (R 4.2.0)
+##  shinyWidgets             0.7.1     2022-07-13 [1] RSPM (R 4.2.0)
 ##  SingleCellExperiment   * 1.18.0    2022-04-26 [1] Bioconductor
-##  spam                     2.8-0     2022-01-06 [1] RSPM (R 4.2.0)
+##  spam                     2.9-0     2022-07-11 [1] RSPM (R 4.2.0)
 ##  sparseMatrixStats        1.8.0     2022-04-26 [1] Bioconductor
 ##  SpatialExperiment      * 1.6.0     2022-04-26 [1] Bioconductor
-##  spatialLIBD            * 1.8.3     2022-05-31 [1] Bioconductor
+##  spatialLIBD            * 1.8.9     2022-07-19 [1] Bioconductor
 ##  statmod                  1.4.36    2021-05-10 [1] RSPM (R 4.2.0)
 ##  STexampleData          * 1.4.5     2022-05-17 [1] Bioconductor
-##  stringi                  1.7.6     2021-11-29 [2] CRAN (R 4.2.0)
+##  stringi                  1.7.8     2022-07-11 [2] RSPM (R 4.2.0)
 ##  stringr                  1.4.0     2019-02-10 [2] CRAN (R 4.2.0)
 ##  SummarizedExperiment   * 1.26.1    2022-04-29 [1] Bioconductor
 ##  tibble                   3.1.7     2022-05-03 [2] RSPM (R 4.2.0)
@@ -1216,7 +1218,7 @@ Pardo, Brenda, Abby Spangler, Lukas M. Weber, Stephanie C. Hicks, Andrew E. Jaff
         </div>
       </div>
 <a href="mouse-coronal-workflow.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="methods-to-identify-svgs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="external-workflows.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

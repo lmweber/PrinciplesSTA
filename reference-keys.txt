@@ -127,12 +127,12 @@ extra-information-and-filtering
 explore-the-data
 sharing-your-website
 wrapping-up-3
-methods-to-identify-svgs
-methods-for-spatial-clustering
 external-workflows
-related-software
+related-resources
+resources-for-other-spatially-resolved-platforms
+spatialexperiment-1
 contributors
 osta
-spatialexperiment-1
+spatialexperiment-2
 software
 references
