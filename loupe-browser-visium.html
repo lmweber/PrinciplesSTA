@@ -369,21 +369,21 @@ div.csl-indent {
 <div id="manual-alignment-of-images" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Manual alignment of images<a href="loupe-browser-visium.html#manual-alignment-of-images" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>One of the crucial first steps for processing Visium data is to align the gene expression spots to a high resolution image of the tissue, which in some cases can be at 40x magnification. While Space Ranger can do this automatically, if you want to ensure a high quality alignment with no mistakes it is best to do this manually in the Loupe browser. First, you upload the image and enter the serial number for the slide.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="images/alignment_load_image.png" alt="Input your Visium Slide Serial Number and select your input image to start the alignment process using `Loupe` by 10x Genomics." width="100%" />
 <p class="caption">
 Figure 6.1: Input your Visium Slide Serial Number and select your input image to start the alignment process using <code>Loupe</code> by 10x Genomics.
 </p>
 </div>
 <p>Then, you align the fiducial frame such that the red circles are visibly aligned with the fiducial frame pattern of spots.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
 <img src="images/alignment_fiducial.png" alt="Visual alignment of the Visium fiducial frame to the bright field histology image using `Loupe` by 10x Genomics." width="100%" />
 <p class="caption">
 Figure 6.2: Visual alignment of the Visium fiducial frame to the bright field histology image using <code>Loupe</code> by 10x Genomics.
 </p>
 </div>
 <p>Then, you manually select the spots that contain tissue by drawing a contour line. This information will later on be used by <code>SpatialExperiment</code> to determine which spots overlap tissue and which do not.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
 <img src="images/alignment_tissue.png" alt="Manual selection of the Visium spots that overlap tissue based on the selected alignemnt between the image and the Visium slide fiducial frame." width="100%" />
 <p class="caption">
 Figure 6.3: Manual selection of the Visium spots that overlap tissue based on the selected alignemnt between the image and the Visium slide fiducial frame.
@@ -397,35 +397,35 @@ Figure 6.3: Manual selection of the Visium spots that overlap tissue based on th
 <div id="downstream-analyses-in-loupe-browser" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Downstream analyses in Loupe Browser<a href="loupe-browser-visium.html#downstream-analyses-in-loupe-browser" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>After running <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a>, you can open the <code>.cloupe</code> file with <code>Loupe</code> and visually inspect the dimensionality reduction of the data through either a t-SNE or UMAP as well as apply graph-based or k-means clustering.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
 <img src="images/tsne_kmeans.png" alt="Gene expression analysis results from `spaceranger count` visualized with `Loupe`." width="100%" />
 <p class="caption">
 Figure 6.4: Gene expression analysis results from <code>spaceranger count</code> visualized with <code>Loupe</code>.
 </p>
 </div>
 <p>Most importantly you can overlay the gene expression data or annotated clusters onto the histology image. We will later learn how to do this using R and Bioconductor packages.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
 <img src="images/spatial_graph_based.png" alt="Visual inspection of the graph-based clustering results from `spaceranger count` visualized with the tissue histology image in the background using `Loupe`." width="100%" />
 <p class="caption">
 Figure 6.5: Visual inspection of the graph-based clustering results from <code>spaceranger count</code> visualized with the tissue histology image in the background using <code>Loupe</code>.
 </p>
 </div>
 <p><code>Loupe</code> has many features, including the ability to make genes lists and plot marker genes spatially.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
 <img src="images/gene_expression.png" alt="Visualization with `Loupe` of four marker genes in the dorsolaterl prefrontal cortex (DLPFC): _SNAP25_ for neurons, _MBP_ for glia, _RELN_ for DLPFC layer 1 of the greay matter (neurons), and _PCP4_ for DLPFC layer 5. Only _PCP4_ is shown since it is the selected gene in our gene list." width="100%" />
 <p class="caption">
 Figure 6.6: Visualization with <code>Loupe</code> of four marker genes in the dorsolaterl prefrontal cortex (DLPFC): <em>SNAP25</em> for neurons, <em>MBP</em> for glia, <em>RELN</em> for DLPFC layer 1 of the greay matter (neurons), and <em>PCP4</em> for DLPFC layer 5. Only <em>PCP4</em> is shown since it is the selected gene in our gene list.
 </p>
 </div>
 <p>You can also make violin plots to explore gene expression differences across spots grouped by some discrete variable, such as cluster membership.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
 <img src="images/violin_plots.png" alt="_PCP4_ violin plots made with `Loupe` showing the log2 gene expression counts on the Y-axis." width="100%" />
 <p class="caption">
 Figure 6.7: <em>PCP4</em> violin plots made with <code>Loupe</code> showing the log2 gene expression counts on the Y-axis.
 </p>
 </div>
 <p>Furthermore with <code>Loupe</code> you can look at differential expression statistic results for each gene across clusters.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
 <img src="images/deg.png" alt="Differential gene expression statistics displayed by `Loupe`." width="100%" />
 <p class="caption">
 Figure 6.8: Differential gene expression statistics displayed by <code>Loupe</code>.
