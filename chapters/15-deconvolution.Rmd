@@ -13,7 +13,7 @@ In this section, we will demonstrate methods to deconvolve cell types per spot. 
 
 *Code to run steps from the previous chapters to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide'}
 # LOAD DATA
 
 library(SpatialExperiment)
@@ -28,7 +28,7 @@ The following figure provides an overview of the number of cells per spot in thi
 
 We see that spots in this dataset contain around 0-10 cells, with a mode of 3. Therefore, it is plausible that some spots contain multiple cell types, and spot-level deconvolution could improve downstream analyses by deconvolving these cell types.
 
-```{r n_cells, message=FALSE, warnings=FALSE, fig.width=5, fig.height=4}
+```{r, message=FALSE, warnings=FALSE, fig.width=5, fig.height=4}
 library(ggspavis)
 
 # plot number of cells per spot

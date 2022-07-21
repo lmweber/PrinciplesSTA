@@ -1,8 +1,8 @@
-book_filename: "OSTA-book"
+book_filename: "OSTA-book.Rmd"
+delete_merged_file: true
 language:
   ui:
     chapter_name: "Chapter "
-delete_merged_file: true
 site: "bookdown::bookdown_site"
-new_session: yes
+before_chapter_script: "before_chapter.R"
 rmd_subdir: "chapters"

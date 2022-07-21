@@ -14,7 +14,7 @@ Due to the small size of the mouse brain and the dimensions of the Visium slide 
 
 The dataset is available in `SpatialExperiment` format from the [STexampleData](https://bioconductor.org/packages/STexampleData) package.
 
-```{r load_data, message=FALSE}
+```{r, message=FALSE}
 library(SpatialExperiment)
 library(STexampleData)
 
@@ -34,7 +34,7 @@ We use visualization functions from the [ggspavis](https://bioconductor.org/pack
 library(ggspavis)
 ```
 
-```{r plot_data, fig.height=3.5}
+```{r, fig.height=3.5}
 # plot spatial coordinates (spots)
 plotSpots(spe)
 ```
@@ -44,7 +44,7 @@ plotSpots(spe)
 
 Subset object to keep only spots over tissue.
 
-```{r subset_in_tissue}
+```{r}
 # subset to keep only spots over tissue
 spe <- spe[, colData(spe)$in_tissue == 1]
 dim(spe)
@@ -56,7 +56,7 @@ Calculate spot-level QC metrics using the `scater` package [@McCarthy2017], and 
 library(scater)
 ```
 
-```{r QC_calculate}
+```{r}
 # identify mitochondrial genes
 is_mito <- grepl("(^MT-)|(^mt-)", rowData(spe)$gene_name)
 table(is_mito)
@@ -69,7 +69,7 @@ head(colData(spe), 3)
 
 Select filtering thresholds for the QC metrics by examining distributions using histograms.
 
-```{r QC_thresholds, fig.width=7, fig.height=3}
+```{r, fig.width=7, fig.height=3}
 # histograms of QC metrics
 par(mfrow = c(1, 3))
 hist(colData(spe)$sum, xlab = "sum", main = "UMIs per spot")
@@ -95,7 +95,7 @@ colData(spe)$discard <- discard
 
 Plot discarded spots in x-y coordinates on the tissue slide to check if there is any biologically meaningful spatial pattern. This would be problematic, since it would mean we are removing biologically informative spots.
 
-```{r QC_check, fig.height=3.5}
+```{r, fig.height=3.5}
 # check spatial pattern of discarded spots
 plotQC(spe, type = "spots", discard = "discard")
 ```
@@ -104,7 +104,7 @@ There is one small region with some concentrated discarded spots at the top-left
 
 We filter out the low-quality spots from the object.
 
-```{r QC_filter}
+```{r}
 # filter low-quality spots
 spe <- spe[, !colData(spe)$discard]
 dim(spe)
@@ -119,7 +119,7 @@ Next, we calculate log-transformed normalized counts, using pool-based size fact
 library(scran)
 ```
 
-```{r normalization, fig.height=3.5}
+```{r, fig.height=3.5}
 # quick clustering for pool-based size factors
 set.seed(123)
 qclus <- quickCluster(spe)
@@ -142,13 +142,13 @@ assayNames(spe)
 
 Identify a set of top highly variable genes (HVGs), which will be used to define cell types. We use methods from `scran` [@Lun2016], and first filter out mitochondrial genes (since these are very highly expressed and not of biological interest here).
 
-```{r feature_selection_mito}
+```{r}
 # remove mitochondrial genes
 spe <- spe[!is_mito, ]
 dim(spe)
 ```
 
-```{r feature_selection_HVGs, fig.height=5}
+```{r, fig.height=5}
 # fit mean-variance relationship
 dec <- modelGeneVar(spe)
 
@@ -165,7 +165,7 @@ length(top_hvgs)
 
 Note there are a few extremely highly expressed genes, which influence the fitted mean-variance relationship. We check the names of these genes to decide whether they should be removed as outliers.
 
-```{r outliers}
+```{r}
 # identify outlier genes
 rev(sort(fit$mean))[1:3]
 outlier_ids <- names(rev(sort(fit$mean))[1:3])
@@ -186,7 +186,7 @@ Here, we run nnSVG using a small subset of the dataset for faster runtime. We se
 library(nnSVG)
 ```
 
-```{r nnSVG}
+```{r}
 # subsample spots
 n <- 100
 set.seed(123)
@@ -231,7 +231,7 @@ rowData(spe_nnSVG)$gene_name[which(rowData(spe_nnSVG)$rank == 1)]
 
 Run principal component analysis (PCA) on the set of top HVGs using `scater` [@McCarthy2017], and retain the top 50 principal components (PCs) for downstream analyses. Also run UMAP on the top 50 PCs, and retain the top 2 UMAP components for visualization purposes.
 
-```{r dimensionality_reduction_PCA}
+```{r}
 # compute PCA
 set.seed(123)
 spe <- runPCA(spe, subset_row = top_hvgs)
@@ -240,7 +240,7 @@ reducedDimNames(spe)
 dim(reducedDim(spe, "PCA"))
 ```
 
-```{r dimensionality_reduction_UMAP}
+```{r}
 # compute UMAP on top 50 PCs
 set.seed(123)
 spe <- runUMAP(spe, dimred = "PCA")
@@ -257,7 +257,7 @@ colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 
 Perform clustering to define cell types. We apply graph-based clustering using the Walktrap method implemented in `scran` [@Lun2016], applied to the top 50 PCs calculated on the set of top HVGs.
 
-```{r clustering_calculate}
+```{r}
 # graph-based clustering
 set.seed(123)
 k <- 10
@@ -272,7 +272,7 @@ colLabels(spe) <- factor(clus)
 
 Visualize the clusters by plotting in (i) spatial (x-y) coordinates on the tissue slide, and (ii) UMAP dimensions.
 
-```{r clustering_plots_spots, fig.height=3.5}
+```{r, fig.height=3.5}
 # define custom color palette
 colors <- unname(palette.colors(palette = "Polychrome 36"))
 
@@ -281,7 +281,7 @@ plotSpots(spe, annotate = "label",
           palette = colors)
 ```
 
-```{r clustering_plots_reduced, fig.width=5, fig.height=4.25}
+```{r, fig.width=5, fig.height=4.25}
 # plot clusters in UMAP dimensions
 plotDimRed(spe, type = "UMAP", 
            annotate = "label", palette = colors)
@@ -292,7 +292,7 @@ plotDimRed(spe, type = "UMAP",
 
 Identify marker genes by testing for differential gene expression between clusters, using the binomial test implemented in `findMarkers` in `scran` [@Lun2016].
 
-```{r marker_genes}
+```{r}
 # set gene names as row names for easier plotting
 rownames(spe) <- rowData(spe)$gene_name
 
@@ -307,7 +307,7 @@ markers
 library(pheatmap)
 ```
 
-```{r marker_genes_heatmap, fig.width=7, fig.height=7}
+```{r, fig.width=7, fig.height=7}
 # plot log-fold changes for one cluster over all other clusters
 # selecting cluster 5
 interesting <- markers[[5]]
@@ -317,7 +317,7 @@ logFCs <- getMarkerEffects(best_set)
 pheatmap(logFCs, breaks = seq(-5, 5, length.out = 101))
 ```
 
-```{r marker_genes_expression, fig.width=7, fig.height=7}
+```{r, fig.width=7, fig.height=7}
 # plot log-transformed normalized expression of top genes for one cluster
 top_genes <- head(rownames(interesting))
 
