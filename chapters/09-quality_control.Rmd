@@ -23,7 +23,7 @@ The first three characteristics listed above are also used for QC in scRNA-seq d
 
 ## Load data
 
-```{r, message=FALSE}
+```{r, message=FALSE, eval=FALSE}
 library(SpatialExperiment)
 library(STexampleData)
 

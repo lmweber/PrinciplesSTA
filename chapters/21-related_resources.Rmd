@@ -4,6 +4,11 @@
 
 ## Resources for other spatially-resolved platforms
 
+```{r}
+# clear workspace from previous chapters
+rm(list = ls(all = TRUE))
+```
+
 
 ## SpatialExperiment
 

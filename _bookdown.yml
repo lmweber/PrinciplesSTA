@@ -4,5 +4,4 @@ language:
   ui:
     chapter_name: "Chapter "
 site: "bookdown::bookdown_site"
-before_chapter_script: "before_chapter.R"
 rmd_subdir: "chapters"
