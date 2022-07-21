@@ -13,7 +13,7 @@ In the spatial context, we may be interested in e.g. (i) identifying cell types 
 
 *Code to run steps from the previous chapters to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r, message=FALSE, results='hide'}
+```{r, message=FALSE, eval=FALSE}
 # LOAD DATA
 
 library(SpatialExperiment)

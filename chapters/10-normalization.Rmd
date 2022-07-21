@@ -9,6 +9,11 @@ Here we apply normalization methods developed for scRNA-seq data, treating each 
 
 *Code to run steps from the previous chapters to generate the `SpatialExperiment` object required for this chapter.*
 
+```{r}
+# clear workspace from previous chapters
+rm(list = ls(all = TRUE))
+```
+
 ```{r, message=FALSE, results='hide'}
 # LOAD DATA
 

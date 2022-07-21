@@ -4,6 +4,11 @@
 
 In the previous workflow, [Human DLPFC workflow], you practiced some of the basics with a portion of the postmortem human brain dataset @Maynard2021. The goal of this workflow is to learn what steps you need to carry out in order to create an interactive website to visualize this type of data. For this, we'll use the [`spatialLIBD`](http://bioconductor.org/packages/spatialLIBD) Bioconductor package @Pardo2021.
 
+```{r}
+# clear workspace from previous chapters
+rm(list = ls(all = TRUE))
+```
+
 ```{r, echo=FALSE, out.width = "100%", fig.align="center", fig.cap="`spatialLIBD` overview. Source: [Pardo et al, _bioRxiv_, 2021](https://doi.org/10.1101/2021.04.29.440149)."}
 knitr::include_graphics("images/spatialLIBD_Figure1.png")
 ```
