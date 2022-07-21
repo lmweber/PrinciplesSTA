@@ -5,32 +5,4 @@ language:
 delete_merged_file: true
 site: "bookdown::bookdown_site"
 new_session: yes
-rmd_files: ["index.Rmd",
-    # Part 1: Introduction
-    "introduction.Rmd",
-    "spatial_transcriptomics.Rmd",
-    "spatialexperiment.Rmd",
-    # Part 2: Preprocessing steps
-    "preprocessing_steps.Rmd",
-    "image_segmentation.Rmd",
-    "loupe_browser.Rmd",
-    "space_ranger.Rmd",
-    # Part 3: Analysis steps
-    "analysis_steps.Rmd",
-    "quality_control.Rmd",
-    "normalization.Rmd",
-    "feature_selection.Rmd",
-    "dimensionality_reduction.Rmd",
-    "clustering.Rmd",
-    "marker_genes.Rmd",
-    "deconvolution.Rmd",
-    # Part 4: Workflows
-    "workflows.Rmd",
-    "workflow_Visium_humanDLPFC.Rmd",
-    "workflow_Visium_mouseCoronal.Rmd",
-    "workflow_Visium_spatialLIBD.Rmd",
-    "external_workflows.Rmd",
-    # Part 5: Appendix
-    "related_resources.Rmd",
-    "contributors.Rmd",
-    "references.Rmd"]
+rmd_subdir: "chapters"
