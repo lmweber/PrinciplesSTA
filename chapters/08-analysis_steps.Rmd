@@ -17,7 +17,7 @@ The dataset consists of a single sample of human brain from the dorsolateral pre
 
 Here, we show how to load the data from the `STexampleData` package.
 
-```{r load_data, message=FALSE}
+```{r, message=FALSE}
 library(SpatialExperiment)
 library(STexampleData)
 

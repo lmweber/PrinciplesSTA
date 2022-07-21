@@ -9,7 +9,7 @@ Here we apply normalization methods developed for scRNA-seq data, treating each 
 
 *Code to run steps from the previous chapters to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide'}
 # LOAD DATA
 
 library(SpatialExperiment)
@@ -46,7 +46,7 @@ We use normalization methods from `scater` [@McCarthy2017] and `scran` [@Lun2016
 
 Since we have only a single sample, there are no blocking factors in the experimental design.
 
-```{r normalization, message=FALSE, fig.height=3.5}
+```{r, message=FALSE, fig.height=3.5}
 library(scran)
 
 # quick clustering for pool-based size factors

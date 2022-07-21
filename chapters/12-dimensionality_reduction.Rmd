@@ -9,7 +9,7 @@ In this chapter, we apply dimensionality reduction methods to visualize the data
 
 *Code to run steps from the previous chapters to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide'}
 # LOAD DATA
 
 library(SpatialExperiment)
@@ -66,7 +66,7 @@ This is done for two reasons: (i) to reduce noise due to random variation in exp
 
 We use the computationally efficient implementation of PCA provided in the `scater` package [@McCarthy2017]. This implementation uses randomization, and therefore requires setting a random seed for reproducibility.
 
-```{r calculate_PCA}
+```{r}
 # compute PCA
 set.seed(123)
 spe <- runPCA(spe, subset_row = top_hvgs)
@@ -80,7 +80,7 @@ dim(reducedDim(spe, "PCA"))
 
 We also run UMAP [@McInnes2018] on the set of top 50 PCs and retain the top 2 UMAP components, which will be used for visualization purposes.
 
-```{r calculate_UMAP}
+```{r}
 # compute UMAP on top 50 PCs
 set.seed(123)
 spe <- runUMAP(spe, dimred = "PCA")
@@ -101,7 +101,7 @@ Generate plots using plotting functions from the [ggspavis](https://bioconductor
 library(ggspavis)
 ```
 
-```{r reduced_dim_plots, fig.width=4.25, fig.height=4.25}
+```{r, fig.width=4.25, fig.height=4.25}
 # plot top 2 PCA dimensions
 plotDimRed(spe, type = "PCA")
 

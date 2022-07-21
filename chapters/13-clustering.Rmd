@@ -13,7 +13,7 @@ In the spatial context, we may be interested in e.g. (i) identifying cell types 
 
 *Code to run steps from the previous chapters to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide'}
 # LOAD DATA
 
 library(SpatialExperiment)
@@ -79,7 +79,7 @@ We can perform clustering by applying standard clustering methods developed for 
 
 In the context of spatial data, this means we assume that biologically informative spatial distribution patterns of cell types can be detected from the molecular features (gene expression).
 
-```{r clustering_HVGs}
+```{r}
 # graph-based clustering
 set.seed(123)
 k <- 10
@@ -103,7 +103,7 @@ From the visualizations, we can see that the clustering reproduces the known bio
 library(ggspavis)
 ```
 
-```{r clustering_plots_spots, fig.height=3.5}
+```{r, fig.height=3.5}
 # plot clusters in spatial x-y coordinates
 plotSpots(spe, annotate = "label", 
           palette = "libd_layer_colors")
@@ -113,7 +113,7 @@ plotSpots(spe, annotate = "ground_truth",
           palette = "libd_layer_colors")
 ```
 
-```{r clustering_plots_reduced, message=FALSE, fig.width=5, fig.height=4.25}
+```{r, message=FALSE, fig.width=5, fig.height=4.25}
 # plot clusters in PCA reduced dimensions
 plotDimRed(spe, type = "PCA", 
            annotate = "label", palette = "libd_layer_colors")

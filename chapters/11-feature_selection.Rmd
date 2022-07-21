@@ -9,7 +9,7 @@ Here we apply feature selection methods to identify highly variable genes (HVGs)
 
 *Code to run steps from the previous chapters to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide'}
 # LOAD DATA
 
 library(SpatialExperiment)
@@ -57,7 +57,7 @@ It is important to note that HVGs are defined purely based on molecular features
 
 To identify HVGs, we first remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of main biological interest.
 
-```{r remove_mito, message=FALSE}
+```{r, message=FALSE}
 # remove mitochondrial genes
 spe <- spe[!is_mito, ]
 dim(spe)
@@ -66,7 +66,7 @@ dim(spe)
 
 Then, we apply methods from `scran`. This gives us a list of HVGs, which can be used for further downstream analyses. The parameter `prop` defines how many HVGs we want. For example `prop = 0.1` returns the top 10% of genes.
 
-```{r select_HVGs, message=FALSE, fig.height=5}
+```{r, message=FALSE, fig.height=5}
 library(scran)
 
 # fit mean-variance relationship

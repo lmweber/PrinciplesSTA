@@ -9,7 +9,7 @@ In this chapter, we identify marker genes for each cluster by testing for differ
 
 *Code to run steps from the previous chapters to generate the `SpatialExperiment` object required for this chapter.*
 
-```{r previous_steps, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide'}
 # LOAD DATA
 
 library(SpatialExperiment)
@@ -91,7 +91,7 @@ library(scater)
 library(pheatmap)
 ```
 
-```{r marker_genes}
+```{r}
 # set gene names as row names for easier plotting
 rownames(spe) <- rowData(spe)$gene_name
 
@@ -102,7 +102,7 @@ markers <- findMarkers(spe, test = "binom", direction = "up")
 markers
 ```
 
-```{r marker_genes_heatmap, fig.width=5, fig.height=6}
+```{r, fig.width=5, fig.height=6}
 # plot log-fold changes for one cluster over all other clusters
 # selecting cluster 1
 interesting <- markers[[1]]
@@ -112,7 +112,7 @@ logFCs <- getMarkerEffects(best_set)
 pheatmap(logFCs, breaks = seq(-5, 5, length.out = 101))
 ```
 
-```{r marker_genes_expression, fig.width=7, fig.height=7}
+```{r, fig.width=7, fig.height=7}
 # plot log-transformed normalized expression of top genes for one cluster
 top_genes <- head(rownames(interesting))
 
