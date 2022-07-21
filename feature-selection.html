@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-07-20" />
+<meta name="date" content="2022-07-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -425,7 +425,7 @@ div.csl-indent {
 <span id="cb93-8"><a href="feature-selection.html#cb93-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit<span class="sc">$</span>mean, fit<span class="sc">$</span>var, </span>
 <span id="cb93-9"><a href="feature-selection.html#cb93-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;mean of log-expression&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;variance of log-expression&quot;</span>)</span>
 <span id="cb93-10"><a href="feature-selection.html#cb93-10" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(fit<span class="sc">$</span><span class="fu">trend</span>(x), <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="feature_selection_files/figure-html/select_HVGs-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="feature-selection.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
 <span id="cb94-2"><a href="feature-selection.html#cb94-2" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
 <span id="cb94-3"><a href="feature-selection.html#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(top_hvgs)</span></code></pre></div>

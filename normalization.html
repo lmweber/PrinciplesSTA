@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-07-20" />
+<meta name="date" content="2022-07-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -415,7 +415,7 @@ div.csl-indent {
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.1334  0.6093  0.8844  1.0000  1.2852  4.2475</code></pre>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="normalization.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">sizeFactors</span>(spe), <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
-<p><img src="normalization_files/figure-html/normalization-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="normalization.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts) and store in object</span></span>
 <span id="cb84-2"><a href="normalization.html#cb84-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
 <span id="cb84-3"><a href="normalization.html#cb84-3" aria-hidden="true" tabindex="-1"></a></span>

@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-07-20" />
+<meta name="date" content="2022-07-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -401,7 +401,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="human-dlpfc-workflow.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span></code></pre></div>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="human-dlpfc-workflow.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot spatial coordinates (spots)</span></span>
 <span id="cb130-2"><a href="human-dlpfc-workflow.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe)</span></code></pre></div>
-<p><img src="workflow_Visium_humanDLPFC_files/figure-html/plot_data-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 </div>
 <div id="quality-control-qc" class="section level2 hasAnchor" number="17.4">
 <h2><span class="header-section-number">17.4</span> Quality control (QC)<a href="human-dlpfc-workflow.html#quality-control-qc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -452,7 +452,7 @@ div.csl-indent {
 <span id="cb140-4"><a href="human-dlpfc-workflow.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>detected, <span class="at">xlab =</span> <span class="st">&quot;detected&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Genes per spot&quot;</span>)</span>
 <span id="cb140-5"><a href="human-dlpfc-workflow.html#cb140-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent, <span class="at">xlab =</span> <span class="st">&quot;percent mitochondrial&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Percent mito UMIs&quot;</span>)</span>
 <span id="cb140-6"><a href="human-dlpfc-workflow.html#cb140-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count, <span class="at">xlab =</span> <span class="st">&quot;number of cells&quot;</span>, <span class="at">main =</span> <span class="st">&quot;No. cells per spot&quot;</span>)</span></code></pre></div>
-<p><img src="workflow_Visium_humanDLPFC_files/figure-html/QC_thresholds-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="human-dlpfc-workflow.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
 <span id="cb141-2"><a href="human-dlpfc-workflow.html#cb141-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb141-3"><a href="human-dlpfc-workflow.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
@@ -476,7 +476,7 @@ div.csl-indent {
 <p>Plot the set of discarded spots in the spatial x-y coordinates, to confirm that the spatial distribution of the discarded spots does not correspond to any biologically meaningful regions, which would indicate that we are removing biologically informative spots.</p>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="human-dlpfc-workflow.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
 <span id="cb146-2"><a href="human-dlpfc-workflow.html#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, <span class="at">discard =</span> <span class="st">&quot;discard&quot;</span>)</span></code></pre></div>
-<p><img src="workflow_Visium_humanDLPFC_files/figure-html/QC_check-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <p>There is some concentration of discarded spots at the edge of the tissue region, which may be due to tissue damage. Importantly, the discarded spots do not correspond to any of the cortical layers of interest.</p>
 <p>We filter out the low-quality spots from the object.</p>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="human-dlpfc-workflow.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
@@ -502,7 +502,7 @@ div.csl-indent {
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.1334  0.6093  0.8844  1.0000  1.2852  4.2475</code></pre>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="human-dlpfc-workflow.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">sizeFactors</span>(spe), <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
-<p><img src="workflow_Visium_humanDLPFC_files/figure-html/normalization-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="human-dlpfc-workflow.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts) and store in object</span></span>
 <span id="cb155-2"><a href="human-dlpfc-workflow.html#cb155-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
 <span id="cb155-3"><a href="human-dlpfc-workflow.html#cb155-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -524,7 +524,7 @@ div.csl-indent {
 <span id="cb159-6"><a href="human-dlpfc-workflow.html#cb159-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit<span class="sc">$</span>mean, fit<span class="sc">$</span>var, </span>
 <span id="cb159-7"><a href="human-dlpfc-workflow.html#cb159-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;mean of log-expression&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;variance of log-expression&quot;</span>)</span>
 <span id="cb159-8"><a href="human-dlpfc-workflow.html#cb159-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(fit<span class="sc">$</span><span class="fu">trend</span>(x), <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="workflow_Visium_humanDLPFC_files/figure-html/feature_selection_HVGs-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="human-dlpfc-workflow.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
 <span id="cb160-2"><a href="human-dlpfc-workflow.html#cb160-2" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
 <span id="cb160-3"><a href="human-dlpfc-workflow.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(top_hvgs)</span></code></pre></div>
@@ -574,8 +574,8 @@ div.csl-indent {
 ## ENSG00000179403 ENSG00000179403        VWA1 Gene Expression 0.04567176
 ##                    tau.sq       phi    loglik   runtime      mean       var
 ##                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-## ENSG00000175756  0.607264  27.64408 -117.5988     0.044  0.795304  0.620477
-## ENSG00000242485  0.507165  21.87908 -108.5021     0.039  0.711430  0.517328
+## ENSG00000175756  0.607264  27.64408 -117.5988     0.042  0.795304  0.620477
+## ENSG00000242485  0.507165  21.87908 -108.5021     0.035  0.711430  0.517328
 ## ENSG00000179403  0.377759   2.71165  -97.6059     0.039  0.343485  0.426008
 ##                     spcov   prop_sv loglik_lm   LR_stat      rank      pval
 ##                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
@@ -605,12 +605,12 @@ div.csl-indent {
 ## ENSG00000131095 ENSG00000131095        GFAP Gene Expression   2.52053  0.564870
 ##                       phi    loglik   runtime      mean       var     spcov
 ##                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-## ENSG00000197971  1.141101  -123.040     0.054  3.766159   2.82874  0.490598
-## ENSG00000123560  1.034486  -143.223     0.046  2.814804   3.11801  0.636245
-## ENSG00000173786  0.801438  -127.381     0.046  1.756521   1.99757  0.914174
+## ENSG00000197971  1.141101  -123.040     0.052  3.766159   2.82874  0.490598
+## ENSG00000123560  1.034486  -143.223     0.052  2.814804   3.11801  0.636245
+## ENSG00000173786  0.801438  -127.381     0.044  1.756521   1.99757  0.914174
 ## ENSG00000109846  2.037123  -127.649     0.038  1.841579   1.91122  0.724499
-## ENSG00000013297  1.333526  -104.079     0.049  0.588596   1.06617  1.887383
-## ENSG00000131095  2.438995  -156.946     0.050  2.034384   2.84571  0.780392
+## ENSG00000013297  1.333526  -104.079     0.048  0.588596   1.06617  1.887383
+## ENSG00000131095  2.438995  -156.946     0.047  2.034384   2.84571  0.780392
 ##                   prop_sv loglik_lm   LR_stat      rank        pval       padj
 ##                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt;  &lt;numeric&gt;
 ## ENSG00000197971  0.944332  -193.383  140.6860         1 0.00000e+00 0.0000e+00
@@ -666,15 +666,15 @@ div.csl-indent {
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="human-dlpfc-workflow.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in spatial x-y coordinates</span></span>
 <span id="cb190-2"><a href="human-dlpfc-workflow.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, </span>
 <span id="cb190-3"><a href="human-dlpfc-workflow.html#cb190-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
-<p><img src="workflow_Visium_humanDLPFC_files/figure-html/clustering_plots_spots-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="human-dlpfc-workflow.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot ground truth labels in spatial coordinates</span></span>
 <span id="cb191-2"><a href="human-dlpfc-workflow.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">annotate =</span> <span class="st">&quot;ground_truth&quot;</span>, </span>
 <span id="cb191-3"><a href="human-dlpfc-workflow.html#cb191-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
-<p><img src="workflow_Visium_humanDLPFC_files/figure-html/clustering_plots_spots-2.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-114-2.png" width="672" /></p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="human-dlpfc-workflow.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in UMAP reduced dimensions</span></span>
 <span id="cb192-2"><a href="human-dlpfc-workflow.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
 <span id="cb192-3"><a href="human-dlpfc-workflow.html#cb192-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;libd_layer_colors&quot;</span>)</span></code></pre></div>
-<p><img src="workflow_Visium_humanDLPFC_files/figure-html/clustering_plots_reduced-1.png" width="480" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-115-1.png" width="480" /></p>
 </div>
 <div id="marker-genes-2" class="section level2 hasAnchor" number="17.10">
 <h2><span class="header-section-number">17.10</span> Marker genes<a href="human-dlpfc-workflow.html#marker-genes-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -697,12 +697,12 @@ div.csl-indent {
 <span id="cb196-5"><a href="human-dlpfc-workflow.html#cb196-5" aria-hidden="true" tabindex="-1"></a>logFCs <span class="ot">&lt;-</span> <span class="fu">getMarkerEffects</span>(best_set)</span>
 <span id="cb196-6"><a href="human-dlpfc-workflow.html#cb196-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb196-7"><a href="human-dlpfc-workflow.html#cb196-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(logFCs, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">101</span>))</span></code></pre></div>
-<p><img src="workflow_Visium_humanDLPFC_files/figure-html/marker_genes_heatmap-1.png" width="480" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-118-1.png" width="480" /></p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="human-dlpfc-workflow.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-transformed normalized expression of top genes for one cluster</span></span>
 <span id="cb197-2"><a href="human-dlpfc-workflow.html#cb197-2" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">rownames</span>(interesting))</span>
 <span id="cb197-3"><a href="human-dlpfc-workflow.html#cb197-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb197-4"><a href="human-dlpfc-workflow.html#cb197-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotExpression</span>(spe, <span class="at">x =</span> <span class="st">&quot;label&quot;</span>, <span class="at">features =</span> top_genes)</span></code></pre></div>
-<p><img src="workflow_Visium_humanDLPFC_files/figure-html/marker_genes_expression-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
 
 </div>
 </div>

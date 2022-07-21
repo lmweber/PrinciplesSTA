@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-07-20" />
+<meta name="date" content="2022-07-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -459,12 +459,12 @@ div.csl-indent {
 <span id="cb122-5"><a href="marker-genes.html#cb122-5" aria-hidden="true" tabindex="-1"></a>logFCs <span class="ot">&lt;-</span> <span class="fu">getMarkerEffects</span>(best_set)</span>
 <span id="cb122-6"><a href="marker-genes.html#cb122-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb122-7"><a href="marker-genes.html#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(logFCs, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">101</span>))</span></code></pre></div>
-<p><img src="marker_genes_files/figure-html/marker_genes_heatmap-1.png" width="480" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-89-1.png" width="480" /></p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="marker-genes.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-transformed normalized expression of top genes for one cluster</span></span>
 <span id="cb123-2"><a href="marker-genes.html#cb123-2" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">rownames</span>(interesting))</span>
 <span id="cb123-3"><a href="marker-genes.html#cb123-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb123-4"><a href="marker-genes.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotExpression</span>(spe, <span class="at">x =</span> <span class="st">&quot;label&quot;</span>, <span class="at">features =</span> top_genes)</span></code></pre></div>
-<p><img src="marker_genes_files/figure-html/marker_genes_expression-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 
 </div>
 </div>

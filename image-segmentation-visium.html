@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-07-20" />
+<meta name="date" content="2022-07-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -364,24 +364,24 @@ div.csl-indent {
 <div id="overview" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Overview<a href="image-segmentation-visium.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As we saw in the introduction on <a href="spatially-resolved-transcriptomics.html#spatially-resolved-transcriptomics">Spatially resolved transcriptomics</a>, the Visium platform from 10x Genomics has four tissue capture areas.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="https://kb.10xgenomics.com/hc/article_attachments/360042142472/Picture1.png" alt="Visium slide design. Source: [10x Genomics](https://kb.10xgenomics.com/hc/en-us/articles/360035487572-What-is-the-spatial-resolution-and-configuration-of-the-capture-area-of-the-Visium-Gene-Expression-Slide-)." width="60%" />
 <p class="caption">
-Figure 2.1: Visium slide design. Source: <a href="https://kb.10xgenomics.com/hc/en-us/articles/360035487572-What-is-the-spatial-resolution-and-configuration-of-the-capture-area-of-the-Visium-Gene-Expression-Slide-">10x Genomics</a>.
+Figure 5.1: Visium slide design. Source: <a href="https://kb.10xgenomics.com/hc/en-us/articles/360035487572-What-is-the-spatial-resolution-and-configuration-of-the-capture-area-of-the-Visium-Gene-Expression-Slide-">10x Genomics</a>.
 </p>
 </div>
 <p>While 10x Genomics will provide the Visium slide, you can use many different imaging scopes to obtain bright field and/or fluorescent images for regular Visium or Visium immunofluorescence (IF), respectively.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="https://support.10xgenomics.com/img/spatial/tissue_lowres_image_brightfield.png" alt="Visium images you might generate using your preferred imaging scope: bright field images showing the tissue or multi-channel fluorescent images. Source: [10x Genomics](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/input-recommendations)." width="75%" />
 <p class="caption">
-Figure 5.1: Visium images you might generate using your preferred imaging scope: bright field images showing the tissue or multi-channel fluorescent images. Source: <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/input-recommendations">10x Genomics</a>.
+Figure 5.2: Visium images you might generate using your preferred imaging scope: bright field images showing the tissue or multi-channel fluorescent images. Source: <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/input-recommendations">10x Genomics</a>.
 </p>
 </div>
 <p>As we will learn in the next chapters, we will want to use <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a> to manually align each tissue capture area prior to running <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a> for processing the gene expression data.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
 <img src="https://support.10xgenomics.com/img/spatial/aligned_fiducials.jpg" alt="A single Visium tissue capture area with the fiducial frame aligned through Loupe such that the red circles overlap the fiducial frame as determined by visual inspection. Source: [10x Genomics](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/output/images)." width="75%" />
 <p class="caption">
-Figure 5.2: A single Visium tissue capture area with the fiducial frame aligned through Loupe such that the red circles overlap the fiducial frame as determined by visual inspection. Source: <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/output/images">10x Genomics</a>.
+Figure 5.3: A single Visium tissue capture area with the fiducial frame aligned through Loupe such that the red circles overlap the fiducial frame as determined by visual inspection. Source: <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/output/images">10x Genomics</a>.
 </p>
 </div>
 <p>You likely will image a full Visium slide with four tissue capture areas. So before you can proceed, you will need to use some external software to split your image into individual capture areas. One such utility is <a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a>, which we will illustrate in this chapter.</p>
@@ -395,10 +395,10 @@ Figure 5.2: A single Visium tissue capture area with the fiducial frame aligned 
 <li><em>Space Ranger</em>: Next, you need to run <code>spaceranger count</code>, described in the <a href="space-ranger-visium.html#space-ranger-visium">Space Ranger (Visium)</a> chapter, to create the input files for the final <code>VistoSeg</code> step.</li>
 <li><em>Count Cells/Nuclei</em>: This step is performed to get the count of cells/nuclei per Visium spot for each capture area.</li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
 <img src="http://research.libd.org/VistoSeg/images/VistoSeg.png" alt="`VistoSeg` pipeline overview. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/index.html#why-spatial-transcriptomics-or-visium-imaging)." width="100%" />
 <p class="caption">
-Figure 5.3: <code>VistoSeg</code> pipeline overview. Source: <a href="http://research.libd.org/VistoSeg/index.html#why-spatial-transcriptomics-or-visium-imaging"><code>VistoSeg</code></a>.
+Figure 5.4: <code>VistoSeg</code> pipeline overview. Source: <a href="http://research.libd.org/VistoSeg/index.html#why-spatial-transcriptomics-or-visium-imaging"><code>VistoSeg</code></a>.
 </p>
 </div>
 <p>For more information about <code>VistoSeg</code> please see its <a href="http://research.libd.org/VistoSeg/">documentation website</a>.</p>
@@ -406,10 +406,10 @@ Figure 5.3: <code>VistoSeg</code> pipeline overview. Source: <a href="http://res
 <div id="split-histology-images" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Split histology images<a href="image-segmentation-visium.html#split-histology-images" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> provides a MATLAB function called <code>splitSlide</code> that can take an image with four capture areas and divide this into four images with approximately the same dimensions (they can be a few pixels off in the x-axis). Sometimes the center of the image is not the center of the slide, in which case the offset can be adjusted manually.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
 <img src="http://research.libd.org/VistoSeg/images/img1.png" alt="An example bright field image with four Visium tissue capture areas. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html)." width="100%" />
 <p class="caption">
-Figure 5.4: An example bright field image with four Visium tissue capture areas. Source: <a href="http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html"><code>VistoSeg</code></a>.
+Figure 5.5: An example bright field image with four Visium tissue capture areas. Source: <a href="http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html"><code>VistoSeg</code></a>.
 </p>
 </div>
 <p>Example images for trying out <code>splitSplide</code> and the corresponding code are available from the <a href="http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html"><code>VistoSeg</code> documentation website</a>.</p>
@@ -421,17 +421,17 @@ Figure 5.4: An example bright field image with four Visium tissue capture areas.
 <div id="segment-cell-nuclei" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Segment cell nuclei<a href="image-segmentation-visium.html#segment-cell-nuclei" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Once you have run the <code>splitSlide</code> function from <code>VistoSeg</code>, you can now proceed to segment the images. This process helps remove background noise in the images so you can more readily identify the cells or nuclei in your bright field image. For fluorescent images, <code>dotdotdot</code>’s utilities <span class="citation">(<a href="#ref-Maynard2020" role="doc-biblioref">Kristen R. Maynard et al. 2020</a>)</span> could potentially be useful, particularly if your images have Z-stacks.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
 <img src="images/dotdotdot_fig1.jpeg" alt="`dotdotdot` overview figure. Notice the Z-stacked images which some scopes produce. Source: [`dotdotdot`](https://doi.org/10.1093/nar/gkaa312)." width="80%" />
 <p class="caption">
-Figure 5.5: <code>dotdotdot</code> overview figure. Notice the Z-stacked images which some scopes produce. Source: <a href="https://doi.org/10.1093/nar/gkaa312"><code>dotdotdot</code></a>.
+Figure 5.6: <code>dotdotdot</code> overview figure. Notice the Z-stacked images which some scopes produce. Source: <a href="https://doi.org/10.1093/nar/gkaa312"><code>dotdotdot</code></a>.
 </p>
 </div>
 <p><code>VistoSeg</code> provides two functions: <code>VNS</code> (Visium Nuclei Segmentation) and <code>refineVNS</code> which are used to perform the cell/nuclei segmentation on regular bright field images. This process involves choosing the total number of visually distinguishable colors in the image (5 in our sample image) and running MATLAB’s <a href="https://www.mathworks.com/help/images/color-based-segmentation-using-k-means-clustering.html">color-based segmentation using k-means clustering</a>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
 <img src="http://research.libd.org/VistoSeg/images/sampleimage_index3.png" alt="Color cluster 3 is the one that best corresponds to the nuclei for an example capture area image shown in the `VistoSeg` documentation. Pixels corresponding to this cluster are shown in gray and the remaining background pixels in green. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html)." width="75%" />
 <p class="caption">
-Figure 5.6: Color cluster 3 is the one that best corresponds to the nuclei for an example capture area image shown in the <code>VistoSeg</code> documentation. Pixels corresponding to this cluster are shown in gray and the remaining background pixels in green. Source: <a href="http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html"><code>VistoSeg</code></a>.
+Figure 5.7: Color cluster 3 is the one that best corresponds to the nuclei for an example capture area image shown in the <code>VistoSeg</code> documentation. Pixels corresponding to this cluster are shown in gray and the remaining background pixels in green. Source: <a href="http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html"><code>VistoSeg</code></a>.
 </p>
 </div>
 <p>For more information and a detailed example check the <a href="http://research.libd.org/VistoSeg/step-1-split-visium-histology-whole-slide-image-into-individual-capture-area-images.html"><code>VistoSeg</code> documentation website</a>.</p>

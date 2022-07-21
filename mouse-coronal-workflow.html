@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-07-20" />
+<meta name="date" content="2022-07-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -399,7 +399,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="mouse-coronal-workflow.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span></code></pre></div>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="mouse-coronal-workflow.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot spatial coordinates (spots)</span></span>
 <span id="cb201-2"><a href="mouse-coronal-workflow.html#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe)</span></code></pre></div>
-<p><img src="workflow_Visium_mouseCoronal_files/figure-html/plot_data-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
 </div>
 <div id="quality-control-qc-1" class="section level2 hasAnchor" number="18.4">
 <h2><span class="header-section-number">18.4</span> Quality control (QC)<a href="mouse-coronal-workflow.html#quality-control-qc-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -444,7 +444,7 @@ div.csl-indent {
 <span id="cb211-3"><a href="mouse-coronal-workflow.html#cb211-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>sum, <span class="at">xlab =</span> <span class="st">&quot;sum&quot;</span>, <span class="at">main =</span> <span class="st">&quot;UMIs per spot&quot;</span>)</span>
 <span id="cb211-4"><a href="mouse-coronal-workflow.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>detected, <span class="at">xlab =</span> <span class="st">&quot;detected&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Genes per spot&quot;</span>)</span>
 <span id="cb211-5"><a href="mouse-coronal-workflow.html#cb211-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent, <span class="at">xlab =</span> <span class="st">&quot;percent mitochondrial&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Percent mito UMIs&quot;</span>)</span></code></pre></div>
-<p><img src="workflow_Visium_mouseCoronal_files/figure-html/QC_thresholds-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="mouse-coronal-workflow.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
 <span id="cb212-2"><a href="mouse-coronal-workflow.html#cb212-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb212-3"><a href="mouse-coronal-workflow.html#cb212-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
@@ -467,7 +467,7 @@ div.csl-indent {
 <p>Plot discarded spots in x-y coordinates on the tissue slide to check if there is any biologically meaningful spatial pattern. This would be problematic, since it would mean we are removing biologically informative spots.</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="mouse-coronal-workflow.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
 <span id="cb217-2"><a href="mouse-coronal-workflow.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, <span class="at">discard =</span> <span class="st">&quot;discard&quot;</span>)</span></code></pre></div>
-<p><img src="workflow_Visium_mouseCoronal_files/figure-html/QC_check-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <p>There is one small region with some concentrated discarded spots at the top-left. However, this does not appear to correspond to any specific known anatomical region of interest. We assume that these are low-quality spots, and filtering them out will not cause problems in the biological interpretation.</p>
 <p>We filter out the low-quality spots from the object.</p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="mouse-coronal-workflow.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
@@ -493,7 +493,7 @@ div.csl-indent {
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.1009  0.6032  0.8985  1.0000  1.2649  6.0391</code></pre>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="mouse-coronal-workflow.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log10</span>(<span class="fu">sizeFactors</span>(spe)), <span class="at">xlab =</span> <span class="st">&quot;log10 (size factors)&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Size factors&quot;</span>)</span></code></pre></div>
-<p><img src="workflow_Visium_mouseCoronal_files/figure-html/normalization-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="mouse-coronal-workflow.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts) and store in object</span></span>
 <span id="cb226-2"><a href="mouse-coronal-workflow.html#cb226-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
 <span id="cb226-3"><a href="mouse-coronal-workflow.html#cb226-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -515,7 +515,7 @@ div.csl-indent {
 <span id="cb230-6"><a href="mouse-coronal-workflow.html#cb230-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit<span class="sc">$</span>mean, fit<span class="sc">$</span>var, </span>
 <span id="cb230-7"><a href="mouse-coronal-workflow.html#cb230-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;mean of log-expression&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;variance of log-expression&quot;</span>)</span>
 <span id="cb230-8"><a href="mouse-coronal-workflow.html#cb230-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(fit<span class="sc">$</span><span class="fu">trend</span>(x), <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="workflow_Visium_mouseCoronal_files/figure-html/feature_selection_HVGs-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 <div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="mouse-coronal-workflow.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
 <span id="cb231-2"><a href="mouse-coronal-workflow.html#cb231-2" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
 <span id="cb231-3"><a href="mouse-coronal-workflow.html#cb231-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(top_hvgs)</span></code></pre></div>
@@ -580,9 +580,9 @@ div.csl-indent {
 ## ENSMUSG00000043716 ENSMUSG00000043716        Rpl7 Gene Expression  0.205201
 ##                         tau.sq       phi    loglik   runtime      mean
 ##                      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-## ENSMUSG00000033793 5.75904e-01  22.00748 -131.1012     0.071   2.11449
-## ENSMUSG00000067879 2.30257e-06   8.75505 -137.7831     0.063   1.63431
-## ENSMUSG00000043716 9.37940e-02   8.73532  -68.8807     0.034   4.25768
+## ENSMUSG00000033793 5.75904e-01  22.00748 -131.1012     0.080   2.11449
+## ENSMUSG00000067879 2.30257e-06   8.75505 -137.7831     0.072   1.63431
+## ENSMUSG00000043716 9.37940e-02   8.73532  -68.8807     0.036   4.25768
 ##                          var     spcov   prop_sv loglik_lm   LR_stat      rank
 ##                    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
 ## ENSMUSG00000033793  0.827107  0.232215  0.295099 -131.9003   1.59811      1054
@@ -611,12 +611,12 @@ div.csl-indent {
 ## ENSMUSG00000021948 ENSMUSG00000021948       Prkcd Gene Expression   2.85982
 ##                         tau.sq       phi    loglik   runtime      mean
 ##                      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-## ENSMUSG00000053310 2.44058e-01   2.89904  -146.875     0.064   4.90333
-## ENSMUSG00000046447 1.19176e-01   1.50045  -103.133     0.052   5.40113
+## ENSMUSG00000053310 2.44058e-01   2.89904  -146.875     0.067   4.90333
+## ENSMUSG00000046447 1.19176e-01   1.50045  -103.133     0.053   5.40113
 ## ENSMUSG00000031980 4.33567e-01   1.78546  -145.605     0.033   1.89033
 ## ENSMUSG00000032532 2.98181e-08   4.61394  -143.597     0.041   4.23078
 ## ENSMUSG00000018593 9.03831e-02   4.00269  -129.222     0.055   3.66097
-## ENSMUSG00000021948 9.56305e-02   3.94872  -143.193     0.056   1.28117
+## ENSMUSG00000021948 9.56305e-02   3.94872  -143.193     0.055   1.28117
 ##                          var     spcov   prop_sv loglik_lm   LR_stat      rank
 ##                    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
 ## ENSMUSG00000053310   3.59630  0.360100  0.927401  -205.387  117.0232         1
@@ -683,11 +683,11 @@ div.csl-indent {
 <span id="cb265-4"><a href="mouse-coronal-workflow.html#cb265-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in spatial x-y coordinates</span></span>
 <span id="cb265-5"><a href="mouse-coronal-workflow.html#cb265-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpots</span>(spe, <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, </span>
 <span id="cb265-6"><a href="mouse-coronal-workflow.html#cb265-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> colors)</span></code></pre></div>
-<p><img src="workflow_Visium_mouseCoronal_files/figure-html/clustering_plots_spots-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="mouse-coronal-workflow.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot clusters in UMAP dimensions</span></span>
 <span id="cb266-2"><a href="mouse-coronal-workflow.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDimRed</span>(spe, <span class="at">type =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
 <span id="cb266-3"><a href="mouse-coronal-workflow.html#cb266-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">annotate =</span> <span class="st">&quot;label&quot;</span>, <span class="at">palette =</span> colors)</span></code></pre></div>
-<p><img src="workflow_Visium_mouseCoronal_files/figure-html/clustering_plots_reduced-1.png" width="480" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-141-1.png" width="480" /></p>
 </div>
 <div id="marker-genes-3" class="section level2 hasAnchor" number="18.10">
 <h2><span class="header-section-number">18.10</span> Marker genes<a href="mouse-coronal-workflow.html#marker-genes-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -710,12 +710,12 @@ div.csl-indent {
 <span id="cb270-5"><a href="mouse-coronal-workflow.html#cb270-5" aria-hidden="true" tabindex="-1"></a>logFCs <span class="ot">&lt;-</span> <span class="fu">getMarkerEffects</span>(best_set)</span>
 <span id="cb270-6"><a href="mouse-coronal-workflow.html#cb270-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb270-7"><a href="mouse-coronal-workflow.html#cb270-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(logFCs, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">101</span>))</span></code></pre></div>
-<p><img src="workflow_Visium_mouseCoronal_files/figure-html/marker_genes_heatmap-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="mouse-coronal-workflow.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot log-transformed normalized expression of top genes for one cluster</span></span>
 <span id="cb271-2"><a href="mouse-coronal-workflow.html#cb271-2" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">rownames</span>(interesting))</span>
 <span id="cb271-3"><a href="mouse-coronal-workflow.html#cb271-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb271-4"><a href="mouse-coronal-workflow.html#cb271-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotExpression</span>(spe, <span class="at">x =</span> <span class="st">&quot;label&quot;</span>, <span class="at">features =</span> top_genes)</span></code></pre></div>
-<p><img src="workflow_Visium_mouseCoronal_files/figure-html/marker_genes_expression-1.png" width="672" /></p>
+<p><img src="OSTA-book_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 
 </div>
 </div>
