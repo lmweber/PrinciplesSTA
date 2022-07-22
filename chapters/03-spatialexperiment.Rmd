@@ -9,7 +9,7 @@ In this book, we use the [SpatialExperiment](https://bioconductor.org/packages/S
 
 The class builds on the more general [SingleCellExperiment](https://bioconductor.org/packages/SingleCellExperiment) class [@Amezquita2020] for single-cell RNA sequencing data, with additional customizations to store spatial information, such as spatial coordinates and image files.
 
-A summary of the `SpatialExperiment` object structure is shown in the following figure. Briefly, a `SpatialExperiment` object consists of (i) `assays` containing expression counts, (ii) `rowData` containing information on features, i.e. genes, (iii) `colData` containing information on spots or cells, including nonspatial and spatial metadata, (iv) `spatialCoords` containing spatial coordinates, and (v) `imgData` containing image data. For spot-based ST data (e.g. 10x Genomics Visium), a single `assay` named `counts` is used. For molecule-based ST data (e.g. seqFISH), two `assays` named `counts` and `molecules` can be used.
+A summary of the `SpatialExperiment` object structure is shown in the following figure. Briefly, a `SpatialExperiment` object consists of (i) `assays` containing expression counts, (ii) `rowData` containing information on features, i.e. genes, (iii) `colData` containing information on spots or cells, including nonspatial and spatial metadata, (iv) `spatialCoords` containing spatial coordinates, and (v) `imgData` containing image data. For spot-based SRT data (e.g. 10x Genomics Visium), a single `assay` named `counts` is used. For molecule-based SRT data (e.g. seqFISH), two `assays` named `counts` and `molecules` can be used.
 
 The following schematic illustrates this structure.
 

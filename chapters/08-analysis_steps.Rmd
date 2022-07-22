@@ -2,7 +2,7 @@
 
 # Analysis steps
 
-This part consists of several chapters for steps in a computational analysis pipeline for spatially resolved transcriptomics (ST) data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, identifying marker genes, and spot-level deconvolution.
+This part consists of several chapters for steps in a computational analysis pipeline for spatially resolved transcriptomics (SRT) data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, identifying marker genes, and spot-level deconvolution.
 
 These steps require that the raw data has been loaded into R. In the previous part, we provide instructions and examples showing how to do this for the 10x Genomics Visium platform.
 
