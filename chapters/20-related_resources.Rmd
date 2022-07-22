@@ -1,0 +1,58 @@
+# (PART) Appendix {-}
+
+```{r, echo=FALSE}
+# clear workspace from previous chapters
+rm(list = ls(all = TRUE))
+```
+
+
+# Related resources
+
+In this chapter, we highlight several related resources from the Bioconductor and other communities.
+
+
+
+## Resources for other spatially-resolved platforms
+
+Workflows and other resources for other spatially-resolved platforms:
+
+\
+
+[**Analysis workflow for IMC data**](https://bodenmillergroup.github.io/IMCDataAnalysis/)
+
+- Online book providing a workflow highlighting the use of common R/Bioconductor packages to analyze single-cell data obtained from segmented imaging mass cytometry (IMC) images. Examples focus on IMC data and can also be applied to images obtained by other highly-multiplexed imaging technologies, e.g. CODEX, MIBI, and mIF.
+- Authors: Nils Eling, Vito Zanotelli, Michelle Daniel, Daniel Schulz, Jonas Windhager
+
+\
+
+[**VectraPolarisData**](https://bioconductor.org/packages/VectraPolarisData)
+
+- Bioconductor data package providing two multiplex single-cell imaging datasets collected on Vectra Polaris and Vectra 3 instruments.
+- Authors: Julia Wrobel, Tusharkanti Ghosh
+
+
+
+## Data structures
+
+[**SpatialExperiment**](https://bioconductor.org/packages/SpatialExperiment)
+
+- S4 class for storing spatially-resolved transcriptomics (SRT) data, which is used as the basis for the examples in this book. See Chapter [SpatialExperiment].
+- Authors: Dario Righelli, Lukas M. Weber, Helena L. Crowell, Brenda Pardo, Leonardo Collado-Torres, Shila Ghazanfar, Aaron T. L. Lun, Stephanie C. Hicks, Davide Risso
+
+\
+
+[**SpatialFeatureExperiment**](https://github.com/pachterlab/SpatialFeatureExperiment)
+
+- S4 class extending `SpatialExperiment` to incorporate geometries and geometry operations with the `sf` R package.
+- Authors: Lambda Moses, Lior Pachter
+
+
+
+## Statistical concepts
+
+[**Modern Statistics for Modern Biology**](https://www.huber.embl.de//msmb/index.html)
+
+- Online textbook on concepts in modern statistics for high-throughput and high-dimensional biology, including [chapter on image data and spatial statistics](https://www.huber.embl.de//msmb/Chap-Images.html).
+- Authors: Susan Holmes, Wolfgang Huber
+
+
