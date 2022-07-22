@@ -5,9 +5,10 @@ site: bookdown::bookdown_site
 apple-touch-sin: "icon_192.png"
 apple-touch-icon-size: 192
 favicon: "icon_32.png"
-documentclass: book
-bibliography: book.bib
-biblio-style: apalike
+documentclass: "book"
+bibliography: "book.bib"
+biblio-style: "apalike"
+csl-entry-spacing: 1em
 link-citations: yes
 description: "Online textbook on 'Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor'"
 ---
