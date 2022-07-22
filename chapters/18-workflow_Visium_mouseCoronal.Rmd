@@ -260,7 +260,7 @@ Perform clustering to define cell types. We apply graph-based clustering using t
 ```{r}
 # graph-based clustering
 set.seed(123)
-k <- 10
+k <- 15
 g <- buildSNNGraph(spe, k = k, use.dimred = "PCA")
 g_walk <- igraph::cluster_walktrap(g)
 clus <- g_walk$membership

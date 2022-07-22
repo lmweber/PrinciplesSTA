@@ -77,7 +77,7 @@ In the context of spatial data, this means we assume that biologically informati
 ```{r}
 # graph-based clustering
 set.seed(123)
-k <- 10
+k <- 15
 g <- buildSNNGraph(spe, k = k, use.dimred = "PCA")
 g_walk <- igraph::cluster_walktrap(g)
 clus <- g_walk$membership
