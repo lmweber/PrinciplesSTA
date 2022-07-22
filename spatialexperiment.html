@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-07-21" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -123,6 +123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 1em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -325,20 +326,20 @@ div.csl-indent {
 <li class="chapter" data-level="19.7" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#wrapping-up-3"><i class="fa fa-check"></i><b>19.7</b> Wrapping up</a></li>
 <li class="chapter" data-level="" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#r-session-information"><i class="fa fa-check"></i>R session information</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="external-workflows.html"><a href="external-workflows.html"><i class="fa fa-check"></i><b>20</b> External workflows</a></li>
 <li class="part"><span><b>V Appendix</b></span></li>
-<li class="chapter" data-level="21" data-path="related-resources.html"><a href="related-resources.html"><i class="fa fa-check"></i><b>21</b> Related resources</a>
+<li class="chapter" data-level="20" data-path="related-resources.html"><a href="related-resources.html"><i class="fa fa-check"></i><b>20</b> Related resources</a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="related-resources.html"><a href="related-resources.html#resources-for-other-spatially-resolved-platforms"><i class="fa fa-check"></i><b>21.1</b> Resources for other spatially-resolved platforms</a></li>
-<li class="chapter" data-level="21.2" data-path="related-resources.html"><a href="related-resources.html#spatialexperiment-1"><i class="fa fa-check"></i><b>21.2</b> SpatialExperiment</a></li>
-<li class="chapter" data-level="21.3" data-path="related-resources.html"><a href="related-resources.html#software"><i class="fa fa-check"></i><b>21.3</b> Software</a></li>
+<li class="chapter" data-level="20.1" data-path="related-resources.html"><a href="related-resources.html#resources-for-other-spatially-resolved-platforms"><i class="fa fa-check"></i><b>20.1</b> Resources for other spatially-resolved platforms</a></li>
+<li class="chapter" data-level="20.2" data-path="related-resources.html"><a href="related-resources.html#data-structures"><i class="fa fa-check"></i><b>20.2</b> Data structures</a></li>
+<li class="chapter" data-level="20.3" data-path="related-resources.html"><a href="related-resources.html#statistical-concepts"><i class="fa fa-check"></i><b>20.3</b> Statistical concepts</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>22</b> Contributors</a>
+<li class="chapter" data-level="21" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>21</b> Contributors</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="contributors.html"><a href="contributors.html#osta"><i class="fa fa-check"></i><b>22.1</b> OSTA</a></li>
-<li class="chapter" data-level="22.2" data-path="contributors.html"><a href="contributors.html#spatialexperiment-2"><i class="fa fa-check"></i><b>22.2</b> SpatialExperiment</a></li>
+<li class="chapter" data-level="21.1" data-path="contributors.html"><a href="contributors.html#osta"><i class="fa fa-check"></i><b>21.1</b> OSTA</a></li>
+<li class="chapter" data-level="21.2" data-path="contributors.html"><a href="contributors.html#spatialexperiment-1"><i class="fa fa-check"></i><b>21.2</b> SpatialExperiment</a></li>
+<li class="chapter" data-level="21.3" data-path="contributors.html"><a href="contributors.html#github-actions-workflow"><i class="fa fa-check"></i><b>21.3</b> GitHub Actions workflow</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>23</b> References</a></li>
+<li class="chapter" data-level="22" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>22</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -366,7 +367,7 @@ div.csl-indent {
 <h2><span class="header-section-number">3.1</span> SpatialExperiment class<a href="spatialexperiment.html#spatialexperiment-class" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>SpatialExperiment</code> is a specialized object class for storing spatially resolved transcriptomics datasets from several technological platforms within the Bioconductor framework.</p>
 <p>The class builds on the more general <a href="https://bioconductor.org/packages/SingleCellExperiment">SingleCellExperiment</a> class <span class="citation">(<a href="#ref-Amezquita2020" role="doc-biblioref">Amezquita et al. 2020</a>)</span> for single-cell RNA sequencing data, with additional customizations to store spatial information, such as spatial coordinates and image files.</p>
-<p>A summary of the <code>SpatialExperiment</code> object structure is shown in the following figure. Briefly, a <code>SpatialExperiment</code> object consists of (i) <code>assays</code> containing expression counts, (ii) <code>rowData</code> containing information on features, i.e. genes, (iii) <code>colData</code> containing information on spots or cells, including nonspatial and spatial metadata, (iv) <code>spatialCoords</code> containing spatial coordinates, and (v) <code>imgData</code> containing image data. For spot-based ST data (e.g. 10x Genomics Visium), a single <code>assay</code> named <code>counts</code> is used. For molecule-based ST data (e.g. seqFISH), two <code>assays</code> named <code>counts</code> and <code>molecules</code> can be used.</p>
+<p>A summary of the <code>SpatialExperiment</code> object structure is shown in the following figure. Briefly, a <code>SpatialExperiment</code> object consists of (i) <code>assays</code> containing expression counts, (ii) <code>rowData</code> containing information on features, i.e. genes, (iii) <code>colData</code> containing information on spots or cells, including nonspatial and spatial metadata, (iv) <code>spatialCoords</code> containing spatial coordinates, and (v) <code>imgData</code> containing image data. For spot-based SRT data (e.g. 10x Genomics Visium), a single <code>assay</code> named <code>counts</code> is used. For molecule-based SRT data (e.g. seqFISH), two <code>assays</code> named <code>counts</code> and <code>molecules</code> can be used.</p>
 <p>The following schematic illustrates this structure.</p>
 <p>For more details, see our <a href="https://www.biorxiv.org/content/10.1101/2021.01.27.428431v2">preprint</a> describing <code>SpatialExperiment</code> <span class="citation">(<a href="#ref-Righelli2021" role="doc-biblioref">Righelli et al. 2021</a>)</span>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:spe-schematic"></span>

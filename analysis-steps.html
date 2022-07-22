@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-07-21" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -123,6 +123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 1em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -325,20 +326,20 @@ div.csl-indent {
 <li class="chapter" data-level="19.7" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#wrapping-up-3"><i class="fa fa-check"></i><b>19.7</b> Wrapping up</a></li>
 <li class="chapter" data-level="" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#r-session-information"><i class="fa fa-check"></i>R session information</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="external-workflows.html"><a href="external-workflows.html"><i class="fa fa-check"></i><b>20</b> External workflows</a></li>
 <li class="part"><span><b>V Appendix</b></span></li>
-<li class="chapter" data-level="21" data-path="related-resources.html"><a href="related-resources.html"><i class="fa fa-check"></i><b>21</b> Related resources</a>
+<li class="chapter" data-level="20" data-path="related-resources.html"><a href="related-resources.html"><i class="fa fa-check"></i><b>20</b> Related resources</a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="related-resources.html"><a href="related-resources.html#resources-for-other-spatially-resolved-platforms"><i class="fa fa-check"></i><b>21.1</b> Resources for other spatially-resolved platforms</a></li>
-<li class="chapter" data-level="21.2" data-path="related-resources.html"><a href="related-resources.html#spatialexperiment-1"><i class="fa fa-check"></i><b>21.2</b> SpatialExperiment</a></li>
-<li class="chapter" data-level="21.3" data-path="related-resources.html"><a href="related-resources.html#software"><i class="fa fa-check"></i><b>21.3</b> Software</a></li>
+<li class="chapter" data-level="20.1" data-path="related-resources.html"><a href="related-resources.html#resources-for-other-spatially-resolved-platforms"><i class="fa fa-check"></i><b>20.1</b> Resources for other spatially-resolved platforms</a></li>
+<li class="chapter" data-level="20.2" data-path="related-resources.html"><a href="related-resources.html#data-structures"><i class="fa fa-check"></i><b>20.2</b> Data structures</a></li>
+<li class="chapter" data-level="20.3" data-path="related-resources.html"><a href="related-resources.html#statistical-concepts"><i class="fa fa-check"></i><b>20.3</b> Statistical concepts</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>22</b> Contributors</a>
+<li class="chapter" data-level="21" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>21</b> Contributors</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="contributors.html"><a href="contributors.html#osta"><i class="fa fa-check"></i><b>22.1</b> OSTA</a></li>
-<li class="chapter" data-level="22.2" data-path="contributors.html"><a href="contributors.html#spatialexperiment-2"><i class="fa fa-check"></i><b>22.2</b> SpatialExperiment</a></li>
+<li class="chapter" data-level="21.1" data-path="contributors.html"><a href="contributors.html#osta"><i class="fa fa-check"></i><b>21.1</b> OSTA</a></li>
+<li class="chapter" data-level="21.2" data-path="contributors.html"><a href="contributors.html#spatialexperiment-1"><i class="fa fa-check"></i><b>21.2</b> SpatialExperiment</a></li>
+<li class="chapter" data-level="21.3" data-path="contributors.html"><a href="contributors.html#github-actions-workflow"><i class="fa fa-check"></i><b>21.3</b> GitHub Actions workflow</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>23</b> References</a></li>
+<li class="chapter" data-level="22" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>22</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -361,9 +362,9 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="analysis-steps" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Analysis steps<a href="analysis-steps.html#analysis-steps" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This part consists of several chapters for steps in a computational analysis pipeline for spatially resolved transcriptomics (ST) data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, identifying marker genes, and spot-level deconvolution.</p>
+<p>This part consists of several chapters for steps in a computational analysis pipeline for spatially resolved transcriptomics (SRT) data. This includes quality control (QC), normalization, feature selection, dimensionality reduction, clustering, identifying marker genes, and spot-level deconvolution.</p>
 <p>These steps require that the raw data has been loaded into R. In the previous part, we provide instructions and examples showing how to do this for the 10x Genomics Visium platform.</p>
-<p>Throughout these chapters, we will rely on the <a href="contributors.html#spatialexperiment-2">SpatialExperiment</a> data structure to connect the steps in the pipeline. Following the Bioconductor principle of modularity, you can substitute alternative methods for individual steps if you prefer, as long as these can interface with the <code>SpatialExperiment</code> structure.</p>
+<p>Throughout these chapters, we will rely on the <a href="contributors.html#spatialexperiment-1">SpatialExperiment</a> data structure to connect the steps in the pipeline. Following the Bioconductor principle of modularity, you can substitute alternative methods for individual steps if you prefer, as long as these can interface with the <code>SpatialExperiment</code> structure.</p>
 <div id="load-data" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Load data<a href="analysis-steps.html#load-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the following analysis chapters, we use a pre-prepared dataset where we have previously applied the steps described in <a href="preprocessing-steps.html#preprocessing-steps">Preprocessing steps</a>, and saved the object in the <code>SpatialExperiment</code> format. This is available from the <a href="https://bioconductor.org/packages/STexampleData">STexampleData</a> package.</p>
@@ -377,7 +378,7 @@ div.csl-indent {
 </div>
 <div id="spatialexperiment-object" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> SpatialExperiment object<a href="analysis-steps.html#spatialexperiment-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Next, we inspect the <code>SpatialExperiment</code> object. For more details, see <a href="contributors.html#spatialexperiment-2">SpatialExperiment</a>.</p>
+<p>Next, we inspect the <code>SpatialExperiment</code> object. For more details, see <a href="contributors.html#spatialexperiment-1">SpatialExperiment</a>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="analysis-steps.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check object</span></span>
 <span id="cb3-2"><a href="analysis-steps.html#cb3-2" aria-hidden="true" tabindex="-1"></a>spe</span></code></pre></div>
 <pre><code>## class: SpatialExperiment 

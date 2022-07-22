@@ -146,12 +146,12 @@ extra-information-and-filtering
 explore-the-data
 sharing-your-website
 wrapping-up-3
-external-workflows
 related-resources
 resources-for-other-spatially-resolved-platforms
-spatialexperiment-1
-software
+data-structures
+statistical-concepts
 contributors
 osta
-spatialexperiment-2
+spatialexperiment-1
+github-actions-workflow
 references

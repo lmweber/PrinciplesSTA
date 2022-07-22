@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-07-21" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -123,6 +123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 1em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -325,20 +326,20 @@ div.csl-indent {
 <li class="chapter" data-level="19.7" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#wrapping-up-3"><i class="fa fa-check"></i><b>19.7</b> Wrapping up</a></li>
 <li class="chapter" data-level="" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#r-session-information"><i class="fa fa-check"></i>R session information</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="external-workflows.html"><a href="external-workflows.html"><i class="fa fa-check"></i><b>20</b> External workflows</a></li>
 <li class="part"><span><b>V Appendix</b></span></li>
-<li class="chapter" data-level="21" data-path="related-resources.html"><a href="related-resources.html"><i class="fa fa-check"></i><b>21</b> Related resources</a>
+<li class="chapter" data-level="20" data-path="related-resources.html"><a href="related-resources.html"><i class="fa fa-check"></i><b>20</b> Related resources</a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="related-resources.html"><a href="related-resources.html#resources-for-other-spatially-resolved-platforms"><i class="fa fa-check"></i><b>21.1</b> Resources for other spatially-resolved platforms</a></li>
-<li class="chapter" data-level="21.2" data-path="related-resources.html"><a href="related-resources.html#spatialexperiment-1"><i class="fa fa-check"></i><b>21.2</b> SpatialExperiment</a></li>
-<li class="chapter" data-level="21.3" data-path="related-resources.html"><a href="related-resources.html#software"><i class="fa fa-check"></i><b>21.3</b> Software</a></li>
+<li class="chapter" data-level="20.1" data-path="related-resources.html"><a href="related-resources.html#resources-for-other-spatially-resolved-platforms"><i class="fa fa-check"></i><b>20.1</b> Resources for other spatially-resolved platforms</a></li>
+<li class="chapter" data-level="20.2" data-path="related-resources.html"><a href="related-resources.html#data-structures"><i class="fa fa-check"></i><b>20.2</b> Data structures</a></li>
+<li class="chapter" data-level="20.3" data-path="related-resources.html"><a href="related-resources.html#statistical-concepts"><i class="fa fa-check"></i><b>20.3</b> Statistical concepts</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>22</b> Contributors</a>
+<li class="chapter" data-level="21" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>21</b> Contributors</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="contributors.html"><a href="contributors.html#osta"><i class="fa fa-check"></i><b>22.1</b> OSTA</a></li>
-<li class="chapter" data-level="22.2" data-path="contributors.html"><a href="contributors.html#spatialexperiment-2"><i class="fa fa-check"></i><b>22.2</b> SpatialExperiment</a></li>
+<li class="chapter" data-level="21.1" data-path="contributors.html"><a href="contributors.html#osta"><i class="fa fa-check"></i><b>21.1</b> OSTA</a></li>
+<li class="chapter" data-level="21.2" data-path="contributors.html"><a href="contributors.html#spatialexperiment-1"><i class="fa fa-check"></i><b>21.2</b> SpatialExperiment</a></li>
+<li class="chapter" data-level="21.3" data-path="contributors.html"><a href="contributors.html#github-actions-workflow"><i class="fa fa-check"></i><b>21.3</b> GitHub Actions workflow</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>23</b> References</a></li>
+<li class="chapter" data-level="22" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>22</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -363,29 +364,29 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 15</span> Spot-level deconvolution<a href="spot-level-deconvolution.html#spot-level-deconvolution" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="background-5" class="section level2 hasAnchor" number="15.1">
 <h2><span class="header-section-number">15.1</span> Background<a href="spot-level-deconvolution.html#background-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Spot-level ST data can contain zero, one, or multiple cells per spot, depending on the tissue density and technological platform used. This characteristic of the data influences several steps in analysis pipelines, especially <a href="quality-control.html#quality-control">Quality control</a> and <a href="mouse-coronal-workflow.html#clustering-2">Clustering</a>.</p>
-<p>This is also a unique characteristic of ST data, which is distinct from single-cell data, so here we cannot easily apply existing methods from single-cell pipelines.</p>
-<p>In this section, we will demonstrate methods to deconvolve cell types per spot. Several methods exist from the bulk RNA-seq literature, as well as new methods designed for ST data.</p>
+<p>Spot-level SRT data can contain zero, one, or multiple cells per spot, depending on the tissue density and technological platform used. This characteristic of the data influences several steps in analysis pipelines, especially <a href="quality-control.html#quality-control">Quality control</a> and <a href="mouse-coronal-workflow.html#clustering-2">Clustering</a>.</p>
+<p>This is also a unique characteristic of SRT data, which is distinct from single-cell data, so here we cannot easily apply existing methods from single-cell pipelines.</p>
+<p>In this section, we will demonstrate methods to deconvolve cell types per spot. Several methods exist from the bulk RNA-seq literature, as well as new methods designed for SRT data.</p>
 </div>
 <div id="previous-steps-5" class="section level2 hasAnchor" number="15.2">
 <h2><span class="header-section-number">15.2</span> Previous steps<a href="spot-level-deconvolution.html#previous-steps-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Code to run steps from the previous chapters to generate the <code>SpatialExperiment</code> object required for this chapter.</em></p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="spot-level-deconvolution.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
-<span id="cb125-2"><a href="spot-level-deconvolution.html#cb125-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-3"><a href="spot-level-deconvolution.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
-<span id="cb125-4"><a href="spot-level-deconvolution.html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
-<span id="cb125-5"><a href="spot-level-deconvolution.html#cb125-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="spot-level-deconvolution.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
+<span id="cb123-2"><a href="spot-level-deconvolution.html#cb123-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-3"><a href="spot-level-deconvolution.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb123-4"><a href="spot-level-deconvolution.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
+<span id="cb123-5"><a href="spot-level-deconvolution.html#cb123-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span></code></pre></div>
 </div>
 <div id="number-of-cells-per-spot-1" class="section level2 hasAnchor" number="15.3">
 <h2><span class="header-section-number">15.3</span> Number of cells per spot<a href="spot-level-deconvolution.html#number-of-cells-per-spot-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The following figure provides an overview of the number of cells per spot in this dataset, which is known in this dataset and stored in a column in <code>colData</code> in the <code>SpatialExperiment</code> object. We use a visualization function from <a href="https://bioconductor.org/packages/ggspavis">ggspavis</a> to generate the plot.</p>
 <p>We see that spots in this dataset contain around 0-10 cells, with a mode of 3. Therefore, it is plausible that some spots contain multiple cell types, and spot-level deconvolution could improve downstream analyses by deconvolving these cell types.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="spot-level-deconvolution.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
-<span id="cb126-2"><a href="spot-level-deconvolution.html#cb126-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-3"><a href="spot-level-deconvolution.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of cells per spot</span></span>
-<span id="cb126-4"><a href="spot-level-deconvolution.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;bar&quot;</span>, <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb126-5"><a href="spot-level-deconvolution.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;number of cells&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb126-6"><a href="spot-level-deconvolution.html#cb126-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Number of cells per spot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="spot-level-deconvolution.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspavis)</span>
+<span id="cb124-2"><a href="spot-level-deconvolution.html#cb124-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-3"><a href="spot-level-deconvolution.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of cells per spot</span></span>
+<span id="cb124-4"><a href="spot-level-deconvolution.html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;bar&quot;</span>, <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb124-5"><a href="spot-level-deconvolution.html#cb124-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;number of cells&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb124-6"><a href="spot-level-deconvolution.html#cb124-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Number of cells per spot&quot;</span>)</span></code></pre></div>
 <p><img src="OSTA-book_files/figure-html/unnamed-chunk-78-1.png" width="480" /></p>
 
 </div>
