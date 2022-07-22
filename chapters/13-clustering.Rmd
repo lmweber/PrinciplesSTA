@@ -43,12 +43,7 @@ spe <- spe[, !colData(spe)$discard]
 # NORMALIZATION
 
 library(scran)
-# quick clustering for pool-based size factors
-set.seed(123)
-qclus <- quickCluster(spe)
-# calculate size factors
-spe <- computeSumFactors(spe, cluster = qclus)
-# calculate logcounts (log-transformed normalized counts)
+# calculate logcounts using library size factors
 spe <- logNormCounts(spe)
 
 # FEATURE SELECTION

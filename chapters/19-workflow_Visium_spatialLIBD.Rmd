@@ -150,14 +150,7 @@ colData(spe)$discard <- discard
 # filter low-quality spots
 spe <- spe[, !colData(spe)$discard]
 
-# quick clustering for pool-based size factors
-set.seed(123)
-qclus <- quickCluster(spe)
-
-# calculate size factors and store in object
-spe <- computeSumFactors(spe, cluster = qclus)
-
-# calculate logcounts (log-transformed normalized counts) and store in object
+# calculate logcounts using library size factors
 spe <- logNormCounts(spe)
 
 # remove mitochondrial genes
