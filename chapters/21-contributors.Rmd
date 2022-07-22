@@ -19,3 +19,8 @@ As well as [GitHub contributors](https://github.com/lmweber/OSTA-book/graphs/con
 - Stephanie C. Hicks, *Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA*
 - Davide Risso, *Department of Statistical Sciences, University of Padova, Padova, Italy*
 
+
+## GitHub Actions workflow
+
+The GitHub Actions workflow used to build the online version of the book is based on [`biocthis`](https://bioconductor.org/packages/biocthis) and is made possible by the [Bioconductor Docker images](http://bioconductor.org/help/docker/).
+

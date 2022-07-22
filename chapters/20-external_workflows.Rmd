@@ -1,8 +1,0 @@
-# External workflows
-
-In addition to the workflows in the previous chapters, members of the Bioconductor and other communities have developed additional workflows to showcase new methods or demonstrate their preferred analysis pipelines.
-
-Some of these workflows use Bioconductor packages for some steps, and external packages (e.g. Python packages, or new R packages that are currently only available from GitHub) for other steps. In our view, this demonstrates the flexibility and modularity of the Bioconductor framework -- for example, you can build a workflow that relies on the `SpatialExperiment` data structure and Bioconductor packages for initial preprocessing steps, and then switches to a new package that is only available from GitHub for a new type of downstream analysis.
-
-Here, we will provide links to some of these external workflows as these become available, to provide readers with further examples and alternative perspectives on analyses.
-
