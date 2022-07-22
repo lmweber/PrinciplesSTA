@@ -124,20 +124,15 @@ dim(spe)
 
 ## Normalization
 
-Calculate log-transformed normalized counts, using pool-based size factors and deconvolution to the spot level. We use normalization methods from `scater` [@McCarthy2017] and `scran` [@Lun2016], making the implicit assumption that spots can be treated as equivalent to single cells. Since we have one sample, there are no blocking factors. For more details, see [Normalization].
+Calculate log-transformed normalized counts (logcounts) using library size factors. We use normalization methods from `scater` [@McCarthy2017] and `scran` [@Lun2016], making the implicit assumption that spots can be treated as equivalent to single cells. Since we have one sample, there are no blocking factors. For more details, see [Normalization].
 
 ```{r, message=FALSE}
 library(scran)
 ```
 
 ```{r, fig.height=3.5}
-# quick clustering for pool-based size factors
-set.seed(123)
-qclus <- quickCluster(spe)
-table(qclus)
-
-# calculate size factors and store in object
-spe <- computeSumFactors(spe, cluster = qclus)
+# calculate library size factors
+spe <- computeLibraryFactors(spe)
 
 summary(sizeFactors(spe))
 hist(sizeFactors(spe), breaks = 20)
