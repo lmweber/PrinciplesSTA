@@ -2,11 +2,11 @@
 
 ## Background
 
-Spot-level ST data can contain zero, one, or multiple cells per spot, depending on the tissue density and technological platform used. This characteristic of the data influences several steps in analysis pipelines, especially [Quality control] and [Clustering].
+Spot-level SRT data can contain zero, one, or multiple cells per spot, depending on the tissue density and technological platform used. This characteristic of the data influences several steps in analysis pipelines, especially [Quality control] and [Clustering].
 
-This is also a unique characteristic of ST data, which is distinct from single-cell data, so here we cannot easily apply existing methods from single-cell pipelines.
+This is also a unique characteristic of SRT data, which is distinct from single-cell data, so here we cannot easily apply existing methods from single-cell pipelines.
 
-In this section, we will demonstrate methods to deconvolve cell types per spot. Several methods exist from the bulk RNA-seq literature, as well as new methods designed for ST data.
+In this section, we will demonstrate methods to deconvolve cell types per spot. Several methods exist from the bulk RNA-seq literature, as well as new methods designed for SRT data.
 
 
 ## Previous steps
