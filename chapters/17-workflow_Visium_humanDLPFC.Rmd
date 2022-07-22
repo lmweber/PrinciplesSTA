@@ -256,7 +256,7 @@ Next, we perform clustering to define cell types. Here, we use molecular feature
 ```{r}
 # graph-based clustering
 set.seed(123)
-k <- 10
+k <- 15
 g <- buildSNNGraph(spe, k = k, use.dimred = "PCA")
 g_walk <- igraph::cluster_walktrap(g)
 clus <- g_walk$membership
