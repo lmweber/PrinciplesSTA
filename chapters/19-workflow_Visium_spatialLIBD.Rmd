@@ -136,10 +136,10 @@ is_mito <- grepl("(^MT-)|(^mt-)", rowData(spe)$gene_name)
 spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
 
 # select QC thresholds
-qc_lib_size <- colData(spe)$sum < 500
-qc_detected <- colData(spe)$detected < 250
-qc_mito <- colData(spe)$subsets_mito_percent > 30
-qc_cell_count <- colData(spe)$cell_count > 12
+qc_lib_size <- colData(spe)$sum < 600
+qc_detected <- colData(spe)$detected < 400
+qc_mito <- colData(spe)$subsets_mito_percent > 28
+qc_cell_count <- colData(spe)$cell_count > 10
 
 # combined set of discarded spots
 discard <- qc_lib_size | qc_detected | qc_mito | qc_cell_count
@@ -175,7 +175,7 @@ colnames(reducedDim(spe, "UMAP")) <- paste0("UMAP", 1:2)
 
 # graph-based clustering
 set.seed(123)
-k <- 15
+k <- 10
 g <- buildSNNGraph(spe, k = k, use.dimred = "PCA")
 g_walk <- igraph::cluster_walktrap(g)
 clus <- g_walk$membership
