@@ -43,13 +43,13 @@ spe <- spe[, !colData(spe)$discard]
 ```
 
 
-## Log-transformed normalized counts
+## Logcounts
 
 Calculate log-transformed normalized counts (abbreviated as "logcounts") using library size factors.
 
-We use normalization methods from `scater` [@McCarthy2017] and `scran` [@Lun2016], which were originally developed for single-cell RNA sequencing data. We make the assumption that these methods can be applied here by treating spots as equivalent to cells.
+We apply the methods implemented in the `scater` [@McCarthy2017] and `scran` [@Lun2016] packages, which were originally developed for scRNA-seq data, making the assumption here that these methods can be applied to SRT data by treating spots as equivalent to cells.
 
-Since we have only a single sample, there are no blocking factors in the experimental design.
+We use the library size factors methodology since this is the simplest approach, and can easily be applied to SRT data. Alternative approaches that are populare for scRNA-seq data, including normalization by deconvolution, are more difficulty to justify in the context of spot-based SRT data since (i) spots may contain multiple cells from more than one cell type, and (ii) datasets can contain multiple samples (e.g. multiple Visium slides, resulting in sample-specific clustering).
 
 ```{r, message=FALSE, fig.height=3.5}
 library(scran)
@@ -60,7 +60,7 @@ spe <- computeLibraryFactors(spe)
 summary(sizeFactors(spe))
 hist(sizeFactors(spe), breaks = 20)
 
-# calculate logcounts (log-transformed normalized counts) and store in object
+# calculate logcounts and store in object
 spe <- logNormCounts(spe)
 
 # check

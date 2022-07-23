@@ -118,7 +118,7 @@ dim(spe)
 
 ## Normalization
 
-Next, we calculate log-transformed normalized counts (logcounts) using library size factors, with methods from `scater` [@McCarthy2017] and `scran` [@Lun2016]. Since we have a single sample, there are no blocking factors in the experimental design.
+Next, we calculate log-transformed normalized counts (logcounts) with the library size factors methodology, using methods from `scater` [@McCarthy2017] and `scran` [@Lun2016].
 
 ```{r, message=FALSE}
 library(scran)
@@ -131,7 +131,7 @@ spe <- computeLibraryFactors(spe)
 summary(sizeFactors(spe))
 hist(log10(sizeFactors(spe)), xlab = "log10 (size factors)", main = "Size factors")
 
-# calculate logcounts (log-transformed normalized counts) and store in object
+# calculate logcounts and store in object
 spe <- logNormCounts(spe)
 
 assayNames(spe)
