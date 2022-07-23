@@ -88,10 +88,10 @@ hist(colData(spe)$cell_count, xlab = "number of cells", main = "No. cells per sp
 par(mfrow = c(1, 1))
 
 # select QC thresholds
-qc_lib_size <- colData(spe)$sum < 500
-qc_detected <- colData(spe)$detected < 250
-qc_mito <- colData(spe)$subsets_mito_percent > 30
-qc_cell_count <- colData(spe)$cell_count > 12
+qc_lib_size <- colData(spe)$sum < 600
+qc_detected <- colData(spe)$detected < 400
+qc_mito <- colData(spe)$subsets_mito_percent > 28
+qc_cell_count <- colData(spe)$cell_count > 10
 
 # number of discarded spots for each metric
 apply(cbind(qc_lib_size, qc_detected, qc_mito, qc_cell_count), 2, sum)
@@ -256,7 +256,7 @@ Next, we perform clustering to define cell types. Here, we use molecular feature
 ```{r}
 # graph-based clustering
 set.seed(123)
-k <- 15
+k <- 10
 g <- buildSNNGraph(spe, k = k, use.dimred = "PCA")
 g_walk <- igraph::cluster_walktrap(g)
 clus <- g_walk$membership

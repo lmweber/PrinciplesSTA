@@ -104,16 +104,16 @@ We also plot the library sizes against the number of cells per spot (which is av
 # plot library size vs. number of cells per spot
 plotQC(spe, type = "scatter", 
        metric_x = "cell_count", metric_y = "sum", 
-       threshold_y = 500)
+       threshold_y = 600)
 ```
 
 The plot shows that setting a filtering threshold for library size (e.g. at the value shown) does not appear to select for any obvious biologically consistent group of spots.
 
-We set a relatively arbitrary threshold of 500 UMI counts per spot, and then check the number of spots below this threshold.
+We set a relatively arbitrary threshold of 600 UMI counts per spot, and then check the number of spots below this threshold.
 
 ```{r}
 # select QC threshold for library size
-qc_lib_size <- colData(spe)$sum < 500
+qc_lib_size <- colData(spe)$sum < 600
 table(qc_lib_size)
 
 colData(spe)$qc_lib_size <- qc_lib_size
@@ -161,14 +161,14 @@ hist(colData(spe)$detected, breaks = 20)
 # plot number of expressed genes vs. number of cells per spot
 plotQC(spe, type = "scatter", 
        metric_x = "cell_count", metric_y = "detected", 
-       threshold_y = 250)
+       threshold_y = 400)
 ```
 
-Based on the plots, we select a threshold of 250 expressed genes per spot.
+Based on the plots, we select a threshold of 400 expressed genes per spot.
 
 ```{r}
 # select QC threshold for number of expressed genes
-qc_detected <- colData(spe)$detected < 250
+qc_detected <- colData(spe)$detected < 400
 table(qc_detected)
 
 colData(spe)$qc_detected <- qc_detected
@@ -206,14 +206,14 @@ hist(colData(spe)$subsets_mito_percent, breaks = 20)
 # plot mitochondrial read proportion vs. number of cells per spot
 plotQC(spe, type = "scatter", 
        metric_x = "cell_count", metric_y = "subsets_mito_percent", 
-       threshold_y = 30)
+       threshold_y = 28)
 ```
 
-We select a threshold of 30% for the mitochondrial read proportion.
+We select a threshold of 28% for the mitochondrial read proportion.
 
 ```{r}
 # select QC threshold for mitochondrial read proportion
-qc_mito <- colData(spe)$subsets_mito_percent > 30
+qc_mito <- colData(spe)$subsets_mito_percent > 28
 table(qc_mito)
 
 colData(spe)$qc_mito <- qc_mito
@@ -256,16 +256,16 @@ We see a tail of very high values, which could indicate problems for these spots
 # plot number of expressed genes vs. number of cells per spot
 plotQC(spe, type = "scatter", 
        metric_x = "cell_count", metric_y = "detected", 
-       threshold_x = 12)
+       threshold_x = 10)
 ```
 
 In particular, we see that the spots with very high cell counts also have low numbers of expressed genes. This indicates that the experiments have failed for these spots, and they should be removed.
 
-We select a threshold of 12 cells per spot. The number of spots above this threshold is relatively small, and there is a clear downward trend in the number of expressed genes above this threshold.
+We select a threshold of 10 cells per spot. The number of spots above this threshold is relatively small, and there is a clear downward trend in the number of expressed genes above this threshold.
 
 ```{r}
 # select QC threshold for number of cells per spot
-qc_cell_count <- colData(spe)$cell_count > 12
+qc_cell_count <- colData(spe)$cell_count > 10
 table(qc_cell_count)
 
 colData(spe)$qc_cell_count <- qc_cell_count
@@ -317,7 +317,7 @@ A particular characteristic of Visium data is that spots can contain zero, one, 
 
 We could also imagine other filtering procedures such as (i) removing spots with zero cells, or (ii) restricting the analysis to spots containing a single cell (which would make the data more similar to scRNA-seq).
 
-However, this would discard a large amount of information. Below, we show the distribution of cells per spot again (up to the filtering threshold of 12 cells per spot from above).
+However, this would discard a large amount of information. Below, we show the distribution of cells per spot again (up to the filtering threshold of 10 cells per spot from above).
 
 ```{r}
 # distribution of cells per spot
