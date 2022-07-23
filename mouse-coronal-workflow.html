@@ -241,7 +241,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="10.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
 <li class="chapter" data-level="10.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>10.2</b> Previous steps</a></li>
-<li class="chapter" data-level="10.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>10.3</b> Log-transformed normalized counts</a></li>
+<li class="chapter" data-level="10.3" data-path="normalization.html"><a href="normalization.html#logcounts"><i class="fa fa-check"></i><b>10.3</b> Logcounts</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>11</b> Feature selection</a>
 <ul>
@@ -480,7 +480,7 @@ div.csl-indent {
 </div>
 <div id="normalization-2" class="section level2 hasAnchor" number="18.5">
 <h2><span class="header-section-number">18.5</span> Normalization<a href="mouse-coronal-workflow.html#normalization-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Next, we calculate log-transformed normalized counts (logcounts) using library size factors, with methods from <code>scater</code> <span class="citation">(<a href="#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span> and <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>. Since we have a single sample, there are no blocking factors in the experimental design.</p>
+<p>Next, we calculate log-transformed normalized counts (logcounts) with the library size factors methodology, using methods from <code>scater</code> <span class="citation">(<a href="#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span> and <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span>.</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="mouse-coronal-workflow.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span></code></pre></div>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="mouse-coronal-workflow.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate library size factors</span></span>
 <span id="cb217-2"><a href="mouse-coronal-workflow.html#cb217-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeLibraryFactors</span>(spe)</span>
@@ -490,7 +490,7 @@ div.csl-indent {
 ##  0.1615  0.6597  0.9083  1.0000  1.2342  4.8973</code></pre>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="mouse-coronal-workflow.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log10</span>(<span class="fu">sizeFactors</span>(spe)), <span class="at">xlab =</span> <span class="st">&quot;log10 (size factors)&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Size factors&quot;</span>)</span></code></pre></div>
 <p><img src="OSTA-book_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="mouse-coronal-workflow.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts (log-transformed normalized counts) and store in object</span></span>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="mouse-coronal-workflow.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts and store in object</span></span>
 <span id="cb220-2"><a href="mouse-coronal-workflow.html#cb220-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
 <span id="cb220-3"><a href="mouse-coronal-workflow.html#cb220-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb220-4"><a href="mouse-coronal-workflow.html#cb220-4" aria-hidden="true" tabindex="-1"></a><span class="fu">assayNames</span>(spe)</span></code></pre></div>
@@ -576,9 +576,9 @@ div.csl-indent {
 ## ENSMUSG00000046330 ENSMUSG00000046330      Rpl37a Gene Expression 0.0549986
 ##                       tau.sq       phi    loglik   runtime      mean       var
 ##                    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-## ENSMUSG00000061518 0.1202984  13.53194  -43.6472     0.081   4.98425  0.142977
-## ENSMUSG00000073702 0.0860842   5.84110  -40.3003     0.045   4.83432  0.143616
-## ENSMUSG00000046330 0.1133114   6.47579  -48.2811     0.058   5.35620  0.166734
+## ENSMUSG00000061518 0.1202984  13.53194  -43.6472     0.088   4.98425  0.142977
+## ENSMUSG00000073702 0.0860842   5.84110  -40.3003     0.046   4.83432  0.143616
+## ENSMUSG00000046330 0.1133114   6.47579  -48.2811     0.057   5.35620  0.166734
 ##                        spcov   prop_sv loglik_lm   LR_stat      rank      pval
 ##                    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
 ## ENSMUSG00000061518 0.0291204  0.149022  -44.1377  0.981135       184 0.6122789
@@ -607,12 +607,12 @@ div.csl-indent {
 ## ENSMUSG00000024617 ENSMUSG00000024617      Camk2a Gene Expression   1.41249
 ##                         tau.sq       phi    loglik   runtime      mean
 ##                      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-## ENSMUSG00000046447 6.28372e-02   2.05206   -99.021     0.067   5.35338
-## ENSMUSG00000053310 2.47772e-01   3.26420  -151.225     0.075   4.85871
-## ENSMUSG00000018593 7.63186e-02   3.68722  -124.793     0.079   3.61331
-## ENSMUSG00000032532 2.98145e-08   5.07869  -147.464     0.062   4.19282
-## ENSMUSG00000070570 3.20107e-01   4.15601  -155.620     0.056   3.62933
-## ENSMUSG00000024617 9.79965e-02   3.74573  -113.269     0.093   4.11652
+## ENSMUSG00000046447 6.28372e-02   2.05206   -99.021     0.076   5.35338
+## ENSMUSG00000053310 2.47772e-01   3.26420  -151.225     0.078   4.85871
+## ENSMUSG00000018593 7.63186e-02   3.68722  -124.793     0.077   3.61331
+## ENSMUSG00000032532 2.98145e-08   5.07869  -147.464     0.065   4.19282
+## ENSMUSG00000070570 3.20107e-01   4.15601  -155.620     0.062   3.62933
+## ENSMUSG00000024617 9.79965e-02   3.74573  -113.269     0.088   4.11652
 ##                          var     spcov   prop_sv loglik_lm   LR_stat      rank
 ##                    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
 ## ENSMUSG00000046447   1.50820  0.256357  0.967714  -161.937  125.8321         1

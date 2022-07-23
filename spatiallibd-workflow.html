@@ -241,7 +241,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="10.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
 <li class="chapter" data-level="10.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>10.2</b> Previous steps</a></li>
-<li class="chapter" data-level="10.3" data-path="normalization.html"><a href="normalization.html#log-transformed-normalized-counts"><i class="fa fa-check"></i><b>10.3</b> Log-transformed normalized counts</a></li>
+<li class="chapter" data-level="10.3" data-path="normalization.html"><a href="normalization.html#logcounts"><i class="fa fa-check"></i><b>10.3</b> Logcounts</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>11</b> Feature selection</a>
 <ul>
@@ -565,7 +565,7 @@ Figure 19.3: Screenshot of the ‘gene grid (static)’ section of the ‘spot-l
 <span id="cb268-87"><a href="spatiallibd-workflow.html#cb268-87" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb268-88"><a href="spatiallibd-workflow.html#cb268-88" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb268-89"><a href="spatiallibd-workflow.html#cb268-89" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
-<pre><code>## Time difference of 1.539791 mins</code></pre>
+<pre><code>## Time difference of 1.425334 mins</code></pre>
 </div>
 <div id="prepare-for-spatiallibd" class="section level2 hasAnchor" number="19.4">
 <h2><span class="header-section-number">19.4</span> Prepare for spatialLIBD<a href="spatiallibd-workflow.html#prepare-for-spatiallibd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -593,7 +593,7 @@ Figure 19.3: Screenshot of the ‘gene grid (static)’ section of the ‘spot-l
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="spatiallibd-workflow.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
 <span id="cb273-2"><a href="spatiallibd-workflow.html#cb273-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
 <pre><code>##                                                                            BFC1 
-## &quot;/github/home/.cache/R/BiocFileCache/4d25b5ce07a_gencode.v32.annotation.gtf.gz&quot;</code></pre>
+## &quot;/github/home/.cache/R/BiocFileCache/4db4076d65b_gencode.v32.annotation.gtf.gz&quot;</code></pre>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="spatiallibd-workflow.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
 <span id="cb275-2"><a href="spatiallibd-workflow.html#cb275-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
 <span id="cb275-3"><a href="spatiallibd-workflow.html#cb275-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -750,8 +750,8 @@ Figure 19.3: Screenshot of the ‘gene grid (static)’ section of the ‘spot-l
 <span id="cb289-3"><a href="spatiallibd-workflow.html#cb289-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb289-4"><a href="spatiallibd-workflow.html#cb289-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
 <span id="cb289-5"><a href="spatiallibd-workflow.html#cb289-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
-<pre><code>## Time difference of 52.46676 secs</code></pre>
-<p>Creating our final <code>spe</code> object took 2.41423692305883 to run. So you might want to save this object for later use.</p>
+<pre><code>## Time difference of 49.80617 secs</code></pre>
+<p>Creating our final <code>spe</code> object took 2.25543677012126 to run. So you might want to save this object for later use.</p>
 <div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="spatiallibd-workflow.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 <p>You can then re-load it with the following code on a later session.</p>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="spatiallibd-workflow.html#cb292-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>

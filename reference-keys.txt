@@ -83,7 +83,7 @@ quality-control-at-gene-level
 normalization
 background-1
 previous-steps
-log-transformed-normalized-counts
+logcounts
 feature-selection
 background-2
 previous-steps-1
