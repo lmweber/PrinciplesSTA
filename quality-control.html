@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-07-22" />
+<meta name="date" content="2022-07-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -465,19 +465,19 @@ div.csl-indent {
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="quality-control.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot library size vs. number of cells per spot</span></span>
 <span id="cb30-2"><a href="quality-control.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;scatter&quot;</span>, </span>
 <span id="cb30-3"><a href="quality-control.html#cb30-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;sum&quot;</span>, </span>
-<span id="cb30-4"><a href="quality-control.html#cb30-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_y =</span> <span class="dv">500</span>)</span></code></pre></div>
+<span id="cb30-4"><a href="quality-control.html#cb30-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_y =</span> <span class="dv">600</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="OSTA-book_files/figure-html/unnamed-chunk-33-1.png" width="360" /></p>
 <p>The plot shows that setting a filtering threshold for library size (e.g. at the value shown) does not appear to select for any obvious biologically consistent group of spots.</p>
-<p>We set a relatively arbitrary threshold of 500 UMI counts per spot, and then check the number of spots below this threshold.</p>
+<p>We set a relatively arbitrary threshold of 600 UMI counts per spot, and then check the number of spots below this threshold.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="quality-control.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for library size</span></span>
-<span id="cb33-2"><a href="quality-control.html#cb33-2" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">500</span></span>
+<span id="cb33-2"><a href="quality-control.html#cb33-2" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">600</span></span>
 <span id="cb33-3"><a href="quality-control.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_lib_size)</span></code></pre></div>
 <pre><code>## qc_lib_size
 ## FALSE  TRUE 
-##  3632     7</code></pre>
+##  3631     8</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="quality-control.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_lib_size <span class="ot">&lt;-</span> qc_lib_size</span></code></pre></div>
 <p>Finally, we also check that the discarded spots do not have any obvious spatial pattern that correlates with known biological features. Otherwise, removing these spots could indicate that we have set the threshold too high, and are removing biologically informative spots.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="quality-control.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
@@ -507,18 +507,18 @@ div.csl-indent {
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="quality-control.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of expressed genes vs. number of cells per spot</span></span>
 <span id="cb40-2"><a href="quality-control.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;scatter&quot;</span>, </span>
 <span id="cb40-3"><a href="quality-control.html#cb40-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;detected&quot;</span>, </span>
-<span id="cb40-4"><a href="quality-control.html#cb40-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_y =</span> <span class="dv">250</span>)</span></code></pre></div>
+<span id="cb40-4"><a href="quality-control.html#cb40-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_y =</span> <span class="dv">400</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="OSTA-book_files/figure-html/unnamed-chunk-39-1.png" width="360" /></p>
-<p>Based on the plots, we select a threshold of 250 expressed genes per spot.</p>
+<p>Based on the plots, we select a threshold of 400 expressed genes per spot.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="quality-control.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for number of expressed genes</span></span>
-<span id="cb43-2"><a href="quality-control.html#cb43-2" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">250</span></span>
+<span id="cb43-2"><a href="quality-control.html#cb43-2" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">400</span></span>
 <span id="cb43-3"><a href="quality-control.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_detected)</span></code></pre></div>
 <pre><code>## qc_detected
 ## FALSE  TRUE 
-##  3634     5</code></pre>
+##  3632     7</code></pre>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="quality-control.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_detected <span class="ot">&lt;-</span> qc_detected</span></code></pre></div>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="quality-control.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
 <span id="cb46-2"><a href="quality-control.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, </span>
@@ -542,18 +542,18 @@ div.csl-indent {
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="quality-control.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot mitochondrial read proportion vs. number of cells per spot</span></span>
 <span id="cb49-2"><a href="quality-control.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;scatter&quot;</span>, </span>
 <span id="cb49-3"><a href="quality-control.html#cb49-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;subsets_mito_percent&quot;</span>, </span>
-<span id="cb49-4"><a href="quality-control.html#cb49-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_y =</span> <span class="dv">30</span>)</span></code></pre></div>
+<span id="cb49-4"><a href="quality-control.html#cb49-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_y =</span> <span class="dv">28</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="OSTA-book_files/figure-html/unnamed-chunk-44-1.png" width="360" /></p>
-<p>We select a threshold of 30% for the mitochondrial read proportion.</p>
+<p>We select a threshold of 28% for the mitochondrial read proportion.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="quality-control.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for mitochondrial read proportion</span></span>
-<span id="cb52-2"><a href="quality-control.html#cb52-2" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">30</span></span>
+<span id="cb52-2"><a href="quality-control.html#cb52-2" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">28</span></span>
 <span id="cb52-3"><a href="quality-control.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_mito)</span></code></pre></div>
 <pre><code>## qc_mito
 ## FALSE  TRUE 
-##  3636     3</code></pre>
+##  3622    17</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="quality-control.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_mito <span class="ot">&lt;-</span> qc_mito</span></code></pre></div>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="quality-control.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
 <span id="cb55-2"><a href="quality-control.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, </span>
@@ -580,19 +580,19 @@ div.csl-indent {
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="quality-control.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot number of expressed genes vs. number of cells per spot</span></span>
 <span id="cb59-2"><a href="quality-control.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;scatter&quot;</span>, </span>
 <span id="cb59-3"><a href="quality-control.html#cb59-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">metric_x =</span> <span class="st">&quot;cell_count&quot;</span>, <span class="at">metric_y =</span> <span class="st">&quot;detected&quot;</span>, </span>
-<span id="cb59-4"><a href="quality-control.html#cb59-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_x =</span> <span class="dv">12</span>)</span></code></pre></div>
+<span id="cb59-4"><a href="quality-control.html#cb59-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold_x =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="OSTA-book_files/figure-html/unnamed-chunk-49-1.png" width="360" /></p>
 <p>In particular, we see that the spots with very high cell counts also have low numbers of expressed genes. This indicates that the experiments have failed for these spots, and they should be removed.</p>
-<p>We select a threshold of 12 cells per spot. The number of spots above this threshold is relatively small, and there is a clear downward trend in the number of expressed genes above this threshold.</p>
+<p>We select a threshold of 10 cells per spot. The number of spots above this threshold is relatively small, and there is a clear downward trend in the number of expressed genes above this threshold.</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="quality-control.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC threshold for number of cells per spot</span></span>
-<span id="cb62-2"><a href="quality-control.html#cb62-2" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">12</span></span>
+<span id="cb62-2"><a href="quality-control.html#cb62-2" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">10</span></span>
 <span id="cb62-3"><a href="quality-control.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qc_cell_count)</span></code></pre></div>
 <pre><code>## qc_cell_count
 ## FALSE  TRUE 
-##  3592    47</code></pre>
+##  3549    90</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="quality-control.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>qc_cell_count <span class="ot">&lt;-</span> qc_cell_count</span></code></pre></div>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="quality-control.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of discarded spots</span></span>
 <span id="cb65-2"><a href="quality-control.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQC</span>(spe, <span class="at">type =</span> <span class="st">&quot;spots&quot;</span>, </span>
@@ -607,13 +607,13 @@ div.csl-indent {
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="quality-control.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of discarded spots for each metric</span></span>
 <span id="cb66-2"><a href="quality-control.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">cbind</span>(qc_lib_size, qc_detected, qc_mito, qc_cell_count), <span class="dv">2</span>, sum)</span></code></pre></div>
 <pre><code>##   qc_lib_size   qc_detected       qc_mito qc_cell_count 
-##             7             5             3            47</code></pre>
+##             8             7            17            90</code></pre>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="quality-control.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
 <span id="cb68-2"><a href="quality-control.html#cb68-2" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
 <span id="cb68-3"><a href="quality-control.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(discard)</span></code></pre></div>
 <pre><code>## discard
 ## FALSE  TRUE 
-##  3582    57</code></pre>
+##  3524   115</code></pre>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="quality-control.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store in object</span></span>
 <span id="cb70-2"><a href="quality-control.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span></code></pre></div>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="quality-control.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check spatial pattern of combined set of discarded spots</span></span>
@@ -623,14 +623,14 @@ div.csl-indent {
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="quality-control.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove combined set of low-quality spots</span></span>
 <span id="cb72-2"><a href="quality-control.html#cb72-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
 <span id="cb72-3"><a href="quality-control.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
-<pre><code>## [1] 33538  3582</code></pre>
+<pre><code>## [1] 33538  3524</code></pre>
 </div>
 </div>
 <div id="zero-cell-and-single-cell-spots" class="section level2 hasAnchor" number="9.6">
 <h2><span class="header-section-number">9.6</span> Zero-cell and single-cell spots<a href="quality-control.html#zero-cell-and-single-cell-spots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A particular characteristic of Visium data is that spots can contain zero, one, or multiple cells.</p>
 <p>We could also imagine other filtering procedures such as (i) removing spots with zero cells, or (ii) restricting the analysis to spots containing a single cell (which would make the data more similar to scRNA-seq).</p>
-<p>However, this would discard a large amount of information. Below, we show the distribution of cells per spot again (up to the filtering threshold of 12 cells per spot from above).</p>
+<p>However, this would discard a large amount of information. Below, we show the distribution of cells per spot again (up to the filtering threshold of 10 cells per spot from above).</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="quality-control.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># distribution of cells per spot</span></span>
 <span id="cb74-2"><a href="quality-control.html#cb74-2" aria-hidden="true" tabindex="-1"></a>tbl_cells_per_spot[<span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>]</span></code></pre></div>
 <pre><code>## 
