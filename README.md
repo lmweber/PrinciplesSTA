@@ -10,9 +10,9 @@ The website for the compiled version of the book is at: https://lmweber.org/OSTA
 
 ## Source files
 
-The main content of the book is in the `RMarkdown` `.Rmd` files in the [chapters](chapters/) subdirectory, with one `.Rmd` file per chapter.
+The main content of the book is in the RMarkdown `.Rmd` files in the [chapters/](chapters/) subdirectory, with one `.Rmd` file per chapter.
 
-Compiling and deployment to the website uses the GitHub Actions setup in [.github/workflows/build_book_bioc_docker.yml](.github/workflows/build_book_bioc_docker.yml).
+Compiling and deployment to the website uses the GitHub Actions workflow in: [.github/workflows/](.github/workflows/)
 
 
 ## Compile locally
