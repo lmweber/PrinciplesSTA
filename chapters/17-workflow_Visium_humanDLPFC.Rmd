@@ -189,12 +189,11 @@ ix <- sample(seq_len(n), n)
 spe_nnSVG <- spe[, ix]
 
 # filter low-expressed and mitochondrial genes
-# using stringent filtering parameters for faster runtime in this example
+# using very stringent filtering parameters for faster runtime in this example
+# note: for a full analysis, use alternative filtering parameters (e.g. defaults)
 spe_nnSVG <- filter_genes(
-  spe_nnSVG, filter_genes_ncounts = 5, filter_genes_pcspots = 1
+  spe_nnSVG, filter_genes_ncounts = 10, filter_genes_pcspots = 3
 )
-
-dim(spe_nnSVG)
 
 # re-calculate logcounts after filtering
 # using library size factors
@@ -202,6 +201,7 @@ spe_nnSVG <- logNormCounts(spe_nnSVG)
 
 # run nnSVG
 # using a single core for compatibility on build system
+# note: for a full analysis, use multiple cores
 set.seed(123)
 spe_nnSVG <- nnSVG(spe_nnSVG, n_threads = 1)
 

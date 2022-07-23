@@ -180,7 +180,7 @@ These appear to be biologically meaningful genes, so we leave them in.
 
 Alternatively, run [nnSVG](https://bioconductor.org/packages/nnSVG) to identify a set of top spatially variable genes (SVGs) instead of HVGs.
 
-Here, we run nnSVG using a small subset of the dataset for faster runtime. We select a subset of the data by subsampling on the set of spots and including stringent filtering for low-expressed genes. For a full analysis, we recommend running `nnSVG` on all spots and using default filtering parameters (for Visium data from mouse brain tissue), which takes around 45 minutes for one Visium slide on a standard laptop using multiple cores.
+Here, we run nnSVG using a small subset of the dataset for faster runtime. We select a subset of the data by subsampling on the set of spots and including stringent filtering for low-expressed genes. For a full analysis, we recommend running `nnSVG` on all spots and using alternative filtering parameters (for Visium data from mouse brain tissue), which takes around 45 minutes for one Visium slide on a standard laptop using multiple cores.
 
 ```{r, message=FALSE}
 library(nnSVG)
@@ -195,12 +195,11 @@ ix <- sample(seq_len(n), n)
 spe_nnSVG <- spe[, ix]
 
 # filter low-expressed and mitochondrial genes
-# using stringent filtering parameters for faster runtime in this example
+# using very stringent filtering parameters for faster runtime in this example
+# note: for a full analysis, use alternative filtering parameters (e.g. defaults)
 spe_nnSVG <- filter_genes(
-  spe_nnSVG, filter_genes_ncounts = 10, filter_genes_pcspots = 5
+  spe_nnSVG, filter_genes_ncounts = 50, filter_genes_pcspots = 5
 )
-
-dim(spe_nnSVG)
 
 # re-calculate logcounts after filtering
 # using library size factors
@@ -208,6 +207,7 @@ spe_nnSVG <- logNormCounts(spe_nnSVG)
 
 # run nnSVG
 # using a single core for compatibility on build system
+# note: for a full analysis, use multiple cores
 set.seed(123)
 spe_nnSVG <- nnSVG(spe_nnSVG, n_threads = 1)
 
