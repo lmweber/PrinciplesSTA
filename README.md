@@ -1,5 +1,7 @@
 # Orchestrating Spatially Resolved Transcriptomics Analysis with Bioconductor
 
+[![R build status](https://github.com/lmweber/OSTA-book/workflows/R-CMD-bioc/badge.svg)](https://github.com/lmweber/OSTA-book/actions)
+
 Repository containing source files for OSTA online book.
 
 
