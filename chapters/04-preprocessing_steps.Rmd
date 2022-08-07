@@ -6,7 +6,7 @@ In this part, we describe several preprocessing steps required to prepare raw da
 
 In the examples shown here, we use the [Space Ranger](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger) and [Loupe Browser](https://www.10xgenomics.com/products/loupe-browser) software provided by 10x Genomics to preprocess Visium data. Alternative preprocessing workflows have also been developed by others, including the [alevin-fry](https://combine-lab.github.io/alevin-fry-tutorials/2021/af-spatial/) pipeline for Visium and other platforms.
 
-```{r, echo=FALSE, out.width="100%", fig.align="center", fig.cap="An overview of the Visium technology by 10x Genomics for generating spatially resolved transcriptomics data. Each Visium slide has four tissue capture areas. Each of these capture areas has around 5000 barcoded spots. The tissue capture areas are delineated by a fiducial frame that is useful for aligning the images and determining the location of the spots in order to map the gene expression data with the imaging data. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/)."}
+```{r, echo=FALSE, out.width="100%", fig.align="center", fig.cap="An overview of the Visium technology by 10x Genomics for generating spatially-resolved transcriptomics data. Each Visium slide has four tissue capture areas. Each of these capture areas has around 5000 barcoded spots. The tissue capture areas are delineated by a fiducial frame that is useful for aligning the images and determining the location of the spots in order to map the gene expression data with the imaging data. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/)."}
 knitr::include_graphics("images/visium_spot.png")
 ```
 

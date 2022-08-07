@@ -3,7 +3,7 @@
 
 ## Overview
 
-As we saw in the introduction on [Spatially resolved transcriptomics], the Visium platform from 10x Genomics has four tissue capture areas. 
+As we saw in the introduction on [Spatially-resolved transcriptomics], the Visium platform from 10x Genomics has four tissue capture areas. 
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Visium slide design. Source: [10x Genomics](https://kb.10xgenomics.com/hc/en-us/articles/360035487572-What-is-the-spatial-resolution-and-configuration-of-the-capture-area-of-the-Visium-Gene-Expression-Slide-)."}
 knitr::include_graphics("https://kb.10xgenomics.com/hc/article_attachments/360042142472/Picture1.png")
