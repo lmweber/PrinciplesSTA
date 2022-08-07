@@ -32,8 +32,6 @@ contents-of-this-book
 who-this-book-is-for
 bioconductor
 contributions
-contribution-guidelines
-contributions-to-workflows
 spatially-resolved-transcriptomics
 x-genomics-visium
 additional-platforms
@@ -150,7 +148,7 @@ related-resources
 resources-for-other-spatially-resolved-platforms
 data-structures
 statistical-concepts
-contributors
+contributors-and-acknowledgments
 osta
 spatialexperiment-1
 github-actions-workflow
