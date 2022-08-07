@@ -2,22 +2,22 @@
 
 # Introduction
 
-This book describes a computational analysis pipeline for spatially resolved transcriptomics (SRT) data, using the [Bioconductor](http://bioconductor.org/) framework and R programming language.
+This book provides several examples of computational analysis workflows for spatially-resolved transcriptomics (SRT) data, using the [Bioconductor](http://bioconductor.org/) framework within the R programming language.
 
 
 ## Contents of this book
 
 The chapters are organized into several parts:
 
-- **Introduction:** introduction, spatially resolved transcriptomics, and the `SpatialExperiment` object class
+- **Introduction:** introduction, background on SRT, and the `SpatialExperiment` R/Bioconductor object class
 
 - **Preprocessing steps:** preprocessing steps to prepare raw data for loading into R
 
-- **Analysis steps:** chapters describing key analysis steps using the Bioconductor framework, including examples of R code that can be run on your own laptop
+- **Analysis steps:** chapters describing individual analysis steps
 
-- **Workflows:** complete workflows for several example datasets
+- **Workflows:** chapters containing complete workflows for several example datasets
 
-- **Appendix:** contributors, acknowledgments, references
+- **Appendix:** related resources, contributors, acknowledgments, and references
 
 
 ## Who this book is for
@@ -26,43 +26,37 @@ This book is intended for readers who have some experience with R, but does not 
 
 For readers who are new to R and Bioconductor, additional useful resources include:
 
-- The [Orchestrating Single-Cell Analysis with Bioconductor (OSCA)](https://osca.bioconductor.org/) book @Amezquita2020, which contains additional details on the analysis steps described here in the context of single-cell RNA sequencing instead of SRT data, as well as additional introductory chapters on R and Bioconductor
+- The [Orchestrating Single-Cell Analysis with Bioconductor (OSCA)](https://osca.bioconductor.org/) book @Amezquita2020, which contains additional introductory material on R and Bioconductor, as well as additional details on analysis steps and method originally developed for single-cell data
 
-- The [R for Data Science](https://r4ds.had.co.nz/) online textbook provides an excellent introduction to R
+- The [R for Data Science](https://r4ds.had.co.nz/) online book provides an excellent introduction to R
 
-- [Data Carpentry](https://datacarpentry.org/) and [Software Carpentry](https://software-carpentry.org/) provide both introductory and more advanced online lesson materials on R programming, as well as the Unix shell and Git
+- [Data Carpentry](https://datacarpentry.org/) and [Software Carpentry](https://software-carpentry.org/) provide introductory and more advanced online lesson materials on R programming, the Unix shell, and git
 
-- The R/Bioconductor Data Science Team at LIBD has a [detailed guide](https://lcolladotor.github.io/bioc_team_ds/rbioconductor-data-science-bootcamps.html#.YQyzLtNKgdk) of free resources and videos you can use to learn more about R and Bioconductor. You might also be interested in some of their [YouTube videos](https://www.youtube.com/c/LeonardoColladoTorres/playlists) and [LIBD rstats club sessions](https://docs.google.com/spreadsheets/d/1is8dZSd0FZ9Qi1Zvq1uRhm-P1McnJRd_zxdAfCRoMfA/edit?usp=sharing), including some on the basics of Bioconductor and the infrastructure for storing gene expression data.
+- The R/Bioconductor Data Science Team at LIBD has a [detailed guide](https://lcolladotor.github.io/bioc_team_ds/rbioconductor-data-science-bootcamps.html) of free resources and videos to learn more about R and Bioconductor, as well as [YouTube videos](https://www.youtube.com/c/LeonardoColladoTorres/playlists) and [LIBD rstats club sessions](https://docs.google.com/spreadsheets/d/1is8dZSd0FZ9Qi1Zvq1uRhm-P1McnJRd_zxdAfCRoMfA/edit?usp=sharing), including some on the basics of Bioconductor and infrastructure for storing gene expression data
 
 
 ## Bioconductor
 
-[Bioconductor](http://bioconductor.org/) is an **open source** and **open development** project, providing a cohesive and flexible framework for analyzing high-throughput genomics data in R @Huber2015. The Bioconductor project consists of around 2000 contributed R packages, as well as core infrastructure maintained by the Bioconductor Core Team, providing a rich analysis environment for users.
+[Bioconductor](http://bioconductor.org/) is an **open source** and **open development** project, providing a cohesive and flexible framework for analyzing high-throughput genomic data in R @Huber2015. The Bioconductor project consists of around 2,000 contributed R packages, as well as core infrastructure maintained by the Bioconductor Core Team, providing a rich analysis environment for users.
 
-One of the main advantages of Bioconductor is the modularity and open development philosophy. R packages implementing analysis methods are contributed by numerous research groups, with the Bioconductor Core Team coordinating the overall project and maintaining infrastructure such as data class structures and package testing infrastructure. A key feature is that contributed packages use consistent data structures, such as [SingleCellExperiment](http://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) or [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment), which allows packages to interact nicely (e.g. output from one package can easily be provided as input to another package). In addition, contributed Bioconductor packages are expected to have comprehensive documentation, including vignettes (long-form examples including R code).
+One of the main advantages of Bioconductor is the modularity and open development philosophy. R packages are contributed by numerous research groups, with the Bioconductor Core Team coordinating the overall project and maintaining core infrastructure, build testing, and development guidelines. A key feature is that contributed packages use consistent data structures, such as [SingleCellExperiment](https://bioconductor.org/packages/SingleCellExperiment) or [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment), allowing users to easily integrate packages into analysis workflows. Bioconductor packages are also required to include comprehensive documentation, including vignettes containing long-form examples or tutorials.
 
-This modular and open-development approach allows end users to readily combine and substitute analysis methods contributed by different research groups, instead of being "locked in" to using methods or packages maintained by a single group. In a fast-moving field such as single-cell or SRT analysis, having the ability to update analysis pipelines to use the latest methods is a crucial advantage. Any research group can contribute new packages implementing new methods to Bioconductor by following the contribution guidelines.
+This modular and open-development approach allows data analysts to integrate methods into analysis workflows, and crucially, does not lock-in users to methods developed by a single group. This enables users to integrate the latest state-of-the-art methods into their analysis workflows, regardless of where these are developed. Any research group around the world can contribute new packages to Bioconductor by following the contribution guidelines provided on the [Bioconductor](http://bioconductor.org/) website.
 
 
 ## Contributions
 
-### Contribution guidelines
+We welcome suggestions for updates to the analysis chapters and workflow chapters in OSTA, including suggestions for new methods to include. Suggestions may be provided as [GitHub issues](https://github.com/lmweber/OSTA-book/issues).
 
-We welcome suggestions for contributions to OSTA. These should follow the following contribution guidelines, which are intended to maximize the usefulness of OSTA as a streamlined resource for new and advanced readers:
+All methods included in OSTA should be available as R packages from either [Bioconductor](http://bioconductor.org/) or [CRAN](https://cran.r-project.org/). Packages available from GitHub cannot be included in OSTA. We enforce this requirement for several reasons:
 
-- *Openness*: all methods and tools described should be freely available
-- *Neutrality*: workflows should largely rely on standard methods that have been demonstrated to perform well (for example in published independent benchmark papers), to avoid perceived bias towards methods developed by specific groups
-- *Bioconductor-based*: workflows should be based on Bioconductor packages, where possible
-- *Data structures*: examples should make use of Bioconductor data structures such as [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment)
-- *Testability*: code examples will be tested regularly on the Bioconductor build system, which requires that R package dependencies are available from Bioconductor or CRAN
-- *Maintenance*: ongoing commitment to maintain contributed code as part of the regular [Bioconductor release schedule](http://bioconductor.org/developers/)
+- Long-term usability and reliability: Packages on Bioconductor and CRAN are build-tested regularly, so developers will be alerted if any bug fixes are required, and can update their packages. By releasing their packages through Bioconductor or CRAN, developers provide a guarantee that they will maintain their packages over the longer term. This means that downstream users can rely on the packages being installable and usable within their analysis workflows over the longer term.
+- Installation: Installation procedures are simplified for Bioconductor and CRAN packages.
+- Build testing: The Bioconductor build testing infrastructure requires packages to be available from Bioconductor or CRAN.
+- Code quality and documentation: Bioconductor packages are required to follow guidelines for code quality and documentation, which makes packages easier to maintain and more accessible for new users.
+- Open science: All Bioconductor and CRAN packages are freely available and open source.
 
+We may list some other methods from GitHub in the analysis chapters as examples of alternative methods, but these methods will not be integrated into the code examples.
 
-### Contributions to workflows
-
-In particular, we welcome contributions to [Workflows]. These are chapters in OSTA that each describe a complete workflow, consisting of several individual analysis steps. For example, these may be focused on a specific type of technological platform, or designed to showcase a certain type of analysis.
-
-If you want to demonstrate a new method (e.g. a method for spatially aware clustering implemented in a Bioconductor package you have developed), we recommend adding it to the relevant workflow(s) to compare against other methods performing a similar task. If you decide to add to an existing workflow, the new method should run relatively fast (seconds to minutes) on the given dataset, due to limitations on the time it takes to build the book.
-
-If you decide to contribute to an existing or new workflow, we ask that you first open a [GitHub issue](https://github.com/lmweber/OSTA-book/issues) to propose the idea along with an outline of your proposed examples or workflow. The OSTA team can then give you initial feedback and you can proceed to make a pull request on GitHub. Where possible, we recommend re-using code from the individual analysis chapters within OSTA (e.g. for standard analysis steps), which will make the examples easier for readers to follow.
+Some of the analysis chapters may also include information on methods available as Python packages, and in future updates of OSTA we may integrate these into the examples using [reticulate](https://rstudio.github.io/reticulate/).
 
