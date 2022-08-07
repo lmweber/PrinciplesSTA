@@ -1,4 +1,4 @@
-# Contributors
+# Contributors and acknowledgments
 
 ## OSTA
 
@@ -22,5 +22,5 @@ As well as [GitHub contributors](https://github.com/lmweber/OSTA-book/graphs/con
 
 ## GitHub Actions workflow
 
-The GitHub Actions workflow used to build the online version of the book is based on [`biocthis`](https://bioconductor.org/packages/biocthis) and is made possible by the [Bioconductor Docker images](http://bioconductor.org/help/docker/).
+The GitHub Actions workflow used to build the online version of the book is based on [`biocthis`](https://bioconductor.org/packages/biocthis) and uses the [Bioconductor Docker images](http://bioconductor.org/help/docker/).
 

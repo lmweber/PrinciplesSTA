@@ -17,7 +17,7 @@ The chapters are organized into several parts:
 
 - **Workflows:** chapters containing complete workflows for several example datasets
 
-- **Appendix:** related resources, contributors, acknowledgments, and references
+- **Appendix:** related resources, contributors and acknowledgments, and references
 
 
 ## Who this book is for
