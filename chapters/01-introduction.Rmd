@@ -26,7 +26,7 @@ This book is intended for readers who have some experience with R, but does not 
 
 For readers who are new to R and Bioconductor, additional useful resources include:
 
-- The [Orchestrating Single-Cell Analysis with Bioconductor (OSCA)](https://osca.bioconductor.org/) book @Amezquita2020, which contains additional introductory material on R and Bioconductor, as well as additional details on analysis steps and method originally developed for single-cell data
+- The [Orchestrating Single-Cell Analysis with Bioconductor (OSCA)](https://osca.bioconductor.org/) book [@Amezquita2020], which contains additional introductory material on R and Bioconductor, as well as additional details on analysis steps and method originally developed for single-cell data
 
 - The [R for Data Science](https://r4ds.had.co.nz/) online book provides an excellent introduction to R
 
@@ -37,7 +37,7 @@ For readers who are new to R and Bioconductor, additional useful resources inclu
 
 ## Bioconductor
 
-[Bioconductor](http://bioconductor.org/) is an **open source** and **open development** project, providing a cohesive and flexible framework for analyzing high-throughput genomic data in R @Huber2015. The Bioconductor project consists of around 2,000 contributed R packages, as well as core infrastructure maintained by the Bioconductor Core Team, providing a rich analysis environment for users.
+[Bioconductor](http://bioconductor.org/) is an **open source** and **open development** project, providing a cohesive and flexible framework for analyzing high-throughput genomic data in R [@Huber2015]. The Bioconductor project consists of around 2,000 contributed R packages, as well as core infrastructure maintained by the Bioconductor Core Team, providing a rich analysis environment for users.
 
 One of the main advantages of Bioconductor is the modularity and open development philosophy. R packages are contributed by numerous research groups, with the Bioconductor Core Team coordinating the overall project and maintaining core infrastructure, build testing, and development guidelines. A key feature is that contributed packages use consistent data structures, such as [SingleCellExperiment](https://bioconductor.org/packages/SingleCellExperiment) or [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment), allowing users to easily integrate packages into analysis workflows. Bioconductor packages are also required to include comprehensive documentation, including vignettes containing long-form examples or tutorials.
 
