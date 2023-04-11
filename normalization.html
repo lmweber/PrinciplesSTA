@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Normalization | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Normalization | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-08-07" />
+<meta name="date" content="2023-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -91,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -365,58 +365,58 @@ div.csl-indent {
 <div id="previous-steps" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Previous steps<a href="normalization.html#previous-steps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Code to run steps from the previous chapters to generate the <code>SpatialExperiment</code> object required for this chapter.</em></p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="normalization.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear workspace from previous chapters</span></span>
-<span id="cb78-2"><a href="normalization.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="at">all =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="normalization.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
-<span id="cb79-2"><a href="normalization.html#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-3"><a href="normalization.html#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
-<span id="cb79-4"><a href="normalization.html#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
-<span id="cb79-5"><a href="normalization.html#cb79-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
-<span id="cb79-6"><a href="normalization.html#cb79-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-7"><a href="normalization.html#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
-<span id="cb79-8"><a href="normalization.html#cb79-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-9"><a href="normalization.html#cb79-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb79-10"><a href="normalization.html#cb79-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
-<span id="cb79-11"><a href="normalization.html#cb79-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb79-12"><a href="normalization.html#cb79-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
-<span id="cb79-13"><a href="normalization.html#cb79-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
-<span id="cb79-14"><a href="normalization.html#cb79-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
-<span id="cb79-15"><a href="normalization.html#cb79-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
-<span id="cb79-16"><a href="normalization.html#cb79-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
-<span id="cb79-17"><a href="normalization.html#cb79-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">600</span></span>
-<span id="cb79-18"><a href="normalization.html#cb79-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">400</span></span>
-<span id="cb79-19"><a href="normalization.html#cb79-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">28</span></span>
-<span id="cb79-20"><a href="normalization.html#cb79-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">10</span></span>
-<span id="cb79-21"><a href="normalization.html#cb79-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
-<span id="cb79-22"><a href="normalization.html#cb79-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
-<span id="cb79-23"><a href="normalization.html#cb79-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
-<span id="cb79-24"><a href="normalization.html#cb79-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
-<span id="cb79-25"><a href="normalization.html#cb79-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="normalization.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear workspace from previous chapters</span></span>
+<span id="cb74-2"><a href="normalization.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="at">all =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="normalization.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
+<span id="cb75-2"><a href="normalization.html#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-3"><a href="normalization.html#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb75-4"><a href="normalization.html#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
+<span id="cb75-5"><a href="normalization.html#cb75-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
+<span id="cb75-6"><a href="normalization.html#cb75-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-7"><a href="normalization.html#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
+<span id="cb75-8"><a href="normalization.html#cb75-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-9"><a href="normalization.html#cb75-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
+<span id="cb75-10"><a href="normalization.html#cb75-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
+<span id="cb75-11"><a href="normalization.html#cb75-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb75-12"><a href="normalization.html#cb75-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
+<span id="cb75-13"><a href="normalization.html#cb75-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
+<span id="cb75-14"><a href="normalization.html#cb75-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
+<span id="cb75-15"><a href="normalization.html#cb75-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
+<span id="cb75-16"><a href="normalization.html#cb75-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
+<span id="cb75-17"><a href="normalization.html#cb75-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">600</span></span>
+<span id="cb75-18"><a href="normalization.html#cb75-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">400</span></span>
+<span id="cb75-19"><a href="normalization.html#cb75-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">28</span></span>
+<span id="cb75-20"><a href="normalization.html#cb75-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">10</span></span>
+<span id="cb75-21"><a href="normalization.html#cb75-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
+<span id="cb75-22"><a href="normalization.html#cb75-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
+<span id="cb75-23"><a href="normalization.html#cb75-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
+<span id="cb75-24"><a href="normalization.html#cb75-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
+<span id="cb75-25"><a href="normalization.html#cb75-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span></code></pre></div>
 </div>
 <div id="logcounts" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Logcounts<a href="normalization.html#logcounts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Calculate log-transformed normalized counts (abbreviated as “logcounts”) using library size factors.</p>
 <p>We apply the methods implemented in the <code>scater</code> <span class="citation">(<a href="#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span> and <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span> packages, which were originally developed for scRNA-seq data, making the assumption here that these methods can be applied to SRT data by treating spots as equivalent to cells.</p>
 <p>We use the library size factors methodology since this is the simplest approach, and can easily be applied to SRT data. Alternative approaches that are populare for scRNA-seq data, including normalization by deconvolution, are more difficulty to justify in the context of spot-based SRT data since (i) spots may contain multiple cells from more than one cell type, and (ii) datasets can contain multiple samples (e.g. multiple Visium slides, resulting in sample-specific clustering).</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="normalization.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
-<span id="cb80-2"><a href="normalization.html#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-3"><a href="normalization.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate library size factors</span></span>
-<span id="cb80-4"><a href="normalization.html#cb80-4" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeLibraryFactors</span>(spe)</span>
-<span id="cb80-5"><a href="normalization.html#cb80-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-6"><a href="normalization.html#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">sizeFactors</span>(spe))</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="normalization.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
+<span id="cb76-2"><a href="normalization.html#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="normalization.html#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate library size factors</span></span>
+<span id="cb76-4"><a href="normalization.html#cb76-4" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeLibraryFactors</span>(spe)</span>
+<span id="cb76-5"><a href="normalization.html#cb76-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-6"><a href="normalization.html#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">sizeFactors</span>(spe))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.1321  0.6312  0.9000  1.0000  1.2849  3.7582</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="normalization.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">sizeFactors</span>(spe), <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="normalization.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">sizeFactors</span>(spe), <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p><img src="OSTA-book_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="normalization.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts and store in object</span></span>
-<span id="cb83-2"><a href="normalization.html#cb83-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
-<span id="cb83-3"><a href="normalization.html#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-4"><a href="normalization.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb83-5"><a href="normalization.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">assayNames</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="normalization.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts and store in object</span></span>
+<span id="cb79-2"><a href="normalization.html#cb79-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb79-3"><a href="normalization.html#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="normalization.html#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb79-5"><a href="normalization.html#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="fu">assayNames</span>(spe)</span></code></pre></div>
 <pre><code>## [1] &quot;counts&quot;    &quot;logcounts&quot;</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="normalization.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">counts</span>(spe))</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="normalization.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">counts</span>(spe))</span></code></pre></div>
 <pre><code>## [1] 33538  3524</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="normalization.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">logcounts</span>(spe))</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="normalization.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">logcounts</span>(spe))</span></code></pre></div>
 <pre><code>## [1] 33538  3524</code></pre>
 
 </div>

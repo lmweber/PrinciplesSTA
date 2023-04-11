@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 19 spatialLIBD workflow | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 19 spatialLIBD workflow | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-08-07" />
+<meta name="date" content="2023-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -91,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -361,8 +361,8 @@ div.csl-indent {
 <div id="overview-4" class="section level2 hasAnchor" number="19.1">
 <h2><span class="header-section-number">19.1</span> Overview<a href="spatiallibd-workflow.html#overview-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the previous workflow, <a href="human-dlpfc-workflow.html#human-dlpfc-workflow">Human DLPFC workflow</a>, you practiced some of the basics with a portion of the postmortem human brain dataset <span class="citation">Kristen R. Maynard et al. (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>. The goal of this workflow is to learn what steps you need to carry out in order to create an interactive website to visualize this type of data. For this, we’ll use the <a href="http://bioconductor.org/packages/spatialLIBD"><code>spatialLIBD</code></a> Bioconductor package <span class="citation">Pardo et al. (<a href="#ref-Pardo2021" role="doc-biblioref">2021</a>)</span>.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="spatiallibd-workflow.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear workspace from previous chapters</span></span>
-<span id="cb264-2"><a href="spatiallibd-workflow.html#cb264-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="at">all =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="spatiallibd-workflow.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear workspace from previous chapters</span></span>
+<span id="cb260-2"><a href="spatiallibd-workflow.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="at">all =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-131"></span>
 <img src="images/spatialLIBD_Figure1.png" alt="`spatialLIBD` overview. Source: [Pardo et al, _bioRxiv_, 2021](https://doi.org/10.1101/2021.04.29.440149)." width="100%" />
 <p class="caption">
@@ -403,7 +403,7 @@ Figure 19.3: Screenshot of the ‘gene grid (static)’ section of the ‘spot-l
 <li><a href="http://research.libd.org/spatialLIBD/articles/TenX_data_download.html">Using spatialLIBD with 10x Genomics public datasets</a></li>
 </ul>
 <p>You can also read more about <code>spatialLIBD</code> in the associated publication.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="spatiallibd-workflow.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;spatialLIBD&quot;</span>)[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="spatiallibd-workflow.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;spatialLIBD&quot;</span>)[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## 
 ## Pardo B, Spangler A, Weber LM, Hicks SC, Jaffe AE, Martinowich K,
 ## Maynard KR, Collado-Torres L (2022). &quot;spatialLIBD: an R/Bioconductor
@@ -425,8 +425,9 @@ Figure 19.3: Screenshot of the ‘gene grid (static)’ section of the ‘spot-l
 <div id="recordings" class="section level4 hasAnchor" number="19.2.2.1">
 <h4><span class="header-section-number">19.2.2.1</span> Recordings<a href="spatiallibd-workflow.html#recordings" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If you prefer to watch recordings of presentations related to the dataset <span class="citation">Kristen R. Maynard et al. (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span> or <code>spatialLIBD</code> <span class="citation">Pardo et al. (<a href="#ref-Pardo2021" role="doc-biblioref">2021</a>)</span>, check the following <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>:</p>
-<script async class="speakerdeck-embed" data-id="dde92cd6dfc04f9589770e074915658f" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-<p>These slides were part of our 2021-04-27 webinar for BioTuring that you can watch from <a href="https://bioturing.com/sources/webinar/60752954a433e26dd8affcbd">their website</a> or YouTube:</p>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/dde92cd6dfc04f9589770e074915658f" title="BioTuring_spatialLIBD" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333">
+</iframe>
+<p>These slides were part of our 2021-04-27 webinar for BioTuring that you can watch on YouTube:</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/S8884Kde-1U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <p>A recording of an earlier version of this talk is also available on YouTube.</p>
@@ -452,180 +453,180 @@ Figure 19.3: Screenshot of the ‘gene grid (static)’ section of the ‘spot-l
 <li><a href="https://cran.r-project.org/package=igraph"><code>lobstr</code></a>: for checking object memory usage</li>
 </ul>
 <p>You’ll need to have the R version compatible with <code>bioc-release</code> <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> installed in your computer, as <a href="http://bioconductor.org/install/">documented by Bioconductor</a>. Alternatively, you can use the <a href="http://bioconductor.org/help/docker/">Bioconductor docker images</a>. Next, if you haven’t installed these packages, please do so with the following R code.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="spatiallibd-workflow.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb267-2"><a href="spatiallibd-workflow.html#cb267-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
-<span id="cb267-3"><a href="spatiallibd-workflow.html#cb267-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb267-4"><a href="spatiallibd-workflow.html#cb267-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb267-5"><a href="spatiallibd-workflow.html#cb267-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Check that you have a valid installation</span></span>
-<span id="cb267-6"><a href="spatiallibd-workflow.html#cb267-6" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">valid</span>()</span>
-<span id="cb267-7"><a href="spatiallibd-workflow.html#cb267-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb267-8"><a href="spatiallibd-workflow.html#cb267-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Install the required R packages for this workflow</span></span>
-<span id="cb267-9"><a href="spatiallibd-workflow.html#cb267-9" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(</span>
-<span id="cb267-10"><a href="spatiallibd-workflow.html#cb267-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SpatialExperiment&quot;</span>,</span>
-<span id="cb267-11"><a href="spatiallibd-workflow.html#cb267-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;STexampleData&quot;</span>,</span>
-<span id="cb267-12"><a href="spatiallibd-workflow.html#cb267-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;scater&quot;</span>,</span>
-<span id="cb267-13"><a href="spatiallibd-workflow.html#cb267-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;scran&quot;</span>,</span>
-<span id="cb267-14"><a href="spatiallibd-workflow.html#cb267-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;igraph&quot;</span>,</span>
-<span id="cb267-15"><a href="spatiallibd-workflow.html#cb267-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;BiocFileCache&quot;</span>,</span>
-<span id="cb267-16"><a href="spatiallibd-workflow.html#cb267-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;rtracklayer&quot;</span>,</span>
-<span id="cb267-17"><a href="spatiallibd-workflow.html#cb267-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;lobstr&quot;</span>,</span>
-<span id="cb267-18"><a href="spatiallibd-workflow.html#cb267-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;spatialLIBD&quot;</span></span>
-<span id="cb267-19"><a href="spatiallibd-workflow.html#cb267-19" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="spatiallibd-workflow.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb263-2"><a href="spatiallibd-workflow.html#cb263-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb263-3"><a href="spatiallibd-workflow.html#cb263-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb263-4"><a href="spatiallibd-workflow.html#cb263-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb263-5"><a href="spatiallibd-workflow.html#cb263-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Check that you have a valid installation</span></span>
+<span id="cb263-6"><a href="spatiallibd-workflow.html#cb263-6" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">valid</span>()</span>
+<span id="cb263-7"><a href="spatiallibd-workflow.html#cb263-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb263-8"><a href="spatiallibd-workflow.html#cb263-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Install the required R packages for this workflow</span></span>
+<span id="cb263-9"><a href="spatiallibd-workflow.html#cb263-9" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(</span>
+<span id="cb263-10"><a href="spatiallibd-workflow.html#cb263-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SpatialExperiment&quot;</span>,</span>
+<span id="cb263-11"><a href="spatiallibd-workflow.html#cb263-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;STexampleData&quot;</span>,</span>
+<span id="cb263-12"><a href="spatiallibd-workflow.html#cb263-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;scater&quot;</span>,</span>
+<span id="cb263-13"><a href="spatiallibd-workflow.html#cb263-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;scran&quot;</span>,</span>
+<span id="cb263-14"><a href="spatiallibd-workflow.html#cb263-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;igraph&quot;</span>,</span>
+<span id="cb263-15"><a href="spatiallibd-workflow.html#cb263-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;BiocFileCache&quot;</span>,</span>
+<span id="cb263-16"><a href="spatiallibd-workflow.html#cb263-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;rtracklayer&quot;</span>,</span>
+<span id="cb263-17"><a href="spatiallibd-workflow.html#cb263-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;lobstr&quot;</span>,</span>
+<span id="cb263-18"><a href="spatiallibd-workflow.html#cb263-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;spatialLIBD&quot;</span></span>
+<span id="cb263-19"><a href="spatiallibd-workflow.html#cb263-19" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
 <p>We can now run the following R code to re-make the <code>spe</code> object from the <a href="human-dlpfc-workflow.html#human-dlpfc-workflow">Human DLPFC workflow</a>. This will take a bit of time.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="spatiallibd-workflow.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load packages required for the</span></span>
-<span id="cb268-2"><a href="spatiallibd-workflow.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Visium human DLPFC workflow&quot;</span></span>
-<span id="cb268-3"><a href="spatiallibd-workflow.html#cb268-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;SpatialExperiment&quot;</span>)</span>
-<span id="cb268-4"><a href="spatiallibd-workflow.html#cb268-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;STexampleData&quot;</span>)</span>
-<span id="cb268-5"><a href="spatiallibd-workflow.html#cb268-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;scater&quot;</span>)</span>
-<span id="cb268-6"><a href="spatiallibd-workflow.html#cb268-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;scran&quot;</span>)</span>
-<span id="cb268-7"><a href="spatiallibd-workflow.html#cb268-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;igraph&quot;</span>)</span>
-<span id="cb268-8"><a href="spatiallibd-workflow.html#cb268-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;BiocFileCache&quot;</span>)</span>
-<span id="cb268-9"><a href="spatiallibd-workflow.html#cb268-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;rtracklayer&quot;</span>)</span>
-<span id="cb268-10"><a href="spatiallibd-workflow.html#cb268-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lobstr&quot;</span>)</span>
-<span id="cb268-11"><a href="spatiallibd-workflow.html#cb268-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;spatialLIBD&quot;</span>)</span>
-<span id="cb268-12"><a href="spatiallibd-workflow.html#cb268-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-13"><a href="spatiallibd-workflow.html#cb268-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Start tracking time</span></span>
-<span id="cb268-14"><a href="spatiallibd-workflow.html#cb268-14" aria-hidden="true" tabindex="-1"></a>time_start <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb268-15"><a href="spatiallibd-workflow.html#cb268-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-16"><a href="spatiallibd-workflow.html#cb268-16" aria-hidden="true" tabindex="-1"></a><span class="co"># load object</span></span>
-<span id="cb268-17"><a href="spatiallibd-workflow.html#cb268-17" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
-<span id="cb268-18"><a href="spatiallibd-workflow.html#cb268-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-19"><a href="spatiallibd-workflow.html#cb268-19" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
-<span id="cb268-20"><a href="spatiallibd-workflow.html#cb268-20" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb268-21"><a href="spatiallibd-workflow.html#cb268-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-22"><a href="spatiallibd-workflow.html#cb268-22" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
-<span id="cb268-23"><a href="spatiallibd-workflow.html#cb268-23" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
-<span id="cb268-24"><a href="spatiallibd-workflow.html#cb268-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-25"><a href="spatiallibd-workflow.html#cb268-25" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics and store in colData</span></span>
-<span id="cb268-26"><a href="spatiallibd-workflow.html#cb268-26" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
-<span id="cb268-27"><a href="spatiallibd-workflow.html#cb268-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-28"><a href="spatiallibd-workflow.html#cb268-28" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
-<span id="cb268-29"><a href="spatiallibd-workflow.html#cb268-29" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">600</span></span>
-<span id="cb268-30"><a href="spatiallibd-workflow.html#cb268-30" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">400</span></span>
-<span id="cb268-31"><a href="spatiallibd-workflow.html#cb268-31" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">28</span></span>
-<span id="cb268-32"><a href="spatiallibd-workflow.html#cb268-32" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">10</span></span>
-<span id="cb268-33"><a href="spatiallibd-workflow.html#cb268-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-34"><a href="spatiallibd-workflow.html#cb268-34" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
-<span id="cb268-35"><a href="spatiallibd-workflow.html#cb268-35" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
-<span id="cb268-36"><a href="spatiallibd-workflow.html#cb268-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-37"><a href="spatiallibd-workflow.html#cb268-37" aria-hidden="true" tabindex="-1"></a><span class="co"># store in object</span></span>
-<span id="cb268-38"><a href="spatiallibd-workflow.html#cb268-38" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
-<span id="cb268-39"><a href="spatiallibd-workflow.html#cb268-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-40"><a href="spatiallibd-workflow.html#cb268-40" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
-<span id="cb268-41"><a href="spatiallibd-workflow.html#cb268-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
-<span id="cb268-42"><a href="spatiallibd-workflow.html#cb268-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-43"><a href="spatiallibd-workflow.html#cb268-43" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts using library size factors</span></span>
-<span id="cb268-44"><a href="spatiallibd-workflow.html#cb268-44" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
-<span id="cb268-45"><a href="spatiallibd-workflow.html#cb268-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-46"><a href="spatiallibd-workflow.html#cb268-46" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
-<span id="cb268-47"><a href="spatiallibd-workflow.html#cb268-47" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
-<span id="cb268-48"><a href="spatiallibd-workflow.html#cb268-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-49"><a href="spatiallibd-workflow.html#cb268-49" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
-<span id="cb268-50"><a href="spatiallibd-workflow.html#cb268-50" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
-<span id="cb268-51"><a href="spatiallibd-workflow.html#cb268-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-52"><a href="spatiallibd-workflow.html#cb268-52" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
-<span id="cb268-53"><a href="spatiallibd-workflow.html#cb268-53" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
-<span id="cb268-54"><a href="spatiallibd-workflow.html#cb268-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-55"><a href="spatiallibd-workflow.html#cb268-55" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
-<span id="cb268-56"><a href="spatiallibd-workflow.html#cb268-56" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb268-57"><a href="spatiallibd-workflow.html#cb268-57" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
-<span id="cb268-58"><a href="spatiallibd-workflow.html#cb268-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-59"><a href="spatiallibd-workflow.html#cb268-59" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
-<span id="cb268-60"><a href="spatiallibd-workflow.html#cb268-60" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb268-61"><a href="spatiallibd-workflow.html#cb268-61" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb268-62"><a href="spatiallibd-workflow.html#cb268-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-63"><a href="spatiallibd-workflow.html#cb268-63" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names for easier plotting</span></span>
-<span id="cb268-64"><a href="spatiallibd-workflow.html#cb268-64" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
-<span id="cb268-65"><a href="spatiallibd-workflow.html#cb268-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-66"><a href="spatiallibd-workflow.html#cb268-66" aria-hidden="true" tabindex="-1"></a><span class="co"># graph-based clustering</span></span>
-<span id="cb268-67"><a href="spatiallibd-workflow.html#cb268-67" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb268-68"><a href="spatiallibd-workflow.html#cb268-68" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb268-69"><a href="spatiallibd-workflow.html#cb268-69" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">k =</span> k, <span class="at">use.dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb268-70"><a href="spatiallibd-workflow.html#cb268-70" aria-hidden="true" tabindex="-1"></a>g_walk <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">cluster_walktrap</span>(g)</span>
-<span id="cb268-71"><a href="spatiallibd-workflow.html#cb268-71" aria-hidden="true" tabindex="-1"></a>clus <span class="ot">&lt;-</span> g_walk<span class="sc">$</span>membership</span>
-<span id="cb268-72"><a href="spatiallibd-workflow.html#cb268-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-73"><a href="spatiallibd-workflow.html#cb268-73" aria-hidden="true" tabindex="-1"></a><span class="co"># store cluster labels in column &#39;label&#39; in colData</span></span>
-<span id="cb268-74"><a href="spatiallibd-workflow.html#cb268-74" aria-hidden="true" tabindex="-1"></a><span class="fu">colLabels</span>(spe) <span class="ot">&lt;-</span> <span class="fu">factor</span>(clus)</span>
-<span id="cb268-75"><a href="spatiallibd-workflow.html#cb268-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-76"><a href="spatiallibd-workflow.html#cb268-76" aria-hidden="true" tabindex="-1"></a><span class="co"># set gene names as row names for easier plotting</span></span>
-<span id="cb268-77"><a href="spatiallibd-workflow.html#cb268-77" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(spe) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name</span>
-<span id="cb268-78"><a href="spatiallibd-workflow.html#cb268-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-79"><a href="spatiallibd-workflow.html#cb268-79" aria-hidden="true" tabindex="-1"></a><span class="co"># test for marker genes</span></span>
-<span id="cb268-80"><a href="spatiallibd-workflow.html#cb268-80" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">test =</span> <span class="st">&quot;binom&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>)</span>
-<span id="cb268-81"><a href="spatiallibd-workflow.html#cb268-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-82"><a href="spatiallibd-workflow.html#cb268-82" aria-hidden="true" tabindex="-1"></a><span class="do">## Find the interesting markers for each cluster</span></span>
-<span id="cb268-83"><a href="spatiallibd-workflow.html#cb268-83" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> <span class="fu">sapply</span>(markers, <span class="cf">function</span>(x) x<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">5</span>)</span>
-<span id="cb268-84"><a href="spatiallibd-workflow.html#cb268-84" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(interesting) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;gene_interest_&quot;</span>, <span class="fu">seq_len</span>(<span class="fu">length</span>(markers)))</span>
-<span id="cb268-85"><a href="spatiallibd-workflow.html#cb268-85" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rowData</span>(spe), interesting)</span>
-<span id="cb268-86"><a href="spatiallibd-workflow.html#cb268-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-87"><a href="spatiallibd-workflow.html#cb268-87" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
-<span id="cb268-88"><a href="spatiallibd-workflow.html#cb268-88" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb268-89"><a href="spatiallibd-workflow.html#cb268-89" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
-<pre><code>## Time difference of 1.447802 mins</code></pre>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="spatiallibd-workflow.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load packages required for the</span></span>
+<span id="cb264-2"><a href="spatiallibd-workflow.html#cb264-2" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Visium human DLPFC workflow&quot;</span></span>
+<span id="cb264-3"><a href="spatiallibd-workflow.html#cb264-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;SpatialExperiment&quot;</span>)</span>
+<span id="cb264-4"><a href="spatiallibd-workflow.html#cb264-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;STexampleData&quot;</span>)</span>
+<span id="cb264-5"><a href="spatiallibd-workflow.html#cb264-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;scater&quot;</span>)</span>
+<span id="cb264-6"><a href="spatiallibd-workflow.html#cb264-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;scran&quot;</span>)</span>
+<span id="cb264-7"><a href="spatiallibd-workflow.html#cb264-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;igraph&quot;</span>)</span>
+<span id="cb264-8"><a href="spatiallibd-workflow.html#cb264-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;BiocFileCache&quot;</span>)</span>
+<span id="cb264-9"><a href="spatiallibd-workflow.html#cb264-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;rtracklayer&quot;</span>)</span>
+<span id="cb264-10"><a href="spatiallibd-workflow.html#cb264-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lobstr&quot;</span>)</span>
+<span id="cb264-11"><a href="spatiallibd-workflow.html#cb264-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;spatialLIBD&quot;</span>)</span>
+<span id="cb264-12"><a href="spatiallibd-workflow.html#cb264-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-13"><a href="spatiallibd-workflow.html#cb264-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Start tracking time</span></span>
+<span id="cb264-14"><a href="spatiallibd-workflow.html#cb264-14" aria-hidden="true" tabindex="-1"></a>time_start <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb264-15"><a href="spatiallibd-workflow.html#cb264-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-16"><a href="spatiallibd-workflow.html#cb264-16" aria-hidden="true" tabindex="-1"></a><span class="co"># load object</span></span>
+<span id="cb264-17"><a href="spatiallibd-workflow.html#cb264-17" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
+<span id="cb264-18"><a href="spatiallibd-workflow.html#cb264-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-19"><a href="spatiallibd-workflow.html#cb264-19" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
+<span id="cb264-20"><a href="spatiallibd-workflow.html#cb264-20" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb264-21"><a href="spatiallibd-workflow.html#cb264-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-22"><a href="spatiallibd-workflow.html#cb264-22" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
+<span id="cb264-23"><a href="spatiallibd-workflow.html#cb264-23" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
+<span id="cb264-24"><a href="spatiallibd-workflow.html#cb264-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-25"><a href="spatiallibd-workflow.html#cb264-25" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics and store in colData</span></span>
+<span id="cb264-26"><a href="spatiallibd-workflow.html#cb264-26" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
+<span id="cb264-27"><a href="spatiallibd-workflow.html#cb264-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-28"><a href="spatiallibd-workflow.html#cb264-28" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
+<span id="cb264-29"><a href="spatiallibd-workflow.html#cb264-29" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">600</span></span>
+<span id="cb264-30"><a href="spatiallibd-workflow.html#cb264-30" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">400</span></span>
+<span id="cb264-31"><a href="spatiallibd-workflow.html#cb264-31" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">28</span></span>
+<span id="cb264-32"><a href="spatiallibd-workflow.html#cb264-32" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">10</span></span>
+<span id="cb264-33"><a href="spatiallibd-workflow.html#cb264-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-34"><a href="spatiallibd-workflow.html#cb264-34" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
+<span id="cb264-35"><a href="spatiallibd-workflow.html#cb264-35" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
+<span id="cb264-36"><a href="spatiallibd-workflow.html#cb264-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-37"><a href="spatiallibd-workflow.html#cb264-37" aria-hidden="true" tabindex="-1"></a><span class="co"># store in object</span></span>
+<span id="cb264-38"><a href="spatiallibd-workflow.html#cb264-38" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
+<span id="cb264-39"><a href="spatiallibd-workflow.html#cb264-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-40"><a href="spatiallibd-workflow.html#cb264-40" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
+<span id="cb264-41"><a href="spatiallibd-workflow.html#cb264-41" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
+<span id="cb264-42"><a href="spatiallibd-workflow.html#cb264-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-43"><a href="spatiallibd-workflow.html#cb264-43" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts using library size factors</span></span>
+<span id="cb264-44"><a href="spatiallibd-workflow.html#cb264-44" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb264-45"><a href="spatiallibd-workflow.html#cb264-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-46"><a href="spatiallibd-workflow.html#cb264-46" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
+<span id="cb264-47"><a href="spatiallibd-workflow.html#cb264-47" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
+<span id="cb264-48"><a href="spatiallibd-workflow.html#cb264-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-49"><a href="spatiallibd-workflow.html#cb264-49" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
+<span id="cb264-50"><a href="spatiallibd-workflow.html#cb264-50" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb264-51"><a href="spatiallibd-workflow.html#cb264-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-52"><a href="spatiallibd-workflow.html#cb264-52" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
+<span id="cb264-53"><a href="spatiallibd-workflow.html#cb264-53" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
+<span id="cb264-54"><a href="spatiallibd-workflow.html#cb264-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-55"><a href="spatiallibd-workflow.html#cb264-55" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PCA</span></span>
+<span id="cb264-56"><a href="spatiallibd-workflow.html#cb264-56" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb264-57"><a href="spatiallibd-workflow.html#cb264-57" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(spe, <span class="at">subset_row =</span> top_hvgs)</span>
+<span id="cb264-58"><a href="spatiallibd-workflow.html#cb264-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-59"><a href="spatiallibd-workflow.html#cb264-59" aria-hidden="true" tabindex="-1"></a><span class="co"># compute UMAP on top 50 PCs</span></span>
+<span id="cb264-60"><a href="spatiallibd-workflow.html#cb264-60" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb264-61"><a href="spatiallibd-workflow.html#cb264-61" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(spe, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb264-62"><a href="spatiallibd-workflow.html#cb264-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-63"><a href="spatiallibd-workflow.html#cb264-63" aria-hidden="true" tabindex="-1"></a><span class="co"># update column names for easier plotting</span></span>
+<span id="cb264-64"><a href="spatiallibd-workflow.html#cb264-64" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">reducedDim</span>(spe, <span class="st">&quot;UMAP&quot;</span>)) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;UMAP&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb264-65"><a href="spatiallibd-workflow.html#cb264-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-66"><a href="spatiallibd-workflow.html#cb264-66" aria-hidden="true" tabindex="-1"></a><span class="co"># graph-based clustering</span></span>
+<span id="cb264-67"><a href="spatiallibd-workflow.html#cb264-67" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb264-68"><a href="spatiallibd-workflow.html#cb264-68" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb264-69"><a href="spatiallibd-workflow.html#cb264-69" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">k =</span> k, <span class="at">use.dimred =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb264-70"><a href="spatiallibd-workflow.html#cb264-70" aria-hidden="true" tabindex="-1"></a>g_walk <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">cluster_walktrap</span>(g)</span>
+<span id="cb264-71"><a href="spatiallibd-workflow.html#cb264-71" aria-hidden="true" tabindex="-1"></a>clus <span class="ot">&lt;-</span> g_walk<span class="sc">$</span>membership</span>
+<span id="cb264-72"><a href="spatiallibd-workflow.html#cb264-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-73"><a href="spatiallibd-workflow.html#cb264-73" aria-hidden="true" tabindex="-1"></a><span class="co"># store cluster labels in column &#39;label&#39; in colData</span></span>
+<span id="cb264-74"><a href="spatiallibd-workflow.html#cb264-74" aria-hidden="true" tabindex="-1"></a><span class="fu">colLabels</span>(spe) <span class="ot">&lt;-</span> <span class="fu">factor</span>(clus)</span>
+<span id="cb264-75"><a href="spatiallibd-workflow.html#cb264-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-76"><a href="spatiallibd-workflow.html#cb264-76" aria-hidden="true" tabindex="-1"></a><span class="co"># set gene names as row names for easier plotting</span></span>
+<span id="cb264-77"><a href="spatiallibd-workflow.html#cb264-77" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(spe) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name</span>
+<span id="cb264-78"><a href="spatiallibd-workflow.html#cb264-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-79"><a href="spatiallibd-workflow.html#cb264-79" aria-hidden="true" tabindex="-1"></a><span class="co"># test for marker genes</span></span>
+<span id="cb264-80"><a href="spatiallibd-workflow.html#cb264-80" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">test =</span> <span class="st">&quot;binom&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>)</span>
+<span id="cb264-81"><a href="spatiallibd-workflow.html#cb264-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-82"><a href="spatiallibd-workflow.html#cb264-82" aria-hidden="true" tabindex="-1"></a><span class="do">## Find the interesting markers for each cluster</span></span>
+<span id="cb264-83"><a href="spatiallibd-workflow.html#cb264-83" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> <span class="fu">sapply</span>(markers, <span class="cf">function</span>(x) x<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">5</span>)</span>
+<span id="cb264-84"><a href="spatiallibd-workflow.html#cb264-84" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(interesting) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;gene_interest_&quot;</span>, <span class="fu">seq_len</span>(<span class="fu">length</span>(markers)))</span>
+<span id="cb264-85"><a href="spatiallibd-workflow.html#cb264-85" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rowData</span>(spe), interesting)</span>
+<span id="cb264-86"><a href="spatiallibd-workflow.html#cb264-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-87"><a href="spatiallibd-workflow.html#cb264-87" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
+<span id="cb264-88"><a href="spatiallibd-workflow.html#cb264-88" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb264-89"><a href="spatiallibd-workflow.html#cb264-89" aria-hidden="true" tabindex="-1"></a>time_prereqs <span class="sc">-</span> time_start</span></code></pre></div>
+<pre><code>## Time difference of 1.343504 mins</code></pre>
 </div>
 <div id="prepare-for-spatiallibd" class="section level2 hasAnchor" number="19.4">
 <h2><span class="header-section-number">19.4</span> Prepare for spatialLIBD<a href="spatiallibd-workflow.html#prepare-for-spatiallibd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that we have a <code>spe</code> object with quality control information, dimension reduction results, clustering data, among other things, we can proceed to visualize the object using <code>spatialLIBD</code>. Well, almost. First we need to modify the <code>spe</code> object, similar to steps we need to carry out when <a href="http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#modify-spe-for-spatiallibd-1">using spatialLIBD with 10x Genomics public datasets</a></p>
 <div id="basic-information" class="section level3 hasAnchor" number="19.4.1">
 <h3><span class="header-section-number">19.4.1</span> Basic information<a href="spatiallibd-workflow.html#basic-information" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="spatiallibd-workflow.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add some information used by spatialLIBD</span></span>
-<span id="cb270-2"><a href="spatiallibd-workflow.html#cb270-2" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>key <span class="ot">&lt;-</span> <span class="fu">paste0</span>(spe<span class="sc">$</span>sample_id, <span class="st">&quot;_&quot;</span>, <span class="fu">colnames</span>(spe))</span>
-<span id="cb270-3"><a href="spatiallibd-workflow.html#cb270-3" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>sum_umi <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe))</span>
-<span id="cb270-4"><a href="spatiallibd-workflow.html#cb270-4" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>sum_gene <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe) <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="spatiallibd-workflow.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add some information used by spatialLIBD</span></span>
+<span id="cb266-2"><a href="spatiallibd-workflow.html#cb266-2" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>key <span class="ot">&lt;-</span> <span class="fu">paste0</span>(spe<span class="sc">$</span>sample_id, <span class="st">&quot;_&quot;</span>, <span class="fu">colnames</span>(spe))</span>
+<span id="cb266-3"><a href="spatiallibd-workflow.html#cb266-3" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>sum_umi <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe))</span>
+<span id="cb266-4"><a href="spatiallibd-workflow.html#cb266-4" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>sum_gene <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe) <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
 </div>
 <div id="gene-annotation" class="section level3 hasAnchor" number="19.4.2">
 <h3><span class="header-section-number">19.4.2</span> Gene annotation<a href="spatiallibd-workflow.html#gene-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Since the gene information is missing, we’ll <a href="http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#add-gene-annotation-information-1">add the gene annotation data from Gencode</a> although you would ideally add this information from the same gene annotation you used for running <code>spaceranger</code>.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="spatiallibd-workflow.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Download the Gencode v32 GTF file and cache it</span></span>
-<span id="cb271-2"><a href="spatiallibd-workflow.html#cb271-2" aria-hidden="true" tabindex="-1"></a>bfc <span class="ot">&lt;-</span> BiocFileCache<span class="sc">::</span><span class="fu">BiocFileCache</span>()</span>
-<span id="cb271-3"><a href="spatiallibd-workflow.html#cb271-3" aria-hidden="true" tabindex="-1"></a>gtf_cache <span class="ot">&lt;-</span> BiocFileCache<span class="sc">::</span><span class="fu">bfcrpath</span>(</span>
-<span id="cb271-4"><a href="spatiallibd-workflow.html#cb271-4" aria-hidden="true" tabindex="-1"></a>    bfc,</span>
-<span id="cb271-5"><a href="spatiallibd-workflow.html#cb271-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(</span>
-<span id="cb271-6"><a href="spatiallibd-workflow.html#cb271-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/&quot;</span>,</span>
-<span id="cb271-7"><a href="spatiallibd-workflow.html#cb271-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;release_32/gencode.v32.annotation.gtf.gz&quot;</span></span>
-<span id="cb271-8"><a href="spatiallibd-workflow.html#cb271-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb271-9"><a href="spatiallibd-workflow.html#cb271-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="spatiallibd-workflow.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Download the Gencode v32 GTF file and cache it</span></span>
+<span id="cb267-2"><a href="spatiallibd-workflow.html#cb267-2" aria-hidden="true" tabindex="-1"></a>bfc <span class="ot">&lt;-</span> BiocFileCache<span class="sc">::</span><span class="fu">BiocFileCache</span>()</span>
+<span id="cb267-3"><a href="spatiallibd-workflow.html#cb267-3" aria-hidden="true" tabindex="-1"></a>gtf_cache <span class="ot">&lt;-</span> BiocFileCache<span class="sc">::</span><span class="fu">bfcrpath</span>(</span>
+<span id="cb267-4"><a href="spatiallibd-workflow.html#cb267-4" aria-hidden="true" tabindex="-1"></a>    bfc,</span>
+<span id="cb267-5"><a href="spatiallibd-workflow.html#cb267-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(</span>
+<span id="cb267-6"><a href="spatiallibd-workflow.html#cb267-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/&quot;</span>,</span>
+<span id="cb267-7"><a href="spatiallibd-workflow.html#cb267-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;release_32/gencode.v32.annotation.gtf.gz&quot;</span></span>
+<span id="cb267-8"><a href="spatiallibd-workflow.html#cb267-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb267-9"><a href="spatiallibd-workflow.html#cb267-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## adding rname &#39;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz&#39;</code></pre>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="spatiallibd-workflow.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
-<span id="cb273-2"><a href="spatiallibd-workflow.html#cb273-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
-<pre><code>##                                                                             BFC1 
-## &quot;/github/home/.cache/R/BiocFileCache/1351771a35f3_gencode.v32.annotation.gtf.gz&quot;</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="spatiallibd-workflow.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
-<span id="cb275-2"><a href="spatiallibd-workflow.html#cb275-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
-<span id="cb275-3"><a href="spatiallibd-workflow.html#cb275-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb275-4"><a href="spatiallibd-workflow.html#cb275-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Subset to genes only</span></span>
-<span id="cb275-5"><a href="spatiallibd-workflow.html#cb275-5" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> gtf[gtf<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;gene&quot;</span>]</span>
-<span id="cb275-6"><a href="spatiallibd-workflow.html#cb275-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb275-7"><a href="spatiallibd-workflow.html#cb275-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove the .x part of the gene IDs</span></span>
-<span id="cb275-8"><a href="spatiallibd-workflow.html#cb275-8" aria-hidden="true" tabindex="-1"></a>gtf<span class="sc">$</span>gene_id <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..*&quot;</span>, <span class="st">&quot;&quot;</span>, gtf<span class="sc">$</span>gene_id)</span>
-<span id="cb275-9"><a href="spatiallibd-workflow.html#cb275-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb275-10"><a href="spatiallibd-workflow.html#cb275-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the names to be the gene IDs</span></span>
-<span id="cb275-11"><a href="spatiallibd-workflow.html#cb275-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gtf) <span class="ot">&lt;-</span> gtf<span class="sc">$</span>gene_id</span>
-<span id="cb275-12"><a href="spatiallibd-workflow.html#cb275-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb275-13"><a href="spatiallibd-workflow.html#cb275-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Match the genes</span></span>
-<span id="cb275-14"><a href="spatiallibd-workflow.html#cb275-14" aria-hidden="true" tabindex="-1"></a>match_genes <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_id, gtf<span class="sc">$</span>gene_id)</span>
-<span id="cb275-15"><a href="spatiallibd-workflow.html#cb275-15" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(match_genes))</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="spatiallibd-workflow.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the GTF cache location</span></span>
+<span id="cb269-2"><a href="spatiallibd-workflow.html#cb269-2" aria-hidden="true" tabindex="-1"></a>gtf_cache</span></code></pre></div>
+<pre><code>##                                                                            BFC1 
+## &quot;/github/home/.cache/R/BiocFileCache/1a8b5731d16_gencode.v32.annotation.gtf.gz&quot;</code></pre>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="spatiallibd-workflow.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import into R (takes ~1 min)</span></span>
+<span id="cb271-2"><a href="spatiallibd-workflow.html#cb271-2" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import</span>(gtf_cache)</span>
+<span id="cb271-3"><a href="spatiallibd-workflow.html#cb271-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-4"><a href="spatiallibd-workflow.html#cb271-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Subset to genes only</span></span>
+<span id="cb271-5"><a href="spatiallibd-workflow.html#cb271-5" aria-hidden="true" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> gtf[gtf<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;gene&quot;</span>]</span>
+<span id="cb271-6"><a href="spatiallibd-workflow.html#cb271-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-7"><a href="spatiallibd-workflow.html#cb271-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove the .x part of the gene IDs</span></span>
+<span id="cb271-8"><a href="spatiallibd-workflow.html#cb271-8" aria-hidden="true" tabindex="-1"></a>gtf<span class="sc">$</span>gene_id <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..*&quot;</span>, <span class="st">&quot;&quot;</span>, gtf<span class="sc">$</span>gene_id)</span>
+<span id="cb271-9"><a href="spatiallibd-workflow.html#cb271-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-10"><a href="spatiallibd-workflow.html#cb271-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the names to be the gene IDs</span></span>
+<span id="cb271-11"><a href="spatiallibd-workflow.html#cb271-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gtf) <span class="ot">&lt;-</span> gtf<span class="sc">$</span>gene_id</span>
+<span id="cb271-12"><a href="spatiallibd-workflow.html#cb271-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-13"><a href="spatiallibd-workflow.html#cb271-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Match the genes</span></span>
+<span id="cb271-14"><a href="spatiallibd-workflow.html#cb271-14" aria-hidden="true" tabindex="-1"></a>match_genes <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_id, gtf<span class="sc">$</span>gene_id)</span>
+<span id="cb271-15"><a href="spatiallibd-workflow.html#cb271-15" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(match_genes))</span></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
 ## 33267   258</code></pre>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="spatiallibd-workflow.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Drop the few genes for which we don&#39;t have information</span></span>
-<span id="cb277-2"><a href="spatiallibd-workflow.html#cb277-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span><span class="fu">is.na</span>(match_genes), ]</span>
-<span id="cb277-3"><a href="spatiallibd-workflow.html#cb277-3" aria-hidden="true" tabindex="-1"></a>match_genes <span class="ot">&lt;-</span> match_genes[<span class="sc">!</span><span class="fu">is.na</span>(match_genes)]</span>
-<span id="cb277-4"><a href="spatiallibd-workflow.html#cb277-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb277-5"><a href="spatiallibd-workflow.html#cb277-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Keep only some columns from the gtf</span></span>
-<span id="cb277-6"><a href="spatiallibd-workflow.html#cb277-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mcols</span>(gtf) <span class="ot">&lt;-</span> <span class="fu">mcols</span>(gtf)[, <span class="fu">c</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;gene_id&quot;</span>, <span class="st">&quot;gene_name&quot;</span>, <span class="st">&quot;gene_type&quot;</span>)]</span>
-<span id="cb277-7"><a href="spatiallibd-workflow.html#cb277-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb277-8"><a href="spatiallibd-workflow.html#cb277-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Save the &quot;interest&quot;ing columns from our original spe object</span></span>
-<span id="cb277-9"><a href="spatiallibd-workflow.html#cb277-9" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)[, <span class="fu">grepl</span>(<span class="st">&quot;interest&quot;</span>, <span class="fu">colnames</span>(<span class="fu">rowData</span>(spe)))]</span>
-<span id="cb277-10"><a href="spatiallibd-workflow.html#cb277-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb277-11"><a href="spatiallibd-workflow.html#cb277-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Add the gene info to our SPE object</span></span>
-<span id="cb277-12"><a href="spatiallibd-workflow.html#cb277-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(spe) <span class="ot">&lt;-</span> gtf[match_genes]</span>
-<span id="cb277-13"><a href="spatiallibd-workflow.html#cb277-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb277-14"><a href="spatiallibd-workflow.html#cb277-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Add back the &quot;interest&quot; coolumns</span></span>
-<span id="cb277-15"><a href="spatiallibd-workflow.html#cb277-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rowData</span>(spe), interesting)</span>
-<span id="cb277-16"><a href="spatiallibd-workflow.html#cb277-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb277-17"><a href="spatiallibd-workflow.html#cb277-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Inspect the gene annotation data we added</span></span>
-<span id="cb277-18"><a href="spatiallibd-workflow.html#cb277-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="spatiallibd-workflow.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Drop the few genes for which we don&#39;t have information</span></span>
+<span id="cb273-2"><a href="spatiallibd-workflow.html#cb273-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span><span class="fu">is.na</span>(match_genes), ]</span>
+<span id="cb273-3"><a href="spatiallibd-workflow.html#cb273-3" aria-hidden="true" tabindex="-1"></a>match_genes <span class="ot">&lt;-</span> match_genes[<span class="sc">!</span><span class="fu">is.na</span>(match_genes)]</span>
+<span id="cb273-4"><a href="spatiallibd-workflow.html#cb273-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb273-5"><a href="spatiallibd-workflow.html#cb273-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Keep only some columns from the gtf</span></span>
+<span id="cb273-6"><a href="spatiallibd-workflow.html#cb273-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mcols</span>(gtf) <span class="ot">&lt;-</span> <span class="fu">mcols</span>(gtf)[, <span class="fu">c</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;gene_id&quot;</span>, <span class="st">&quot;gene_name&quot;</span>, <span class="st">&quot;gene_type&quot;</span>)]</span>
+<span id="cb273-7"><a href="spatiallibd-workflow.html#cb273-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb273-8"><a href="spatiallibd-workflow.html#cb273-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Save the &quot;interest&quot;ing columns from our original spe object</span></span>
+<span id="cb273-9"><a href="spatiallibd-workflow.html#cb273-9" aria-hidden="true" tabindex="-1"></a>interesting <span class="ot">&lt;-</span> <span class="fu">rowData</span>(spe)[, <span class="fu">grepl</span>(<span class="st">&quot;interest&quot;</span>, <span class="fu">colnames</span>(<span class="fu">rowData</span>(spe)))]</span>
+<span id="cb273-10"><a href="spatiallibd-workflow.html#cb273-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb273-11"><a href="spatiallibd-workflow.html#cb273-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Add the gene info to our SPE object</span></span>
+<span id="cb273-12"><a href="spatiallibd-workflow.html#cb273-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(spe) <span class="ot">&lt;-</span> gtf[match_genes]</span>
+<span id="cb273-13"><a href="spatiallibd-workflow.html#cb273-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb273-14"><a href="spatiallibd-workflow.html#cb273-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Add back the &quot;interest&quot; coolumns</span></span>
+<span id="cb273-15"><a href="spatiallibd-workflow.html#cb273-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rowData</span>(spe), interesting)</span>
+<span id="cb273-16"><a href="spatiallibd-workflow.html#cb273-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb273-17"><a href="spatiallibd-workflow.html#cb273-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Inspect the gene annotation data we added</span></span>
+<span id="cb273-18"><a href="spatiallibd-workflow.html#cb273-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(spe)</span></code></pre></div>
 <pre><code>## GRanges object with 33267 ranges and 12 metadata columns:
 ##                   seqnames            ranges strand |   source     type
 ##                      &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;factor&gt; &lt;factor&gt;
@@ -682,49 +683,49 @@ Figure 19.3: Screenshot of the ‘gene grid (static)’ section of the ‘spot-l
 ##   -------
 ##   seqinfo: 25 sequences from an unspecified genome; no seqlengths</code></pre>
 <p>Now that we have the gene annotation information, we can use it to add a few more pieces to our <code>spe</code> object that <code>spatialLIBD</code> will use. For example, we want to enable users to search genes by either their gene symbol or their Ensembl ID. We also like to visualize the amount and percent of the mitochondrial gene expression.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="spatiallibd-workflow.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add information used by spatialLIBD</span></span>
-<span id="cb279-2"><a href="spatiallibd-workflow.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_search <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb279-3"><a href="spatiallibd-workflow.html#cb279-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name, <span class="st">&quot;; &quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_id</span>
-<span id="cb279-4"><a href="spatiallibd-workflow.html#cb279-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb279-5"><a href="spatiallibd-workflow.html#cb279-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb279-6"><a href="spatiallibd-workflow.html#cb279-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute chrM expression and chrM expression ratio</span></span>
-<span id="cb279-7"><a href="spatiallibd-workflow.html#cb279-7" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">seqnames</span>(spe) <span class="sc">==</span> <span class="st">&quot;chrM&quot;</span>)</span>
-<span id="cb279-8"><a href="spatiallibd-workflow.html#cb279-8" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>expr_chrM <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe)[is_mito, , <span class="at">drop =</span> <span class="cn">FALSE</span>])</span>
-<span id="cb279-9"><a href="spatiallibd-workflow.html#cb279-9" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>expr_chrM_ratio <span class="ot">&lt;-</span> spe<span class="sc">$</span>expr_chrM <span class="sc">/</span> spe<span class="sc">$</span>sum_umi</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="spatiallibd-workflow.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add information used by spatialLIBD</span></span>
+<span id="cb275-2"><a href="spatiallibd-workflow.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_search <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb275-3"><a href="spatiallibd-workflow.html#cb275-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name, <span class="st">&quot;; &quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_id</span>
+<span id="cb275-4"><a href="spatiallibd-workflow.html#cb275-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb275-5"><a href="spatiallibd-workflow.html#cb275-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb275-6"><a href="spatiallibd-workflow.html#cb275-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute chrM expression and chrM expression ratio</span></span>
+<span id="cb275-7"><a href="spatiallibd-workflow.html#cb275-7" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">seqnames</span>(spe) <span class="sc">==</span> <span class="st">&quot;chrM&quot;</span>)</span>
+<span id="cb275-8"><a href="spatiallibd-workflow.html#cb275-8" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>expr_chrM <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">counts</span>(spe)[is_mito, , <span class="at">drop =</span> <span class="cn">FALSE</span>])</span>
+<span id="cb275-9"><a href="spatiallibd-workflow.html#cb275-9" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>expr_chrM_ratio <span class="ot">&lt;-</span> spe<span class="sc">$</span>expr_chrM <span class="sc">/</span> spe<span class="sc">$</span>sum_umi</span></code></pre></div>
 </div>
 <div id="extra-information-and-filtering" class="section level3 hasAnchor" number="19.4.3">
 <h3><span class="header-section-number">19.4.3</span> Extra information and filtering<a href="spatiallibd-workflow.html#extra-information-and-filtering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now that we have the full gene annotation information we need, we can proceed to add some last touches as well as <a href="http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#filter-the-spe-object-1">filter the object</a> to reduce the memory required for visualizing the data.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="spatiallibd-workflow.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add a variable for saving the manual annotations</span></span>
-<span id="cb280-2"><a href="spatiallibd-workflow.html#cb280-2" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>ManualAnnotation <span class="ot">&lt;-</span> <span class="st">&quot;NA&quot;</span></span>
-<span id="cb280-3"><a href="spatiallibd-workflow.html#cb280-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb280-4"><a href="spatiallibd-workflow.html#cb280-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove genes with no data</span></span>
-<span id="cb280-5"><a href="spatiallibd-workflow.html#cb280-5" aria-hidden="true" tabindex="-1"></a>no_expr <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">rowSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb280-6"><a href="spatiallibd-workflow.html#cb280-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb280-7"><a href="spatiallibd-workflow.html#cb280-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of genes with no counts</span></span>
-<span id="cb280-8"><a href="spatiallibd-workflow.html#cb280-8" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(no_expr)</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="spatiallibd-workflow.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add a variable for saving the manual annotations</span></span>
+<span id="cb276-2"><a href="spatiallibd-workflow.html#cb276-2" aria-hidden="true" tabindex="-1"></a>spe<span class="sc">$</span>ManualAnnotation <span class="ot">&lt;-</span> <span class="st">&quot;NA&quot;</span></span>
+<span id="cb276-3"><a href="spatiallibd-workflow.html#cb276-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb276-4"><a href="spatiallibd-workflow.html#cb276-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove genes with no data</span></span>
+<span id="cb276-5"><a href="spatiallibd-workflow.html#cb276-5" aria-hidden="true" tabindex="-1"></a>no_expr <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">rowSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb276-6"><a href="spatiallibd-workflow.html#cb276-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb276-7"><a href="spatiallibd-workflow.html#cb276-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of genes with no counts</span></span>
+<span id="cb276-8"><a href="spatiallibd-workflow.html#cb276-8" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(no_expr)</span></code></pre></div>
 <pre><code>## [1] 11596</code></pre>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="spatiallibd-workflow.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute the percent of genes with no counts</span></span>
-<span id="cb282-2"><a href="spatiallibd-workflow.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(no_expr) <span class="sc">/</span> <span class="fu">nrow</span>(spe) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="spatiallibd-workflow.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute the percent of genes with no counts</span></span>
+<span id="cb278-2"><a href="spatiallibd-workflow.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(no_expr) <span class="sc">/</span> <span class="fu">nrow</span>(spe) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
 <pre><code>## [1] 34.85737</code></pre>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="spatiallibd-workflow.html#cb284-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">-</span>no_expr, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb284-2"><a href="spatiallibd-workflow.html#cb284-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-3"><a href="spatiallibd-workflow.html#cb284-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove spots without counts</span></span>
-<span id="cb284-4"><a href="spatiallibd-workflow.html#cb284-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(spe<span class="sc">$</span>sum_umi)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="spatiallibd-workflow.html#cb280-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">-</span>no_expr, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb280-2"><a href="spatiallibd-workflow.html#cb280-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb280-3"><a href="spatiallibd-workflow.html#cb280-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove spots without counts</span></span>
+<span id="cb280-4"><a href="spatiallibd-workflow.html#cb280-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(spe<span class="sc">$</span>sum_umi)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     537    2414    3466    3870    4938   15862</code></pre>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="spatiallibd-workflow.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="do">## If we had spots with no counts, we would remove them</span></span>
-<span id="cb286-2"><a href="spatiallibd-workflow.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">any</span>(spe<span class="sc">$</span>sum_umi <span class="sc">==</span> <span class="dv">0</span>)) {</span>
-<span id="cb286-3"><a href="spatiallibd-workflow.html#cb286-3" aria-hidden="true" tabindex="-1"></a>    spots_no_counts <span class="ot">&lt;-</span> <span class="fu">which</span>(spe<span class="sc">$</span>sum_umi <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb286-4"><a href="spatiallibd-workflow.html#cb286-4" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Number of spots with no counts</span></span>
-<span id="cb286-5"><a href="spatiallibd-workflow.html#cb286-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">length</span>(spots_no_counts))</span>
-<span id="cb286-6"><a href="spatiallibd-workflow.html#cb286-6" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Percent of spots with no counts</span></span>
-<span id="cb286-7"><a href="spatiallibd-workflow.html#cb286-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">length</span>(spots_no_counts) <span class="sc">/</span> <span class="fu">ncol</span>(spe) <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb286-8"><a href="spatiallibd-workflow.html#cb286-8" aria-hidden="true" tabindex="-1"></a>    spe <span class="ot">&lt;-</span> spe[, <span class="sc">-</span>spots_no_counts, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb286-9"><a href="spatiallibd-workflow.html#cb286-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="spatiallibd-workflow.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="do">## If we had spots with no counts, we would remove them</span></span>
+<span id="cb282-2"><a href="spatiallibd-workflow.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">any</span>(spe<span class="sc">$</span>sum_umi <span class="sc">==</span> <span class="dv">0</span>)) {</span>
+<span id="cb282-3"><a href="spatiallibd-workflow.html#cb282-3" aria-hidden="true" tabindex="-1"></a>    spots_no_counts <span class="ot">&lt;-</span> <span class="fu">which</span>(spe<span class="sc">$</span>sum_umi <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb282-4"><a href="spatiallibd-workflow.html#cb282-4" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Number of spots with no counts</span></span>
+<span id="cb282-5"><a href="spatiallibd-workflow.html#cb282-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">length</span>(spots_no_counts))</span>
+<span id="cb282-6"><a href="spatiallibd-workflow.html#cb282-6" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Percent of spots with no counts</span></span>
+<span id="cb282-7"><a href="spatiallibd-workflow.html#cb282-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">length</span>(spots_no_counts) <span class="sc">/</span> <span class="fu">ncol</span>(spe) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb282-8"><a href="spatiallibd-workflow.html#cb282-8" aria-hidden="true" tabindex="-1"></a>    spe <span class="ot">&lt;-</span> spe[, <span class="sc">-</span>spots_no_counts, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb282-9"><a href="spatiallibd-workflow.html#cb282-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>We <em>think</em> that we are ready to proceed to making our interactive website. Let’s use the <code>spatialLIBD::check_spe()</code> function, just to verify that we are right. If we aren’t, then it’ll try to tell us what we missed.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="spatiallibd-workflow.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run check_spe() function</span></span>
-<span id="cb287-2"><a href="spatiallibd-workflow.html#cb287-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">check_spe</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="spatiallibd-workflow.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run check_spe() function</span></span>
+<span id="cb283-2"><a href="spatiallibd-workflow.html#cb283-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">check_spe</span>(spe)</span></code></pre></div>
 <pre><code>## class: SpatialExperiment 
 ## dim: 21671 3524 
 ## metadata(0):
@@ -741,38 +742,38 @@ Figure 19.3: Screenshot of the ‘gene grid (static)’ section of the ‘spot-l
 ## altExpNames(0):
 ## spatialCoords names(2) : pxl_col_in_fullres pxl_row_in_fullres
 ## imgData names(4): sample_id image_id data scaleFactor</code></pre>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="spatiallibd-workflow.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="do">## End tracking time</span></span>
-<span id="cb289-2"><a href="spatiallibd-workflow.html#cb289-2" aria-hidden="true" tabindex="-1"></a>time_end <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb289-3"><a href="spatiallibd-workflow.html#cb289-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-4"><a href="spatiallibd-workflow.html#cb289-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
-<span id="cb289-5"><a href="spatiallibd-workflow.html#cb289-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
-<pre><code>## Time difference of 49.91733 secs</code></pre>
-<p>Creating our final <code>spe</code> object took 2.27975773016612 to run. So you might want to save this object for later use.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="spatiallibd-workflow.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="spatiallibd-workflow.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="do">## End tracking time</span></span>
+<span id="cb285-2"><a href="spatiallibd-workflow.html#cb285-2" aria-hidden="true" tabindex="-1"></a>time_end <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb285-3"><a href="spatiallibd-workflow.html#cb285-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-4"><a href="spatiallibd-workflow.html#cb285-4" aria-hidden="true" tabindex="-1"></a><span class="do">## How long this code took to run</span></span>
+<span id="cb285-5"><a href="spatiallibd-workflow.html#cb285-5" aria-hidden="true" tabindex="-1"></a>time_end <span class="sc">-</span> time_prereqs</span></code></pre></div>
+<pre><code>## Time difference of 45.8162 secs</code></pre>
+<p>Creating our final <code>spe</code> object took 2.107106812795 to run. So you might want to save this object for later use.</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="spatiallibd-workflow.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(spe, <span class="at">file =</span> <span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 <p>You can then re-load it with the following code on a later session.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="spatiallibd-workflow.html#cb292-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="spatiallibd-workflow.html#cb288-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;spe_workflow_Visium_spatialLIBD.rds&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="explore-the-data" class="section level2 hasAnchor" number="19.5">
 <h2><span class="header-section-number">19.5</span> Explore the data<a href="spatiallibd-workflow.html#explore-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In order to visualize the data, we can then use <code>spatialLIBD::vis_gene()</code>. Note that we didn’t need to do all that hard work just for that. But well, this is a nice quick check before we try launching our interactive website.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="spatiallibd-workflow.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Sum of UMI</span></span>
-<span id="cb293-2"><a href="spatiallibd-workflow.html#cb293-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">vis_gene</span>(</span>
-<span id="cb293-3"><a href="spatiallibd-workflow.html#cb293-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">spe =</span> spe,</span>
-<span id="cb293-4"><a href="spatiallibd-workflow.html#cb293-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sampleid =</span> <span class="st">&quot;sample_151673&quot;</span>,</span>
-<span id="cb293-5"><a href="spatiallibd-workflow.html#cb293-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">geneid =</span> <span class="st">&quot;sum_umi&quot;</span></span>
-<span id="cb293-6"><a href="spatiallibd-workflow.html#cb293-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="spatiallibd-workflow.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Sum of UMI</span></span>
+<span id="cb289-2"><a href="spatiallibd-workflow.html#cb289-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">vis_gene</span>(</span>
+<span id="cb289-3"><a href="spatiallibd-workflow.html#cb289-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">spe =</span> spe,</span>
+<span id="cb289-4"><a href="spatiallibd-workflow.html#cb289-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sampleid =</span> <span class="st">&quot;sample_151673&quot;</span>,</span>
+<span id="cb289-5"><a href="spatiallibd-workflow.html#cb289-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">geneid =</span> <span class="st">&quot;sum_umi&quot;</span></span>
+<span id="cb289-6"><a href="spatiallibd-workflow.html#cb289-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="OSTA-book_files/figure-html/spatialLIBD_vis_gene-1.png" width="768" /></p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="spatiallibd-workflow.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="do">## PCP4, a layer 5 marker gene</span></span>
-<span id="cb294-2"><a href="spatiallibd-workflow.html#cb294-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">vis_gene</span>(</span>
-<span id="cb294-3"><a href="spatiallibd-workflow.html#cb294-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">spe =</span> spe,</span>
-<span id="cb294-4"><a href="spatiallibd-workflow.html#cb294-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sampleid =</span> <span class="st">&quot;sample_151673&quot;</span>,</span>
-<span id="cb294-5"><a href="spatiallibd-workflow.html#cb294-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">geneid =</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_search[<span class="fu">which</span>(<span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name <span class="sc">==</span> <span class="st">&quot;PCP4&quot;</span>)]</span>
-<span id="cb294-6"><a href="spatiallibd-workflow.html#cb294-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="spatiallibd-workflow.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="do">## PCP4, a layer 5 marker gene</span></span>
+<span id="cb290-2"><a href="spatiallibd-workflow.html#cb290-2" aria-hidden="true" tabindex="-1"></a>spatialLIBD<span class="sc">::</span><span class="fu">vis_gene</span>(</span>
+<span id="cb290-3"><a href="spatiallibd-workflow.html#cb290-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">spe =</span> spe,</span>
+<span id="cb290-4"><a href="spatiallibd-workflow.html#cb290-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sampleid =</span> <span class="st">&quot;sample_151673&quot;</span>,</span>
+<span id="cb290-5"><a href="spatiallibd-workflow.html#cb290-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">geneid =</span> <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_search[<span class="fu">which</span>(<span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name <span class="sc">==</span> <span class="st">&quot;PCP4&quot;</span>)]</span>
+<span id="cb290-6"><a href="spatiallibd-workflow.html#cb290-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="OSTA-book_files/figure-html/spatialLIBD_vis_gene-2.png" width="768" /></p>
 <p>As we wanted let’s proceed to <a href="http://research.libd.org/spatialLIBD/articles/TenX_data_download.html#run-the-interactive-website-1">visualize the data interactively</a> with a <code>spatialLIBD</code>-powered website. We have lots of variables to choose from. We’ll specify which are our continuous and discrete variables in our <code>spatialLIBD::run_app()</code> call.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="spatiallibd-workflow.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Explore all the variables we can use</span></span>
-<span id="cb295-2"><a href="spatiallibd-workflow.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="spatiallibd-workflow.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Explore all the variables we can use</span></span>
+<span id="cb291-2"><a href="spatiallibd-workflow.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)</span></code></pre></div>
 <pre><code>## DataFrame with 3524 rows and 22 columns
 ##                            barcode_id     sample_id in_tissue array_row
 ##                           &lt;character&gt;   &lt;character&gt; &lt;integer&gt; &lt;integer&gt;
@@ -852,32 +853,32 @@ Figure 19.3: Screenshot of the ‘gene grid (static)’ section of the ‘spot-l
 ## TTGTTTCATTAGTCTA-1               0               NA
 ## TTGTTTCCATACAACT-1               0               NA
 ## TTGTTTGTGTAAATTC-1               0               NA</code></pre>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="spatiallibd-workflow.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run our shiny app</span></span>
-<span id="cb297-2"><a href="spatiallibd-workflow.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) {</span>
-<span id="cb297-3"><a href="spatiallibd-workflow.html#cb297-3" aria-hidden="true" tabindex="-1"></a>    spatialLIBD<span class="sc">::</span><span class="fu">run_app</span>(</span>
-<span id="cb297-4"><a href="spatiallibd-workflow.html#cb297-4" aria-hidden="true" tabindex="-1"></a>        spe,</span>
-<span id="cb297-5"><a href="spatiallibd-workflow.html#cb297-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">sce_layer =</span> <span class="cn">NULL</span>,</span>
-<span id="cb297-6"><a href="spatiallibd-workflow.html#cb297-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">modeling_results =</span> <span class="cn">NULL</span>,</span>
-<span id="cb297-7"><a href="spatiallibd-workflow.html#cb297-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">sig_genes =</span> <span class="cn">NULL</span>,</span>
-<span id="cb297-8"><a href="spatiallibd-workflow.html#cb297-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">&quot;OSTA spatialLIBD workflow example&quot;</span>,</span>
-<span id="cb297-9"><a href="spatiallibd-workflow.html#cb297-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">spe_discrete_vars =</span> <span class="fu">c</span>(<span class="st">&quot;ground_truth&quot;</span>, <span class="st">&quot;label&quot;</span>, <span class="st">&quot;ManualAnnotation&quot;</span>),</span>
-<span id="cb297-10"><a href="spatiallibd-workflow.html#cb297-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">spe_continuous_vars =</span> <span class="fu">c</span>(</span>
-<span id="cb297-11"><a href="spatiallibd-workflow.html#cb297-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;cell_count&quot;</span>,</span>
-<span id="cb297-12"><a href="spatiallibd-workflow.html#cb297-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum_umi&quot;</span>,</span>
-<span id="cb297-13"><a href="spatiallibd-workflow.html#cb297-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum_gene&quot;</span>,</span>
-<span id="cb297-14"><a href="spatiallibd-workflow.html#cb297-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;expr_chrM&quot;</span>,</span>
-<span id="cb297-15"><a href="spatiallibd-workflow.html#cb297-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;expr_chrM_ratio&quot;</span>,</span>
-<span id="cb297-16"><a href="spatiallibd-workflow.html#cb297-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum&quot;</span>,</span>
-<span id="cb297-17"><a href="spatiallibd-workflow.html#cb297-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;detected&quot;</span>,</span>
-<span id="cb297-18"><a href="spatiallibd-workflow.html#cb297-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_sum&quot;</span>,</span>
-<span id="cb297-19"><a href="spatiallibd-workflow.html#cb297-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_detected&quot;</span>,</span>
-<span id="cb297-20"><a href="spatiallibd-workflow.html#cb297-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_percent&quot;</span>,</span>
-<span id="cb297-21"><a href="spatiallibd-workflow.html#cb297-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;total&quot;</span>,</span>
-<span id="cb297-22"><a href="spatiallibd-workflow.html#cb297-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sizeFactor&quot;</span></span>
-<span id="cb297-23"><a href="spatiallibd-workflow.html#cb297-23" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb297-24"><a href="spatiallibd-workflow.html#cb297-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">default_cluster =</span> <span class="st">&quot;label&quot;</span></span>
-<span id="cb297-25"><a href="spatiallibd-workflow.html#cb297-25" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb297-26"><a href="spatiallibd-workflow.html#cb297-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="spatiallibd-workflow.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Run our shiny app</span></span>
+<span id="cb293-2"><a href="spatiallibd-workflow.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) {</span>
+<span id="cb293-3"><a href="spatiallibd-workflow.html#cb293-3" aria-hidden="true" tabindex="-1"></a>    spatialLIBD<span class="sc">::</span><span class="fu">run_app</span>(</span>
+<span id="cb293-4"><a href="spatiallibd-workflow.html#cb293-4" aria-hidden="true" tabindex="-1"></a>        spe,</span>
+<span id="cb293-5"><a href="spatiallibd-workflow.html#cb293-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">sce_layer =</span> <span class="cn">NULL</span>,</span>
+<span id="cb293-6"><a href="spatiallibd-workflow.html#cb293-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">modeling_results =</span> <span class="cn">NULL</span>,</span>
+<span id="cb293-7"><a href="spatiallibd-workflow.html#cb293-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">sig_genes =</span> <span class="cn">NULL</span>,</span>
+<span id="cb293-8"><a href="spatiallibd-workflow.html#cb293-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">&quot;OSTA spatialLIBD workflow example&quot;</span>,</span>
+<span id="cb293-9"><a href="spatiallibd-workflow.html#cb293-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">spe_discrete_vars =</span> <span class="fu">c</span>(<span class="st">&quot;ground_truth&quot;</span>, <span class="st">&quot;label&quot;</span>, <span class="st">&quot;ManualAnnotation&quot;</span>),</span>
+<span id="cb293-10"><a href="spatiallibd-workflow.html#cb293-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">spe_continuous_vars =</span> <span class="fu">c</span>(</span>
+<span id="cb293-11"><a href="spatiallibd-workflow.html#cb293-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;cell_count&quot;</span>,</span>
+<span id="cb293-12"><a href="spatiallibd-workflow.html#cb293-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum_umi&quot;</span>,</span>
+<span id="cb293-13"><a href="spatiallibd-workflow.html#cb293-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum_gene&quot;</span>,</span>
+<span id="cb293-14"><a href="spatiallibd-workflow.html#cb293-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;expr_chrM&quot;</span>,</span>
+<span id="cb293-15"><a href="spatiallibd-workflow.html#cb293-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;expr_chrM_ratio&quot;</span>,</span>
+<span id="cb293-16"><a href="spatiallibd-workflow.html#cb293-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sum&quot;</span>,</span>
+<span id="cb293-17"><a href="spatiallibd-workflow.html#cb293-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;detected&quot;</span>,</span>
+<span id="cb293-18"><a href="spatiallibd-workflow.html#cb293-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_sum&quot;</span>,</span>
+<span id="cb293-19"><a href="spatiallibd-workflow.html#cb293-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_detected&quot;</span>,</span>
+<span id="cb293-20"><a href="spatiallibd-workflow.html#cb293-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;subsets_mito_percent&quot;</span>,</span>
+<span id="cb293-21"><a href="spatiallibd-workflow.html#cb293-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;total&quot;</span>,</span>
+<span id="cb293-22"><a href="spatiallibd-workflow.html#cb293-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sizeFactor&quot;</span></span>
+<span id="cb293-23"><a href="spatiallibd-workflow.html#cb293-23" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb293-24"><a href="spatiallibd-workflow.html#cb293-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">default_cluster =</span> <span class="st">&quot;label&quot;</span></span>
+<span id="cb293-25"><a href="spatiallibd-workflow.html#cb293-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb293-26"><a href="spatiallibd-workflow.html#cb293-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-134"></span>
 <img src="images/spatialLIBD_demo_result.png" alt="Screenshot of the 'clusters (interactive)' section of the 'spot-level data' panel created with with the data from this workflow." width="100%" />
 <p class="caption">
@@ -888,9 +889,9 @@ Figure 19.4: Screenshot of the ‘clusters (interactive)’ section of the ‘sp
 <div id="sharing-your-website" class="section level2 hasAnchor" number="19.6">
 <h2><span class="header-section-number">19.6</span> Sharing your website<a href="spatiallibd-workflow.html#sharing-your-website" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that you have created a <code>spatialLIBD</code>-powered website, you might be interested in sharing it. To do so, it’ll be useful to have saved a small <code>spe</code> object using <code>saveRDS()</code> like we did earlier. The smaller the object, the better in terms of performance. For example, you might want to remove the lowly expressed genes to save space. One function you can use to measure how big your object is is <code>lobstr::obj_size()</code> as shown below.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="spatiallibd-workflow.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Object size</span></span>
-<span id="cb298-2"><a href="spatiallibd-workflow.html#cb298-2" aria-hidden="true" tabindex="-1"></a>lobstr<span class="sc">::</span><span class="fu">obj_size</span>(spe) <span class="sc">/</span> <span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span> <span class="do">## Convert to MB</span></span></code></pre></div>
-<pre><code>## 293.31 B</code></pre>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="spatiallibd-workflow.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Object size</span></span>
+<span id="cb294-2"><a href="spatiallibd-workflow.html#cb294-2" aria-hidden="true" tabindex="-1"></a>lobstr<span class="sc">::</span><span class="fu">obj_size</span>(spe) <span class="sc">/</span> <span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span> <span class="do">## Convert to MB</span></span></code></pre></div>
+<pre><code>## 293.12 B</code></pre>
 <p>If your data is small enough, you might want to share your website by hosting on <a href="https://www.shinyapps.io/">shinyapps.io</a> by RStudio, which you can try for free. Once you have created your account, you’ll want to create an <code>app.R</code> file like the one we have <a href="https://github.com/lmweber/OSTA-book/blob/main/spatialLIBD_demo">on the <code>spatialLIBD_demo</code> directory</a>.</p>
 <pre><code>## library(&quot;spatialLIBD&quot;)
 ##  library(&quot;markdown&quot;) # for shinyapps.io
@@ -986,208 +987,197 @@ Figure 19.5: Screenshot of the RStudio window for publishing your spatialLIBD-po
 <div id="r-session-information" class="section level2 unnumbered hasAnchor">
 <h2>R session information<a href="spatiallibd-workflow.html#r-session-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here’s the R session information for this workflow.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="spatiallibd-workflow.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width =</span> <span class="dv">120</span>)</span>
-<span id="cb302-2"><a href="spatiallibd-workflow.html#cb302-2" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="spatiallibd-workflow.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width =</span> <span class="dv">120</span>)</span>
+<span id="cb298-2"><a href="spatiallibd-workflow.html#cb298-2" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value
-##  version  R version 4.2.0 (2022-04-22)
-##  os       Ubuntu 20.04.4 LTS
+##  version  R version 4.2.3 (2023-03-15)
+##  os       Ubuntu 22.04.2 LTS
 ##  system   x86_64, linux-gnu
 ##  ui       X11
 ##  language (EN)
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       UTC
-##  date     2022-08-07
-##  pandoc   2.17.1.1 @ /usr/local/bin/ (via rmarkdown)
+##  date     2023-04-11
+##  pandoc   2.19.2 @ /usr/local/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  package                * version   date (UTC) lib source
-##  AnnotationDbi            1.58.0    2022-04-26 [1] Bioconductor
-##  AnnotationHub          * 3.4.0     2022-04-26 [1] Bioconductor
-##  assertthat               0.2.1     2019-03-21 [1] CRAN (R 4.2.0)
-##  attempt                  0.3.1     2020-05-03 [1] RSPM (R 4.2.0)
-##  beachmat                 2.12.0    2022-04-26 [1] Bioconductor
-##  beeswarm                 0.4.0     2021-06-01 [1] RSPM (R 4.2.0)
-##  benchmarkme              1.0.8     2022-06-12 [1] RSPM (R 4.2.0)
-##  benchmarkmeData          1.0.4     2020-04-23 [1] RSPM (R 4.2.0)
-##  Biobase                * 2.56.0    2022-04-26 [1] Bioconductor
-##  BiocFileCache          * 2.4.0     2022-04-26 [1] Bioconductor
-##  BiocGenerics           * 0.42.0    2022-04-26 [1] Bioconductor
-##  BiocIO                   1.6.0     2022-04-26 [1] Bioconductor
-##  BiocManager              1.30.18   2022-05-18 [2] CRAN (R 4.2.0)
-##  BiocNeighbors            1.14.0    2022-04-26 [1] Bioconductor
-##  BiocParallel             1.30.3    2022-06-05 [1] Bioconductor
-##  BiocSingular             1.12.0    2022-04-26 [1] Bioconductor
-##  BiocVersion              3.15.2    2022-03-29 [2] Bioconductor
-##  Biostrings               2.64.0    2022-04-26 [1] Bioconductor
-##  bit                      4.0.4     2020-08-04 [1] CRAN (R 4.2.0)
-##  bit64                    4.0.5     2020-08-30 [1] CRAN (R 4.2.0)
-##  bitops                   1.0-7     2021-04-24 [1] CRAN (R 4.2.0)
-##  blob                     1.2.3     2022-04-10 [1] CRAN (R 4.2.0)
-##  bluster                  1.6.0     2022-04-26 [1] Bioconductor
-##  bookdown                 0.27      2022-06-14 [1] RSPM (R 4.2.0)
-##  BRISC                    1.0.5     2022-04-29 [1] RSPM (R 4.2.0)
-##  bslib                    0.4.0     2022-07-16 [2] RSPM (R 4.2.0)
-##  cachem                   1.0.6     2021-08-19 [2] CRAN (R 4.2.0)
-##  cli                      3.3.0     2022-04-25 [2] RSPM (R 4.2.0)
-##  cluster                  2.1.3     2022-03-28 [3] CRAN (R 4.2.0)
-##  codetools                0.2-18    2020-11-04 [3] CRAN (R 4.2.0)
-##  colorspace               2.0-3     2022-02-21 [1] CRAN (R 4.2.0)
-##  config                   0.3.1     2020-12-17 [1] RSPM (R 4.2.0)
-##  cowplot                  1.1.1     2020-12-30 [1] CRAN (R 4.2.0)
-##  crayon                   1.5.1     2022-03-26 [2] CRAN (R 4.2.0)
-##  curl                     4.3.2     2021-06-23 [2] CRAN (R 4.2.0)
-##  data.table               1.14.2    2021-09-27 [1] CRAN (R 4.2.0)
-##  DBI                      1.1.3     2022-06-18 [1] RSPM (R 4.2.0)
-##  dbplyr                 * 2.2.1     2022-06-27 [1] RSPM (R 4.2.0)
-##  DelayedArray             0.22.0    2022-04-26 [1] Bioconductor
-##  DelayedMatrixStats       1.18.0    2022-04-26 [1] Bioconductor
-##  desc                     1.4.1     2022-03-06 [2] CRAN (R 4.2.0)
-##  digest                   0.6.29    2021-12-01 [2] CRAN (R 4.2.0)
-##  doParallel               1.0.17    2022-02-07 [1] RSPM (R 4.2.0)
-##  dotCall64                1.0-1     2021-02-11 [1] RSPM (R 4.2.0)
-##  dplyr                    1.0.9     2022-04-28 [1] RSPM (R 4.2.0)
-##  dqrng                    0.3.0     2021-05-01 [1] RSPM (R 4.2.0)
-##  DropletUtils             1.16.0    2022-04-26 [1] Bioconductor
-##  DT                       0.23      2022-05-10 [1] RSPM (R 4.2.0)
-##  edgeR                    3.38.2    2022-07-31 [1] Bioconductor
-##  ellipsis                 0.3.2     2021-04-29 [2] CRAN (R 4.2.0)
-##  evaluate                 0.15      2022-02-18 [2] CRAN (R 4.2.0)
-##  ExperimentHub          * 2.4.0     2022-04-26 [1] Bioconductor
-##  fansi                    1.0.3     2022-03-24 [2] CRAN (R 4.2.0)
-##  farver                   2.1.1     2022-07-06 [1] RSPM (R 4.2.0)
-##  fastmap                  1.1.0     2021-01-25 [2] CRAN (R 4.2.0)
-##  fields                   14.0      2022-07-05 [1] RSPM (R 4.2.0)
-##  filelock                 1.0.2     2018-10-05 [1] CRAN (R 4.2.0)
-##  FNN                      1.1.3.1   2022-05-23 [1] RSPM (R 4.2.0)
-##  foreach                  1.5.2     2022-02-02 [1] RSPM (R 4.2.0)
-##  fs                       1.5.2     2021-12-08 [2] CRAN (R 4.2.0)
-##  generics                 0.1.3     2022-07-05 [1] RSPM (R 4.2.0)
-##  GenomeInfoDb           * 1.32.2    2022-05-15 [1] Bioconductor
-##  GenomeInfoDbData         1.2.8     2022-05-02 [1] Bioconductor
-##  GenomicAlignments        1.32.1    2022-07-24 [1] Bioconductor
-##  GenomicRanges          * 1.48.0    2022-04-26 [1] Bioconductor
-##  ggbeeswarm               0.6.0     2017-08-07 [1] RSPM (R 4.2.0)
-##  ggplot2                * 3.3.6     2022-05-03 [1] RSPM (R 4.2.0)
-##  ggrepel                  0.9.1     2021-01-15 [1] CRAN (R 4.2.0)
-##  ggside                   0.2.1     2022-07-20 [1] RSPM (R 4.2.0)
-##  ggspavis               * 1.2.0     2022-04-26 [1] Bioconductor
-##  glue                     1.6.2     2022-02-24 [2] CRAN (R 4.2.0)
-##  golem                    0.3.3     2022-07-13 [1] RSPM (R 4.2.0)
-##  gridExtra                2.3       2017-09-09 [1] CRAN (R 4.2.0)
-##  gtable                   0.3.0     2019-03-25 [1] CRAN (R 4.2.0)
-##  HDF5Array                1.24.2    2022-08-02 [1] Bioconductor
-##  highr                    0.9       2021-04-16 [2] CRAN (R 4.2.0)
-##  htmltools                0.5.3     2022-07-18 [2] RSPM (R 4.2.0)
-##  htmlwidgets              1.5.4     2021-09-08 [2] CRAN (R 4.2.0)
-##  httpuv                   1.6.5     2022-01-05 [2] CRAN (R 4.2.0)
-##  httr                     1.4.3     2022-05-04 [2] RSPM (R 4.2.0)
-##  igraph                 * 1.3.4     2022-07-19 [1] RSPM (R 4.2.0)
-##  interactiveDisplayBase   1.34.0    2022-04-26 [1] Bioconductor
-##  IRanges                * 2.30.0    2022-04-26 [1] Bioconductor
-##  irlba                    2.3.5     2021-12-06 [1] RSPM (R 4.2.0)
-##  iterators                1.0.14    2022-02-05 [1] RSPM (R 4.2.0)
-##  jquerylib                0.1.4     2021-04-26 [2] CRAN (R 4.2.0)
-##  jsonlite                 1.8.0     2022-02-22 [2] CRAN (R 4.2.0)
-##  KEGGREST                 1.36.3    2022-07-12 [1] Bioconductor
-##  knitr                    1.39      2022-04-26 [2] RSPM (R 4.2.0)
-##  labeling                 0.4.2     2020-10-20 [1] CRAN (R 4.2.0)
-##  later                    1.3.0     2021-08-18 [2] CRAN (R 4.2.0)
-##  lattice                  0.20-45   2021-09-22 [3] CRAN (R 4.2.0)
-##  lazyeval                 0.2.2     2019-03-15 [1] CRAN (R 4.2.0)
-##  lifecycle                1.0.1     2021-09-24 [2] CRAN (R 4.2.0)
-##  limma                    3.52.2    2022-06-19 [1] Bioconductor
-##  lobstr                 * 1.1.2     2022-06-22 [1] RSPM (R 4.2.0)
-##  locfit                   1.5-9.6   2022-07-11 [1] RSPM (R 4.2.0)
-##  magick                   2.7.3     2021-08-18 [1] RSPM (R 4.2.0)
-##  magrittr                 2.0.3     2022-03-30 [2] CRAN (R 4.2.0)
-##  maps                     3.4.0     2021-09-25 [1] RSPM (R 4.2.0)
-##  Matrix                   1.4-1     2022-03-23 [3] CRAN (R 4.2.0)
-##  MatrixGenerics         * 1.8.1     2022-06-26 [1] Bioconductor
-##  matrixStats            * 0.62.0    2022-04-19 [1] RSPM (R 4.2.0)
-##  memoise                  2.0.1     2021-11-26 [2] CRAN (R 4.2.0)
-##  metapod                  1.4.0     2022-04-26 [1] Bioconductor
-##  mgcv                     1.8-40    2022-03-29 [3] CRAN (R 4.2.0)
-##  mime                     0.12      2021-09-28 [2] CRAN (R 4.2.0)
-##  munsell                  0.5.0     2018-06-12 [1] CRAN (R 4.2.0)
-##  nlme                     3.1-158   2022-06-15 [3] RSPM (R 4.2.0)
-##  nnSVG                  * 1.0.4     2022-07-19 [1] Bioconductor
-##  paletteer                1.4.0     2021-07-20 [1] RSPM (R 4.2.0)
-##  pbapply                  1.5-0     2021-09-16 [1] RSPM (R 4.2.0)
-##  pheatmap               * 1.0.12    2019-01-04 [1] RSPM (R 4.2.0)
-##  pillar                   1.8.0     2022-07-18 [2] RSPM (R 4.2.0)
-##  pkgconfig                2.0.3     2019-09-22 [2] CRAN (R 4.2.0)
-##  pkgload                  1.3.0     2022-06-27 [2] RSPM (R 4.2.0)
-##  plotly                   4.10.0    2021-10-09 [1] RSPM (R 4.2.0)
-##  png                      0.1-7     2013-12-03 [1] CRAN (R 4.2.0)
-##  prettyunits              1.1.1     2020-01-24 [2] CRAN (R 4.2.0)
-##  promises                 1.2.0.1   2021-02-11 [2] CRAN (R 4.2.0)
-##  purrr                    0.3.4     2020-04-17 [2] CRAN (R 4.2.0)
-##  R.methodsS3              1.8.2     2022-06-13 [1] RSPM (R 4.2.0)
-##  R.oo                     1.25.0    2022-06-12 [1] RSPM (R 4.2.0)
-##  R.utils                  2.12.0    2022-06-28 [1] RSPM (R 4.2.0)
-##  R6                       2.5.1     2021-08-19 [2] CRAN (R 4.2.0)
-##  RANN                     2.6.1     2019-01-08 [1] RSPM (R 4.2.0)
-##  rappdirs                 0.3.3     2021-01-31 [2] CRAN (R 4.2.0)
-##  RColorBrewer             1.1-3     2022-04-03 [1] CRAN (R 4.2.0)
-##  Rcpp                     1.0.9     2022-07-08 [2] RSPM (R 4.2.0)
-##  RCurl                    1.98-1.8  2022-07-30 [1] RSPM (R 4.2.0)
-##  rdist                    0.0.5     2020-05-04 [1] RSPM (R 4.2.0)
-##  rematch2                 2.1.2     2020-05-01 [2] CRAN (R 4.2.0)
-##  restfulr                 0.0.15    2022-06-16 [1] RSPM (R 4.2.0)
-##  rhdf5                    2.40.0    2022-04-26 [1] Bioconductor
-##  rhdf5filters             1.8.0     2022-04-26 [1] Bioconductor
-##  Rhdf5lib                 1.18.2    2022-05-15 [1] Bioconductor
-##  rjson                    0.2.21    2022-01-09 [1] CRAN (R 4.2.0)
-##  rlang                    1.0.4     2022-07-12 [2] RSPM (R 4.2.0)
-##  rmarkdown                2.14      2022-04-25 [2] RSPM (R 4.2.0)
-##  roxygen2                 7.2.1     2022-07-18 [2] RSPM (R 4.2.0)
-##  rprojroot                2.0.3     2022-04-02 [2] CRAN (R 4.2.0)
-##  Rsamtools                2.12.0    2022-04-26 [1] Bioconductor
-##  RSpectra                 0.16-1    2022-04-24 [1] RSPM (R 4.2.0)
-##  RSQLite                  2.2.15    2022-07-17 [1] RSPM (R 4.2.0)
-##  rstudioapi               0.13      2020-11-12 [2] CRAN (R 4.2.0)
-##  rsvd                     1.0.5     2021-04-16 [1] RSPM (R 4.2.0)
-##  rtracklayer            * 1.56.1    2022-06-23 [1] Bioconductor
-##  S4Vectors              * 0.34.0    2022-04-26 [1] Bioconductor
-##  sass                     0.4.2     2022-07-16 [2] RSPM (R 4.2.0)
-##  ScaledMatrix             1.4.0     2022-04-26 [1] Bioconductor
-##  scales                   1.2.0     2022-04-13 [1] RSPM (R 4.2.0)
-##  scater                 * 1.24.0    2022-04-26 [1] Bioconductor
-##  scran                  * 1.24.0    2022-04-26 [1] Bioconductor
-##  scuttle                * 1.6.2     2022-05-15 [1] Bioconductor
+##  AnnotationDbi            1.60.2    2023-03-10 [1] Bioconductor
+##  AnnotationHub          * 3.6.0     2022-11-01 [1] Bioconductor
+##  attempt                  0.3.1     2020-05-03 [1] CRAN (R 4.2.2)
+##  beachmat                 2.14.2    2023-04-07 [1] Bioconductor
+##  beeswarm                 0.4.0     2021-06-01 [1] CRAN (R 4.2.2)
+##  benchmarkme              1.0.8     2022-06-12 [1] CRAN (R 4.2.2)
+##  benchmarkmeData          1.0.4     2020-04-23 [1] CRAN (R 4.2.2)
+##  Biobase                * 2.58.0    2022-11-01 [1] Bioconductor
+##  BiocFileCache          * 2.6.1     2023-02-17 [1] Bioconductor
+##  BiocGenerics           * 0.44.0    2022-11-01 [1] Bioconductor
+##  BiocIO                   1.8.0     2022-11-01 [1] Bioconductor
+##  BiocManager              1.30.20   2023-02-24 [2] CRAN (R 4.2.3)
+##  BiocNeighbors            1.16.0    2022-11-01 [1] Bioconductor
+##  BiocParallel             1.32.6    2023-03-17 [1] Bioconductor
+##  BiocSingular             1.14.0    2022-11-01 [1] Bioconductor
+##  BiocVersion              3.16.0    2022-04-26 [2] Bioconductor
+##  Biostrings               2.66.0    2022-11-01 [1] Bioconductor
+##  bit                      4.0.5     2022-11-15 [1] CRAN (R 4.2.2)
+##  bit64                    4.0.5     2020-08-30 [1] CRAN (R 4.2.2)
+##  bitops                   1.0-7     2021-04-24 [1] CRAN (R 4.2.2)
+##  blob                     1.2.4     2023-03-17 [1] RSPM (R 4.2.0)
+##  bluster                  1.8.0     2022-11-01 [1] Bioconductor
+##  bookdown                 0.33      2023-03-06 [1] RSPM (R 4.2.0)
+##  BRISC                    1.0.5     2022-04-29 [1] CRAN (R 4.2.2)
+##  bslib                    0.4.2     2022-12-16 [2] RSPM (R 4.2.0)
+##  cachem                   1.0.7     2023-02-24 [2] RSPM (R 4.2.0)
+##  cli                      3.6.1     2023-03-23 [2] RSPM (R 4.2.0)
+##  cluster                  2.1.4     2022-08-22 [3] CRAN (R 4.2.3)
+##  codetools                0.2-19    2023-02-01 [3] CRAN (R 4.2.3)
+##  colorspace               2.1-0     2023-01-23 [1] RSPM (R 4.2.0)
+##  config                   0.3.1     2020-12-17 [1] CRAN (R 4.2.2)
+##  cowplot                  1.1.1     2020-12-30 [1] CRAN (R 4.2.2)
+##  crayon                   1.5.2     2022-09-29 [2] RSPM (R 4.2.0)
+##  curl                     5.0.0     2023-01-12 [2] RSPM (R 4.2.0)
+##  data.table               1.14.8    2023-02-17 [1] RSPM (R 4.2.0)
+##  DBI                      1.1.3     2022-06-18 [1] CRAN (R 4.2.2)
+##  dbplyr                 * 2.3.2     2023-03-21 [1] RSPM (R 4.2.0)
+##  DelayedArray             0.24.0    2022-11-01 [1] Bioconductor
+##  DelayedMatrixStats       1.20.0    2022-11-01 [1] Bioconductor
+##  digest                   0.6.31    2022-12-11 [2] RSPM (R 4.2.0)
+##  doParallel               1.0.17    2022-02-07 [1] CRAN (R 4.2.2)
+##  dotCall64                1.0-2     2022-10-03 [1] CRAN (R 4.2.2)
+##  dplyr                    1.1.1     2023-03-22 [1] RSPM (R 4.2.0)
+##  dqrng                    0.3.0     2021-05-01 [1] CRAN (R 4.2.2)
+##  DropletUtils             1.18.1    2022-11-22 [1] Bioconductor
+##  DT                       0.27      2023-01-17 [1] RSPM (R 4.2.0)
+##  edgeR                    3.40.2    2023-01-19 [1] Bioconductor
+##  ellipsis                 0.3.2     2021-04-29 [2] RSPM (R 4.2.0)
+##  evaluate                 0.20      2023-01-17 [2] RSPM (R 4.2.0)
+##  ExperimentHub          * 2.6.0     2022-11-01 [1] Bioconductor
+##  fansi                    1.0.4     2023-01-22 [2] RSPM (R 4.2.0)
+##  farver                   2.1.1     2022-07-06 [1] CRAN (R 4.2.2)
+##  fastmap                  1.1.1     2023-02-24 [2] RSPM (R 4.2.0)
+##  fields                   14.1      2022-08-12 [1] CRAN (R 4.2.2)
+##  filelock                 1.0.2     2018-10-05 [1] CRAN (R 4.2.2)
+##  FNN                      1.1.3.2   2023-03-20 [1] RSPM (R 4.2.0)
+##  foreach                  1.5.2     2022-02-02 [1] CRAN (R 4.2.2)
+##  generics                 0.1.3     2022-07-05 [1] CRAN (R 4.2.2)
+##  GenomeInfoDb           * 1.34.9    2023-02-02 [1] Bioconductor
+##  GenomeInfoDbData         1.2.9     2022-12-06 [1] Bioconductor
+##  GenomicAlignments        1.34.1    2023-03-09 [1] Bioconductor
+##  GenomicRanges          * 1.50.2    2022-12-16 [1] Bioconductor
+##  ggbeeswarm               0.7.1     2022-12-16 [1] RSPM (R 4.2.0)
+##  ggplot2                * 3.4.2     2023-04-03 [1] RSPM (R 4.2.0)
+##  ggrepel                  0.9.3     2023-02-03 [1] RSPM (R 4.2.0)
+##  ggside                   0.2.2     2022-12-04 [1] CRAN (R 4.2.2)
+##  ggspavis               * 1.4.0     2022-11-01 [1] Bioconductor
+##  glue                     1.6.2     2022-02-24 [2] RSPM (R 4.2.0)
+##  golem                    0.4.0     2023-03-12 [1] RSPM (R 4.2.0)
+##  gridExtra                2.3       2017-09-09 [1] CRAN (R 4.2.2)
+##  gtable                   0.3.3     2023-03-21 [1] RSPM (R 4.2.0)
+##  HDF5Array                1.26.0    2022-11-01 [1] Bioconductor
+##  highr                    0.10      2022-12-22 [2] RSPM (R 4.2.0)
+##  htmltools                0.5.5     2023-03-23 [2] RSPM (R 4.2.0)
+##  htmlwidgets              1.6.2     2023-03-17 [2] RSPM (R 4.2.0)
+##  httpuv                   1.6.9     2023-02-14 [2] RSPM (R 4.2.0)
+##  httr                     1.4.5     2023-02-24 [2] RSPM (R 4.2.0)
+##  igraph                 * 1.4.2     2023-04-07 [1] RSPM (R 4.2.0)
+##  interactiveDisplayBase   1.36.0    2022-11-01 [1] Bioconductor
+##  IRanges                * 2.32.0    2022-11-01 [1] Bioconductor
+##  irlba                    2.3.5.1   2022-10-03 [1] CRAN (R 4.2.2)
+##  iterators                1.0.14    2022-02-05 [1] CRAN (R 4.2.2)
+##  jquerylib                0.1.4     2021-04-26 [2] RSPM (R 4.2.0)
+##  jsonlite                 1.8.4     2022-12-06 [2] RSPM (R 4.2.0)
+##  KEGGREST                 1.38.0    2022-11-01 [1] Bioconductor
+##  knitr                    1.42      2023-01-25 [2] RSPM (R 4.2.0)
+##  labeling                 0.4.2     2020-10-20 [1] CRAN (R 4.2.2)
+##  later                    1.3.0     2021-08-18 [2] RSPM (R 4.2.0)
+##  lattice                  0.21-8    2023-04-05 [3] RSPM (R 4.2.0)
+##  lazyeval                 0.2.2     2019-03-15 [1] CRAN (R 4.2.2)
+##  lifecycle                1.0.3     2022-10-07 [2] RSPM (R 4.2.0)
+##  limma                    3.54.2    2023-02-28 [1] Bioconductor
+##  lobstr                 * 1.1.2     2022-06-22 [1] CRAN (R 4.2.2)
+##  locfit                   1.5-9.7   2023-01-02 [1] RSPM (R 4.2.0)
+##  magick                   2.7.4     2023-03-09 [1] RSPM (R 4.2.0)
+##  magrittr                 2.0.3     2022-03-30 [2] RSPM (R 4.2.0)
+##  maps                     3.4.1     2022-10-30 [1] CRAN (R 4.2.2)
+##  Matrix                   1.5-4     2023-04-04 [3] RSPM (R 4.2.0)
+##  MatrixGenerics         * 1.10.0    2022-11-01 [1] Bioconductor
+##  matrixStats            * 0.63.0    2022-11-18 [1] CRAN (R 4.2.2)
+##  memoise                  2.0.1     2021-11-26 [2] RSPM (R 4.2.0)
+##  metapod                  1.6.0     2022-11-01 [1] Bioconductor
+##  mgcv                     1.8-42    2023-03-02 [3] CRAN (R 4.2.3)
+##  mime                     0.12      2021-09-28 [2] RSPM (R 4.2.0)
+##  munsell                  0.5.0     2018-06-12 [1] CRAN (R 4.2.2)
+##  nlme                     3.1-162   2023-01-31 [3] CRAN (R 4.2.3)
+##  nnSVG                  * 1.2.0     2022-11-01 [1] Bioconductor
+##  paletteer                1.5.0     2022-10-19 [1] RSPM (R 4.2.0)
+##  pbapply                  1.7-0     2023-01-13 [1] RSPM (R 4.2.0)
+##  pheatmap               * 1.0.12    2019-01-04 [1] CRAN (R 4.2.2)
+##  pillar                   1.9.0     2023-03-22 [2] RSPM (R 4.2.0)
+##  pkgconfig                2.0.3     2019-09-22 [2] RSPM (R 4.2.0)
+##  plotly                   4.10.1    2022-11-07 [1] CRAN (R 4.2.2)
+##  png                      0.1-8     2022-11-29 [1] CRAN (R 4.2.2)
+##  prettyunits              1.1.1     2020-01-24 [2] RSPM (R 4.2.0)
+##  promises                 1.2.0.1   2021-02-11 [2] RSPM (R 4.2.0)
+##  purrr                    1.0.1     2023-01-10 [2] RSPM (R 4.2.0)
+##  R.methodsS3              1.8.2     2022-06-13 [1] CRAN (R 4.2.2)
+##  R.oo                     1.25.0    2022-06-12 [1] CRAN (R 4.2.2)
+##  R.utils                  2.12.2    2022-11-11 [1] CRAN (R 4.2.2)
+##  R6                       2.5.1     2021-08-19 [2] RSPM (R 4.2.0)
+##  RANN                     2.6.1     2019-01-08 [1] CRAN (R 4.2.2)
+##  rappdirs                 0.3.3     2021-01-31 [2] RSPM (R 4.2.0)
+##  RColorBrewer             1.1-3     2022-04-03 [1] CRAN (R 4.2.2)
+##  Rcpp                     1.0.10    2023-01-22 [2] RSPM (R 4.2.0)
+##  RCurl                    1.98-1.12 2023-03-27 [1] RSPM (R 4.2.0)
+##  rdist                    0.0.5     2020-05-04 [1] CRAN (R 4.2.2)
+##  rematch2                 2.1.2     2020-05-01 [2] RSPM (R 4.2.0)
+##  restfulr                 0.0.15    2022-06-16 [1] CRAN (R 4.2.2)
+##  rhdf5                    2.42.1    2023-04-07 [1] Bioconductor
+##  rhdf5filters             1.10.1    2023-03-24 [1] Bioconductor
+##  Rhdf5lib                 1.20.0    2022-11-01 [1] Bioconductor
+##  rjson                    0.2.21    2022-01-09 [1] CRAN (R 4.2.2)
+##  rlang                    1.1.0     2023-03-14 [2] RSPM (R 4.2.0)
+##  rmarkdown                2.21      2023-03-26 [2] RSPM (R 4.2.0)
+##  Rsamtools                2.14.0    2022-11-01 [1] Bioconductor
+##  RSQLite                  2.3.1     2023-04-03 [1] RSPM (R 4.2.0)
+##  rstudioapi               0.14      2022-08-22 [2] RSPM (R 4.2.0)
+##  rsvd                     1.0.5     2021-04-16 [1] CRAN (R 4.2.2)
+##  rtracklayer            * 1.58.0    2022-11-01 [1] Bioconductor
+##  S4Vectors              * 0.36.2    2023-02-26 [1] Bioconductor
+##  sass                     0.4.5     2023-01-24 [2] RSPM (R 4.2.0)
+##  ScaledMatrix             1.6.0     2022-11-01 [1] Bioconductor
+##  scales                   1.2.1     2022-08-20 [1] CRAN (R 4.2.2)
+##  scater                 * 1.26.1    2022-11-13 [1] Bioconductor
+##  scran                  * 1.26.2    2023-01-19 [1] Bioconductor
+##  scuttle                * 1.8.4     2023-01-19 [1] Bioconductor
 ##  sessioninfo              1.2.2     2021-12-06 [2] RSPM (R 4.2.0)
-##  shiny                    1.7.2     2022-07-19 [2] RSPM (R 4.2.0)
-##  shinyWidgets             0.7.1     2022-07-13 [1] RSPM (R 4.2.0)
-##  SingleCellExperiment   * 1.18.0    2022-04-26 [1] Bioconductor
-##  spam                     2.9-1     2022-08-07 [1] CRAN (R 4.2.0)
-##  sparseMatrixStats        1.8.0     2022-04-26 [1] Bioconductor
-##  SpatialExperiment      * 1.6.0     2022-04-26 [1] Bioconductor
-##  spatialLIBD            * 1.8.10    2022-07-26 [1] Bioconductor
-##  statmod                  1.4.36    2021-05-10 [1] RSPM (R 4.2.0)
-##  STexampleData          * 1.4.5     2022-05-17 [1] Bioconductor
-##  stringi                  1.7.8     2022-07-11 [2] RSPM (R 4.2.0)
-##  stringr                  1.4.0     2019-02-10 [2] CRAN (R 4.2.0)
-##  SummarizedExperiment   * 1.26.1    2022-04-29 [1] Bioconductor
-##  tibble                   3.1.8     2022-07-22 [2] RSPM (R 4.2.0)
-##  tidyr                    1.2.0     2022-02-01 [1] CRAN (R 4.2.0)
-##  tidyselect               1.1.2     2022-02-21 [1] CRAN (R 4.2.0)
-##  usethis                  2.1.6     2022-05-25 [2] RSPM (R 4.2.0)
-##  utf8                     1.2.2     2021-07-24 [2] CRAN (R 4.2.0)
-##  uwot                     0.1.11    2021-12-02 [1] RSPM (R 4.2.0)
-##  vctrs                    0.4.1     2022-04-13 [2] RSPM (R 4.2.0)
-##  vipor                    0.4.5     2017-03-22 [1] RSPM (R 4.2.0)
-##  viridis                  0.6.2     2021-10-13 [1] CRAN (R 4.2.0)
-##  viridisLite              0.4.0     2021-04-13 [1] CRAN (R 4.2.0)
-##  withr                    2.5.0     2022-03-03 [2] CRAN (R 4.2.0)
-##  xfun                     0.31      2022-05-10 [2] RSPM (R 4.2.0)
-##  XML                      3.99-0.10 2022-06-09 [1] RSPM (R 4.2.0)
-##  xml2                     1.3.3     2021-11-30 [2] CRAN (R 4.2.0)
-##  xtable                   1.8-4     2019-04-21 [2] CRAN (R 4.2.0)
-##  XVector                  0.36.0    2022-04-26 [1] Bioconductor
-##  yaml                     2.3.5     2022-02-21 [2] CRAN (R 4.2.0)
-##  zlibbioc                 1.42.0    2022-04-26 [1] Bioconductor
+##  shiny                    1.7.4     2022-12-15 [2] RSPM (R 4.2.0)
+##  shinyWidgets             0.7.6     2023-01-08 [1] RSPM (R 4.2.0)
+##  SingleCellExperiment   * 1.20.1    2023-03-17 [1] Bioconductor
+##  spam                     2.9-1     2022-08-07 [1] CRAN (R 4.2.2)
+##  sparseMatrixStats        1.10.0    2022-11-01 [1] Bioconductor
+##  SpatialExperiment      * 1.8.1     2023-03-05 [1] Bioconductor
+##  spatialLIBD            * 1.10.1    2022-12-01 [1] Bioconductor
+##  statmod                  1.5.0     2023-01-06 [1] RSPM (R 4.2.0)
+##  STexampleData          * 1.6.0     2022-11-03 [1] Bioconductor
+##  SummarizedExperiment   * 1.28.0    2022-11-01 [1] Bioconductor
+##  tibble                   3.2.1     2023-03-20 [2] RSPM (R 4.2.0)
+##  tidyr                    1.3.0     2023-01-24 [1] RSPM (R 4.2.0)
+##  tidyselect               1.2.0     2022-10-10 [1] CRAN (R 4.2.2)
+##  utf8                     1.2.3     2023-01-31 [2] RSPM (R 4.2.0)
+##  uwot                     0.1.14    2022-08-22 [1] CRAN (R 4.2.2)
+##  vctrs                    0.6.1     2023-03-22 [2] RSPM (R 4.2.0)
+##  vipor                    0.4.5     2017-03-22 [1] CRAN (R 4.2.2)
+##  viridis                  0.6.2     2021-10-13 [1] CRAN (R 4.2.2)
+##  viridisLite              0.4.1     2022-08-22 [1] CRAN (R 4.2.2)
+##  withr                    2.5.0     2022-03-03 [2] RSPM (R 4.2.0)
+##  xfun                     0.38      2023-03-24 [2] RSPM (R 4.2.0)
+##  XML                      3.99-0.14 2023-03-19 [1] RSPM (R 4.2.0)
+##  xtable                   1.8-4     2019-04-21 [2] RSPM (R 4.2.0)
+##  XVector                  0.38.0    2022-11-01 [1] Bioconductor
+##  yaml                     2.3.7     2023-01-23 [2] RSPM (R 4.2.0)
+##  zlibbioc                 1.44.0    2022-11-01 [1] Bioconductor
 ## 
 ##  [1] /__w/_temp/Library
 ##  [2] /usr/local/lib/R/site-library

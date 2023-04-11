@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Feature selection | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Feature selection | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2022-08-07" />
+<meta name="date" content="2023-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -91,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -365,62 +365,62 @@ div.csl-indent {
 <div id="previous-steps-1" class="section level2 hasAnchor" number="11.2">
 <h2><span class="header-section-number">11.2</span> Previous steps<a href="feature-selection.html#previous-steps-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Code to run steps from the previous chapters to generate the <code>SpatialExperiment</code> object required for this chapter.</em></p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="feature-selection.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
-<span id="cb89-2"><a href="feature-selection.html#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-3"><a href="feature-selection.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
-<span id="cb89-4"><a href="feature-selection.html#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
-<span id="cb89-5"><a href="feature-selection.html#cb89-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
-<span id="cb89-6"><a href="feature-selection.html#cb89-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-7"><a href="feature-selection.html#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
-<span id="cb89-8"><a href="feature-selection.html#cb89-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-9"><a href="feature-selection.html#cb89-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb89-10"><a href="feature-selection.html#cb89-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
-<span id="cb89-11"><a href="feature-selection.html#cb89-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb89-12"><a href="feature-selection.html#cb89-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
-<span id="cb89-13"><a href="feature-selection.html#cb89-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
-<span id="cb89-14"><a href="feature-selection.html#cb89-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
-<span id="cb89-15"><a href="feature-selection.html#cb89-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
-<span id="cb89-16"><a href="feature-selection.html#cb89-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
-<span id="cb89-17"><a href="feature-selection.html#cb89-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">600</span></span>
-<span id="cb89-18"><a href="feature-selection.html#cb89-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">400</span></span>
-<span id="cb89-19"><a href="feature-selection.html#cb89-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">28</span></span>
-<span id="cb89-20"><a href="feature-selection.html#cb89-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">10</span></span>
-<span id="cb89-21"><a href="feature-selection.html#cb89-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
-<span id="cb89-22"><a href="feature-selection.html#cb89-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
-<span id="cb89-23"><a href="feature-selection.html#cb89-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
-<span id="cb89-24"><a href="feature-selection.html#cb89-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
-<span id="cb89-25"><a href="feature-selection.html#cb89-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
-<span id="cb89-26"><a href="feature-selection.html#cb89-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-27"><a href="feature-selection.html#cb89-27" aria-hidden="true" tabindex="-1"></a><span class="co"># NORMALIZATION</span></span>
-<span id="cb89-28"><a href="feature-selection.html#cb89-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-29"><a href="feature-selection.html#cb89-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
-<span id="cb89-30"><a href="feature-selection.html#cb89-30" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts using library size factors</span></span>
-<span id="cb89-31"><a href="feature-selection.html#cb89-31" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="feature-selection.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
+<span id="cb85-2"><a href="feature-selection.html#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-3"><a href="feature-selection.html#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb85-4"><a href="feature-selection.html#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
+<span id="cb85-5"><a href="feature-selection.html#cb85-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
+<span id="cb85-6"><a href="feature-selection.html#cb85-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-7"><a href="feature-selection.html#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
+<span id="cb85-8"><a href="feature-selection.html#cb85-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-9"><a href="feature-selection.html#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
+<span id="cb85-10"><a href="feature-selection.html#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
+<span id="cb85-11"><a href="feature-selection.html#cb85-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb85-12"><a href="feature-selection.html#cb85-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
+<span id="cb85-13"><a href="feature-selection.html#cb85-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
+<span id="cb85-14"><a href="feature-selection.html#cb85-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
+<span id="cb85-15"><a href="feature-selection.html#cb85-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
+<span id="cb85-16"><a href="feature-selection.html#cb85-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
+<span id="cb85-17"><a href="feature-selection.html#cb85-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">600</span></span>
+<span id="cb85-18"><a href="feature-selection.html#cb85-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">400</span></span>
+<span id="cb85-19"><a href="feature-selection.html#cb85-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">28</span></span>
+<span id="cb85-20"><a href="feature-selection.html#cb85-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">10</span></span>
+<span id="cb85-21"><a href="feature-selection.html#cb85-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
+<span id="cb85-22"><a href="feature-selection.html#cb85-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
+<span id="cb85-23"><a href="feature-selection.html#cb85-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
+<span id="cb85-24"><a href="feature-selection.html#cb85-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
+<span id="cb85-25"><a href="feature-selection.html#cb85-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span>
+<span id="cb85-26"><a href="feature-selection.html#cb85-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-27"><a href="feature-selection.html#cb85-27" aria-hidden="true" tabindex="-1"></a><span class="co"># NORMALIZATION</span></span>
+<span id="cb85-28"><a href="feature-selection.html#cb85-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-29"><a href="feature-selection.html#cb85-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
+<span id="cb85-30"><a href="feature-selection.html#cb85-30" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts using library size factors</span></span>
+<span id="cb85-31"><a href="feature-selection.html#cb85-31" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span></code></pre></div>
 </div>
 <div id="highly-variable-genes-hvgs" class="section level2 hasAnchor" number="11.3">
 <h2><span class="header-section-number">11.3</span> Highly variable genes (HVGs)<a href="feature-selection.html#highly-variable-genes-hvgs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We use methods from <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span> to identify a set of top highly variable genes (HVGs), which can be used to define major cell types. These methods were originally developed for single-cell RNA sequencing (scRNA-seq) data, so here we are making the implicit assumption that spots can be treated as equivalent to cells.</p>
 <p>It is important to note that HVGs are defined purely based on molecular features (i.e. gene expression), and do not take any spatial information into account. If the biologically meaningful spatial information in this dataset mainly reflects spatial distributions of major cell types, then relying on HVGs for downstream analyses may be sufficient. But if there are additional important spatial features in the dataset, then it may be more meaningful to define spatially variable genes (SVGs) (see below).</p>
 <p>To identify HVGs, we first remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of main biological interest.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="feature-selection.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
-<span id="cb90-2"><a href="feature-selection.html#cb90-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
-<span id="cb90-3"><a href="feature-selection.html#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="feature-selection.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove mitochondrial genes</span></span>
+<span id="cb86-2"><a href="feature-selection.html#cb86-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[<span class="sc">!</span>is_mito, ]</span>
+<span id="cb86-3"><a href="feature-selection.html#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(spe)</span></code></pre></div>
 <pre><code>## [1] 33525  3524</code></pre>
 <p>Then, we apply methods from <code>scran</code>. This gives us a list of HVGs, which can be used for further downstream analyses. The parameter <code>prop</code> defines how many HVGs we want. For example <code>prop = 0.1</code> returns the top 10% of genes.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="feature-selection.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
-<span id="cb92-2"><a href="feature-selection.html#cb92-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-3"><a href="feature-selection.html#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
-<span id="cb92-4"><a href="feature-selection.html#cb92-4" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
-<span id="cb92-5"><a href="feature-selection.html#cb92-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-6"><a href="feature-selection.html#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize mean-variance relationship</span></span>
-<span id="cb92-7"><a href="feature-selection.html#cb92-7" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">metadata</span>(dec)</span>
-<span id="cb92-8"><a href="feature-selection.html#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit<span class="sc">$</span>mean, fit<span class="sc">$</span>var, </span>
-<span id="cb92-9"><a href="feature-selection.html#cb92-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;mean of log-expression&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;variance of log-expression&quot;</span>)</span>
-<span id="cb92-10"><a href="feature-selection.html#cb92-10" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(fit<span class="sc">$</span><span class="fu">trend</span>(x), <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="feature-selection.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
+<span id="cb88-2"><a href="feature-selection.html#cb88-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-3"><a href="feature-selection.html#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit mean-variance relationship</span></span>
+<span id="cb88-4"><a href="feature-selection.html#cb88-4" aria-hidden="true" tabindex="-1"></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb88-5"><a href="feature-selection.html#cb88-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-6"><a href="feature-selection.html#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize mean-variance relationship</span></span>
+<span id="cb88-7"><a href="feature-selection.html#cb88-7" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">metadata</span>(dec)</span>
+<span id="cb88-8"><a href="feature-selection.html#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit<span class="sc">$</span>mean, fit<span class="sc">$</span>var, </span>
+<span id="cb88-9"><a href="feature-selection.html#cb88-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;mean of log-expression&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;variance of log-expression&quot;</span>)</span>
+<span id="cb88-10"><a href="feature-selection.html#cb88-10" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(fit<span class="sc">$</span><span class="fu">trend</span>(x), <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="OSTA-book_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="feature-selection.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
-<span id="cb93-2"><a href="feature-selection.html#cb93-2" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
-<span id="cb93-3"><a href="feature-selection.html#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(top_hvgs)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="feature-selection.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select top HVGs</span></span>
+<span id="cb89-2"><a href="feature-selection.html#cb89-2" aria-hidden="true" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">prop =</span> <span class="fl">0.1</span>)</span>
+<span id="cb89-3"><a href="feature-selection.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(top_hvgs)</span></code></pre></div>
 <pre><code>## [1] 1438</code></pre>
 </div>
 <div id="spatially-variable-genes-svgs" class="section level2 hasAnchor" number="11.4">
