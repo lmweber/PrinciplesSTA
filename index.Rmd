@@ -16,7 +16,7 @@ description: "Online book 'Orchestrating Spatially-Resolved Transcriptomics Anal
 
 # Welcome {-}
 
-<a href="https://bioconductor.org"><img src="https://github.com/Bioconductor/BiocStickers/blob/devel/Bioconductor/Bioconductor-rh.png" width="150" alt="Bioconductor Sticker" align="right" style="margin: 0 1em 0 1em" /></a>
+<a href="https://bioconductor.org"><img src="https://raw.githubusercontent.com/Bioconductor/BiocStickers/devel/Bioconductor/Bioconductor-rh.png" width="150" alt="Bioconductor Sticker" align="right" style="margin: 0 1em 0 1em" /></a>
 
 This is the website for the online book **"Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" (OSTA)**.
 
