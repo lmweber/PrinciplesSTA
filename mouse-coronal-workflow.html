@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 18 Mouse coronal workflow | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 18 Mouse coronal workflow | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2023-04-11" />
+<meta name="date" content="2023-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
@@ -169,12 +173,26 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html"><i class="fa fa-check"></i><b>2</b> Spatially-resolved transcriptomics</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1</b> 10x Genomics Visium</a></li>
-<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#additional-platforms"><i class="fa fa-check"></i><b>2.2</b> Additional platforms</a></li>
+<li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#sequencing-based-platforms"><i class="fa fa-check"></i><b>2.1</b> Sequencing-based platforms</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1.1</b> 10x Genomics Visium</a></li>
+<li class="chapter" data-level="2.1.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#nanostring-geomx"><i class="fa fa-check"></i><b>2.1.2</b> NanoString GeoMx</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#molecule-based-platforms"><i class="fa fa-check"></i><b>2.2</b> Molecule-based platforms</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-xenium"><i class="fa fa-check"></i><b>2.2.1</b> 10x Genomics Xenium</a></li>
+<li class="chapter" data-level="2.2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#nanostring-cosmx"><i class="fa fa-check"></i><b>2.2.2</b> NanoString CosMx</a></li>
+<li class="chapter" data-level="2.2.3" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#vizgen-merscope"><i class="fa fa-check"></i><b>2.2.3</b> Vizgen MERSCOPE</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="spatialexperiment.html"><a href="spatialexperiment.html"><i class="fa fa-check"></i><b>3</b> SpatialExperiment</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="spatialexperiment.html"><a href="spatialexperiment.html#spatialexperiment-class"><i class="fa fa-check"></i><b>3.1</b> SpatialExperiment class</a></li>
+<li class="chapter" data-level="3.2" data-path="spatialexperiment.html"><a href="spatialexperiment.html#additional-classes"><i class="fa fa-check"></i><b>3.2</b> Additional classes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="spatialexperiment.html"><a href="spatialexperiment.html#moleculeexperiment"><i class="fa fa-check"></i><b>3.2.1</b> MoleculeExperiment</a></li>
+<li class="chapter" data-level="3.2.2" data-path="spatialexperiment.html"><a href="spatialexperiment.html#spatialfeatureexperiment"><i class="fa fa-check"></i><b>3.2.2</b> SpatialFeatureExperiment</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>II Preprocessing steps</b></span></li>
 <li class="chapter" data-level="4" data-path="preprocessing-steps.html"><a href="preprocessing-steps.html"><i class="fa fa-check"></i><b>4</b> Preprocessing steps</a></li>
@@ -573,8 +591,8 @@ div.csl-indent {
 ##                       tau.sq       phi    loglik   runtime      mean       var
 ##                    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
 ## ENSMUSG00000061518 0.1202984  13.53194  -43.6472     0.027   4.98425  0.142977
-## ENSMUSG00000073702 0.0860842   5.84110  -40.3003     0.016   4.83432  0.143616
-## ENSMUSG00000046330 0.1133114   6.47579  -48.2811     0.020   5.35620  0.166734
+## ENSMUSG00000073702 0.0860842   5.84110  -40.3003     0.015   4.83432  0.143616
+## ENSMUSG00000046330 0.1133114   6.47579  -48.2811     0.019   5.35620  0.166734
 ##                        spcov   prop_sv loglik_lm   LR_stat      rank      pval
 ##                    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
 ## ENSMUSG00000061518 0.0291204  0.149022  -44.1377  0.981135       184 0.6122789
@@ -604,11 +622,11 @@ div.csl-indent {
 ##                         tau.sq       phi    loglik   runtime      mean
 ##                      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
 ## ENSMUSG00000046447 6.28372e-02   2.05206   -99.021     0.024   5.35338
-## ENSMUSG00000053310 2.47772e-01   3.26420  -151.225     0.026   4.85871
+## ENSMUSG00000053310 2.47772e-01   3.26420  -151.225     0.025   4.85871
 ## ENSMUSG00000018593 7.63186e-02   3.68722  -124.793     0.025   3.61331
 ## ENSMUSG00000032532 2.98145e-08   5.07869  -147.464     0.021   4.19282
-## ENSMUSG00000070570 3.20107e-01   4.15601  -155.620     0.023   3.62933
-## ENSMUSG00000024617 9.79965e-02   3.74573  -113.269     0.028   4.11652
+## ENSMUSG00000070570 3.20107e-01   4.15601  -155.620     0.019   3.62933
+## ENSMUSG00000024617 9.79965e-02   3.74573  -113.269     0.030   4.11652
 ##                          var     spcov   prop_sv loglik_lm   LR_stat      rank
 ##                    &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
 ## ENSMUSG00000046447   1.50820  0.256357  0.967714  -161.937  125.8321         1

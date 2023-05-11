@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Spatially-resolved transcriptomics | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Spatially-resolved transcriptomics | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2023-04-11" />
+<meta name="date" content="2023-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
@@ -169,12 +173,26 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html"><i class="fa fa-check"></i><b>2</b> Spatially-resolved transcriptomics</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1</b> 10x Genomics Visium</a></li>
-<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#additional-platforms"><i class="fa fa-check"></i><b>2.2</b> Additional platforms</a></li>
+<li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#sequencing-based-platforms"><i class="fa fa-check"></i><b>2.1</b> Sequencing-based platforms</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1.1</b> 10x Genomics Visium</a></li>
+<li class="chapter" data-level="2.1.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#nanostring-geomx"><i class="fa fa-check"></i><b>2.1.2</b> NanoString GeoMx</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#molecule-based-platforms"><i class="fa fa-check"></i><b>2.2</b> Molecule-based platforms</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-xenium"><i class="fa fa-check"></i><b>2.2.1</b> 10x Genomics Xenium</a></li>
+<li class="chapter" data-level="2.2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#nanostring-cosmx"><i class="fa fa-check"></i><b>2.2.2</b> NanoString CosMx</a></li>
+<li class="chapter" data-level="2.2.3" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#vizgen-merscope"><i class="fa fa-check"></i><b>2.2.3</b> Vizgen MERSCOPE</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="spatialexperiment.html"><a href="spatialexperiment.html"><i class="fa fa-check"></i><b>3</b> SpatialExperiment</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="spatialexperiment.html"><a href="spatialexperiment.html#spatialexperiment-class"><i class="fa fa-check"></i><b>3.1</b> SpatialExperiment class</a></li>
+<li class="chapter" data-level="3.2" data-path="spatialexperiment.html"><a href="spatialexperiment.html#additional-classes"><i class="fa fa-check"></i><b>3.2</b> Additional classes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="spatialexperiment.html"><a href="spatialexperiment.html#moleculeexperiment"><i class="fa fa-check"></i><b>3.2.1</b> MoleculeExperiment</a></li>
+<li class="chapter" data-level="3.2.2" data-path="spatialexperiment.html"><a href="spatialexperiment.html#spatialfeatureexperiment"><i class="fa fa-check"></i><b>3.2.2</b> SpatialFeatureExperiment</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>II Preprocessing steps</b></span></li>
 <li class="chapter" data-level="4" data-path="preprocessing-steps.html"><a href="preprocessing-steps.html"><i class="fa fa-check"></i><b>4</b> Preprocessing steps</a></li>
@@ -358,19 +376,23 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="spatially-resolved-transcriptomics" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Spatially-resolved transcriptomics<a href="spatially-resolved-transcriptomics.html#spatially-resolved-transcriptomics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Spatially-resolved transcriptomics (SRT) technologies allow transcriptome-wide gene expression to be measured at spatial resolution. There are several technological platforms, each with their unique advantages. SRT was named the Method of the Year by Nature Methods in 2020 <span class="citation">(<a href="#ref-Mark2020" role="doc-biblioref"><span>“Method of the <span>Year</span>: Spatially Resolved Transcriptomics <span></span> <span>Nature</span> <span>Methods</span>”</span> n.d.</a>)</span> and we expect that it will help put genome-wide expression on the map <span class="citation">(<a href="#ref-Maynard2020Spatial" role="doc-biblioref">K. R. Maynard, Jaffe, and Martinowich 2020</a>)</span>.</p>
-<p>Here we describe the platforms used to generate the example datasets in this book.</p>
+<p>Spatially-resolved transcriptomics (SRT) platforms measure up to transcriptome-wide gene expression at spatial resolution. A number of technological platforms have been developed, each with their unique advantages. SRT was named the Method of the Year by Nature Methods in 2020 <span class="citation">(<a href="#ref-Mark2020" role="doc-biblioref"><span>“Method of the <span>Year</span>: Spatially Resolved Transcriptomics <span></span> <span>Nature</span> <span>Methods</span>”</span> n.d.</a>)</span> and we expect that it will help put genome-wide expression on the map <span class="citation">(<a href="#ref-Maynard2020Spatial" role="doc-biblioref">K. R. Maynard, Jaffe, and Martinowich 2020</a>)</span>.</p>
+<p>Here we provide introductory details and links for several widely used commercially available platforms.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
 <img src="images/Maynard2020_spatial.png" alt="Illustration of potential uses of spatially-resolved transcriptomics data and how it can be combined with single cell/nucleus RNA-seq to study tissues of interest such as the human brain. Source: [Maynard et al, _Neuropsychopharmacol._, 2020](https://doi.org/10.1038/s41386-019-0484-7)." width="100%" />
 <p class="caption">
 Figure 2.1: Illustration of potential uses of spatially-resolved transcriptomics data and how it can be combined with single cell/nucleus RNA-seq to study tissues of interest such as the human brain. Source: <a href="https://doi.org/10.1038/s41386-019-0484-7">Maynard et al, <em>Neuropsychopharmacol.</em>, 2020</a>.
 </p>
 </div>
-<div id="x-genomics-visium" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> 10x Genomics Visium<a href="spatially-resolved-transcriptomics.html#x-genomics-visium" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <a href="https://www.10xgenomics.com/products/spatial-gene-expression">10x Genomics Visium</a> platform measures transcriptome-wide gene expression at a two-dimensional grid of “spots” on a tissue slide. Fresh-frozen tissue is placed onto the slide, fixed, stained, and permeabilized. Each spot contains millions of spatially-barcoded capture oligonucleotides, which bind to mRNAs from the tissue. A cDNA library is then generated for sequencing, which includes the spatial barcodes, allowing reads to be mapped back to their spatial locations.</p>
-<p>The dimensions of the tissue slide are approximately 6.5mm by 6.5mm, and contains around 5000 barcoded spots. Spots are located in a regular hexagonal arrangement, with each spot 55µm in diameter, and 100µm center to center. The number of cells per spot depends on the organism and tissue type, e.g. 0-10 for human brain, or around 50 for mouse brain. Each slide contains 4 capture areas (6.5mm x 6.5mm each). The following figure provides an illustration.</p>
-<p>This platform is commercially available from 10x Genomics.</p>
+<div id="sequencing-based-platforms" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Sequencing-based platforms<a href="spatially-resolved-transcriptomics.html#sequencing-based-platforms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sequencing-based platforms capture RNAs at a set of spatial measurement locations, tag RNAs with spatial barcodes, and generate a readout by next-generation sequencing.</p>
+<p>These platforms can provide up to full-transcriptome feature resolution due to the use of next-generation sequencing. The spatial resolution depends on the size of the capture locations and tissue cell density, and may include multiple cells per measurement location.</p>
+<div id="x-genomics-visium" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> 10x Genomics Visium<a href="spatially-resolved-transcriptomics.html#x-genomics-visium" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <a href="https://www.10xgenomics.com/products/spatial-gene-expression">10x Genomics Visium</a> platform measures transcriptome-wide gene expression at a grid of spatial locations (referred to as spots) on a tissue capture area. Either fresh-frozen or formalin-fixed paraffin-embedded (FFPE) tissue may be used. Each spot contains millions of spatially-barcoded capture oligonucleotides, which bind to mRNAs from the tissue. A cDNA library is then generated for sequencing, which includes the spatial barcodes, allowing reads to be mapped back to their spatial locations.</p>
+<p>The array dimensions are 6.5mm x 6.5mm, with around 5000 barcoded spots. Spots are 55µm in diameter and spaced 100µm center-to-center in a hexagonal grid arrangement. The number of cells per spot depends on the tissue cell density, e.g. around 0-10 for human brain or ~50 for mouse brain. Each Visium slide contains four tissue capture areas. The following figure provides an illustration.</p>
+<p>Histology images generated from hematoxylin and eosin (H&amp;E) staining can be used to identify anatomical and cell morphological features such as the number of cells per spot.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Visium-schematic"></span>
 <img src="images/Visium.png" alt="Schematic of 10x Genomics Visium platform. Source: [10x Genomics Visium website](https://www.10xgenomics.com/spatial-transcriptomics/)" width="574" />
 <p class="caption">
@@ -378,38 +400,37 @@ Figure 2.2: Schematic of 10x Genomics Visium platform. Source: <a href="https://
 </p>
 </div>
 </div>
-<div id="additional-platforms" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Additional platforms<a href="spatially-resolved-transcriptomics.html#additional-platforms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Additional platforms include the following:</p>
-<p>Spot-based platforms:</p>
-<ul>
-<li><a href="https://www.nature.com/articles/s41587-020-0739-1">Slide-seqV2</a> <span class="citation">(<a href="#ref-Stickels2020" role="doc-biblioref">Stickels et al. 2020</a>)</span></li>
-</ul>
-<p>Molecule-based platforms:</p>
-<ul>
-<li><a href="https://vizgen.com/products/">MERSCOPE</a> (commercially available)</li>
-<li><a href="https://www.pnas.org/content/116/39/19490">MERFISH</a> <span class="citation">(<a href="#ref-Xia2019" role="doc-biblioref">Xia et al. 2019</a>)</span></li>
-<li><a href="https://www.nature.com/articles/s41586-019-1049-y">SeqFISH+</a> <span class="citation">(<a href="#ref-Eng2019" role="doc-biblioref">Eng et al. 2019</a>)</span></li>
-</ul>
+<div id="nanostring-geomx" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> NanoString GeoMx<a href="spatially-resolved-transcriptomics.html#nanostring-geomx" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Details available on the <a href="https://nanostring.com/products/geomx-digital-spatial-profiler/">NanoString</a> website.</p>
+</div>
+</div>
+<div id="molecule-based-platforms" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Molecule-based platforms<a href="spatially-resolved-transcriptomics.html#molecule-based-platforms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Molecule-based platforms identify individual RNAs by <em>in-situ</em> hybridization (ISH) or <em>in-situ</em> sequencing (ISS) at up to sub-cellular spatial resolution. Counts may be aggregated to cellular (single-cell) spatial resolution by applying manual or data-driven cell segmentation algorithms.</p>
+<p>Feature resolution is generally on the order of 100s to 1000s of RNAs, which may be selected as targeted panels of RNAs of interest.</p>
+<div id="x-genomics-xenium" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> 10x Genomics Xenium<a href="spatially-resolved-transcriptomics.html#x-genomics-xenium" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Details available on the <a href="https://www.10xgenomics.com/platforms/xenium">10x Genomics</a> website.</p>
+</div>
+<div id="nanostring-cosmx" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> NanoString CosMx<a href="spatially-resolved-transcriptomics.html#nanostring-cosmx" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Details available on the <a href="https://nanostring.com/products/cosmx-spatial-molecular-imager/">NanoString</a> website.</p>
+</div>
+<div id="vizgen-merscope" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Vizgen MERSCOPE<a href="spatially-resolved-transcriptomics.html#vizgen-merscope" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Details available on the <a href="https://vizgen.com/products/">Vizgen</a> website.</p>
 
+</div>
 </div>
 </div>
 <h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-Eng2019" class="csl-entry">
-Eng, Chee-Huat Linus, Michael Lawson, Qian Zhu, Ruben Dries, Noushin Koulena, Yodai Takei, Jina Yun, et al. 2019. <span>“Transcriptome-Scale Super-Resolved Imaging in Tissues by <span>RNA</span> <span class="nocase">seqFISH+</span>.”</span> <em>Nature</em>. <a href="https://www.nature.com/articles/s41586-019-1049-y">https://www.nature.com/articles/s41586-019-1049-y</a>.
-</div>
 <div id="ref-Maynard2020Spatial" class="csl-entry">
 Maynard, K. R., A. E. Jaffe, and K. Martinowich. 2020. <span>“Spatial Transcriptomics: Putting Genome-Wide Expression on the Map.”</span> <em>Neuropsychopharmacology</em> 45 (1): 232–33. <a href="https://doi.org/10.1038/s41386-019-0484-7">https://doi.org/10.1038/s41386-019-0484-7</a>.
 </div>
 <div id="ref-Mark2020" class="csl-entry">
 <span>“Method of the <span>Year</span>: Spatially Resolved Transcriptomics <span></span> <span>Nature</span> <span>Methods</span>.”</span> n.d. Accessed August 6, 2021. <a href="https://doi.org/10.1038/s41592-020-01033-y">https://doi.org/10.1038/s41592-020-01033-y</a>.
-</div>
-<div id="ref-Stickels2020" class="csl-entry">
-Stickels, Robert R., Evan Murray, Pawan Kumar, Jilong Li, Jamie L. Marshall, Daniela J. Di Bella, Paola Arlotta, Evan Z. Macosko, and Fei Chen. 2020. <span>“Highly Sensitive Spatial Transcriptomics at Near-Cellular Resolution with <span class="nocase">Slide-seqV2</span>.”</span> <em>Nature Biotechnology</em>. <a href="https://www.nature.com/articles/s41587-020-0739-1">https://www.nature.com/articles/s41587-020-0739-1</a>.
-</div>
-<div id="ref-Xia2019" class="csl-entry">
-Xia, Chenglong, Jean Fan, George Emanuel, Junjie Hao, and Xiaowei Zhuang. 2019. <span>“Spatial Transcriptome Profiling by <span>MERFISH</span> Reveals Subcellular <span>RNA</span> Compartmentalization and Cell Cycle-Dependent Gene Expression.”</span> <em>Proceedings of the National Academy of Sciences of the USA</em>. <a href="https://www.pnas.org/content/116/39/19490">https://www.pnas.org/content/116/39/19490</a>.
 </div>
 </div>
             </section>

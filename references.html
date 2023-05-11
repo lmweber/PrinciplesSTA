@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 22 References | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 22 References | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2023-04-11" />
+<meta name="date" content="2023-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
@@ -169,12 +173,26 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html"><i class="fa fa-check"></i><b>2</b> Spatially-resolved transcriptomics</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1</b> 10x Genomics Visium</a></li>
-<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#additional-platforms"><i class="fa fa-check"></i><b>2.2</b> Additional platforms</a></li>
+<li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#sequencing-based-platforms"><i class="fa fa-check"></i><b>2.1</b> Sequencing-based platforms</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1.1</b> 10x Genomics Visium</a></li>
+<li class="chapter" data-level="2.1.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#nanostring-geomx"><i class="fa fa-check"></i><b>2.1.2</b> NanoString GeoMx</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#molecule-based-platforms"><i class="fa fa-check"></i><b>2.2</b> Molecule-based platforms</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-xenium"><i class="fa fa-check"></i><b>2.2.1</b> 10x Genomics Xenium</a></li>
+<li class="chapter" data-level="2.2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#nanostring-cosmx"><i class="fa fa-check"></i><b>2.2.2</b> NanoString CosMx</a></li>
+<li class="chapter" data-level="2.2.3" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#vizgen-merscope"><i class="fa fa-check"></i><b>2.2.3</b> Vizgen MERSCOPE</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="spatialexperiment.html"><a href="spatialexperiment.html"><i class="fa fa-check"></i><b>3</b> SpatialExperiment</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="spatialexperiment.html"><a href="spatialexperiment.html#spatialexperiment-class"><i class="fa fa-check"></i><b>3.1</b> SpatialExperiment class</a></li>
+<li class="chapter" data-level="3.2" data-path="spatialexperiment.html"><a href="spatialexperiment.html#additional-classes"><i class="fa fa-check"></i><b>3.2</b> Additional classes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="spatialexperiment.html"><a href="spatialexperiment.html#moleculeexperiment"><i class="fa fa-check"></i><b>3.2.1</b> MoleculeExperiment</a></li>
+<li class="chapter" data-level="3.2.2" data-path="spatialexperiment.html"><a href="spatialexperiment.html#spatialfeatureexperiment"><i class="fa fa-check"></i><b>3.2.2</b> SpatialFeatureExperiment</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>II Preprocessing steps</b></span></li>
 <li class="chapter" data-level="4" data-path="preprocessing-steps.html"><a href="preprocessing-steps.html"><i class="fa fa-check"></i><b>4</b> Preprocessing steps</a></li>
@@ -364,9 +382,6 @@ div.csl-indent {
 Amezquita, Robert A., Aaron T. L. Lun, Etienne Becht, Vince J. Carey, Lindsay N. Carpp, Ludwig Geistlinger, Federico Marini, et al. 2020. <span>“Orchestrating Single-Cell Analysis with <span>Bioconductor</span>.”</span> <em>Nature Methods</em> 17 (2): 137–45. <a href="https://doi.org/10.1038/s41592-019-0654-x">https://doi.org/10.1038/s41592-019-0654-x</a>.
 </div>
 <div class="csl-entry">
-Eng, Chee-Huat Linus, Michael Lawson, Qian Zhu, Ruben Dries, Noushin Koulena, Yodai Takei, Jina Yun, et al. 2019. <span>“Transcriptome-Scale Super-Resolved Imaging in Tissues by <span>RNA</span> <span class="nocase">seqFISH+</span>.”</span> <em>Nature</em>. <a href="https://www.nature.com/articles/s41586-019-1049-y">https://www.nature.com/articles/s41586-019-1049-y</a>.
-</div>
-<div class="csl-entry">
 Huber, Wolfgang, Vincent J. Carey, Robert Gentleman, Simon Anders, Marc Carlson, Benilton S. Carvalho, Hector Corrada Bravo, et al. 2015. <span>“Orchestrating High-Throughput Genomic Analysis with <span>Bioconductor</span>.”</span> <em>Nature Methods</em> 12 (2): 115–21. <a href="https://doi.org/10.1038/nmeth.3252">https://doi.org/10.1038/nmeth.3252</a>.
 </div>
 <div class="csl-entry">
@@ -400,10 +415,7 @@ Paradis, E., and K. Schliep. 2019. <span>“Ape 5.0: An Environment for Modern P
 Pardo, Brenda, Abby Spangler, Lukas M. Weber, Stephanie C. Hicks, Andrew E. Jaffe, Keri Martinowich, Kristen R. Maynard, and Leonardo Collado-Torres. 2021. <span>“spatialLIBD: An r/Bioconductor Package to Visualize Spatially-Resolved Transcriptomics Data.”</span> <em>bioRxiv</em>. <a href="https://doi.org/10.1101/2021.04.29.440149">https://doi.org/10.1101/2021.04.29.440149</a>.
 </div>
 <div class="csl-entry">
-Righelli, Dario, Lukas M. Weber, Helena L. Crowell, Brenda Pardo, Leonardo Collado-Torres, Shila Ghazanfar, Aaron T. L. Lun, Stephanie C. Hicks, and Davide Risso. 2021. <span>“<span>SpatialExperiment</span>: Infrastructure for Spatially Resolved Transcriptomics Data in <span>R</span> Using <span>Bioconductor</span>.”</span> <em>bioRxiv</em>, January, 2021.01.27.428431. <a href="https://doi.org/10.1101/2021.01.27.428431">https://doi.org/10.1101/2021.01.27.428431</a>.
-</div>
-<div class="csl-entry">
-Stickels, Robert R., Evan Murray, Pawan Kumar, Jilong Li, Jamie L. Marshall, Daniela J. Di Bella, Paola Arlotta, Evan Z. Macosko, and Fei Chen. 2020. <span>“Highly Sensitive Spatial Transcriptomics at Near-Cellular Resolution with <span class="nocase">Slide-seqV2</span>.”</span> <em>Nature Biotechnology</em>. <a href="https://www.nature.com/articles/s41587-020-0739-1">https://www.nature.com/articles/s41587-020-0739-1</a>.
+<span>“<span>SpatialExperiment</span>: Infrastructure for Spatially-Resolved Transcriptomics Data in <span>R</span> Using Bioconductor.”</span> n.d.
 </div>
 <div class="csl-entry">
 Sun, Shiquan, Jiaqiang Zhu, and Xiang Zhou. 2020. <span>“Statistical Analysis of Spatial Expression Patterns for Spatially Resolved Transcriptomic Studies.”</span> <em>Nature Methods</em> 17 (2): 193–200. <a href="https://doi.org/doi.org/10.1038/s41592-019-0701-7">https://doi.org/doi.org/10.1038/s41592-019-0701-7</a>.
@@ -413,9 +425,6 @@ Svensson, Valentine, Sarah A Teichmann, and Oliver Stegle. 2018. <span>“<span>
 </div>
 <div class="csl-entry">
 Tippani, Madhavi, Heena R. Divecha, Joseph L. Catallini, Lukas M. Weber, Abby Spangler, Andrew E. Jaffe, Stephanie C. Hicks, et al. 2021. <span>“<span>VistoSeg</span>: A <span>MATLAB</span> Pipeline to Process, Analyze and Visualize High Resolution Histology Images for <span>Visium</span> Spatial Transcriptomics Data.”</span> <em>bioRxiv</em>, August, 2021.08.04.452489. <a href="https://doi.org/10.1101/2021.08.04.452489">https://doi.org/10.1101/2021.08.04.452489</a>.
-</div>
-<div class="csl-entry">
-Xia, Chenglong, Jean Fan, George Emanuel, Junjie Hao, and Xiaowei Zhuang. 2019. <span>“Spatial Transcriptome Profiling by <span>MERFISH</span> Reveals Subcellular <span>RNA</span> Compartmentalization and Cell Cycle-Dependent Gene Expression.”</span> <em>Proceedings of the National Academy of Sciences of the USA</em>. <a href="https://www.pnas.org/content/116/39/19490">https://www.pnas.org/content/116/39/19490</a>.
 </div>
 <div class="csl-entry">
 Zhu, Jiaqiang, Shiquan Sun, and Xiang Zhou. 2021. <span>“<span>SPARK-X</span>: Non-Parametric Modeling Enables Scalable and Robust Detection of Spatial Expression Patterns for Large Spatial Transcriptomic Studies.”</span> <em>Genome Biology</em> 22: 184. <a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02404-0">https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02404-0</a>.

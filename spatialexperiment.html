@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 SpatialExperiment | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 SpatialExperiment | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2023-04-11" />
+<meta name="date" content="2023-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
@@ -169,12 +173,26 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html"><i class="fa fa-check"></i><b>2</b> Spatially-resolved transcriptomics</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1</b> 10x Genomics Visium</a></li>
-<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#additional-platforms"><i class="fa fa-check"></i><b>2.2</b> Additional platforms</a></li>
+<li class="chapter" data-level="2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#sequencing-based-platforms"><i class="fa fa-check"></i><b>2.1</b> Sequencing-based platforms</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-visium"><i class="fa fa-check"></i><b>2.1.1</b> 10x Genomics Visium</a></li>
+<li class="chapter" data-level="2.1.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#nanostring-geomx"><i class="fa fa-check"></i><b>2.1.2</b> NanoString GeoMx</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#molecule-based-platforms"><i class="fa fa-check"></i><b>2.2</b> Molecule-based platforms</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#x-genomics-xenium"><i class="fa fa-check"></i><b>2.2.1</b> 10x Genomics Xenium</a></li>
+<li class="chapter" data-level="2.2.2" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#nanostring-cosmx"><i class="fa fa-check"></i><b>2.2.2</b> NanoString CosMx</a></li>
+<li class="chapter" data-level="2.2.3" data-path="spatially-resolved-transcriptomics.html"><a href="spatially-resolved-transcriptomics.html#vizgen-merscope"><i class="fa fa-check"></i><b>2.2.3</b> Vizgen MERSCOPE</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="spatialexperiment.html"><a href="spatialexperiment.html"><i class="fa fa-check"></i><b>3</b> SpatialExperiment</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="spatialexperiment.html"><a href="spatialexperiment.html#spatialexperiment-class"><i class="fa fa-check"></i><b>3.1</b> SpatialExperiment class</a></li>
+<li class="chapter" data-level="3.2" data-path="spatialexperiment.html"><a href="spatialexperiment.html#additional-classes"><i class="fa fa-check"></i><b>3.2</b> Additional classes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="spatialexperiment.html"><a href="spatialexperiment.html#moleculeexperiment"><i class="fa fa-check"></i><b>3.2.1</b> MoleculeExperiment</a></li>
+<li class="chapter" data-level="3.2.2" data-path="spatialexperiment.html"><a href="spatialexperiment.html#spatialfeatureexperiment"><i class="fa fa-check"></i><b>3.2.2</b> SpatialFeatureExperiment</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>II Preprocessing steps</b></span></li>
 <li class="chapter" data-level="4" data-path="preprocessing-steps.html"><a href="preprocessing-steps.html"><i class="fa fa-check"></i><b>4</b> Preprocessing steps</a></li>
@@ -361,18 +379,31 @@ div.csl-indent {
 <p>In this book, we use the <a href="https://bioconductor.org/packages/SpatialExperiment">SpatialExperiment</a> class from Bioconductor as the main data structure for storing and manipulating datasets.</p>
 <div id="spatialexperiment-class" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> SpatialExperiment class<a href="spatialexperiment.html#spatialexperiment-class" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>SpatialExperiment</code> is a specialized object class for storing spatially-resolved transcriptomics datasets from several technological platforms within the Bioconductor framework.</p>
+<p><code>SpatialExperiment</code> is a specialized object class for storing SRT datasets within the Bioconductor framework.</p>
 <p>The class builds on the more general <a href="https://bioconductor.org/packages/SingleCellExperiment">SingleCellExperiment</a> class <span class="citation">(<a href="#ref-Amezquita2020" role="doc-biblioref">Amezquita et al. 2020</a>)</span> for single-cell RNA sequencing data, with additional customizations to store spatial information, such as spatial coordinates and image files.</p>
 <p>A summary of the <code>SpatialExperiment</code> object structure is shown in the following figure. Briefly, a <code>SpatialExperiment</code> object consists of (i) <code>assays</code> containing expression counts, (ii) <code>rowData</code> containing information on features, i.e. genes, (iii) <code>colData</code> containing information on spots or cells, including nonspatial and spatial metadata, (iv) <code>spatialCoords</code> containing spatial coordinates, and (v) <code>imgData</code> containing image data. For spot-based SRT data (e.g. 10x Genomics Visium), a single <code>assay</code> named <code>counts</code> is used. For molecule-based SRT data (e.g. seqFISH), two <code>assays</code> named <code>counts</code> and <code>molecules</code> can be used.</p>
 <p>The following schematic illustrates this structure.</p>
-<p>For more details, see our <a href="https://www.biorxiv.org/content/10.1101/2021.01.27.428431v2">preprint</a> describing <code>SpatialExperiment</code> <span class="citation">(<a href="#ref-Righelli2021" role="doc-biblioref">Righelli et al. 2021</a>)</span>.</p>
+<p>For more details, see the <a href="https://bioconductor.org/packages/release/bioc/vignettes/SpatialExperiment/inst/doc/SpatialExperiment.html">Bioconductor vignette</a> for the <a href="https://bioconductor.org/packages/SpatialExperiment">SpatialExperiment</a> class or the associated <a href="https://academic.oup.com/bioinformatics/article/38/11/3128/6575443">paper</a> <span class="citation">(<a href="#ref-Righelli2022" role="doc-biblioref"><span>“<span>SpatialExperiment</span>: Infrastructure for Spatially-Resolved Transcriptomics Data in <span>R</span> Using Bioconductor,”</span> n.d.</a>)</span>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:spe-schematic"></span>
 <img src="images/SPE.png" alt="Overview of the `SpatialExperiment` object class for storing spatially-resolved transcriptomics datasets in the Bioconductor framework." width="100%" />
 <p class="caption">
 Figure 3.1: Overview of the <code>SpatialExperiment</code> object class for storing spatially-resolved transcriptomics datasets in the Bioconductor framework.
 </p>
 </div>
+</div>
+<div id="additional-classes" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Additional classes<a href="spatialexperiment.html#additional-classes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Additional specialized object classes have been developed by members of the Bioconductor community to store data from molecule-based SRT platforms.</p>
+<p>These classes can store and manipulate additional information relevant for molecule-based data, such as cell segmentation geometries and cellular neighbor graphs.</p>
+<div id="moleculeexperiment" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> MoleculeExperiment<a href="spatialexperiment.html#moleculeexperiment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Additional details are available in the <a href="https://bioconductor.org/packages/release/bioc/vignettes/MoleculeExperiment/inst/doc/MoleculeExperiment.html">Bioconductor vignette</a> for the <a href="https://bioconductor.org/packages/MoleculeExperiment">MoleculeExperiment</a> class.</p>
+</div>
+<div id="spatialfeatureexperiment" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> SpatialFeatureExperiment<a href="spatialexperiment.html#spatialfeatureexperiment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Additional details are available in the <a href="https://bioconductor.org/packages/release/bioc/vignettes/SpatialFeatureExperiment/inst/doc/SFE.html">Bioconductor vignette</a> for the <a href="https://bioconductor.org/packages/SpatialFeatureExperiment">SpatialFeatureExperiment</a> class.</p>
 
+</div>
 </div>
 </div>
 
@@ -383,8 +414,8 @@ Figure 3.1: Overview of the <code>SpatialExperiment</code> object class for stor
 <div id="ref-Amezquita2020" class="csl-entry">
 Amezquita, Robert A., Aaron T. L. Lun, Etienne Becht, Vince J. Carey, Lindsay N. Carpp, Ludwig Geistlinger, Federico Marini, et al. 2020. <span>“Orchestrating Single-Cell Analysis with <span>Bioconductor</span>.”</span> <em>Nature Methods</em> 17 (2): 137–45. <a href="https://doi.org/10.1038/s41592-019-0654-x">https://doi.org/10.1038/s41592-019-0654-x</a>.
 </div>
-<div id="ref-Righelli2021" class="csl-entry">
-Righelli, Dario, Lukas M. Weber, Helena L. Crowell, Brenda Pardo, Leonardo Collado-Torres, Shila Ghazanfar, Aaron T. L. Lun, Stephanie C. Hicks, and Davide Risso. 2021. <span>“<span>SpatialExperiment</span>: Infrastructure for Spatially Resolved Transcriptomics Data in <span>R</span> Using <span>Bioconductor</span>.”</span> <em>bioRxiv</em>, January, 2021.01.27.428431. <a href="https://doi.org/10.1101/2021.01.27.428431">https://doi.org/10.1101/2021.01.27.428431</a>.
+<div id="ref-Righelli2022" class="csl-entry">
+<span>“<span>SpatialExperiment</span>: Infrastructure for Spatially-Resolved Transcriptomics Data in <span>R</span> Using Bioconductor.”</span> n.d.
 </div>
 </div>
             </section>
