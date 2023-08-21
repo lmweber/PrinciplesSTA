@@ -22,7 +22,9 @@ Chapters are organized into several parts:
 
 ## Who this book is for
 
-This book is intended for readers who have some experience with R, but does not assume familiarity with Bioconductor. The examples and workflows include R code required to download data, set up data objects, perform analyses, and visualize results.
+Overall, the aim of this book is to interactively demonstrate analysis workflows at a sufficient level of detail that allows readers to get started with analyzing spatially-resolved transcriptomics data and to adapt or extend these workflows to their own datasets. While we will showcase a number of methods available through Bioconductor or CRAN for individual analysis steps, we do not intend to provide a comprehensive review of all available methods for each step.
+
+This book is intended for readers who have some experience with R, but does not necessarily assume familiarity with Bioconductor. The examples and workflows include R code required to download data, set up data objects, perform analyses, and visualize results.
 
 For readers who are new to R and Bioconductor, additional useful resources include:
 
@@ -46,5 +48,9 @@ This modular and open development approach allows data analysts to build analysi
 
 ## Contributions
 
-We welcome suggestions for updates to the analysis and workflow chapters in OSTA. Suggestions may be provided as [GitHub issues](https://github.com/lmweber/OSTA-book/issues). All methods included in OSTA should be available as R packages from [Bioconductor](http://bioconductor.org/) or [CRAN](https://cran.r-project.org/), which ensures compatibility with the existing workflows and provides users with guarantees regarding ease of installation, long-term availability, stability, and maintenance through the regular build-testing, checks, and maintenance checks provided by Bioconductor and CRAN. Additional methods available as packages from GitHub or other repositories may also be described in the analysis chapters, but these methods will not be integrated into the code examples. Methods available as `pip` installable Python packages will also be integrated into the examples in future updates of OSTA using [reticulate](https://rstudio.github.io/reticulate/).
+We welcome suggestions for updates to the analysis and workflow chapters. Suggestions may be provided as [GitHub issues](https://github.com/lmweber/OSTA-book/issues).
+
+All methods included in the code examples must be available as R packages from either [Bioconductor](http://bioconductor.org/) or [CRAN](https://cran.r-project.org/). This ensures compatibility with the existing workflows and provides users with guarantees regarding ease of installation, long-term availability, stability, and maintenance through the Bioconductor or CRAN systems. By following this strategy, we aim to showcase key methods for individual analysis steps and demonstrate flexible analysis workflows at a sufficient level of detail to enable readers to adapt or extend these workflows to their own datasets.
+
+Additional methods (e.g. available from GitHub) may also be described within the analysis chapters, but these methods will not be included in the code examples. Methods available as `pip` installable Python packages will also be integrated into the examples in future updates using [reticulate](https://rstudio.github.io/reticulate/).
 
