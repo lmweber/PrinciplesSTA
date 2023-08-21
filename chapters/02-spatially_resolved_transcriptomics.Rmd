@@ -1,8 +1,8 @@
 # Spatially-resolved transcriptomics
 
-Spatially-resolved transcriptomics (SRT) represents a new class of high-throughput genomic technologies that enable the measurement of up to thousands of genes at up to thousands of measurement locations, usually on two-dimensional tissue sections. A number of platforms have been developed, each with their unique advantages. SRT was named the Method of the Year by Nature Methods in 2020 [@Mark2020] and has found widespread application in numerous biological systems.
+Spatially-resolved transcriptomics (SRT) refers to high-throughput genomic technologies that enable the measurement of large sets of genes at a large number of spatial locations (e.g. up to thousands of genes at thousands of measurement locations), usually on two-dimensional tissue sections. A number of technological platforms have been developed, each with their unique advantages. SRT was named the [Method of the Year 2020](https://doi.org/10.1038/s41592-020-01042-x) by Nature Methods, and has found widespread application in numerous biological systems.
 
-For recent reviews of available platforms, computational analysis methods, and outstanding challenges, see [Bressan et al. 2023](https://www.science.org/doi/10.1126/science.abq4964) and [Moses et al. 2022](https://www.nature.com/articles/s41592-022-01409-2).
+For recent reviews of available platforms, computational analysis methods, and outstanding challenges, see [Bressan et al. 2023](https://www.science.org/doi/10.1126/science.abq4964) or [Moses et al. 2022](https://www.nature.com/articles/s41592-022-01409-2).
 
 
 ## Overview
@@ -39,7 +39,7 @@ knitr::include_graphics("images/Visium.png")
 
 ## Molecule-based platforms
 
-Molecule-based platforms identify individual RNAs by _in-situ_ hybridization (ISH) or _in-situ_ sequencing (ISS) at up to sub-cellular spatial resolution. Counts may be aggregated to cellular (single-cell) spatial resolution by applying manual or data-driven cell segmentation algorithms.
+Molecule-based platforms identify individual RNAs by in situ hybridization (ISH) or in situ sequencing (ISS) at up to sub-cellular spatial resolution. Counts may be aggregated to cellular (single-cell) spatial resolution by applying manual or data-driven cell segmentation algorithms.
 
 Feature resolution is generally on the order of 100s to 1000s of RNAs, which may be selected as targeted panels of RNAs of interest.
 
