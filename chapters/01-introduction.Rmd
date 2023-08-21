@@ -11,11 +11,11 @@ The chapters are organized into several parts:
 
 - **Introduction:** introduction, background on SRT, and R/Bioconductor object classes
 
-- **Preprocessing steps:** preprocessing steps to load data into R
-
 - **Analysis steps:** chapters describing individual analysis steps
 
 - **Workflows:** chapters containing complete workflows for several example datasets
+
+- **Visium preprocessing:** appendix on detailed preprocessing steps for 10x Genomics Visium data
 
 - **Appendix:** related resources, contributors and acknowledgments, and references
 
