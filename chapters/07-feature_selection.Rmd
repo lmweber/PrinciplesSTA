@@ -46,11 +46,11 @@ spe <- logNormCounts(spe)
 
 ## Highly variable genes (HVGs)
 
-We use methods from `scran` [@Lun2016] to identify a set of top highly variable genes (HVGs), which can be used to define major cell types. These methods were originally developed for single-cell RNA sequencing (scRNA-seq) data, so here we are making the implicit assumption that spots can be treated as equivalent to cells.
+We use methods from `scran` ([Lun et al. 2016](https://doi.org/10.12688/f1000research.9501.2)) to identify a set of top highly variable genes (HVGs), which can be used to define major cell types. These methods were originally developed for single-cell RNA sequencing (scRNA-seq) data, so here we are making the assumption that spots can be treated as equivalent to cells.
 
-It is important to note that HVGs are defined purely based on molecular features (i.e. gene expression), and do not take any spatial information into account. If the biologically meaningful spatial information in this dataset mainly reflects spatial distributions of major cell types, then relying on HVGs for downstream analyses may be sufficient. But if there are additional important spatial features in the dataset, then it may be more meaningful to define spatially variable genes (SVGs) (see below).
+Note that HVGs are defined based only on molecular features (i.e. gene expression), and do not take any spatial information into account. If the biologically meaningful spatial information in this dataset mainly reflects spatial distributions of major cell types, then relying on HVGs for downstream analyses may be sufficient. But if there are additional important spatial features in the dataset, then it may be more meaningful to investigate spatially variable genes (SVGs).
 
-To identify HVGs, we first remove mitochondrial genes, since these are very highly expressed in this dataset, and are not of main biological interest.
+To identify HVGs, we first remove mitochondrial genes, since these are very highly expressed in this dataset and are not of main biological interest.
 
 ```{r, message=FALSE}
 # remove mitochondrial genes
@@ -81,16 +81,17 @@ length(top_hvgs)
 
 ## Spatially variable genes (SVGs)
 
-Alternatively, we can apply methods to identify spatially variable genes (SVGs) instead of HVGs. SVGs are defined as genes with a highly spatially correlated pattern of expression, which varies along with the spatial distribution of a tissue structure of interest.
+Alternatively, we can apply methods to identify spatially variable genes (SVGs) instead of HVGs. SVGs are defined as genes with a spatially correlated patterns of expression.
 
-For example, standard statistical measures such as [Moran's I](https://en.wikipedia.org/wiki/Moran%27s_I) or [Geary's C](https://en.wikipedia.org/wiki/Geary%27s_C) can be used to rank genes by the observed spatial autocorrelation. This requires assumptions such as the distance metric and bandwidth.
+Simple approaches to identify SVGs include standard statistical measures such as [Moran's I](https://en.wikipedia.org/wiki/Moran%27s_I) statistic or [Geary's C](https://en.wikipedia.org/wiki/Geary%27s_C) statistic, which can be used to rank genes by the observed spatial autocorrelation.
 
-Several sophisticated new statistical methods to identify SVGs in SRT data have also recently been developed. These include [SpatialDE](https://github.com/Teichlab/SpatialDE) [@Svensson2018], [SPARK](https://xzhoulab.github.io/SPARK/) [@Sun2020], and [SPARK-X](https://xzhoulab.github.io/SPARK/) [@Zhu2021]. However, these methods do not scale to large datasets containing thousands of spatial coordinates and / or are only available from GitHub. Therefore, due to Bioconductor build guidelines, they cannot be included in the interactive examples here. We encourage developers to contribute their packages to managed repositories (i.e. CRAN, Bioconductor, and pip), and will expand this section in the future to include additional examples as these methods become available.
+Sophisticated statistical methods to identify SVGs adapted to the properties of SRT data have also been developed, including the following:
 
-Here, we will demonstrate a short example showing how to define a set of top SVGs by ranking genes according to Moran's I statistic, using an efficient implementation of the calculation that takes advantage of sparsity in SRT data. Alternatively, widely used implementations of Moran's I in existing R packages such as [ape](https://cran.r-project.org/web/packages/ape/index.html) [@Paradis2019] (from CRAN) can be used for individual genes, but these calculations do not scale to tens of thousands of genes.
+- **nnSVG**: available as an R package from [Bioconductor](https://bioconductor.org/packages/nnSVG) and described by [Weber et al. (2023)](https://doi.org/10.1038/s41467-023-39748-z)
 
+- **SPARK-X**: available as an R package from [GitHub](https://xzhoulab.github.io/SPARK/) and described by [Zhou et al. (2021)](https://doi.org/10.1186/s13059-021-02404-0)
 
-## Integration of HVGs and SVGs
+- **SPARK**: available as an R package from [GitHub](https://xzhoulab.github.io/SPARK/) and described by [Sun et al. (2020)](https://doi.org/10.1038/s41592-019-0701-7)
 
-A recent benchmark paper [@Li2021] showed that integrating HVGs and SVGs to generate a combined set of features can improve downstream clustering performance in SRT data. This confirms that SVGs contain additional biologically relevant information that is not captured by HVGs in these datasets. For example, a simple way to combine these features is to concatenate columns of principal components (PCs) calculated on the set of HVGs and the set of SVGs (excluding overlapping HVGs), and then using the combined set of features for further downstream analyses [@Li2021].
+- **SpatialDE**: available as a Python package from [GitHub](https://github.com/Teichlab/SpatialDE) and described by [Svensson et al. (2018)](https://doi.org/10.1038/nmeth.4636)
 
