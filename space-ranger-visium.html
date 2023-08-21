@@ -4,25 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Space Ranger (Visium) | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor</title>
+  <title>Chapter 19 Space Ranger (Visium) | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Space Ranger (Visium) | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta property="og:title" content="Chapter 19 Space Ranger (Visium) | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Space Ranger (Visium) | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta name="twitter:title" content="Chapter 19 Space Ranger (Visium) | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
   
   <meta name="twitter:description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
   
 
 
 
-<meta name="date" content="2023-08-16" />
+<meta name="date" content="2023-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -30,7 +30,7 @@
   
   <link rel="shortcut icon" href="icon_32.png" type="image/x-icon" />
 <link rel="prev" href="loupe-browser-visium.html"/>
-<link rel="next" href="analysis-steps.html"/>
+<link rel="next" href="related-resources.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -194,151 +194,151 @@ div.csl-indent {
 <li class="chapter" data-level="3.2.2" data-path="spatialexperiment.html"><a href="spatialexperiment.html#spatialfeatureexperiment"><i class="fa fa-check"></i><b>3.2.2</b> SpatialFeatureExperiment</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>II Preprocessing steps</b></span></li>
-<li class="chapter" data-level="4" data-path="preprocessing-steps.html"><a href="preprocessing-steps.html"><i class="fa fa-check"></i><b>4</b> Preprocessing steps</a></li>
-<li class="chapter" data-level="5" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html"><i class="fa fa-check"></i><b>5</b> Image segmentation (Visium)</a>
+<li class="part"><span><b>II Analysis steps</b></span></li>
+<li class="chapter" data-level="4" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>4</b> Analysis steps</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#overview-1"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
-<li class="chapter" data-level="5.2" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#what-is-vistoseg"><i class="fa fa-check"></i><b>5.2</b> What is VistoSeg?</a></li>
-<li class="chapter" data-level="5.3" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#split-histology-images"><i class="fa fa-check"></i><b>5.3</b> Split histology images</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#file-size-issues"><i class="fa fa-check"></i><b>5.3.1</b> File size issues</a></li>
+<li class="chapter" data-level="4.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>4.1</b> Load data</a></li>
+<li class="chapter" data-level="4.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object"><i class="fa fa-check"></i><b>4.2</b> SpatialExperiment object</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#segment-cell-nuclei"><i class="fa fa-check"></i><b>5.4</b> Segment cell nuclei</a></li>
-<li class="chapter" data-level="5.5" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#identify-number-of-cells-per-spot"><i class="fa fa-check"></i><b>5.5</b> Identify number of cells per spot</a></li>
-<li class="chapter" data-level="5.6" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#wrapping-up"><i class="fa fa-check"></i><b>5.6</b> Wrapping up</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html"><i class="fa fa-check"></i><b>6</b> Loupe Browser (Visium)</a>
+<li class="chapter" data-level="5" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>5</b> Quality control</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#overview-2"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
-<li class="chapter" data-level="6.2" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#manual-alignment-of-images"><i class="fa fa-check"></i><b>6.2</b> Manual alignment of images</a></li>
-<li class="chapter" data-level="6.3" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#output-files-and-space-ranger"><i class="fa fa-check"></i><b>6.3</b> Output files and Space Ranger</a></li>
-<li class="chapter" data-level="6.4" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#downstream-analyses-in-loupe-browser"><i class="fa fa-check"></i><b>6.4</b> Downstream analyses in Loupe Browser</a></li>
-<li class="chapter" data-level="6.5" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#wrapping-up-1"><i class="fa fa-check"></i><b>6.5</b> Wrapping up</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html"><i class="fa fa-check"></i><b>7</b> Space Ranger (Visium)</a>
+<li class="chapter" data-level="5.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>5.1</b> Background</a></li>
+<li class="chapter" data-level="5.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>5.2</b> Load data</a></li>
+<li class="chapter" data-level="5.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>5.3</b> Plot data</a></li>
+<li class="chapter" data-level="5.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>5.4</b> Calculate QC metrics</a></li>
+<li class="chapter" data-level="5.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>5.5</b> Selecting thresholds</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#overview-3"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
-<li class="chapter" data-level="7.2" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#what-is-space-ranger"><i class="fa fa-check"></i><b>7.2</b> What is Space Ranger?</a></li>
-<li class="chapter" data-level="7.3" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#installing-space-ranger"><i class="fa fa-check"></i><b>7.3</b> Installing Space Ranger</a></li>
-<li class="chapter" data-level="7.4" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#run-spaceranger-count"><i class="fa fa-check"></i><b>7.4</b> Run spaceranger count</a></li>
-<li class="chapter" data-level="7.5" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#output-files"><i class="fa fa-check"></i><b>7.5</b> Output files</a></li>
-<li class="chapter" data-level="7.6" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#web-summary-.html-file"><i class="fa fa-check"></i><b>7.6</b> Web summary .html file</a></li>
-<li class="chapter" data-level="7.7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#import-outputs-into-r"><i class="fa fa-check"></i><b>7.7</b> Import outputs into R</a></li>
-<li class="chapter" data-level="7.8" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#vistoseg-for-quantifying-cells-per-spot"><i class="fa fa-check"></i><b>7.8</b> VistoSeg for quantifying cells per spot</a></li>
-<li class="chapter" data-level="7.9" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#wrapping-up-2"><i class="fa fa-check"></i><b>7.9</b> Wrapping up</a></li>
+<li class="chapter" data-level="5.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>5.5.1</b> Library size</a></li>
+<li class="chapter" data-level="5.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>5.5.2</b> Number of expressed features</a></li>
+<li class="chapter" data-level="5.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>5.5.3</b> Proportion of mitochondrial reads</a></li>
+<li class="chapter" data-level="5.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>5.5.4</b> Number of cells per spot</a></li>
+<li class="chapter" data-level="5.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>5.5.5</b> Remove low-quality spots</a></li>
 </ul></li>
-<li class="part"><span><b>III Analysis steps</b></span></li>
-<li class="chapter" data-level="8" data-path="analysis-steps.html"><a href="analysis-steps.html"><i class="fa fa-check"></i><b>8</b> Analysis steps</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="analysis-steps.html"><a href="analysis-steps.html#load-data"><i class="fa fa-check"></i><b>8.1</b> Load data</a></li>
-<li class="chapter" data-level="8.2" data-path="analysis-steps.html"><a href="analysis-steps.html#spatialexperiment-object"><i class="fa fa-check"></i><b>8.2</b> SpatialExperiment object</a></li>
+<li class="chapter" data-level="5.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>5.6</b> Zero-cell and single-cell spots</a></li>
+<li class="chapter" data-level="5.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>5.7</b> Quality control at gene level</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>9</b> Quality control</a>
+<li class="chapter" data-level="6" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>6</b> Normalization</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="quality-control.html"><a href="quality-control.html#background"><i class="fa fa-check"></i><b>9.1</b> Background</a></li>
-<li class="chapter" data-level="9.2" data-path="quality-control.html"><a href="quality-control.html#load-data-1"><i class="fa fa-check"></i><b>9.2</b> Load data</a></li>
-<li class="chapter" data-level="9.3" data-path="quality-control.html"><a href="quality-control.html#plot-data"><i class="fa fa-check"></i><b>9.3</b> Plot data</a></li>
-<li class="chapter" data-level="9.4" data-path="quality-control.html"><a href="quality-control.html#calculate-qc-metrics"><i class="fa fa-check"></i><b>9.4</b> Calculate QC metrics</a></li>
-<li class="chapter" data-level="9.5" data-path="quality-control.html"><a href="quality-control.html#selecting-thresholds"><i class="fa fa-check"></i><b>9.5</b> Selecting thresholds</a>
-<ul>
-<li class="chapter" data-level="9.5.1" data-path="quality-control.html"><a href="quality-control.html#library-size"><i class="fa fa-check"></i><b>9.5.1</b> Library size</a></li>
-<li class="chapter" data-level="9.5.2" data-path="quality-control.html"><a href="quality-control.html#number-of-expressed-features"><i class="fa fa-check"></i><b>9.5.2</b> Number of expressed features</a></li>
-<li class="chapter" data-level="9.5.3" data-path="quality-control.html"><a href="quality-control.html#proportion-of-mitochondrial-reads"><i class="fa fa-check"></i><b>9.5.3</b> Proportion of mitochondrial reads</a></li>
-<li class="chapter" data-level="9.5.4" data-path="quality-control.html"><a href="quality-control.html#number-of-cells-per-spot"><i class="fa fa-check"></i><b>9.5.4</b> Number of cells per spot</a></li>
-<li class="chapter" data-level="9.5.5" data-path="quality-control.html"><a href="quality-control.html#remove-low-quality-spots"><i class="fa fa-check"></i><b>9.5.5</b> Remove low-quality spots</a></li>
+<li class="chapter" data-level="6.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>6.1</b> Background</a></li>
+<li class="chapter" data-level="6.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>6.2</b> Previous steps</a></li>
+<li class="chapter" data-level="6.3" data-path="normalization.html"><a href="normalization.html#logcounts"><i class="fa fa-check"></i><b>6.3</b> Logcounts</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="quality-control.html"><a href="quality-control.html#zero-cell-and-single-cell-spots"><i class="fa fa-check"></i><b>9.6</b> Zero-cell and single-cell spots</a></li>
-<li class="chapter" data-level="9.7" data-path="quality-control.html"><a href="quality-control.html#quality-control-at-gene-level"><i class="fa fa-check"></i><b>9.7</b> Quality control at gene level</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>10</b> Normalization</a>
+<li class="chapter" data-level="7" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>7</b> Feature selection</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="normalization.html"><a href="normalization.html#background-1"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
-<li class="chapter" data-level="10.2" data-path="normalization.html"><a href="normalization.html#previous-steps"><i class="fa fa-check"></i><b>10.2</b> Previous steps</a></li>
-<li class="chapter" data-level="10.3" data-path="normalization.html"><a href="normalization.html#logcounts"><i class="fa fa-check"></i><b>10.3</b> Logcounts</a></li>
+<li class="chapter" data-level="7.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>7.1</b> Background</a></li>
+<li class="chapter" data-level="7.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>7.2</b> Previous steps</a></li>
+<li class="chapter" data-level="7.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>7.3</b> Highly variable genes (HVGs)</a></li>
+<li class="chapter" data-level="7.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>7.4</b> Spatially variable genes (SVGs)</a></li>
+<li class="chapter" data-level="7.5" data-path="feature-selection.html"><a href="feature-selection.html#integration-of-hvgs-and-svgs"><i class="fa fa-check"></i><b>7.5</b> Integration of HVGs and SVGs</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>11</b> Feature selection</a>
+<li class="chapter" data-level="8" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>8</b> Dimensionality reduction</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="feature-selection.html"><a href="feature-selection.html#background-2"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
-<li class="chapter" data-level="11.2" data-path="feature-selection.html"><a href="feature-selection.html#previous-steps-1"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
-<li class="chapter" data-level="11.3" data-path="feature-selection.html"><a href="feature-selection.html#highly-variable-genes-hvgs"><i class="fa fa-check"></i><b>11.3</b> Highly variable genes (HVGs)</a></li>
-<li class="chapter" data-level="11.4" data-path="feature-selection.html"><a href="feature-selection.html#spatially-variable-genes-svgs"><i class="fa fa-check"></i><b>11.4</b> Spatially variable genes (SVGs)</a></li>
-<li class="chapter" data-level="11.5" data-path="feature-selection.html"><a href="feature-selection.html#integration-of-hvgs-and-svgs"><i class="fa fa-check"></i><b>11.5</b> Integration of HVGs and SVGs</a></li>
+<li class="chapter" data-level="8.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>8.1</b> Background</a></li>
+<li class="chapter" data-level="8.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>8.2</b> Previous steps</a></li>
+<li class="chapter" data-level="8.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.3</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="8.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>8.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
+<li class="chapter" data-level="8.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>8.5</b> Visualizations</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>12</b> Dimensionality reduction</a>
+<li class="chapter" data-level="9" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>9</b> Clustering</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#background-3"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
-<li class="chapter" data-level="12.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#previous-steps-2"><i class="fa fa-check"></i><b>12.2</b> Previous steps</a></li>
-<li class="chapter" data-level="12.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>12.3</b> Principal component analysis (PCA)</a></li>
-<li class="chapter" data-level="12.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i><b>12.4</b> Uniform Manifold Approximation and Projection (UMAP)</a></li>
-<li class="chapter" data-level="12.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizations"><i class="fa fa-check"></i><b>12.5</b> Visualizations</a></li>
+<li class="chapter" data-level="9.1" data-path="clustering.html"><a href="clustering.html#overview-1"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>9.2</b> Previous steps</a></li>
+<li class="chapter" data-level="9.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>9.3</b> Clustering on HVGs</a></li>
+<li class="chapter" data-level="9.4" data-path="clustering.html"><a href="clustering.html#spatially-aware-clustering"><i class="fa fa-check"></i><b>9.4</b> Spatially-aware clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>13</b> Clustering</a>
+<li class="chapter" data-level="10" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>10</b> Marker genes</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="clustering.html"><a href="clustering.html#overview-4"><i class="fa fa-check"></i><b>13.1</b> Overview</a></li>
-<li class="chapter" data-level="13.2" data-path="clustering.html"><a href="clustering.html#previous-steps-3"><i class="fa fa-check"></i><b>13.2</b> Previous steps</a></li>
-<li class="chapter" data-level="13.3" data-path="clustering.html"><a href="clustering.html#clustering-on-hvgs"><i class="fa fa-check"></i><b>13.3</b> Clustering on HVGs</a></li>
-<li class="chapter" data-level="13.4" data-path="clustering.html"><a href="clustering.html#spatially-aware-clustering"><i class="fa fa-check"></i><b>13.4</b> Spatially-aware clustering</a></li>
+<li class="chapter" data-level="10.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
+<li class="chapter" data-level="10.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>10.2</b> Previous steps</a></li>
+<li class="chapter" data-level="10.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>10.3</b> Marker genes</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="marker-genes.html"><a href="marker-genes.html"><i class="fa fa-check"></i><b>14</b> Marker genes</a>
+<li class="chapter" data-level="11" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html"><i class="fa fa-check"></i><b>11</b> Spot-level deconvolution</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="marker-genes.html"><a href="marker-genes.html#background-4"><i class="fa fa-check"></i><b>14.1</b> Background</a></li>
-<li class="chapter" data-level="14.2" data-path="marker-genes.html"><a href="marker-genes.html#previous-steps-4"><i class="fa fa-check"></i><b>14.2</b> Previous steps</a></li>
-<li class="chapter" data-level="14.3" data-path="marker-genes.html"><a href="marker-genes.html#marker-genes-1"><i class="fa fa-check"></i><b>14.3</b> Marker genes</a></li>
+<li class="chapter" data-level="11.1" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#background-5"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
+<li class="chapter" data-level="11.2" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#previous-steps-5"><i class="fa fa-check"></i><b>11.2</b> Previous steps</a></li>
+<li class="chapter" data-level="11.3" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#number-of-cells-per-spot-1"><i class="fa fa-check"></i><b>11.3</b> Number of cells per spot</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html"><i class="fa fa-check"></i><b>15</b> Spot-level deconvolution</a>
+<li class="part"><span><b>III Workflows</b></span></li>
+<li class="chapter" data-level="12" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>12</b> Workflows</a></li>
+<li class="chapter" data-level="13" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>13</b> Human DLPFC workflow</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#background-5"><i class="fa fa-check"></i><b>15.1</b> Background</a></li>
-<li class="chapter" data-level="15.2" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#previous-steps-5"><i class="fa fa-check"></i><b>15.2</b> Previous steps</a></li>
-<li class="chapter" data-level="15.3" data-path="spot-level-deconvolution.html"><a href="spot-level-deconvolution.html#number-of-cells-per-spot-1"><i class="fa fa-check"></i><b>15.3</b> Number of cells per spot</a></li>
+<li class="chapter" data-level="13.1" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>13.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="13.2" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>13.2</b> Load data</a></li>
+<li class="chapter" data-level="13.3" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>13.3</b> Plot data</a></li>
+<li class="chapter" data-level="13.4" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>13.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="13.5" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>13.5</b> Normalization</a></li>
+<li class="chapter" data-level="13.6" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>13.6</b> Feature selection</a></li>
+<li class="chapter" data-level="13.7" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#spatially-aware-feature-selection"><i class="fa fa-check"></i><b>13.7</b> Spatially-aware feature selection</a></li>
+<li class="chapter" data-level="13.8" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>13.8</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="13.9" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>13.9</b> Clustering</a></li>
+<li class="chapter" data-level="13.10" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>13.10</b> Marker genes</a></li>
 </ul></li>
-<li class="part"><span><b>IV Workflows</b></span></li>
-<li class="chapter" data-level="16" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i><b>16</b> Workflows</a></li>
-<li class="chapter" data-level="17" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html"><i class="fa fa-check"></i><b>17</b> Human DLPFC workflow</a>
+<li class="chapter" data-level="14" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>14</b> Mouse coronal workflow</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#description-of-dataset"><i class="fa fa-check"></i><b>17.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="17.2" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#load-data-2"><i class="fa fa-check"></i><b>17.2</b> Load data</a></li>
-<li class="chapter" data-level="17.3" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#plot-data-1"><i class="fa fa-check"></i><b>17.3</b> Plot data</a></li>
-<li class="chapter" data-level="17.4" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#quality-control-qc"><i class="fa fa-check"></i><b>17.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="17.5" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#normalization-1"><i class="fa fa-check"></i><b>17.5</b> Normalization</a></li>
-<li class="chapter" data-level="17.6" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#feature-selection-1"><i class="fa fa-check"></i><b>17.6</b> Feature selection</a></li>
-<li class="chapter" data-level="17.7" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#spatially-aware-feature-selection"><i class="fa fa-check"></i><b>17.7</b> Spatially-aware feature selection</a></li>
-<li class="chapter" data-level="17.8" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#dimensionality-reduction-1"><i class="fa fa-check"></i><b>17.8</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="17.9" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#clustering-1"><i class="fa fa-check"></i><b>17.9</b> Clustering</a></li>
-<li class="chapter" data-level="17.10" data-path="human-dlpfc-workflow.html"><a href="human-dlpfc-workflow.html#marker-genes-2"><i class="fa fa-check"></i><b>17.10</b> Marker genes</a></li>
+<li class="chapter" data-level="14.1" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>14.1</b> Description of dataset</a></li>
+<li class="chapter" data-level="14.2" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>14.2</b> Load data</a></li>
+<li class="chapter" data-level="14.3" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>14.3</b> Plot data</a></li>
+<li class="chapter" data-level="14.4" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>14.4</b> Quality control (QC)</a></li>
+<li class="chapter" data-level="14.5" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>14.5</b> Normalization</a></li>
+<li class="chapter" data-level="14.6" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>14.6</b> Feature selection</a></li>
+<li class="chapter" data-level="14.7" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#spatially-aware-feature-selection-1"><i class="fa fa-check"></i><b>14.7</b> Spatially-aware feature selection</a></li>
+<li class="chapter" data-level="14.8" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>14.8</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="14.9" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>14.9</b> Clustering</a></li>
+<li class="chapter" data-level="14.10" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>14.10</b> Marker genes</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html"><i class="fa fa-check"></i><b>18</b> Mouse coronal workflow</a>
+<li class="chapter" data-level="15" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html"><i class="fa fa-check"></i><b>15</b> spatialLIBD workflow</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#description-of-dataset-1"><i class="fa fa-check"></i><b>18.1</b> Description of dataset</a></li>
-<li class="chapter" data-level="18.2" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#load-data-3"><i class="fa fa-check"></i><b>18.2</b> Load data</a></li>
-<li class="chapter" data-level="18.3" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#plot-data-2"><i class="fa fa-check"></i><b>18.3</b> Plot data</a></li>
-<li class="chapter" data-level="18.4" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#quality-control-qc-1"><i class="fa fa-check"></i><b>18.4</b> Quality control (QC)</a></li>
-<li class="chapter" data-level="18.5" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#normalization-2"><i class="fa fa-check"></i><b>18.5</b> Normalization</a></li>
-<li class="chapter" data-level="18.6" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#feature-selection-2"><i class="fa fa-check"></i><b>18.6</b> Feature selection</a></li>
-<li class="chapter" data-level="18.7" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#spatially-aware-feature-selection-1"><i class="fa fa-check"></i><b>18.7</b> Spatially-aware feature selection</a></li>
-<li class="chapter" data-level="18.8" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#dimensionality-reduction-2"><i class="fa fa-check"></i><b>18.8</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="18.9" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#clustering-2"><i class="fa fa-check"></i><b>18.9</b> Clustering</a></li>
-<li class="chapter" data-level="18.10" data-path="mouse-coronal-workflow.html"><a href="mouse-coronal-workflow.html#marker-genes-3"><i class="fa fa-check"></i><b>18.10</b> Marker genes</a></li>
+<li class="chapter" data-level="15.1" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#overview-2"><i class="fa fa-check"></i><b>15.1</b> Overview</a></li>
+<li class="chapter" data-level="15.2" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#spatiallibd"><i class="fa fa-check"></i><b>15.2</b> spatialLIBD</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#why-use-spatiallibd"><i class="fa fa-check"></i><b>15.2.1</b> Why use spatialLIBD?</a></li>
+<li class="chapter" data-level="15.2.2" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#want-to-learn-more-about-spatiallibd"><i class="fa fa-check"></i><b>15.2.2</b> Want to learn more about spatialLIBD?</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html"><i class="fa fa-check"></i><b>19</b> spatialLIBD workflow</a>
+<li class="chapter" data-level="15.3" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#code-prerequisites"><i class="fa fa-check"></i><b>15.3</b> Code prerequisites</a></li>
+<li class="chapter" data-level="15.4" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#prepare-for-spatiallibd"><i class="fa fa-check"></i><b>15.4</b> Prepare for spatialLIBD</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#overview-5"><i class="fa fa-check"></i><b>19.1</b> Overview</a></li>
-<li class="chapter" data-level="19.2" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#spatiallibd"><i class="fa fa-check"></i><b>19.2</b> spatialLIBD</a>
-<ul>
-<li class="chapter" data-level="19.2.1" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#why-use-spatiallibd"><i class="fa fa-check"></i><b>19.2.1</b> Why use spatialLIBD?</a></li>
-<li class="chapter" data-level="19.2.2" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#want-to-learn-more-about-spatiallibd"><i class="fa fa-check"></i><b>19.2.2</b> Want to learn more about spatialLIBD?</a></li>
+<li class="chapter" data-level="15.4.1" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#basic-information"><i class="fa fa-check"></i><b>15.4.1</b> Basic information</a></li>
+<li class="chapter" data-level="15.4.2" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#gene-annotation"><i class="fa fa-check"></i><b>15.4.2</b> Gene annotation</a></li>
+<li class="chapter" data-level="15.4.3" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#extra-information-and-filtering"><i class="fa fa-check"></i><b>15.4.3</b> Extra information and filtering</a></li>
 </ul></li>
-<li class="chapter" data-level="19.3" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#code-prerequisites"><i class="fa fa-check"></i><b>19.3</b> Code prerequisites</a></li>
-<li class="chapter" data-level="19.4" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#prepare-for-spatiallibd"><i class="fa fa-check"></i><b>19.4</b> Prepare for spatialLIBD</a>
-<ul>
-<li class="chapter" data-level="19.4.1" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#basic-information"><i class="fa fa-check"></i><b>19.4.1</b> Basic information</a></li>
-<li class="chapter" data-level="19.4.2" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#gene-annotation"><i class="fa fa-check"></i><b>19.4.2</b> Gene annotation</a></li>
-<li class="chapter" data-level="19.4.3" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#extra-information-and-filtering"><i class="fa fa-check"></i><b>19.4.3</b> Extra information and filtering</a></li>
-</ul></li>
-<li class="chapter" data-level="19.5" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#explore-the-data"><i class="fa fa-check"></i><b>19.5</b> Explore the data</a></li>
-<li class="chapter" data-level="19.6" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#sharing-your-website"><i class="fa fa-check"></i><b>19.6</b> Sharing your website</a></li>
-<li class="chapter" data-level="19.7" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#wrapping-up-3"><i class="fa fa-check"></i><b>19.7</b> Wrapping up</a></li>
+<li class="chapter" data-level="15.5" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#explore-the-data"><i class="fa fa-check"></i><b>15.5</b> Explore the data</a></li>
+<li class="chapter" data-level="15.6" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#sharing-your-website"><i class="fa fa-check"></i><b>15.6</b> Sharing your website</a></li>
+<li class="chapter" data-level="15.7" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#wrapping-up"><i class="fa fa-check"></i><b>15.7</b> Wrapping up</a></li>
 <li class="chapter" data-level="" data-path="spatiallibd-workflow.html"><a href="spatiallibd-workflow.html#r-session-information"><i class="fa fa-check"></i>R session information</a></li>
+</ul></li>
+<li class="part"><span><b>IV Visium preprocessing</b></span></li>
+<li class="chapter" data-level="16" data-path="visium-preprocessing.html"><a href="visium-preprocessing.html"><i class="fa fa-check"></i><b>16</b> Visium preprocessing</a></li>
+<li class="chapter" data-level="17" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html"><i class="fa fa-check"></i><b>17</b> Image segmentation (Visium)</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#overview-3"><i class="fa fa-check"></i><b>17.1</b> Overview</a></li>
+<li class="chapter" data-level="17.2" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#what-is-vistoseg"><i class="fa fa-check"></i><b>17.2</b> What is VistoSeg?</a></li>
+<li class="chapter" data-level="17.3" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#split-histology-images"><i class="fa fa-check"></i><b>17.3</b> Split histology images</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#file-size-issues"><i class="fa fa-check"></i><b>17.3.1</b> File size issues</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#segment-cell-nuclei"><i class="fa fa-check"></i><b>17.4</b> Segment cell nuclei</a></li>
+<li class="chapter" data-level="17.5" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#identify-number-of-cells-per-spot"><i class="fa fa-check"></i><b>17.5</b> Identify number of cells per spot</a></li>
+<li class="chapter" data-level="17.6" data-path="image-segmentation-visium.html"><a href="image-segmentation-visium.html#wrapping-up-1"><i class="fa fa-check"></i><b>17.6</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html"><i class="fa fa-check"></i><b>18</b> Loupe Browser (Visium)</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#overview-4"><i class="fa fa-check"></i><b>18.1</b> Overview</a></li>
+<li class="chapter" data-level="18.2" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#manual-alignment-of-images"><i class="fa fa-check"></i><b>18.2</b> Manual alignment of images</a></li>
+<li class="chapter" data-level="18.3" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#output-files-and-space-ranger"><i class="fa fa-check"></i><b>18.3</b> Output files and Space Ranger</a></li>
+<li class="chapter" data-level="18.4" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#downstream-analyses-in-loupe-browser"><i class="fa fa-check"></i><b>18.4</b> Downstream analyses in Loupe Browser</a></li>
+<li class="chapter" data-level="18.5" data-path="loupe-browser-visium.html"><a href="loupe-browser-visium.html#wrapping-up-2"><i class="fa fa-check"></i><b>18.5</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html"><i class="fa fa-check"></i><b>19</b> Space Ranger (Visium)</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#overview-5"><i class="fa fa-check"></i><b>19.1</b> Overview</a></li>
+<li class="chapter" data-level="19.2" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#what-is-space-ranger"><i class="fa fa-check"></i><b>19.2</b> What is Space Ranger?</a></li>
+<li class="chapter" data-level="19.3" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#installing-space-ranger"><i class="fa fa-check"></i><b>19.3</b> Installing Space Ranger</a></li>
+<li class="chapter" data-level="19.4" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#run-spaceranger-count"><i class="fa fa-check"></i><b>19.4</b> Run spaceranger count</a></li>
+<li class="chapter" data-level="19.5" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#output-files"><i class="fa fa-check"></i><b>19.5</b> Output files</a></li>
+<li class="chapter" data-level="19.6" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#web-summary-.html-file"><i class="fa fa-check"></i><b>19.6</b> Web summary .html file</a></li>
+<li class="chapter" data-level="19.7" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#import-outputs-into-r"><i class="fa fa-check"></i><b>19.7</b> Import outputs into R</a></li>
+<li class="chapter" data-level="19.8" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#vistoseg-for-quantifying-cells-per-spot"><i class="fa fa-check"></i><b>19.8</b> VistoSeg for quantifying cells per spot</a></li>
+<li class="chapter" data-level="19.9" data-path="space-ranger-visium.html"><a href="space-ranger-visium.html#wrapping-up-3"><i class="fa fa-check"></i><b>19.9</b> Wrapping up</a></li>
 </ul></li>
 <li class="part"><span><b>V Appendix</b></span></li>
 <li class="chapter" data-level="20" data-path="related-resources.html"><a href="related-resources.html"><i class="fa fa-check"></i><b>20</b> Related resources</a>
@@ -374,19 +374,19 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="space-ranger-visium" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Space Ranger (Visium)<a href="space-ranger-visium.html#space-ranger-visium" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="overview-3" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Overview<a href="space-ranger-visium.html#overview-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="space-ranger-visium" class="section level1 hasAnchor" number="19">
+<h1><span class="header-section-number">Chapter 19</span> Space Ranger (Visium)<a href="space-ranger-visium.html#space-ranger-visium" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="overview-5" class="section level2 hasAnchor" number="19.1">
+<h2><span class="header-section-number">19.1</span> Overview<a href="space-ranger-visium.html#overview-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this chapter, you will learn the basics about the <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger"><code>spaceranger count</code></a> processing pipeline by 10x Genomics for Visium data, and the <a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> software you can use for segmenting the images to estimate the number of the cells per spot.</p>
 </div>
-<div id="what-is-space-ranger" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> What is Space Ranger?<a href="space-ranger-visium.html#what-is-space-ranger" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-is-space-ranger" class="section level2 hasAnchor" number="19.2">
+<h2><span class="header-section-number">19.2</span> What is Space Ranger?<a href="space-ranger-visium.html#what-is-space-ranger" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Space Ranger is a set of analysis pipelines for processing 10x Genomics Visium sequence data (<a href="https://en.wikipedia.org/wiki/FASTQ_format"><code>FASTQ</code></a> files) with high resolution microscope images of tissue. In short, it maps the transcriptomic reads to the microscope image of the tissue from which the reads were obtained. Space Ranger includes 5 pipelines but we only use one for our work with Visium – this is the <code>spaceranger count</code> pipeline.</p>
 <p>You can find more information about the various pipelines <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger">on the 10x Genomics website</a>.</p>
 </div>
-<div id="installing-space-ranger" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> Installing Space Ranger<a href="space-ranger-visium.html#installing-space-ranger" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="installing-space-ranger" class="section level2 hasAnchor" number="19.3">
+<h2><span class="header-section-number">19.3</span> Installing Space Ranger<a href="space-ranger-visium.html#installing-space-ranger" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Installing Space Ranger is fairly simple and can be completed in around 3 steps which can be found <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/installation">in their documentation</a>. Briefly, these are:</p>
 <ol style="list-style-type: decimal">
 <li>Download and unpack the Space Ranger <code>.tar.gz</code> file in any location</li>
@@ -399,68 +399,68 @@ div.csl-indent {
 <li><a href="https://github.com/LieberInstitute/jhpce_module_config/blob/master/spaceranger/1.3.0.lua">JHPCE module config</a> for <code>spaceranger</code> version 1.3.0</li>
 </ul>
 <p>Thus in the future, you can use <code>spaceranger</code> with commands such as</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="space-ranger-visium.html#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">$</span> module load spaceranger/1.3.0</span>
-<span id="cb1-2"><a href="space-ranger-visium.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Loading</span> LIBD module for spaceranger/1.3.0</span>
-<span id="cb1-3"><a href="space-ranger-visium.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Reference</span> files, for use with the <span class="st">&#39;--transcriptome&#39;</span> argument, can be</span>
-<span id="cb1-4"><a href="space-ranger-visium.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">accessed</span> or downloaded into</span>
-<span id="cb1-5"><a href="space-ranger-visium.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/dcl01/ajaffe/data/lab/singleCell/cellranger_reference/.</span></span>
-<span id="cb1-6"><a href="space-ranger-visium.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="space-ranger-visium.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> spaceranger <span class="at">--help</span></span>
-<span id="cb1-8"><a href="space-ranger-visium.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">spaceranger</span> spaceranger-1.3.0</span>
-<span id="cb1-9"><a href="space-ranger-visium.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 10x Genomics Spatial Gene Expression data</span>
-<span id="cb1-10"><a href="space-ranger-visium.html#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="space-ranger-visium.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">USAGE:</span></span>
-<span id="cb1-12"><a href="space-ranger-visium.html#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">spaceranger</span> <span class="op">&lt;</span>SUBCOMMAND<span class="op">&gt;</span></span>
-<span id="cb1-13"><a href="space-ranger-visium.html#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="space-ranger-visium.html#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">FLAGS:</span></span>
-<span id="cb1-15"><a href="space-ranger-visium.html#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-h,</span> <span class="at">--help</span>       Prints help information</span>
-<span id="cb1-16"><a href="space-ranger-visium.html#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-V,</span> <span class="at">--version</span>    Prints version information</span>
-<span id="cb1-17"><a href="space-ranger-visium.html#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="space-ranger-visium.html#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ex">SUBCOMMANDS:</span></span>
-<span id="cb1-19"><a href="space-ranger-visium.html#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="ex">count</span>               Count gene expression and feature barcoding reads</span>
-<span id="cb1-20"><a href="space-ranger-visium.html#cb1-20" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">from</span> a single capture area</span>
-<span id="cb1-21"><a href="space-ranger-visium.html#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="ex">aggr</span>                Aggregate data from multiple <span class="st">&#39;spaceranger count&#39;</span></span>
-<span id="cb1-22"><a href="space-ranger-visium.html#cb1-22" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">runs</span></span>
-<span id="cb1-23"><a href="space-ranger-visium.html#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="ex">targeted-compare</span>    Analyze targeted enrichment performance by</span>
-<span id="cb1-24"><a href="space-ranger-visium.html#cb1-24" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">comparing</span> a targeted sample to its cognate parent</span>
-<span id="cb1-25"><a href="space-ranger-visium.html#cb1-25" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">WTA</span> sample <span class="er">(</span><span class="ex">used</span> as input for targeted gene</span>
-<span id="cb1-26"><a href="space-ranger-visium.html#cb1-26" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">expression</span><span class="kw">)</span></span>
-<span id="cb1-27"><a href="space-ranger-visium.html#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="ex">targeted-depth</span>      Estimate targeted read depth values <span class="er">(</span><span class="ex">mean</span> reads</span>
-<span id="cb1-28"><a href="space-ranger-visium.html#cb1-28" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">per</span> spot<span class="kw">)</span> <span class="cf">for</span> a <span class="ex">specified</span> input parent WTA sample</span>
-<span id="cb1-29"><a href="space-ranger-visium.html#cb1-29" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">and</span> a target panel CSV file</span>
-<span id="cb1-30"><a href="space-ranger-visium.html#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mkfastq</span>             Run Illumina demultiplexer on sample sheets that</span>
-<span id="cb1-31"><a href="space-ranger-visium.html#cb1-31" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">contain</span> 10x-specific sample index sets</span>
-<span id="cb1-32"><a href="space-ranger-visium.html#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="ex">testrun</span>             Execute the <span class="st">&#39;count&#39;</span> pipeline on a small test</span>
-<span id="cb1-33"><a href="space-ranger-visium.html#cb1-33" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">dataset</span></span>
-<span id="cb1-34"><a href="space-ranger-visium.html#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mat2csv</span>             Convert a gene count matrix to CSV format</span>
-<span id="cb1-35"><a href="space-ranger-visium.html#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mkref</span>               Prepare a reference for use with 10x analysis</span>
-<span id="cb1-36"><a href="space-ranger-visium.html#cb1-36" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">software.</span> Requires a GTF and FASTA</span>
-<span id="cb1-37"><a href="space-ranger-visium.html#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mkgtf</span>               Filter a GTF file by attribute prior to creating</span>
-<span id="cb1-38"><a href="space-ranger-visium.html#cb1-38" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">a</span> 10x reference</span>
-<span id="cb1-39"><a href="space-ranger-visium.html#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="ex">upload</span>              Upload analysis logs to 10x Genomics support</span>
-<span id="cb1-40"><a href="space-ranger-visium.html#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sitecheck</span>           Collect linux system configuration information</span>
-<span id="cb1-41"><a href="space-ranger-visium.html#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">help</span>                Prints this message or the help of the given</span>
-<span id="cb1-42"><a href="space-ranger-visium.html#cb1-42" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">subcommand</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb299-1"><a href="space-ranger-visium.html#cb299-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">$</span> module load spaceranger/1.3.0</span>
+<span id="cb299-2"><a href="space-ranger-visium.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Loading</span> LIBD module for spaceranger/1.3.0</span>
+<span id="cb299-3"><a href="space-ranger-visium.html#cb299-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Reference</span> files, for use with the <span class="st">&#39;--transcriptome&#39;</span> argument, can be</span>
+<span id="cb299-4"><a href="space-ranger-visium.html#cb299-4" aria-hidden="true" tabindex="-1"></a><span class="ex">accessed</span> or downloaded into</span>
+<span id="cb299-5"><a href="space-ranger-visium.html#cb299-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/dcl01/ajaffe/data/lab/singleCell/cellranger_reference/.</span></span>
+<span id="cb299-6"><a href="space-ranger-visium.html#cb299-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-7"><a href="space-ranger-visium.html#cb299-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> spaceranger <span class="at">--help</span></span>
+<span id="cb299-8"><a href="space-ranger-visium.html#cb299-8" aria-hidden="true" tabindex="-1"></a><span class="ex">spaceranger</span> spaceranger-1.3.0</span>
+<span id="cb299-9"><a href="space-ranger-visium.html#cb299-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Process</span> 10x Genomics Spatial Gene Expression data</span>
+<span id="cb299-10"><a href="space-ranger-visium.html#cb299-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-11"><a href="space-ranger-visium.html#cb299-11" aria-hidden="true" tabindex="-1"></a><span class="ex">USAGE:</span></span>
+<span id="cb299-12"><a href="space-ranger-visium.html#cb299-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">spaceranger</span> <span class="op">&lt;</span>SUBCOMMAND<span class="op">&gt;</span></span>
+<span id="cb299-13"><a href="space-ranger-visium.html#cb299-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-14"><a href="space-ranger-visium.html#cb299-14" aria-hidden="true" tabindex="-1"></a><span class="ex">FLAGS:</span></span>
+<span id="cb299-15"><a href="space-ranger-visium.html#cb299-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-h,</span> <span class="at">--help</span>       Prints help information</span>
+<span id="cb299-16"><a href="space-ranger-visium.html#cb299-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-V,</span> <span class="at">--version</span>    Prints version information</span>
+<span id="cb299-17"><a href="space-ranger-visium.html#cb299-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-18"><a href="space-ranger-visium.html#cb299-18" aria-hidden="true" tabindex="-1"></a><span class="ex">SUBCOMMANDS:</span></span>
+<span id="cb299-19"><a href="space-ranger-visium.html#cb299-19" aria-hidden="true" tabindex="-1"></a>    <span class="ex">count</span>               Count gene expression and feature barcoding reads</span>
+<span id="cb299-20"><a href="space-ranger-visium.html#cb299-20" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">from</span> a single capture area</span>
+<span id="cb299-21"><a href="space-ranger-visium.html#cb299-21" aria-hidden="true" tabindex="-1"></a>    <span class="ex">aggr</span>                Aggregate data from multiple <span class="st">&#39;spaceranger count&#39;</span></span>
+<span id="cb299-22"><a href="space-ranger-visium.html#cb299-22" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">runs</span></span>
+<span id="cb299-23"><a href="space-ranger-visium.html#cb299-23" aria-hidden="true" tabindex="-1"></a>    <span class="ex">targeted-compare</span>    Analyze targeted enrichment performance by</span>
+<span id="cb299-24"><a href="space-ranger-visium.html#cb299-24" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">comparing</span> a targeted sample to its cognate parent</span>
+<span id="cb299-25"><a href="space-ranger-visium.html#cb299-25" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">WTA</span> sample <span class="er">(</span><span class="ex">used</span> as input for targeted gene</span>
+<span id="cb299-26"><a href="space-ranger-visium.html#cb299-26" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">expression</span><span class="kw">)</span></span>
+<span id="cb299-27"><a href="space-ranger-visium.html#cb299-27" aria-hidden="true" tabindex="-1"></a>    <span class="ex">targeted-depth</span>      Estimate targeted read depth values <span class="er">(</span><span class="ex">mean</span> reads</span>
+<span id="cb299-28"><a href="space-ranger-visium.html#cb299-28" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">per</span> spot<span class="kw">)</span> <span class="cf">for</span> a <span class="ex">specified</span> input parent WTA sample</span>
+<span id="cb299-29"><a href="space-ranger-visium.html#cb299-29" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">and</span> a target panel CSV file</span>
+<span id="cb299-30"><a href="space-ranger-visium.html#cb299-30" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mkfastq</span>             Run Illumina demultiplexer on sample sheets that</span>
+<span id="cb299-31"><a href="space-ranger-visium.html#cb299-31" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">contain</span> 10x-specific sample index sets</span>
+<span id="cb299-32"><a href="space-ranger-visium.html#cb299-32" aria-hidden="true" tabindex="-1"></a>    <span class="ex">testrun</span>             Execute the <span class="st">&#39;count&#39;</span> pipeline on a small test</span>
+<span id="cb299-33"><a href="space-ranger-visium.html#cb299-33" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">dataset</span></span>
+<span id="cb299-34"><a href="space-ranger-visium.html#cb299-34" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mat2csv</span>             Convert a gene count matrix to CSV format</span>
+<span id="cb299-35"><a href="space-ranger-visium.html#cb299-35" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mkref</span>               Prepare a reference for use with 10x analysis</span>
+<span id="cb299-36"><a href="space-ranger-visium.html#cb299-36" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">software.</span> Requires a GTF and FASTA</span>
+<span id="cb299-37"><a href="space-ranger-visium.html#cb299-37" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mkgtf</span>               Filter a GTF file by attribute prior to creating</span>
+<span id="cb299-38"><a href="space-ranger-visium.html#cb299-38" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">a</span> 10x reference</span>
+<span id="cb299-39"><a href="space-ranger-visium.html#cb299-39" aria-hidden="true" tabindex="-1"></a>    <span class="ex">upload</span>              Upload analysis logs to 10x Genomics support</span>
+<span id="cb299-40"><a href="space-ranger-visium.html#cb299-40" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sitecheck</span>           Collect linux system configuration information</span>
+<span id="cb299-41"><a href="space-ranger-visium.html#cb299-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">help</span>                Prints this message or the help of the given</span>
+<span id="cb299-42"><a href="space-ranger-visium.html#cb299-42" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">subcommand</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span></span></code></pre></div>
 </div>
-<div id="run-spaceranger-count" class="section level2 hasAnchor" number="7.4">
-<h2><span class="header-section-number">7.4</span> Run spaceranger count<a href="space-ranger-visium.html#run-spaceranger-count" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="run-spaceranger-count" class="section level2 hasAnchor" number="19.4">
+<h2><span class="header-section-number">19.4</span> Run spaceranger count<a href="space-ranger-visium.html#run-spaceranger-count" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>spaceranger count</code> pipeline requires several inputs (the microscope image and <code>FASTQ</code> files) and performs sequence alignment, tissue detection and alignment using the fiducial frame, and barcode/UMI counting. The most important output is the gene-spot matrix which we combine with other data generated by <a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> (see below) into a <a href="http://bioconductor.org/packages/SpatialExperiment/"><code>SpatialExperiment</code></a> R object for downstream analysis.</p>
 <p>A more detailed description of this pipeline can be found <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count">here</a>.</p>
 <p>Here is an example of the parameters used to run <code>spaceranger count</code>. Note how we are using the gene annotation information provided by 10x Genomics, which is actually the same data they provide for their single cell data processing software called Cell Ranger. So if you have both types of data, you can save some disk space by re-using these gene annotation files. One important input file is the <code>--loupe-alignment</code> file, which is why you’ll need to use <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a> first.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-131"></span>
 <img src="images/space_ranger_input.png" alt="`spaceranger count` example usage. Source: [10x Genomics](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count)." width="100%" />
 <p class="caption">
-Figure 7.1: <code>spaceranger count</code> example usage. Source: <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count">10x Genomics</a>.
+Figure 19.1: <code>spaceranger count</code> example usage. Source: <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count">10x Genomics</a>.
 </p>
 </div>
 </div>
-<div id="output-files" class="section level2 hasAnchor" number="7.5">
-<h2><span class="header-section-number">7.5</span> Output files<a href="space-ranger-visium.html#output-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="output-files" class="section level2 hasAnchor" number="19.5">
+<h2><span class="header-section-number">19.5</span> Output files<a href="space-ranger-visium.html#output-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>spaceranger count</code> pipeline outputs the following files. The ones we use for downstream analysis are the files contained in the <code>raw_features_bc_matrix</code> folder and can be imported into R using the <code>SpatialExperiment::read10xVisium()</code> function.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-132"></span>
 <img src="images/space_ranger_output.png" alt="`spaceranger count` output files. See the [10x Genomics `spaceranger count` documentation](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count) for detailed descriptions of each of these files." width="40%" />
 <p class="caption">
-Figure 7.2: <code>spaceranger count</code> output files. See the <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count">10x Genomics <code>spaceranger count</code> documentation</a> for detailed descriptions of each of these files.
+Figure 19.2: <code>spaceranger count</code> output files. See the <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/using/count">10x Genomics <code>spaceranger count</code> documentation</a> for detailed descriptions of each of these files.
 </p>
 </div>
 <p>Among the output files, we have the two image files:</p>
@@ -468,44 +468,44 @@ Figure 7.2: <code>spaceranger count</code> output files. See the <a href="https:
 <li><code>tissue_lowres_image.png</code>: max 600 pixels</li>
 <li><code>tissue_hires_image.png</code>: max 2000 pixels</li>
 </ul>
-<p>though you might have a much higher quality image than the <code>hires</code> one that is proportional to these two. The <code>scalefactors_json.json</code> file includes the scaling factors to convert spot coordinates to pixel coordinates from either the <code>lowres</code> or <code>highres</code> image. The spot coordinates information is stored in the <code>tissue_positions_list.csv</code> text file. In addition, you might be interested in the <code>metrics_summary.csv</code> file <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> which includes the metrics displayed in the interactive website <code>web_summary.html</code>. While it is nice that <code>spaceranger count</code> provides files in the <code>filtered_feature_bc_matrix</code> directory with the data filtered to the spots overlapping tissue, as determined by your <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a> alignment file, we recommend using the <code>raw_feature_bc_matrix</code> data. Doing so will enable you to inspect the data in spots that theoretically don’t overlap your tissue. Then later on, you can easily filter out those spots when using <code>SpatialExperiment</code>.</p>
+<p>though you might have a much higher quality image than the <code>hires</code> one that is proportional to these two. The <code>scalefactors_json.json</code> file includes the scaling factors to convert spot coordinates to pixel coordinates from either the <code>lowres</code> or <code>highres</code> image. The spot coordinates information is stored in the <code>tissue_positions_list.csv</code> text file. In addition, you might be interested in the <code>metrics_summary.csv</code> file <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> which includes the metrics displayed in the interactive website <code>web_summary.html</code>. While it is nice that <code>spaceranger count</code> provides files in the <code>filtered_feature_bc_matrix</code> directory with the data filtered to the spots overlapping tissue, as determined by your <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a> alignment file, we recommend using the <code>raw_feature_bc_matrix</code> data. Doing so will enable you to inspect the data in spots that theoretically don’t overlap your tissue. Then later on, you can easily filter out those spots when using <code>SpatialExperiment</code>.</p>
 <p>If you are interested in accessing some <code>spaceranger count</code> output files, 10x Genomics provides <a href="https://support.10xgenomics.com/spatial-gene-expression/datasets">several public datasets</a> that you can use. You can also access the <code>spatialLIBD</code> data from <a href="https://github.com/LieberInstitute/HumanPilot#raw-data">this collection of links</a> <span class="citation">Kristen R. Maynard et al. (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>.</p>
 </div>
-<div id="web-summary-.html-file" class="section level2 hasAnchor" number="7.6">
-<h2><span class="header-section-number">7.6</span> Web summary .html file<a href="space-ranger-visium.html#web-summary-.html-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="web-summary-.html-file" class="section level2 hasAnchor" number="19.6">
+<h2><span class="header-section-number">19.6</span> Web summary .html file<a href="space-ranger-visium.html#web-summary-.html-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The web summary <code>web_summary.html</code> is the first file we look at after Space Ranger is done running because it tells us if the run was successful. It provides general quality control statistics and visualizations. These include clustering results using k-means and graph-based clustering methods visualized on reduced dimensions such as t-SNE and UMAP. One metric that you might want to check is the number of reads per spot overlapping tissue, since according to 10x Genomics, you should target 50,000 mean reads per spot. If you are too low, the median number of genes per spot will suffer and you might need to consider sequencing your cDNA library a bit more.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-133"></span>
 <img src="images/web_summary.png" alt="Basic summary portion of the `web_summary.html` file." width="100%" />
 <p class="caption">
-Figure 7.3: Basic summary portion of the <code>web_summary.html</code> file.
+Figure 19.3: Basic summary portion of the <code>web_summary.html</code> file.
 </p>
 </div>
 <p>The <code>.cloupe</code> file is also useful for checking the quality of the data. There is more information on this file in the <a href="loupe-browser-visium.html#loupe-browser-visium">Loupe Browser (Visium)</a> chapter of this book.</p>
 </div>
-<div id="import-outputs-into-r" class="section level2 hasAnchor" number="7.7">
-<h2><span class="header-section-number">7.7</span> Import outputs into R<a href="space-ranger-visium.html#import-outputs-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="import-outputs-into-r" class="section level2 hasAnchor" number="19.7">
+<h2><span class="header-section-number">19.7</span> Import outputs into R<a href="space-ranger-visium.html#import-outputs-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We use the <a href="https://bioconductor.org/packages/SpatialExperiment"><code>SpatialExperiment</code></a> package to store the data from Space Ranger and <code>VistoSeg</code> (see below) in one convenient object (<code>spe</code>). Below is an example of the code we use to build the <code>spe</code> object.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-134"></span>
 <img src="images/build_spe.png" alt="Example `SpatialExperiment::read10xVisium()` function call. This example will load the data from multiple Visium tissue sections since `sample_info$sample_path` and `sample_info$sample_id` are vectors of length greater than one. This can be quite useful for downstream analyses where you want to perform quality control, dimension reduction, clustering, etc across all Visium tissue sections instead of one tissue section at a time." width="40%" />
 <p class="caption">
-Figure 7.4: Example <code>SpatialExperiment::read10xVisium()</code> function call. This example will load the data from multiple Visium tissue sections since <code>sample_info$sample_path</code> and <code>sample_info$sample_id</code> are vectors of length greater than one. This can be quite useful for downstream analyses where you want to perform quality control, dimension reduction, clustering, etc across all Visium tissue sections instead of one tissue section at a time.
+Figure 19.4: Example <code>SpatialExperiment::read10xVisium()</code> function call. This example will load the data from multiple Visium tissue sections since <code>sample_info$sample_path</code> and <code>sample_info$sample_id</code> are vectors of length greater than one. This can be quite useful for downstream analyses where you want to perform quality control, dimension reduction, clustering, etc across all Visium tissue sections instead of one tissue section at a time.
 </p>
 </div>
 </div>
-<div id="vistoseg-for-quantifying-cells-per-spot" class="section level2 hasAnchor" number="7.8">
-<h2><span class="header-section-number">7.8</span> VistoSeg for quantifying cells per spot<a href="space-ranger-visium.html#vistoseg-for-quantifying-cells-per-spot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="vistoseg-for-quantifying-cells-per-spot" class="section level2 hasAnchor" number="19.8">
+<h2><span class="header-section-number">19.8</span> VistoSeg for quantifying cells per spot<a href="space-ranger-visium.html#vistoseg-for-quantifying-cells-per-spot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As was explained earlier in <a href="image-segmentation-visium.html#what-is-vistoseg">What is VistoSeg?</a>, <a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a> is a MATLAB pipeline that can be used to estimate the number of cells per spot, which can used for downstream analyses <span class="citation">Tippani et al. (<a href="#ref-Tippani2021" role="doc-biblioref">2021</a>)</span>. It is ideal to first segment the bright field images as described in the <a href="image-segmentation-visium.html#image-segmentation-visium">Image segmentation (Visium)</a> chapter. <code>VistoSeg</code> can also be used prior to running <code>Loupe</code> as it can help create high resolution images for each Visium tissue section. In particular, <code>VistoSeg</code> provides a graphical user interface (GUI) that can be be used for counting the number of cells or nuclei in the Visium spots of a given tissue capture area. This is described in detail in the <a href="http://research.libd.org/VistoSeg/step-4-gui-to-count-nuclei-in-a-visium-spot.html"><code>VistoSeg</code> documentation website chapter 4</a>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-135"></span>
 <img src="http://research.libd.org/VistoSeg/images/zoom%20in%202.png" alt="A screenshot of the `spotspotcheck` GUI from `VistoSeg` that can be used for counting the number of cells or nuclei per Visium spot. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/step-4-gui-to-count-nuclei-in-a-visium-spot.html)." width="100%" />
 <p class="caption">
-Figure 7.5: A screenshot of the <code>spotspotcheck</code> GUI from <code>VistoSeg</code> that can be used for counting the number of cells or nuclei per Visium spot. Source: <a href="http://research.libd.org/VistoSeg/step-4-gui-to-count-nuclei-in-a-visium-spot.html"><code>VistoSeg</code></a>.
+Figure 19.5: A screenshot of the <code>spotspotcheck</code> GUI from <code>VistoSeg</code> that can be used for counting the number of cells or nuclei per Visium spot. Source: <a href="http://research.libd.org/VistoSeg/step-4-gui-to-count-nuclei-in-a-visium-spot.html"><code>VistoSeg</code></a>.
 </p>
 </div>
 <p>The <code>spotspotcheck</code> GUI, will allow the user to visually inspect the nuclei segmentations along with generating nuclei counts per Visium spot for each capture area. The <code>countNuclei</code> MATLAB function is the command line version for <code>spotspotcheck</code> which only extracts the number of cells/nuclei per Visium spot without any visualization. The output is saved in a spreadsheet file (<code>tissue_spot_counts.csv</code>) that contains one row per Visium spot barcode and a column with the estimated number of cells per spot. The data for nuclei counts for the tissue per Visium spot can then be incorporated with the outputs of Space Ranger by being stored in the <code>SpatialExperiment</code> object or used for downstream analysis such as in <span class="citation">Kristen R. Maynard et al. (<a href="#ref-Maynard2021" role="doc-biblioref">2021</a>)</span>.</p>
 <p>For more information about <code>VistoSeg</code> please see <a href="http://research.libd.org/VistoSeg/">its documentation website</a>.</p>
 </div>
-<div id="wrapping-up-2" class="section level2 hasAnchor" number="7.9">
-<h2><span class="header-section-number">7.9</span> Wrapping up<a href="space-ranger-visium.html#wrapping-up-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="wrapping-up-3" class="section level2 hasAnchor" number="19.9">
+<h2><span class="header-section-number">19.9</span> Wrapping up<a href="space-ranger-visium.html#wrapping-up-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>By now you are familiar with how to use <code>Loupe</code> to align your images with the Visium fiducial frame, how to run <code>spaceranger count</code> to process the gene expression data, and how <code>VistoSeg</code> can help you with creating the images for <code>Loupe</code> as well as estimating the number of spots per cell. The next chapters will walk you through several of the analysis steps you can do with R and Bioconductor.</p>
 
 </div>
@@ -524,8 +524,8 @@ Tippani, Madhavi, Heena R. Divecha, Joseph L. Catallini, Lukas M. Weber, Abby Sp
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>Note that the format of this file has changed across <code>spaceranger</code> versions.<a href="space-ranger-visium.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<ol start="4">
+<li id="fn4"><p>Note that the format of this file has changed across <code>spaceranger</code> versions.<a href="space-ranger-visium.html#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -534,7 +534,7 @@ Tippani, Madhavi, Heena R. Divecha, Joseph L. Catallini, Lukas M. Weber, Abby Sp
         </div>
       </div>
 <a href="loupe-browser-visium.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="analysis-steps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="related-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

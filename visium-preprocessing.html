@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Normalization | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor</title>
+  <title>Chapter 16 Visium preprocessing | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor</title>
   <meta name="description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Normalization | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta property="og:title" content="Chapter 16 Visium preprocessing | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Normalization | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
+  <meta name="twitter:title" content="Chapter 16 Visium preprocessing | Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor" />
   
   <meta name="twitter:description" content="Online book ‘Orchestrating Spatially-Resolved Transcriptomics Analysis with Bioconductor’" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="icon_32.png" type="image/x-icon" />
-<link rel="prev" href="quality-control.html"/>
-<link rel="next" href="feature-selection.html"/>
+<link rel="prev" href="spatiallibd-workflow.html"/>
+<link rel="next" href="image-segmentation-visium.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -374,87 +374,25 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="normalization" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Normalization<a href="normalization.html#normalization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="background-1" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Background<a href="normalization.html#background-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Here we apply normalization methods developed for scRNA-seq data, treating each spot as equivalent to one cell.</p>
+<div id="visium-preprocessing" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Chapter 16</span> Visium preprocessing<a href="visium-preprocessing.html#visium-preprocessing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this part, we describe several detailed preprocessing steps for 10x Genomics Visium data, which are required to prepare raw data files to load the data into R. These steps use tools outside R and Bioconductor.</p>
+<p>In the examples shown here, we use the <a href="https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger">Space Ranger</a> and <a href="https://www.10xgenomics.com/products/loupe-browser">Loupe Browser</a> software provided by 10x Genomics to preprocess Visium data. Alternative preprocessing workflows have also been developed by others, including the <a href="https://combine-lab.github.io/alevin-fry-tutorials/2021/af-spatial/">alevin-fry</a> pipeline for Visium and other platforms.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-114"></span>
+<img src="images/visium_spot.png" alt="An overview of the Visium technology by 10x Genomics for generating spatially-resolved transcriptomics data. Each Visium slide has four tissue capture areas. Each of these capture areas has around 5000 barcoded spots. The tissue capture areas are delineated by a fiducial frame that is useful for aligning the images and determining the location of the spots in order to map the gene expression data with the imaging data. Source: [`VistoSeg`](http://research.libd.org/VistoSeg/)." width="100%" />
+<p class="caption">
+Figure 16.1: An overview of the Visium technology by 10x Genomics for generating spatially-resolved transcriptomics data. Each Visium slide has four tissue capture areas. Each of these capture areas has around 5000 barcoded spots. The tissue capture areas are delineated by a fiducial frame that is useful for aligning the images and determining the location of the spots in order to map the gene expression data with the imaging data. Source: <a href="http://research.libd.org/VistoSeg/"><code>VistoSeg</code></a>.
+</p>
 </div>
-<div id="previous-steps" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Previous steps<a href="normalization.html#previous-steps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><em>Code to run steps from the previous chapters to generate the <code>SpatialExperiment</code> object required for this chapter.</em></p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="normalization.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear workspace from previous chapters</span></span>
-<span id="cb73-2"><a href="normalization.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="at">all =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="normalization.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD DATA</span></span>
-<span id="cb74-2"><a href="normalization.html#cb74-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-3"><a href="normalization.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
-<span id="cb74-4"><a href="normalization.html#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(STexampleData)</span>
-<span id="cb74-5"><a href="normalization.html#cb74-5" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">Visium_humanDLPFC</span>()</span>
-<span id="cb74-6"><a href="normalization.html#cb74-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-7"><a href="normalization.html#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="co"># QUALITY CONTROL (QC)</span></span>
-<span id="cb74-8"><a href="normalization.html#cb74-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-9"><a href="normalization.html#cb74-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb74-10"><a href="normalization.html#cb74-10" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to keep only spots over tissue</span></span>
-<span id="cb74-11"><a href="normalization.html#cb74-11" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colData</span>(spe)<span class="sc">$</span>in_tissue <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb74-12"><a href="normalization.html#cb74-12" aria-hidden="true" tabindex="-1"></a><span class="co"># identify mitochondrial genes</span></span>
-<span id="cb74-13"><a href="normalization.html#cb74-13" aria-hidden="true" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;(^MT-)|(^mt-)&quot;</span>, <span class="fu">rowData</span>(spe)<span class="sc">$</span>gene_name)</span>
-<span id="cb74-14"><a href="normalization.html#cb74-14" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate per-spot QC metrics</span></span>
-<span id="cb74-15"><a href="normalization.html#cb74-15" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(spe, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mito =</span> is_mito))</span>
-<span id="cb74-16"><a href="normalization.html#cb74-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select QC thresholds</span></span>
-<span id="cb74-17"><a href="normalization.html#cb74-17" aria-hidden="true" tabindex="-1"></a>qc_lib_size <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>sum <span class="sc">&lt;</span> <span class="dv">600</span></span>
-<span id="cb74-18"><a href="normalization.html#cb74-18" aria-hidden="true" tabindex="-1"></a>qc_detected <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>detected <span class="sc">&lt;</span> <span class="dv">400</span></span>
-<span id="cb74-19"><a href="normalization.html#cb74-19" aria-hidden="true" tabindex="-1"></a>qc_mito <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>subsets_mito_percent <span class="sc">&gt;</span> <span class="dv">28</span></span>
-<span id="cb74-20"><a href="normalization.html#cb74-20" aria-hidden="true" tabindex="-1"></a>qc_cell_count <span class="ot">&lt;-</span> <span class="fu">colData</span>(spe)<span class="sc">$</span>cell_count <span class="sc">&gt;</span> <span class="dv">10</span></span>
-<span id="cb74-21"><a href="normalization.html#cb74-21" aria-hidden="true" tabindex="-1"></a><span class="co"># combined set of discarded spots</span></span>
-<span id="cb74-22"><a href="normalization.html#cb74-22" aria-hidden="true" tabindex="-1"></a>discard <span class="ot">&lt;-</span> qc_lib_size <span class="sc">|</span> qc_detected <span class="sc">|</span> qc_mito <span class="sc">|</span> qc_cell_count</span>
-<span id="cb74-23"><a href="normalization.html#cb74-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(spe)<span class="sc">$</span>discard <span class="ot">&lt;-</span> discard</span>
-<span id="cb74-24"><a href="normalization.html#cb74-24" aria-hidden="true" tabindex="-1"></a><span class="co"># filter low-quality spots</span></span>
-<span id="cb74-25"><a href="normalization.html#cb74-25" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span><span class="fu">colData</span>(spe)<span class="sc">$</span>discard]</span></code></pre></div>
-</div>
-<div id="logcounts" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> Logcounts<a href="normalization.html#logcounts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Calculate log-transformed normalized counts (abbreviated as “logcounts”) using library size factors.</p>
-<p>We apply the methods implemented in the <code>scater</code> <span class="citation">(<a href="#ref-McCarthy2017" role="doc-biblioref">McCarthy et al. 2017</a>)</span> and <code>scran</code> <span class="citation">(<a href="#ref-Lun2016" role="doc-biblioref">Lun, McCarthy, and Marioni 2016</a>)</span> packages, which were originally developed for scRNA-seq data, making the assumption here that these methods can be applied to SRT data by treating spots as equivalent to cells.</p>
-<p>We use the library size factors methodology since this is the simplest approach, and can easily be applied to SRT data. Alternative approaches that are populare for scRNA-seq data, including normalization by deconvolution, are more difficulty to justify in the context of spot-based SRT data since (i) spots may contain multiple cells from more than one cell type, and (ii) datasets can contain multiple samples (e.g. multiple Visium slides, resulting in sample-specific clustering).</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="normalization.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
-<span id="cb75-2"><a href="normalization.html#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-3"><a href="normalization.html#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate library size factors</span></span>
-<span id="cb75-4"><a href="normalization.html#cb75-4" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">computeLibraryFactors</span>(spe)</span>
-<span id="cb75-5"><a href="normalization.html#cb75-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-6"><a href="normalization.html#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">sizeFactors</span>(spe))</span></code></pre></div>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.1321  0.6312  0.9000  1.0000  1.2849  3.7582</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="normalization.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">sizeFactors</span>(spe), <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
-<p><img src="OSTA-book_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="normalization.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate logcounts and store in object</span></span>
-<span id="cb78-2"><a href="normalization.html#cb78-2" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
-<span id="cb78-3"><a href="normalization.html#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-4"><a href="normalization.html#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb78-5"><a href="normalization.html#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="fu">assayNames</span>(spe)</span></code></pre></div>
-<pre><code>## [1] &quot;counts&quot;    &quot;logcounts&quot;</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="normalization.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">counts</span>(spe))</span></code></pre></div>
-<pre><code>## [1] 33538  3524</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="normalization.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">logcounts</span>(spe))</span></code></pre></div>
-<pre><code>## [1] 33538  3524</code></pre>
 
-</div>
-</div>
-<h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-Lun2016" class="csl-entry">
-Lun, Aaron T L, Davis J McCarthy, and John C Marioni. 2016. <span>“A Step-by-Step Workflow for Low-Level Analysis of Single-Cell <span class="nocase">RNA-seq</span> Data with <span>Bioconductor</span>.”</span> <em>F1000Research</em> 5: 2122. <a href="https://doi.org/10.12688/f1000research.9501.2">https://doi.org/10.12688/f1000research.9501.2</a>.
-</div>
-<div id="ref-McCarthy2017" class="csl-entry">
-McCarthy, Davis J, Kieran R Campbell, Aaron T L Lun, and Quin F Wills. 2017. <span>“Scater: Pre-Processing, Quality Control, Normalization and Visualization of Single-Cell <span class="nocase">RNA-seq</span> Data in <span>R</span>.”</span> <em>Bioinformatics</em> 33 (8): 1179–86. <a href="https://doi.org/10.1093/bioinformatics/btw777">https://doi.org/10.1093/bioinformatics/btw777</a>.
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="quality-control.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="feature-selection.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="spatiallibd-workflow.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="image-segmentation-visium.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
