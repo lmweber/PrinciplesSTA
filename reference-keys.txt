@@ -28,7 +28,7 @@ fig:unnamed-chunk-133
 fig:unnamed-chunk-134
 fig:unnamed-chunk-135
 introduction
-contents-of-this-book
+contents
 who-this-book-is-for
 bioconductor
 contributions
@@ -40,9 +40,9 @@ molecule-based-platforms
 x-genomics-xenium
 vizgen-merscope
 nanostring-cosmx
-spatialexperiment
+bioconductor-data-classes
 spatialexperiment-class
-additional-classes
+molecule-based-data
 moleculeexperiment
 spatialfeatureexperiment
 analysis-steps
@@ -70,7 +70,6 @@ background-2
 previous-steps-1
 highly-variable-genes-hvgs
 spatially-variable-genes-svgs
-integration-of-hvgs-and-svgs
 dimensionality-reduction
 background-3
 previous-steps-2
@@ -80,7 +79,7 @@ visualizations
 clustering
 overview-1
 previous-steps-3
-clustering-on-hvgs
+non-spatial-clustering-on-hvgs
 spatially-aware-clustering
 marker-genes
 background-4
@@ -158,6 +157,6 @@ data-structures
 statistical-concepts
 contributors-and-acknowledgments
 osta
-spatialexperiment-1
+spatialexperiment
 github-actions-workflow
 references
