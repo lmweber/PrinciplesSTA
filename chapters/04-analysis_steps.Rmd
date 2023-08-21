@@ -6,7 +6,7 @@ This part consists of several chapters for steps in a computational analysis pip
 
 These steps require that the raw data has been loaded into R. In the previous part, we provide instructions and examples showing how to do this for the 10x Genomics Visium platform.
 
-Throughout these chapters, we will rely on the [SpatialExperiment] data structure to connect the steps in the pipeline. Following the Bioconductor principle of modularity, you can substitute alternative methods for individual steps if you prefer, as long as these can interface with the `SpatialExperiment` structure.
+Throughout these chapters, we will rely on [Bioconductor data classes], especially `SpatialExperiment`, to connect the steps in the pipeline. Following the Bioconductor principle of modularity, you can substitute alternative methods for individual steps if you prefer, as long as these can interface with the `SpatialExperiment` structure.
 
 
 ## Load data
@@ -28,7 +28,7 @@ spe <- Visium_humanDLPFC()
 
 ## SpatialExperiment object
 
-Next, we inspect the `SpatialExperiment` object. For more details, see [SpatialExperiment].
+Next, we inspect the `SpatialExperiment` object. For more details, see [Bioconductor data classes].
 
 ```{r, message=FALSE}
 # check object

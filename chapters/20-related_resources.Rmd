@@ -36,7 +36,7 @@ Workflows and other resources for other spatially-resolved platforms:
 
 [**SpatialExperiment**](https://bioconductor.org/packages/SpatialExperiment)
 
-- S4 class for storing spatially-resolved transcriptomics (SRT) data, which is used as the basis for the examples in this book. See Chapter [SpatialExperiment].
+- S4 class for storing spatially-resolved transcriptomics (SRT) data, which is used as the basis for the examples in this book. See Chapter [Bioconductor data classes].
 - Authors: Dario Righelli, Lukas M. Weber, Helena L. Crowell, Brenda Pardo, Leonardo Collado-Torres, Shila Ghazanfar, Aaron T. L. Lun, Stephanie C. Hicks, Davide Risso
 
 \
