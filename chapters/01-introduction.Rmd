@@ -15,8 +15,6 @@ Chapters are organized into several parts:
 
 - **Workflows:** complete workflows for several example datasets
 
-- **Visium preprocessing:** appendix on detailed preprocessing steps for 10x Genomics Visium data
-
 - **Appendix:** related resources, contributors and acknowledgments, and references
 
 
@@ -35,6 +33,10 @@ For readers who are new to R and Bioconductor, additional useful resources inclu
 - [Data Carpentry](https://datacarpentry.org/) and [Software Carpentry](https://software-carpentry.org/) provide online lesson materials on R programming, the Unix shell, and version control.
 
 - The R/Bioconductor Data Science Team at LIBD has a [detailed guide](https://lcolladotor.github.io/bioc_team_ds/rbioconductor-data-science-bootcamps.html) of free resources and videos to learn more about R and Bioconductor, as well as [YouTube videos](https://www.youtube.com/c/LeonardoColladoTorres/playlists) and [LIBD rstats club sessions](https://docs.google.com/spreadsheets/d/1is8dZSd0FZ9Qi1Zvq1uRhm-P1McnJRd_zxdAfCRoMfA/edit?usp=sharing), including some on the basics of Bioconductor and infrastructure for storing gene expression data.
+
+Additional details on data preprocessing procedures for spatially-resolved transcriptomics data from the 10x Genomics Visium platform are provided in the following online book (using tools outside R and Bioconductor):
+
+- [Visium Data Preprocessing](https://lmweber.org/Visium-data-preprocessing/)
 
 
 ## Bioconductor

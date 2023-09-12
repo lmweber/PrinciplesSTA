@@ -11,6 +11,13 @@ rm(list = ls(all = TRUE))
 In this chapter, we highlight several related resources from the Bioconductor and other communities.
 
 
+## Data preprocessing procedures
+
+Details on data preprocessing procedures for spatially-resolved transcriptomics data from the 10x Genomics Visium platform are provided in the following online book (using tools outside R and Bioconductor):
+
+- [Visium Data Preprocessing](https://lmweber.org/Visium-data-preprocessing/)
+
+
 
 ## Resources for other spatially-resolved platforms
 
